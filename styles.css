@@ -1,126 +1,38 @@
 /* =========================================================
    ADAM MORGAN ENGINEERING PORTFOLIO
-   APPLE x TERMINAL DESIGN SYSTEM
+   INTERACTION SYSTEM
 ========================================================= */
-
-
-/* =========================================================
-   VARIABLES
-========================================================= */
-
-
-:root {
-
-    --bg:#0a0a0c;
-
-    --card:#121214;
-
-    --border:#202023;
-
-    --text:#ffffff;
-
-    --muted:#8e8e93;
-
-
-    --cyan:#00f0ff;
-
-    --green:#00ff66;
-
-
-    --radius:26px;
-
-
-    --transition:
-    all .4s cubic-bezier(
-    .95,
-    .05,
-    .795,
-    .035);
-
-}
-
-
-
 
 
 
 /* =========================================================
-   RESET
+   PAGE LOAD REVEAL
+   Sequential Bento Card Entrance
 ========================================================= */
 
 
-* {
-
-    margin:0;
-
-    padding:0;
-
-    box-sizing:border-box;
-
-}
+const revealCards = document.querySelectorAll(".reveal");
 
 
-
-html {
-
-    scroll-behavior:smooth;
-
-}
+window.addEventListener("load", () => {
 
 
+    revealCards.forEach((card, index) => {
 
 
-
-body {
-
-    background:var(--bg);
-
-    color:var(--text);
-
-    font-family:
-    "JetBrains Mono",
-    monospace;
+        setTimeout(() => {
 
 
-    line-height:1.6;
-
-    padding:40px;
-
-    overflow-x:hidden;
-
-}
+            card.classList.add("active");
 
 
+        }, index * 80);
 
 
+    });
 
 
-/* =========================================================
-   NOISE TEXTURE
-========================================================= */
-
-
-.noise {
-
-    position:fixed;
-
-    inset:0;
-
-    pointer-events:none;
-
-    opacity:.025;
-
-
-    background-image:
-    radial-gradient(
-    white 1px,
-    transparent 1px);
-
-
-    background-size:
-    14px 14px;
-
-}
+});
 
 
 
@@ -129,889 +41,153 @@ body {
 
 
 /* =========================================================
-   BENTO GRID
+   TYPEWRITER EFFECT
 ========================================================= */
 
 
-.grid {
+const typingElement =
+document.getElementById("typing");
 
 
-    max-width:1600px;
+const cursor =
+document.querySelector(".cursor");
 
-    margin:auto;
 
 
-    display:grid;
+const words = [
 
 
-    grid-template-columns:
-    repeat(12,1fr);
+    "Digital Systems",
 
 
-    gap:22px;
+    "Computer Architecture",
 
-}
 
+    "RTL Design",
 
 
+    "FPGA Development"
 
 
+];
 
 
-/* =========================================================
-   CARD SYSTEM
-========================================================= */
 
+let wordIndex = 0;
 
-.card {
+let charIndex = 0;
 
+let deleting = false;
 
-    position:relative;
 
 
-    background:
-    var(--card);
 
 
-    border:
+function typeEffect(){
 
-    1px solid var(--border);
 
+    if(!typingElement)
+        return;
 
 
-    border-radius:
 
-    var(--radius);
+    const currentWord =
+    words[wordIndex];
 
 
 
-    padding:34px;
+    cursor.classList.add("typing");
 
 
-    overflow:hidden;
 
 
-    opacity:0;
+    if(!deleting){
 
 
-    transform:
-    translateY(35px);
+        typingElement.textContent =
+        currentWord.substring(
+            0,
+            charIndex++
+        );
 
 
 
-    transition:
-    var(--transition);
+        if(charIndex >
+        currentWord.length){
 
 
+            deleting=true;
 
-}
 
+            cursor.classList.remove(
+                "typing"
+            );
 
 
-.card.active {
+            setTimeout(
+                typeEffect,
+                1200
+            );
 
 
-    opacity:1;
+            return;
 
 
-    transform:
-    translateY(0);
+        }
 
 
-}
-
-
-
-.card:hover {
-
-
-    transform:
-    translateY(-6px);
-
-
-
-    border-color:
-    var(--cyan);
-
-
-
-    box-shadow:
-
-    0 15px 40px
-    rgba(0,240,255,.08);
-
-
-}
-
-
-
-
-
-
-.card::before {
-
-
-    content:"";
-
-
-    position:absolute;
-
-
-    width:260px;
-
-
-    height:260px;
-
-
-
-    background:
-
-    radial-gradient(
-
-    circle,
-
-    rgba(0,240,255,.18),
-
-    transparent 70%);
-
-
-
-    left:var(--x,50%);
-
-    top:var(--y,50%);
-
-
-
-    transform:
-    translate(-50%,-50%);
-
-
-
-    opacity:0;
-
-
-    pointer-events:none;
-
-
-    transition:
-    var(--transition);
-
-
-}
-
-
-
-.card:hover::before {
-
-
-    opacity:1;
-
-
-}
-
-
-
-
-
-
-
-
-/* =========================================================
-   TERMINAL BAR
-========================================================= */
-
-
-.terminal-bar {
-
-
-    display:flex;
-
-    margin-bottom:20px;
-
-
-}
-
-
-
-.dots {
-
-
-    display:flex;
-
-    gap:10px;
-
-
-}
-
-
-
-.dot {
-
-
-    width:14px;
-
-    height:14px;
-
-
-    border-radius:50%;
-
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-
-    font-size:8px;
-
-
-    color:black;
-
-
-    transition:
-    var(--transition);
-
-}
-
-
-
-.dot:hover {
-
-
-    transform:
-    scale(1.25)
-    rotate(15deg);
-
-
-}
-
-
-
-.dot i {
-
-
-    opacity:0;
-
-
-}
-
-
-
-.dot:hover i {
-
-
-    opacity:1;
-
-
-}
-
-
-
-.red {
-
-    background:#ff5f57;
-
-}
-
-
-.yellow {
-
-    background:#febc2e;
-
-}
-
-
-.green {
-
-    background:#28c840;
-
-}
-
-
-
-
-
-
-
-/* =========================================================
-   TYPOGRAPHY
-========================================================= */
-
-
-.label {
-
-
-    display:block;
-
-
-    color:var(--green);
-
-
-    font-size:12px;
-
-
-    letter-spacing:2px;
-
-
-    margin-bottom:22px;
-
-
-}
-
-
-
-h1 {
-
-
-    font-size:
-    clamp(3rem,6vw,5.5rem);
-
-
-    line-height:1.05;
-
-
-    letter-spacing:-3px;
-
-
-}
-
-
-
-h2 {
-
-
-    font-size:28px;
-
-
-    margin-bottom:25px;
-
-
-}
-
-
-
-h3 {
-
-
-    margin-bottom:12px;
-
-}
-
-
-
-p {
-
-
-    color:var(--muted);
-
-
-    font-size:15px;
-
-
-}
-
-
-
-
-
-
-/* =========================================================
-   HERO
-========================================================= */
-
-
-.hero {
-
-
-    grid-column:
-    span 8;
-
-
-    grid-row:
-    span 2;
-
-
-    min-height:560px;
-
-
-}
-
-
-
-.eyebrow {
-
-
-    color:var(--green);
-
-
-    font-size:12px;
-
-
-    letter-spacing:2px;
-
-
-    margin-bottom:30px;
-
-
-}
-
-
-
-
-.typing-line {
-
-
-    margin-top:35px;
-
-
-    font-size:20px;
-
-
-    display:flex;
-
-
-    gap:8px;
-
-
-    flex-wrap:wrap;
-
-
-}
-
-
-
-#typing {
-
-
-    color:var(--green);
-
-
-}
-
-
-
-.cursor {
-
-
-    width:10px;
-
-
-    height:24px;
-
-
-    background:var(--green);
-
-
-    animation:
-    blink 1s infinite;
-
-
-}
-
-
-
-@keyframes blink {
-
-
-    50%{
-
-        opacity:0;
 
     }
 
-}
+    else{
+
+
+        typingElement.textContent =
+        currentWord.substring(
+            0,
+            charIndex--
+        );
 
 
 
-.hero-description {
+        if(charIndex < 0){
 
 
-    margin-top:35px;
+            deleting=false;
 
 
-    max-width:700px;
-
-
-    font-size:17px;
-
-
-}
+            wordIndex =
+            (wordIndex + 1)
+            %
+            words.length;
 
 
 
+            charIndex=0;
 
 
-.hero-buttons {
+        }
 
 
-    margin-top:40px;
-
-
-    display:flex;
-
-
-    gap:15px;
-
-
-    flex-wrap:wrap;
-
-
-}
+    }
 
 
 
+    setTimeout(
 
+        typeEffect,
 
-.button {
+        deleting ? 45 : 90
 
-
-    padding:
-
-    14px 24px;
-
-
-    border-radius:14px;
-
-
-    background:#171719;
-
-
-    border:1px solid var(--border);
-
-
-    color:white;
-
-
-    text-decoration:none;
-
-
-    transition:
-    var(--transition);
+    );
 
 
 }
 
 
 
-.button:hover {
+typeEffect();
 
-
-    color:var(--green);
-
-
-    border-color:var(--green);
-
-
-    transform:
-    translateY(-3px);
-
-
-}
-
-
-
-
-
-/* =========================================================
-   GRID PLACEMENT
-========================================================= */
-
-
-.profile {
-
-
-    grid-column:
-    span 4;
-
-
-}
-
-
-
-
-.hardware {
-
-
-    grid-column:
-    span 8;
-
-
-    grid-row:
-    span 2;
-
-
-}
-
-
-
-.architecture {
-
-
-    grid-column:
-    span 4;
-
-
-}
-
-
-
-.verification {
-
-
-    grid-column:
-    span 4;
-
-
-}
-
-
-
-.projects {
-
-
-    grid-column:
-    span 8;
-
-
-}
-
-
-
-.experience {
-
-
-    grid-column:
-    span 4;
-
-
-}
-
-
-
-.toolkit {
-
-
-    grid-column:
-    span 6;
-
-
-}
-
-
-
-.creative {
-
-
-    grid-column:
-    span 6;
-
-
-}
-
-
-
-.philosophy {
-
-
-    grid-column:
-    span 6;
-
-
-}
-
-
-
-.socials-card {
-
-
-    grid-column:
-    span 6;
-
-
-}
-
-
-
-
-
-
-/* =========================================================
-   STATUS PROFILE
-========================================================= */
-
-
-.status-grid {
-
-
-    display:grid;
-
-
-    gap:20px;
-
-
-}
-
-
-
-.status-grid div {
-
-
-    display:flex;
-
-
-    flex-direction:column;
-
-
-    border-bottom:
-
-    1px solid var(--border);
-
-
-    padding-bottom:15px;
-
-
-}
-
-
-
-.status-grid span {
-
-
-    color:var(--muted);
-
-
-    font-size:12px;
-
-
-}
-
-
-
-.status-grid strong {
-
-
-    margin-top:5px;
-
-
-}
-
-
-
-
-
-
-/* =========================================================
-   CPU PIPELINE
-========================================================= */
-
-
-.cpu-layout {
-
-
-    display:flex;
-
-
-    gap:30px;
-
-
-    align-items:center;
-
-
-    margin:35px 0;
-
-
-}
-
-
-
-
-.pipeline {
-
-
-    display:flex;
-
-
-    gap:8px;
-
-
-    flex-wrap:wrap;
-
-
-}
-
-
-
-.pipeline div {
-
-
-    padding:18px;
-
-
-    border:
-
-    1px solid var(--border);
-
-
-    border-radius:12px;
-
-
-    background:#18181b;
-
-
-    transition:
-    var(--transition);
-
-
-}
-
-
-
-.pipeline div:hover {
-
-
-    border-color:var(--green);
-
-
-    color:var(--green);
-
-
-}
-
-
-
-
-.code-window {
-
-
-    background:#09090b;
-
-
-    border:
-
-    1px solid var(--border);
-
-
-    border-radius:16px;
-
-
-    padding:20px;
-
-
-    flex:1;
-
-
-}
-
-
-
-pre {
-
-
-    color:var(--green);
-
-
-}
 
 
 
@@ -1020,65 +196,87 @@ pre {
 
 
 /* =========================================================
-   ARCHITECTURE FLOW
+   CARD MOUSE FOLLOW GLOW
 ========================================================= */
 
 
-.architecture-flow {
-
-
-    display:flex;
-
-
-    flex-direction:column;
-
-
-    align-items:center;
-
-
-    gap:12px;
-
-
-}
+const cards =
+document.querySelectorAll(".card");
 
 
 
-.architecture-flow div {
-
-
-    width:100%;
-
-
-    padding:12px;
-
-
-    text-align:center;
-
-
-    border-radius:12px;
-
-
-    background:#18181b;
-
-
-    border:1px solid var(--border);
-
-
-    transition:
-    var(--transition);
-
-
-}
+cards.forEach(card => {
 
 
 
-.architecture-flow div:hover {
+    card.addEventListener(
+        "mousemove",
+        event => {
 
 
-    border-color:var(--cyan);
+
+        const rect =
+        card.getBoundingClientRect();
 
 
-}
+
+        const x =
+        event.clientX -
+        rect.left;
+
+
+
+        const y =
+        event.clientY -
+        rect.top;
+
+
+
+
+        card.style.setProperty(
+            "--x",
+            `${x}px`
+        );
+
+
+
+        card.style.setProperty(
+            "--y",
+            `${y}px`
+        );
+
+
+
+    });
+
+
+
+
+
+    card.addEventListener(
+        "mouseleave",
+        ()=>{
+
+
+        card.style.setProperty(
+            "--x",
+            "50%"
+        );
+
+
+        card.style.setProperty(
+            "--y",
+            "50%"
+        );
+
+
+    });
+
+
+
+});
+
+
 
 
 
@@ -1087,55 +285,115 @@ pre {
 
 
 /* =========================================================
-   TOOLKIT
+   ENGINEERING TIMELINE
 ========================================================= */
 
 
-.directory {
-
-
-    margin-bottom:25px;
-
-
-}
+const timelineButtons =
+document.querySelectorAll(
+".year-buttons button"
+);
 
 
 
-.directory h3 {
-
-
-    color:var(--green);
-
-
-    font-size:15px;
-
-
-}
+const timelineDisplay =
+document.getElementById(
+"timeline-display"
+);
 
 
 
-.directory span {
+const timelineData = {
 
 
-    display:inline-block;
+
+    "2026":`
+
+        <h3>
+        Processor Architecture
+        </h3>
+
+        <p>
+        Focused on RTL design,
+        CPU architecture,
+        SystemVerilog development,
+        and hardware simulation.
+        </p>
+
+    `,
 
 
-    padding:8px 14px;
 
 
-    background:#18181b;
+    "2025":`
+
+        <h3>
+        Digital Systems
+        </h3>
+
+        <p>
+        Developed foundations in
+        circuits, programming,
+        embedded systems,
+        and engineering design.
+        </p>
 
 
-    border-radius:20px;
+    `,
 
 
-    margin:5px;
 
 
-    font-size:13px;
+    "2024":`
+
+        <h3>
+        Engineering Foundations
+        </h3>
+
+        <p>
+        Built fundamentals in
+        mathematics, physics,
+        electronics,
+        and programming.
+        </p>
 
 
-}
+    `
+
+
+
+};
+
+
+
+
+
+timelineButtons.forEach(button => {
+
+
+
+    button.addEventListener(
+        "mouseenter",
+        ()=>{
+
+
+        const year =
+        button.dataset.year;
+
+
+
+        timelineDisplay.innerHTML =
+        timelineData[year];
+
+
+
+    });
+
+
+
+});
+
+
 
 
 
@@ -1143,32 +401,79 @@ pre {
 
 
 /* =========================================================
-   PROJECTS
+   CPU PIPELINE MOTION
+   Subtle Hardware Activity Effect
 ========================================================= */
 
 
-.project-item {
+const pipelineStages =
+document.querySelectorAll(
+".pipeline div"
+);
 
 
-    padding:20px 0;
+
+let activeStage = 0;
 
 
-    border-bottom:
 
-    1px solid var(--border);
+
+function animatePipeline(){
+
+
+    pipelineStages.forEach(
+        stage => {
+
+            stage.style.borderColor =
+            "";
+
+            stage.style.color =
+            "";
+
+        }
+
+    );
+
+
+
+    if(pipelineStages.length){
+
+
+        pipelineStages[
+            activeStage
+        ].style.borderColor =
+        "#00ff66";
+
+
+
+        pipelineStages[
+            activeStage
+        ].style.color =
+        "#00ff66";
+
+
+
+        activeStage =
+        (activeStage + 1)
+        %
+        pipelineStages.length;
+
+
+    }
+
 
 
 }
 
 
 
-.project-item:last-child {
+setInterval(
+    animatePipeline,
+    900
+);
 
 
-    border:none;
 
-
-}
 
 
 
@@ -1176,157 +481,23 @@ pre {
 
 
 /* =========================================================
-   WORKFLOW
+   REDUCED MOTION SUPPORT
 ========================================================= */
 
 
-.workflow {
-
-
-    margin-top:25px;
-
-
-    text-align:center;
-
-
-    color:var(--green);
-
-
-    line-height:2.5;
-
-
-}
+const reducedMotion =
+window.matchMedia(
+"(prefers-reduced-motion: reduce)"
+);
 
 
 
+if(reducedMotion.matches){
 
 
-
-
-/* =========================================================
-   SOCIAL
-========================================================= */
-
-
-.socials-card a {
-
-
-    display:flex;
-
-
-    justify-content:space-between;
-
-
-    align-items:center;
-
-
-    padding:15px;
-
-
-    color:white;
-
-
-    text-decoration:none;
-
-
-    border-bottom:
-
-    1px solid var(--border);
-
-
-    transition:
-    var(--transition);
+    clearInterval(
+        animatePipeline
+    );
 
 
 }
-
-
-
-.socials-card a:hover {
-
-
-    color:var(--green);
-
-
-    transform:
-    translateX(8px);
-
-
-}
-
-
-
-code {
-
-
-    color:var(--muted);
-
-
-}
-
-
-
-
-
-
-/* =========================================================
-   MOBILE
-========================================================= */
-
-
-@media(max-width:900px){
-
-
-body{
-
-    padding:20px;
-
-}
-
-
-
-.grid {
-
-
-    display:flex;
-
-
-    flex-direction:column;
-
-
-}
-
-
-
-.card {
-
-
-    padding:25px;
-
-
-}
-
-
-
-h1 {
-
-
-    font-size:2.8rem;
-
-
-}
-
-
-.cpu-layout {
-
-
-    flex-direction:column;
-
-
-}
-
-
-
-}
-
-
