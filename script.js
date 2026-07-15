@@ -208,9 +208,6 @@ function loadProjects(year) {
    YEAR BUTTON SYSTEM
 ===================================================== */
 
-let timelineHovered = false;
-let collapseTimer;
-
 function activateYear(button) {
   const year = button.dataset.year;
 
@@ -226,7 +223,6 @@ function activateYear(button) {
 
   loadProjects(year);
 
-  if (!timelineHovered) resetTimelineTimer();
 }
 
 yearButtons.forEach((button) => {
@@ -244,41 +240,6 @@ if (yearButtonsContainer) {
   yearButtonsContainer.addEventListener("mouseover", (e) => {
     const btn = e.target.closest("button[data-year]");
     if (btn) activateYear(btn);
-  });
-}
-
-/* =====================================================
-   TIMELINE COLLAPSE SYSTEM
-===================================================== */
-
-function resetTimelineTimer() {
-  clearTimeout(collapseTimer);
-
-  collapseTimer = setTimeout(() => {
-    if (!timelineHovered && timeline) {
-      timeline.classList.remove("expanded");
-
-      yearButtons.forEach((btn) => {
-        btn.classList.remove("active");
-        btn.setAttribute("aria-selected", "false");
-      });
-
-      if (projectGrid) {
-        projectGrid.innerHTML = "<p>Hover a year to explore projects.</p>";
-      }
-    }
-  }, 4500);
-}
-
-if (timeline) {
-  timeline.addEventListener("mouseenter", () => {
-    timelineHovered = true;
-    clearTimeout(collapseTimer);
-  });
-
-  timeline.addEventListener("mouseleave", () => {
-    timelineHovered = false;
-    resetTimelineTimer();
   });
 }
 
@@ -302,7 +263,7 @@ if (projectsButton && timeline) {
     timeline.scrollIntoView({ behavior: prefersReducedMotion ? "auto" : "smooth", block: "center" });
 
     setTimeout(() => {
-      timeline.classList.add("expanded");
+      activateYear(yearButtons[0]);
       playTimelineGlow();
     }, 800);
   });

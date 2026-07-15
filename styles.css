@@ -181,11 +181,17 @@ body::before {
 
 .hero { grid-column: span 8; grid-row: span 2; min-height: 600px; isolation: isolate; }
 .profile { grid-column: span 4; }
-.hardware { grid-column: span 8; grid-row: span 2; }
+.hardware {
+  grid-column: span 8;
+  grid-row: span 2;
+  /* Keep this card content-sized when the adjacent timeline expands. */
+  align-self: start;
+}
 .timeline {
   grid-column: span 4;
   max-height: 300px;
   overflow: hidden;
+  contain: layout paint;
   transition: max-height 1s var(--ease), transform .7s var(--ease), border-color .5s ease, box-shadow .5s ease;
 }
 .timeline.expanded { max-height: 850px; }
@@ -481,7 +487,12 @@ pre code { font-family: inherit; background: transparent; }
    PERFORMANCE / POLISH
 ===================================================== */
 
-.cpu-field, .noise, body::before { will-change: transform; }
+/* Restrict compositor hints to the elements that actually animate. */
+.cpu-pulse { will-change: transform, opacity; }
+
+@media (max-width: 700px), (pointer: coarse) {
+  .noise { display: none; }
+}
 
 @media (max-width: 900px) and (orientation: landscape) {
   .hero { min-height: auto; }
