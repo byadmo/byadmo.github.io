@@ -8,7 +8,7 @@
 
 <title>Adam Morgan | Electrical Engineering Portfolio</title>
 
-<meta name="description" content="Adam Morgan Electrical Engineering portfolio focused on digital systems, processor architecture, RTL design, FPGA development and hardware engineering.">
+<meta name="description" content="Adam Morgan — Electrical Engineering student specializing in digital systems, processor architecture, RTL design, and FPGA development.">
 
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,6 +23,7 @@
 </head>
 
 
+
 <body>
 
 
@@ -30,7 +31,7 @@
 
 
 
-<main class="grid">
+<main class="bento-grid">
 
 
 
@@ -42,19 +43,22 @@
 <section class="card hero reveal">
 
 
-<div class="terminal">
+<div class="terminal-dots">
 
-<span class="red"></span>
-<span class="yellow"></span>
-<span class="green"></span>
+<span class="mac-red"></span>
+<span class="mac-yellow"></span>
+<span class="mac-green"></span>
 
 </div>
 
 
 
-<span class="label">
+<div class="label">
+
 ELECTRICAL_ENGINEERING // COMPUTER_ARCHITECTURE
-</span>
+
+</div>
+
 
 
 
@@ -68,9 +72,12 @@ I design computer processors.
 
 
 
-<div class="typing">
 
+<div class="typing-line">
+
+<span>
 Currently Building:
+</span>
 
 <span id="typing"></span>
 
@@ -80,30 +87,43 @@ Currently Building:
 
 
 
-<p>
 
-Electrical Engineering student focused on digital systems,
+
+<p class="description">
+
+Electrical Engineering student specializing in digital systems,
 processor architecture, RTL design, FPGA development,
-and efficient hardware systems.
+and efficient hardware implementation.
 
 </p>
 
 
 
+
+
 <div class="buttons">
 
-<a href="#">
+
+<a href="#timeline-card" id="projects-button">
+
 $ view_projects
+
 </a>
 
 
-<a href="#">
+
+<a href="resume.pdf" download>
+
 $ download_resume
+
 </a>
 
 
-<a href="#">
+
+<a href="https://www.linkedin.com/in/adammorgan05/" target="_blank">
+
 $ contact_adam
+
 </a>
 
 
@@ -118,65 +138,74 @@ $ contact_adam
 
 
 
+
 <!-- =========================
- CURRENT FOCUS
+ PROFILE
 ========================= -->
 
 
-<section class="card focus reveal">
+<section class="card profile reveal">
 
 
-<span class="label">
+<div class="label">
+
 ENGINEERING_PROFILE
-</span>
+
+</div>
 
 
 
 <h2>
+
 Current Focus
+
 </h2>
 
 
 
-<div class="info">
 
-
-<div>
+<div class="profile-item">
 
 <span>
 FIELD
 </span>
 
+<p>
 Electrical Engineering
+</p>
 
 </div>
 
 
 
-<div>
+
+<div class="profile-item">
 
 <span>
 SPECIALIZATION
 </span>
 
+<p>
 Digital Systems
+</p>
 
 </div>
 
 
 
-<div>
+
+<div class="profile-item">
 
 <span>
 INTERESTS
 </span>
 
+<p>
 CPU Architecture + FPGA
+</p>
 
 </div>
 
-
-</div>
 
 
 </section>
@@ -187,27 +216,40 @@ CPU Architecture + FPGA
 
 
 
+
 <!-- =========================
- RISC-V PROJECT
+ HARDWARE PROJECT
 ========================= -->
 
 
 <section class="card hardware reveal">
 
 
-<div class="terminal">
+<div class="terminal-dots">
 
-<span class="red">×</span>
-<span class="yellow">−</span>
-<span class="green">+</span>
+<span class="mac-red">
+×
+</span>
+
+<span class="mac-yellow">
+−
+</span>
+
+<span class="mac-green">
++
+</span>
 
 </div>
 
 
 
-<span class="label">
+
+<div class="label">
+
 PROJECT_001 // PROCESSOR_DESIGN
-</span>
+
+</div>
+
 
 
 
@@ -219,15 +261,32 @@ PROJECT_001 // PROCESSOR_DESIGN
 
 
 
+
 <div class="pipeline">
 
-<span>IF</span>
-<span>ID</span>
-<span>EX</span>
-<span>MEM</span>
-<span>WB</span>
+<div>
+IF
+</div>
+
+<div>
+ID
+</div>
+
+<div>
+EX
+</div>
+
+<div>
+MEM
+</div>
+
+<div>
+WB
+</div>
+
 
 </div>
+
 
 
 
@@ -256,6 +315,7 @@ endmodule
 
 
 
+
 <ul>
 
 <li>
@@ -264,12 +324,12 @@ endmodule
 
 
 <li>
-Hazard detection and data forwarding logic
+Hazard detection and data forwarding paths
 </li>
 
 
 <li>
-RTL simulation and waveform verification
+RTL verification using waveform simulation
 </li>
 
 
@@ -290,42 +350,60 @@ RTL simulation and waveform verification
 ========================= -->
 
 
-<section class="card journey reveal">
+<section 
+class="card timeline reveal"
+id="timeline-card">
 
 
-<span class="label">
+
+<div class="label">
+
 ENGINEERING_JOURNEY
-</span>
+
+</div>
 
 
 
-<div class="years">
+
+
+<div class="year-buttons">
+
 
 <button data-year="2026">
+
 2026
+
 </button>
 
 
 <button data-year="2025">
+
 2025
+
 </button>
+
 
 
 <button data-year="2024">
+
 2024
+
 </button>
 
+
+
 </div>
 
 
 
-<div id="timeline">
 
-<p>
+
+<div id="timeline-content">
+
 Hover a year
-</p>
 
 </div>
+
 
 
 
@@ -345,15 +423,21 @@ Hover a year
 <section class="card stack reveal">
 
 
-<span class="label">
+<div class="label">
+
 TECH_STACK
-</span>
+
+</div>
+
 
 
 
 <h3>
+
 HARDWARE/
+
 </h3>
+
 
 
 <div class="tags">
@@ -362,33 +446,35 @@ HARDWARE/
 SystemVerilog
 </span>
 
-
 <span>
 Verilog
 </span>
-
 
 <span>
 FPGA
 </span>
 
-
 <span>
 RISC-V
 </span>
-
 
 </div>
 
 
 
 
+
 <h3>
+
 TOOLS/
+
 </h3>
 
 
+
+
 <div class="tags">
+
 
 <span>
 Quartus
@@ -405,6 +491,12 @@ ModelSim
 </span>
 
 
+<span>
+Icarus Verilog
+</span>
+
+
+
 </div>
 
 
@@ -417,39 +509,45 @@ ModelSim
 
 
 
+
 <!-- =========================
  ENTREPRENEURSHIP
 ========================= -->
 
 
-<section class="card entrepreneurship reveal">
+<section class="card entrepreneur reveal">
 
 
-<span class="label">
+<div class="label">
+
 ENTREPRENEURSHIP
-</span>
+
+</div>
+
 
 
 
 <h2>
+
 Founder & Product Developer
+
 </h2>
+
 
 
 
 <p>
 
-Managed product development,
-manufacturing decisions,
-supplier communication,
-budgeting,
-branding,
-and marketing.
+Built and managed an independent product venture involving
+manufacturing decisions, supplier communication,
+budgeting, branding, and product development.
 
 </p>
 
 
+
 </section>
+
 
 
 
@@ -465,22 +563,36 @@ and marketing.
 <section class="card connect reveal">
 
 
-<span class="label">
+<div class="label">
+
 CONNECT
-</span>
+
+</div>
 
 
-<a href="#">
+
+
+<a href="https://github.com/" target="_blank">
+
 $ github
+
 </a>
 
 
-<a href="#">
+
+
+<a href="https://www.linkedin.com/in/adammorgan05/" target="_blank">
+
 $ linkedin
+
 </a>
+
+
 
 
 </section>
+
+
 
 
 
@@ -488,9 +600,12 @@ $ linkedin
 
 
 
+
+
 <script src="script.js"></script>
 
 
 </body>
+
 
 </html>
