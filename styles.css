@@ -2952,3 +2952,85 @@ pre {
 
 
 }
+
+/* =====================================================
+   CONNECT TERMINAL BUTTON STYLE FIX
+===================================================== */
+
+
+.connect a {
+
+    background:
+    linear-gradient(
+        145deg,
+        #181b22,
+        #101116
+    );
+
+
+    border:
+    1px solid rgba(
+        255,
+        255,
+        255,
+        .12
+    );
+
+
+    padding:
+    15px 24px;
+
+
+    border-radius:
+    16px;
+
+
+    color:white;
+
+
+    text-decoration:none;
+
+
+    font-family:
+    "JetBrains Mono",
+    monospace;
+
+
+    transition:
+    .45s var(--ease);
+
+
+}
+
+
+
+.connect a:hover {
+
+
+    color:
+    var(--green);
+
+
+
+    border-color:
+    var(--green);
+
+
+
+    transform:
+    translateX(6px)
+    translateY(-5px);
+
+
+
+    box-shadow:
+
+    0 15px 40px rgba(
+        0,
+        255,
+        136,
+        .15
+    );
+
+
+}
