@@ -1,36 +1,24 @@
 /* =====================================================
    ADAM MORGAN PORTFOLIO
-   PREMIUM ENGINEERING BENTO SYSTEM
+   PREMIUM UI OVERHAUL PATCH
+   COPY THIS AT THE END OF STYLES.CSS
 ===================================================== */
 
 
+/* =========================
+ROOT ENHANCEMENT
+========================= */
+
 :root {
 
---bg:#08090b;
+    --card-glow:
+    0 30px 80px rgba(0,0,0,.45);
 
---card:#111216;
+    --cyan-glow:
+    0 0 45px rgba(0,234,255,.18);
 
---border:#24262d;
-
---white:#ffffff;
-
---muted:#8b8f98;
-
---cyan:#00eaff;
-
---green:#00ff88;
-
---radius:26px;
-
-
---ease:
-
-cubic-bezier(
-.22,
-1,
-.36,
-1
-);
+    --green-glow:
+    0 0 35px rgba(0,255,136,.15);
 
 }
 
@@ -38,45 +26,144 @@ cubic-bezier(
 
 
 
-*{
+/* =========================
+CARD DEPTH
+========================= */
 
-margin:0;
 
-padding:0;
+.card {
 
-box-sizing:border-box;
+
+    background:
+
+    linear-gradient(
+        145deg,
+        rgba(20,22,28,.98),
+        rgba(10,11,14,.98)
+    );
+
+
+
+    border-color:
+
+    rgba(
+        255,
+        255,
+        255,
+        .08
+    );
+
+
+
+    box-shadow:
+
+    0 15px 45px rgba(
+        0,
+        0,
+        0,
+        .25
+    );
+
+
+
+    transition:
+
+    transform .6s cubic-bezier(
+        .16,
+        1,
+        .3,
+        1
+    ),
+
+    border-color .5s ease,
+
+    box-shadow .5s ease;
+
 
 }
 
 
 
 
-html{
 
-scroll-behavior:smooth;
+.card:hover {
+
+
+    transform:
+
+    translateY(-8px);
+
+
+
+    border-color:
+
+    rgba(
+        0,
+        234,
+        255,
+        .35
+    );
+
+
+
+    box-shadow:
+
+    var(--card-glow),
+
+    var(--cyan-glow);
+
 
 }
 
 
 
 
-body{
 
 
-background:var(--bg);
-
-color:white;
-
-font-family:
-
-"JetBrains Mono",
-monospace;
+/* =========================
+CURSOR LIGHT
+========================= */
 
 
-padding:40px;
+.card::before {
 
 
-overflow-x:hidden;
+    width:
+
+    420px;
+
+
+
+    height:
+
+    420px;
+
+
+
+    background:
+
+
+    radial-gradient(
+
+    circle,
+
+    rgba(
+        0,
+        234,
+        255,
+        .18
+    ),
+
+
+    transparent 65%
+
+    );
+
+
+
+    transition:
+
+    opacity .7s ease;
 
 
 }
@@ -88,1365 +175,44 @@ overflow-x:hidden;
 
 
 /* =========================
-BACKGROUND
+BUTTON UPGRADE
 ========================= */
 
 
-.noise{
+.buttons a {
 
 
-position:fixed;
+    background:
 
 
-inset:0;
+    linear-gradient(
 
+    145deg,
 
-pointer-events:none;
+    #191c23,
 
+    #101116
 
-opacity:.035;
+    );
 
 
-background-image:
 
-radial-gradient(
-white 1px,
-transparent 1px
-);
+    border-color:
 
+    rgba(
+        255,
+        255,
+        255,
+        .12
+    );
 
-background-size:18px 18px;
 
 
-}
+    position:relative;
 
-
-
-
-
-
-
-
-
-/* =========================
-BENTO GRID
-========================= */
-
-
-.bento-grid{
-
-
-max-width:1600px;
-
-
-margin:auto;
-
-
-display:grid;
-
-
-grid-template-columns:
-
-repeat(12,1fr);
-
-
-gap:22px;
-
-
-}
-
-
-
-
-
-
-
-
-
-/* =========================
-CARDS
-========================= */
-
-
-.card{
-
-
-background:
-
-rgba(
-17,
-18,
-22,
-.96
-);
-
-
-border:
-
-1px solid var(--border);
-
-
-
-border-radius:
-
-var(--radius);
-
-
-
-padding:34px;
-
-
-
-position:relative;
-
-
-
-overflow:hidden;
-
-
-
-opacity:0;
-
-
-
-transform:
-
-translateY(30px);
-
-
-
-transition:
-
-.5s var(--ease);
-
-
-
-}
-
-
-
-
-.card.active{
-
-
-opacity:1;
-
-
-transform:
-
-translateY(0);
-
-
-}
-
-
-
-
-
-.card:hover{
-
-
-transform:
-
-translateY(-5px);
-
-
-border-color:
-
-var(--cyan);
-
-
-}
-
-
-
-
-
-
-
-
-/* CURSOR GLOW */
-
-
-.card::before{
-
-
-content:"";
-
-
-position:absolute;
-
-
-width:300px;
-
-
-height:300px;
-
-
-
-left:
-
-var(--mouse-x,50%);
-
-
-
-top:
-
-var(--mouse-y,50%);
-
-
-
-transform:
-
-translate(-50%,-50%);
-
-
-
-background:
-
-radial-gradient(
-
-circle,
-
-rgba(
-0,
-234,
-255,
-.16
-),
-
-transparent 70%
-
-);
-
-
-
-opacity:0;
-
-
-transition:.5s;
-
-
-pointer-events:none;
-
-
-}
-
-
-
-
-.card:hover::before{
-
-
-opacity:1;
-
-
-}
-
-
-
-
-
-
-
-
-
-/* =========================
-BENTO POSITIONS
-========================= */
-
-
-.hero{
-
-
-grid-column:
-
-span 8;
-
-
-grid-row:
-
-span 2;
-
-
-min-height:600px;
-
-
-}
-
-
-
-
-.profile{
-
-
-grid-column:
-
-span 4;
-
-
-}
-
-
-
-
-.hardware{
-
-
-grid-column:
-
-span 8;
-
-
-grid-row:
-
-span 2;
-
-
-}
-
-
-
-
-.timeline{
-
-
-grid-column:
-
-span 4;
-
-
-max-height:300px;
-
-
-transition:
-
-
-max-height .9s var(--ease),
-
-
-box-shadow 1s ease,
-
-
-border-color 1s ease;
-
-
-
-}
-
-
-
-
-
-.timeline.expanded{
-
-
-max-height:750px;
-
-
-}
-
-
-
-
-
-.stack{
-
-
-grid-column:
-
-span 4;
-
-
-}
-
-
-
-
-.entrepreneur{
-
-
-grid-column:
-
-span 4;
-
-
-}
-
-
-
-
-.connect{
-
-
-grid-column:
-
-span 4;
-
-
-}
-
-
-
-
-
-
-
-
-
-/* =========================
-TIMELINE GLOW ANIMATION
-========================= */
-
-
-.timeline.project-active::after{
-
-
-content:"";
-
-
-position:absolute;
-
-
-inset:-2px;
-
-
-
-border-radius:
-
-28px;
-
-
-
-background:
-
-linear-gradient(
-
-90deg,
-
-transparent,
-
-var(--cyan),
-
-var(--green),
-
-var(--cyan),
-
-transparent
-
-);
-
-
-
-background-size:
-
-300% 100%;
-
-
-
-animation:
-
-borderFlow 5s var(--ease) forwards;
-
-
-
-pointer-events:none;
-
-
-
-z-index:0;
-
-
-}
-
-
-
-
-
-@keyframes borderFlow{
-
-
-0%{
-
-
-background-position:
-
-0%;
-
-
-
-opacity:0;
-
-
-}
-
-
-
-20%{
-
-
-opacity:1;
-
-
-}
-
-
-
-70%{
-
-
-background-position:
-
-100%;
-
-
-opacity:1;
-
-
-}
-
-
-
-100%{
-
-
-background-position:
-
-200%;
-
-
-opacity:0;
-
-
-}
-
-
-}
-
-
-
-
-
-
-
-
-
-/* =========================
-TERMINAL DOTS
-========================= */
-
-
-.terminal-dots{
-
-
-display:flex;
-
-
-gap:10px;
-
-
-margin-bottom:25px;
-
-
-}
-
-
-
-.terminal-dots span{
-
-
-width:14px;
-
-
-height:14px;
-
-
-border-radius:50%;
-
-
-display:flex;
-
-
-align-items:center;
-
-
-justify-content:center;
-
-
-font-size:10px;
-
-
-color:black;
-
-
-transition:.3s;
-
-
-}
-
-
-
-.mac-red{
-
-
-background:#ff5f57;
-
-
-}
-
-
-
-.mac-yellow{
-
-
-background:#febc2e;
-
-
-}
-
-
-
-.mac-green{
-
-
-background:#28c840;
-
-
-}
-
-
-
-
-
-
-
-
-
-/* =========================
-TEXT
-========================= */
-
-
-.label{
-
-
-color:var(--green);
-
-
-font-size:12px;
-
-
-letter-spacing:2px;
-
-
-margin-bottom:25px;
-
-
-}
-
-
-
-
-
-h1{
-
-
-font-size:
-
-clamp(
-3rem,
-6vw,
-5.5rem
-);
-
-
-line-height:1.05;
-
-
-letter-spacing:-3px;
-
-
-margin-bottom:35px;
-
-
-}
-
-
-
-
-h2{
-
-
-font-size:30px;
-
-
-margin-bottom:25px;
-
-
-}
-
-
-
-
-
-h3{
-
-
-margin-bottom:15px;
-
-
-}
-
-
-
-
-p{
-
-
-color:var(--muted);
-
-
-line-height:1.8;
-
-
-}
-
-
-
-
-
-
-
-
-
-/* =========================
-BUTTONS
-========================= */
-
-
-.buttons{
-
-
-display:flex;
-
-
-flex-wrap:wrap;
-
-
-gap:14px;
-
-
-margin-top:40px;
-
-
-}
-
-
-
-
-.buttons a{
-
-
-background:#181a20;
-
-
-border:
-
-1px solid var(--border);
-
-
-
-padding:
-
-14px 22px;
-
-
-
-border-radius:14px;
-
-
-text-decoration:none;
-
-
-color:white;
-
-
-transition:.4s var(--ease);
-
-
-}
-
-
-
-
-.buttons a:hover{
-
-
-color:var(--green);
-
-
-border-color:var(--green);
-
-
-transform:
-
-translateY(-3px);
-
-
-}
-
-
-
-
-
-
-
-
-
-/* =========================
-PROFILE
-========================= */
-
-
-.profile-item{
-
-
-padding:18px 0;
-
-
-border-bottom:
-
-1px solid var(--border);
-
-
-}
-
-
-
-
-.profile-item span{
-
-
-font-size:12px;
-
-
-color:var(--muted);
-
-
-}
-
-
-
-
-
-
-
-
-
-/* =========================
-PROCESSOR
-========================= */
-
-
-.pipeline{
-
-
-display:flex;
-
-
-gap:12px;
-
-
-margin:35px 0;
-
-
-}
-
-
-
-.pipeline div{
-
-
-flex:1;
-
-
-text-align:center;
-
-
-padding:14px;
-
-
-background:#181a20;
-
-
-border:
-
-1px solid var(--border);
-
-
-border-radius:12px;
-
-
-}
-
-
-
-
-
-pre{
-
-
-background:#050505;
-
-
-color:var(--green);
-
-
-padding:25px;
-
-
-border-radius:18px;
-
-
-overflow:auto;
-
-
-}
-
-
-
-
-.hardware li{
-
-
-margin-top:15px;
-
-
-color:var(--muted);
-
-
-}
-
-
-
-
-
-
-
-
-
-/* =========================
-YEAR BUTTONS
-========================= */
-
-
-.year-buttons{
-
-
-display:flex;
-
-
-gap:12px;
-
-
-margin-bottom:25px;
-
-
-}
-
-
-
-.year-buttons button{
-
-
-background:#181a20;
-
-
-color:white;
-
-
-border:
-
-1px solid var(--border);
-
-
-padding:
-
-12px 22px;
-
-
-border-radius:12px;
-
-
-cursor:pointer;
-
-
-font-family:inherit;
-
-
-transition:.4s var(--ease);
-
-
-}
-
-
-
-
-.year-buttons button:hover{
-
-
-color:var(--green);
-
-
-border-color:var(--green);
-
-
-transform:
-
-translateY(-3px);
-
-
-}
-
-
-
-
-
-
-
-
-
-/* =========================
-PROJECT CARDS INSIDE TIMELINE
-========================= */
-
-
-.project-grid{
-
-
-display:flex;
-
-
-flex-direction:column;
-
-
-gap:15px;
-
-
-}
-
-
-
-
-.project-item{
-
-
-background:#181a20;
-
-
-border:
-
-1px solid var(--border);
-
-
-border-radius:18px;
-
-
-padding:20px;
-
-
-opacity:0;
-
-
-transform:
-
-translateY(20px);
-
-
-
-animation:
-
-projectReveal .6s var(--ease) forwards;
-
-
-}
-
-
-
-
-.project-item h4{
-
-
-color:white;
-
-
-margin-bottom:10px;
-
-
-}
-
-
-
-.project-item p{
-
-
-font-size:14px;
-
-
-}
-
-
-
-
-
-@keyframes projectReveal{
-
-
-to{
-
-
-opacity:1;
-
-
-transform:
-
-translateY(0);
-
-
-}
-
-
-}
-
-
-
-
-
-
-
-
-
-/* =========================
-TECH TAGS
-========================= */
-
-
-.tags{
-
-
-display:flex;
-
-
-flex-wrap:wrap;
-
-
-gap:10px;
-
-
-}
-
-
-
-
-.tags span{
-
-
-background:#181a20;
-
-
-padding:
-
-8px 14px;
-
-
-border-radius:999px;
-
-
-border:
-
-1px solid var(--border);
-
-
-font-size:13px;
-
-
-}
-
-
-
-
-.tags span:hover{
-
-
-color:var(--green);
-
-
-border-color:var(--green);
-
-
-}
-
-
-
-
-
-
-
-
-
-/* =========================
-CONNECT
-========================= */
-
-
-.connect{
-
-
-display:flex;
-
-
-flex-direction:column;
-
-
-gap:18px;
-
-
-}
-
-
-
-.connect a{
-
-
-color:white;
-
-
-text-decoration:none;
-
-
-}
-
-
-
-.connect a:hover{
-
-
-color:var(--green);
-
-
-}
-
-
-
-
-
-
-
-
-
-/* =========================
-RESPONSIVE
-========================= */
-
-
-@media(max-width:1100px){
-
-
-.bento-grid{
-
-
-grid-template-columns:
-
-repeat(6,1fr);
-
-
-}
-
-
-
-
-.hero,
-.hardware{
-
-
-grid-column:
-
-span 6;
-
-
-}
-
-
-
-
-.profile,
-.timeline,
-.stack,
-.entrepreneur,
-.connect{
-
-
-grid-column:
-
-span 3;
-
-
-}
-
-
-}
-
-
-
-
-
-@media(max-width:700px){
-
-
-body{
-
-
-padding:16px;
-
-
-}
-
-
-
-.bento-grid{
-
-
-display:flex;
-
-
-flex-direction:column;
-
-
-}
-
-
-
-.card{
-
-
-padding:24px;
-
-
-}
-
-
-}
-
-/* ==========================================
-   TIMELINE PROJECT GLOW ANIMATION FIX
-========================================== */
-
-
-.timeline {
 
     overflow:hidden;
 
-    position:relative;
 
 }
 
@@ -1454,11 +220,18 @@ padding:24px;
 
 
 
-.timeline > * {
+.buttons a:hover {
 
-    position:relative;
 
-    z-index:3;
+    box-shadow:
+
+    0 15px 40px rgba(
+        0,
+        255,
+        136,
+        .15
+    );
+
 
 }
 
@@ -1468,9 +241,56 @@ padding:24px;
 
 
 
-/* ==========================================
-   MOVING COLOR SWIPE
-========================================== */
+
+
+/* =========================
+PROCESSOR WINDOW
+========================= */
+
+
+pre {
+
+
+    background:
+
+
+    linear-gradient(
+
+    135deg,
+
+    #050505,
+
+    #11151c
+
+    );
+
+
+
+    box-shadow:
+
+
+    inset 0 0 35px rgba(
+        0,
+        255,
+        136,
+        .08
+    );
+
+
+}
+
+
+
+
+
+
+
+
+
+/* =========================
+TIMELINE FINAL ANIMATION
+REMOVE OLD DUPLICATES ABOVE
+========================= */
 
 
 .timeline.project-active::after {
@@ -1485,7 +305,9 @@ padding:24px;
     inset:-3px;
 
 
-    border-radius:28px;
+    border-radius:
+
+    30px;
 
 
 
@@ -1494,32 +316,27 @@ padding:24px;
 
     linear-gradient(
 
-        90deg,
+    90deg,
 
-        transparent,
+    transparent,
 
-        rgba(
-            0,
-            234,
-            255,
-            .25
-        ),
+    rgba(
+        0,
+        234,
+        255,
+        .35
+    ),
 
-        rgba(
-            0,
-            255,
-            136,
-            .25
-        ),
 
-        rgba(
-            0,
-            234,
-            255,
-            .25
-        ),
+    rgba(
+        0,
+        255,
+        136,
+        .35
+    ),
 
-        transparent
+
+    transparent
 
     );
 
@@ -1527,33 +344,28 @@ padding:24px;
 
     background-size:
 
-    250% 100%;
+    400% 100%;
 
 
 
     filter:
 
-    blur(8px);
-
-
-
-    opacity:0;
+    blur(12px);
 
 
 
     animation:
 
-    borderFlow 7s cubic-bezier(
-        .22,
+    timelineSweep 8s cubic-bezier(
+        .16,
         1,
-        .36,
+        .3,
         1
     ) forwards;
 
 
 
     pointer-events:none;
-
 
 
     z-index:1;
@@ -1567,50 +379,13 @@ padding:24px;
 
 
 
-/* subtle inner dark layer */
-
-.timeline.project-active::before {
+.timeline > * {
 
 
-    content:"";
+    position:relative;
 
 
-    position:absolute;
-
-
-    inset:0;
-
-
-    border-radius:26px;
-
-
-
-    background:
-
-    rgba(
-        8,
-        9,
-        11,
-        .45
-    );
-
-
-
-    opacity:0;
-
-
-
-    animation:
-
-    innerFade 7s ease forwards;
-
-
-
-    pointer-events:none;
-
-
-
-    z-index:2;
+    z-index:5;
 
 
 }
@@ -1621,37 +396,59 @@ padding:24px;
 
 
 
-@keyframes innerFade {
+@keyframes timelineSweep {
 
 
-0% {
+0%{
 
 
-    opacity:0;
+opacity:0;
+
+
+background-position:
+
+0%;
+
 
 }
 
 
-20% {
+
+25%{
 
 
-    opacity:.15;
+opacity:.8;
+
 
 }
 
 
-70% {
+
+60%{
 
 
-    opacity:.15;
+opacity:.55;
+
+
+background-position:
+
+100%;
+
 
 }
 
 
-100% {
+
+100%{
 
 
-    opacity:0;
+opacity:0;
+
+
+background-position:
+
+200%;
+
 
 }
 
@@ -1665,203 +462,60 @@ padding:24px;
 
 
 
-@keyframes borderFlow {
 
-
-0% {
-
-
-    background-position:
-
-    0% 50%;
-
-
-    opacity:0;
-
-
-}
-
-
-
-20% {
-
-
-    opacity:.45;
-
-
-}
-
-
-
-50% {
-
-
-    background-position:
-
-    100% 50%;
-
-
-    opacity:.45;
-
-
-}
-
-
-
-80% {
-
-
-    background-position:
-
-    170% 50%;
-
-
-    opacity:.25;
-
-
-}
-
-
-
-100% {
-
-
-    background-position:
-
-    220% 50%;
-
-
-    opacity:0;
-
-
-}
-
-
-}
-
-
-
-
-
-
-
-/* ==========================================
-   SMOOTH TIMELINE EXPANSION
-========================================== */
-
-
-.timeline {
-
-
-    transition:
-
-
-    max-height .9s cubic-bezier(
-        .22,
-        1,
-        .36,
-        1
-    ),
-
-    padding .7s ease,
-
-    box-shadow .8s ease;
-
-
-}
-
-
-
-
-
-.timeline.expanded {
-
-
-    max-height:750px;
-
-
-}
-
-
-
-
-
-
-
-/* ==========================================
-   PROJECT CARDS
-========================================== */
-
-
-.project-grid {
-
-
-    display:flex;
-
-
-    flex-direction:column;
-
-
-    gap:15px;
-
-
-}
-
-
-
+/* =========================
+PROJECT CARDS
+========================= */
 
 
 .project-item {
 
 
-    background:
-
-    rgba(
-        24,
-        26,
-        32,
-        .22
-    );
+background:
 
 
+linear-gradient(
 
-    border:
+145deg,
 
-    1px solid rgba(
-        255,
-        255,
-        255,
-        .22
-    );
+rgba(
+30,
+33,
+42,
+.9
+),
 
+rgba(
+15,
+17,
+22,
+.9
 
+)
 
-    border-radius:18px;
-
-
-
-    padding:20px;
+);
 
 
 
-    opacity:0;
+border-color:
+
+rgba(
+255,
+255,
+255,
+.12
+);
 
 
 
-    transform:
+transition:
 
-    translateY(20px);
-
-
-
-    animation:
-
-    projectReveal .7s cubic-bezier(
-        .22,
-        1,
-        .36,
-        1
-    ) forwards;
+.5s cubic-bezier(
+.16,
+1,
+.3,
+1
+);
 
 
 
@@ -1874,55 +528,27 @@ padding:24px;
 .project-item:hover {
 
 
-    border-color:
+transform:
 
-    rgba(
-        0,
-        234,
-        255,
-        .5
-    );
-
-
-    transform:
-
-    translateY(-3px);
-
-
-    transition:.4s ease;
-
-
-}
+translateY(-6px);
 
 
 
+border-color:
+
+var(--cyan);
 
 
 
-.project-item h4 {
+box-shadow:
 
 
-    margin-bottom:10px;
-
-
-    color:white;
-
-
-}
-
-
-
-
-.project-item p {
-
-
-    color:#8b8f98;
-
-
-    line-height:1.7;
-
-
-    font-size:14px;
+0 20px 45px rgba(
+0,
+234,
+255,
+.12
+);
 
 
 }
@@ -1933,33 +559,103 @@ padding:24px;
 
 
 
-@keyframes projectReveal {
 
 
-from {
+/* =========================
+SUBTLE ENGINEERING GRID
+========================= */
 
 
-    opacity:0;
+body::before {
 
 
-    transform:
+content:"";
 
-    translateY(25px);
+
+position:fixed;
+
+
+inset:0;
+
+
+
+background:
+
+
+linear-gradient(
+
+90deg,
+
+rgba(
+0,
+234,
+255,
+.025
+) 1px,
+
+transparent 1px
+
+),
+
+
+linear-gradient(
+
+rgba(
+0,
+234,
+255,
+.025
+) 1px,
+
+transparent 1px
+
+);
+
+
+
+background-size:
+
+70px 70px;
+
+
+
+mask-image:
+
+radial-gradient(
+circle,
+black,
+transparent 75%
+);
+
+
+
+pointer-events:none;
 
 
 }
 
 
 
-to {
 
 
-    opacity:1;
 
 
-    transform:
 
-    translateY(0);
+
+/* =========================
+MOBILE POLISH
+========================= */
+
+
+@media(max-width:700px){
+
+
+.card:hover {
+
+
+transform:
+
+translateY(-3px);
 
 
 }
