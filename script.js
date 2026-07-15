@@ -4,27 +4,29 @@
 ===================================================== */
 
 
+
 /* =====================================================
    CARD LOAD ANIMATION
 ===================================================== */
 
 
-const revealCards = document.querySelectorAll(".reveal");
+const revealCards =
+document.querySelectorAll(".reveal");
 
 
-window.addEventListener("load", () => {
+window.addEventListener("load",()=>{
 
 
-    revealCards.forEach((card, index) => {
+    revealCards.forEach((card,index)=>{
 
 
-        setTimeout(() => {
+        setTimeout(()=>{
 
 
             card.classList.add("active");
 
 
-        }, index * 120);
+        },index*120);
 
 
     });
@@ -48,113 +50,112 @@ document.getElementById("typing");
 
 
 
-const typingWords = [
+const typingWords=[
 
-    "32-bit pipelined RISC-V cores...",
+"32-bit pipelined RISC-V cores...",
 
-    "synthesizable hardware...",
+"synthesizable hardware...",
 
-    "optimized RTL architectures..."
+"optimized RTL architectures..."
 
 ];
 
 
 
-let wordIndex = 0;
+let wordIndex=0;
 
-let letterIndex = 0;
+let letterIndex=0;
 
-let deleting = false;
+let deleting=false;
 
 
 
 function typeWriter(){
 
 
-    if(!typingElement)
-        return;
+if(!typingElement)
+return;
 
 
 
-    const word =
-    typingWords[wordIndex];
+let word=
+typingWords[wordIndex];
 
 
 
-    if(!deleting){
+if(!deleting){
 
 
-        typingElement.textContent =
-        word.substring(
-            0,
-            letterIndex++
-        );
-
-
-
-        if(letterIndex > word.length){
-
-
-            deleting = true;
+typingElement.textContent =
+word.substring(
+0,
+letterIndex++
+);
 
 
 
-            setTimeout(
-                typeWriter,
-                1400
-            );
+if(letterIndex>word.length){
 
 
-            return;
+deleting=true;
 
 
-        }
+setTimeout(
+typeWriter,
+1400
+);
 
 
-    }
-
-    else{
+return;
 
 
-        typingElement.textContent =
-        word.substring(
-            0,
-            letterIndex--
-        );
+}
 
 
 
-        if(letterIndex < 0){
+}
+
+else{
 
 
-            deleting = false;
-
-
-            wordIndex =
-            (wordIndex + 1)
-            %
-            typingWords.length;
-
-
-
-            letterIndex = 0;
-
-
-        }
-
-
-    }
+typingElement.textContent =
+word.substring(
+0,
+letterIndex--
+);
 
 
 
+if(letterIndex<0){
 
-    setTimeout(
 
-        typeWriter,
+deleting=false;
 
-        deleting ? 45 : 90
 
-    );
+wordIndex =
+(wordIndex+1)
+%
+typingWords.length;
+
+
+letterIndex=0;
+
+
+}
+
+
+
+}
+
+
+
+setTimeout(
+
+typeWriter,
+
+deleting ? 45 : 90
+
+);
 
 
 }
@@ -172,7 +173,7 @@ typeWriter();
 
 
 /* =====================================================
-   CARD MOUSE LIGHT EFFECT
+   CARD LIGHT FOLLOW
 ===================================================== */
 
 
@@ -184,42 +185,32 @@ document.querySelectorAll(".card");
 cards.forEach(card=>{
 
 
-    card.addEventListener(
-        "mousemove",
-        event=>{
+card.addEventListener(
+"mousemove",
+event=>{
 
 
-            const rect =
-            card.getBoundingClientRect();
-
-
-
-            const x =
-            event.clientX - rect.left;
+const rect =
+card.getBoundingClientRect();
 
 
 
-            const y =
-            event.clientY - rect.top;
+card.style.setProperty(
+"--mouse-x",
+`${event.clientX-rect.left}px`
+);
 
 
 
-            card.style.setProperty(
-                "--mouse-x",
-                `${x}px`
-            );
+card.style.setProperty(
+"--mouse-y",
+`${event.clientY-rect.top}px`
+);
 
 
 
-            card.style.setProperty(
-                "--mouse-y",
-                `${y}px`
-            );
+});
 
-
-        }
-
-    );
 
 
 });
@@ -231,43 +222,109 @@ cards.forEach(card=>{
 
 
 
+
 /* =====================================================
-   ENGINEERING TIMELINE
+   ENGINEERING JOURNEY DATA
 ===================================================== */
 
 
-const timelineInfo = {
+const engineeringData={
 
 
-    "2026":
 
-    `
-    Processor architecture,
-    SystemVerilog RTL development,
-    CPU pipeline design,
-    and advanced digital systems.
-    `,
+2026:{
 
 
-    "2025":
-
-    `
-    Engineering fundamentals,
-    programming,
-    mathematics,
-    physics,
-    and electronics development.
-    `,
+title:
+"Processor Architecture & RTL Design",
 
 
-    "2024":
+description:
+"Developing digital systems focused on CPU architecture, hardware description languages, and processor verification.",
 
-    `
-    Building foundations in
-    programming,
-    problem solving,
-    and engineering concepts.
-    `
+
+
+projects:[
+
+
+"32-Bit Pipelined RISC-V CPU Core",
+
+"SystemVerilog RTL implementation",
+
+"5-stage pipeline: IF → ID → EX → MEM → WB",
+
+"Hazard detection and data forwarding logic",
+
+"Waveform verification using GTKWave"
+
+
+]
+
+},
+
+
+
+
+
+2025:{
+
+
+title:
+"Digital Systems Development",
+
+
+description:
+"Building engineering fundamentals through programming, hardware design, and digital logic.",
+
+
+
+projects:[
+
+
+"Digital logic design projects",
+
+"FPGA development foundations",
+
+"Embedded programming concepts",
+
+"Circuit analysis and simulation"
+
+
+]
+
+},
+
+
+
+
+
+2024:{
+
+
+title:
+"Engineering Foundation",
+
+
+description:
+"Developing the mathematical and technical foundation required for electrical engineering.",
+
+
+
+projects:[
+
+
+"Programming fundamentals",
+
+"Mathematics and physics development",
+
+"Introduction to electronics",
+
+"Problem solving and engineering concepts"
+
+
+]
+
+}
 
 
 };
@@ -276,142 +333,83 @@ const timelineInfo = {
 
 
 
-const timelineButtons =
-document.querySelectorAll(
-    ".year-buttons button"
-);
-
-
-
-const timelineText =
-document.getElementById(
-    "timeline-content"
-);
-
-
-
-
-
-timelineButtons.forEach(button=>{
-
-
-    button.addEventListener(
-        "mouseenter",
-        ()=>{
-
-
-            const year =
-            button.dataset.year;
-
-
-
-            timelineText.textContent =
-            timelineInfo[year];
-
-
-        }
-
-    );
-
-
-
-    button.addEventListener(
-        "click",
-        ()=>{
-
-
-            const year =
-            button.dataset.year;
-
-
-
-            timelineText.textContent =
-            timelineInfo[year];
-
-
-        }
-
-    );
-
-
-});
-
-
-
-
-
 
 
 
 /* =====================================================
-   VIEW PROJECTS BUTTON
+   TIMELINE CONTROLS
 ===================================================== */
 
 
-const projectsButton =
-document.getElementById(
-    "projects-button"
+const timelineButtons =
+document.querySelectorAll(
+".year-buttons button"
 );
 
 
 
 const timelineCard =
 document.getElementById(
-    "timeline-card"
+"timeline-card"
+);
+
+
+
+const timelineContent =
+document.getElementById(
+"timeline-content"
 );
 
 
 
 
 
-if(projectsButton && timelineCard){
+
+function loadYear(year){
 
 
-    projectsButton.addEventListener(
-        "click",
-        event=>{
-
-
-            event.preventDefault();
+const data =
+engineeringData[year];
 
 
 
-            timelineCard.scrollIntoView({
-
-                behavior:"smooth",
-
-                block:"center"
-
-            });
+timelineCard.classList.add(
+"expanded"
+);
 
 
 
+timelineContent.innerHTML=`
+
+<h3>
+${data.title}
+</h3>
 
 
-            timelineCard.classList.add(
-                "project-active"
-            );
+<p>
+${data.description}
+</p>
 
 
+<div id="project-list">
+
+${data.projects.map(project=>`
+
+<div class="project-item">
+
+<h4>${year}</h4>
+
+<p>${project}</p>
+
+</div>
+
+`).join("")}
 
 
+</div>
 
+`;
 
-            setTimeout(()=>{
-
-
-                timelineCard.classList.remove(
-                    "project-active"
-                );
-
-
-            },7000);
-
-
-
-        }
-
-    );
 
 
 }
@@ -423,14 +421,136 @@ if(projectsButton && timelineCard){
 
 
 
+timelineButtons.forEach(button=>{
+
+
+button.addEventListener(
+"mouseenter",
+()=>{
+
+
+loadYear(
+button.dataset.year
+);
+
+
+});
+
+
+
+
+
+button.addEventListener(
+"click",
+()=>{
+
+
+loadYear(
+button.dataset.year
+);
+
+
+});
+
+
+
+});
+
+
+
+
+
+
+
+
+
 /* =====================================================
-   TERMINAL DOT EFFECT
+   VIEW PROJECT BUTTON
+===================================================== */
+
+
+const projectsButton =
+document.getElementById(
+"projects-button"
+);
+
+
+
+if(projectsButton && timelineCard){
+
+
+projectsButton.addEventListener(
+"click",
+event=>{
+
+
+event.preventDefault();
+
+
+
+timelineCard.scrollIntoView({
+
+behavior:"smooth",
+
+block:"center"
+
+});
+
+
+
+setTimeout(()=>{
+
+
+timelineCard.classList.add(
+"expanded"
+);
+
+
+
+timelineCard.classList.add(
+"project-active"
+);
+
+
+
+setTimeout(()=>{
+
+
+timelineCard.classList.remove(
+"project-active"
+);
+
+
+
+},5000);
+
+
+
+},700);
+
+
+
+});
+
+
+}
+
+
+
+
+
+
+
+
+
+/* =====================================================
+   TERMINAL DOT ANIMATION
 ===================================================== */
 
 
 const terminalDots =
 document.querySelectorAll(
-    ".terminal-dots span"
+".terminal-dots span"
 );
 
 
@@ -438,33 +558,29 @@ document.querySelectorAll(
 terminalDots.forEach(dot=>{
 
 
-    dot.addEventListener(
-        "mouseenter",
-        ()=>{
+dot.addEventListener(
+"mouseenter",
+()=>{
 
 
-            dot.style.transform =
-            "scale(1.3) rotate(15deg)";
+dot.style.transform =
+"scale(1.3) rotate(15deg)";
 
 
-        }
-
-    );
+});
 
 
 
-    dot.addEventListener(
-        "mouseleave",
-        ()=>{
+dot.addEventListener(
+"mouseleave",
+()=>{
 
 
-            dot.style.transform =
-            "scale(1) rotate(0deg)";
+dot.style.transform =
+"scale(1) rotate(0deg)";
 
 
-        }
-
-    );
+});
 
 
 });
