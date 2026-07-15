@@ -5,6 +5,7 @@
 ===================================================== */
 
 
+
 /* =====================================================
    GLOBAL ELEMENTS
 ===================================================== */
@@ -728,14 +729,12 @@ projectGrid.appendChild(item);
 
 
 
-
 /* =====================================================
-   YEAR BUTTON SYSTEM
+   YEAR BUTTON SYSTEM V3
 ===================================================== */
 
 
 function activateYear(button){
-
 
 
 const year =
@@ -743,19 +742,13 @@ button.dataset.year;
 
 
 
-
-
 yearButtons.forEach(btn=>{
-
 
 btn.classList.remove(
 "active"
 );
 
-
 });
-
-
 
 
 
@@ -765,10 +758,7 @@ button.classList.add(
 
 
 
-
-
 if(timeline){
-
 
 
 timeline.classList.add(
@@ -776,10 +766,7 @@ timeline.classList.add(
 );
 
 
-
 }
-
-
 
 
 
@@ -787,8 +774,10 @@ loadProjects(year);
 
 
 
-}
+resetTimelineTimer();
 
+
+}
 
 
 
@@ -797,7 +786,6 @@ loadProjects(year);
 
 
 yearButtons.forEach(button=>{
-
 
 
 button.addEventListener(
@@ -812,10 +800,7 @@ activateYear(button);
 
 }
 
-
 );
-
-
 
 
 
@@ -831,7 +816,6 @@ activateYear(button);
 
 }
 
-
 );
 
 
@@ -847,7 +831,7 @@ activateYear(button);
 
 
 /* =====================================================
-   TIMELINE AUTO COLLAPSE
+   TIMELINE AUTO COLLAPSE SYSTEM
 ===================================================== */
 
 
@@ -865,12 +849,16 @@ collapseTimer
 
 
 
+
 collapseTimer =
+
 setTimeout(()=>{
 
 
 
-if(timeline){
+if(!timeline)
+return;
+
 
 
 
@@ -892,60 +880,19 @@ btn.classList.remove(
 
 
 
-}
 
+},
 
-
-},4000);
-
-
-
-}
-
-
-
-
-
-
-
-yearButtons.forEach(button=>{
-
-
-button.addEventListener(
-
-"mouseenter",
-
-()=>{
-
-
-resetTimelineTimer();
-
-
-}
-
+4500
 
 );
 
 
 
-button.addEventListener(
-
-"click",
-
-()=>{
-
-
-resetTimelineTimer();
-
-
 }
 
 
-);
 
-
-
-});
 
 
 
@@ -953,6 +900,7 @@ resetTimelineTimer();
 
 
 if(timeline){
+
 
 
 timeline.addEventListener(
@@ -974,6 +922,7 @@ collapseTimer
 
 
 
+
 timeline.addEventListener(
 
 "mouseleave",
@@ -986,8 +935,8 @@ resetTimelineTimer();
 
 }
 
-
 );
+
 
 
 }
@@ -1001,7 +950,7 @@ resetTimelineTimer();
 
 
 /* =====================================================
-   VIEW PROJECT BUTTON
+   VIEW PROJECT BUTTON SYSTEM
 ===================================================== */
 
 
@@ -1022,7 +971,11 @@ timeline.classList.remove(
 
 
 
+
+// restart animation
+
 void timeline.offsetWidth;
+
 
 
 
@@ -1030,6 +983,7 @@ void timeline.offsetWidth;
 timeline.classList.add(
 "project-active"
 );
+
 
 
 
@@ -1044,11 +998,18 @@ timeline.classList.remove(
 
 
 
-},7000);
+},
+
+7000
+
+);
 
 
 
 }
+
+
+
 
 
 
@@ -1073,6 +1034,7 @@ e.preventDefault();
 
 
 
+
 timeline.scrollIntoView({
 
 
@@ -1088,33 +1050,51 @@ block:"center"
 
 
 
+
+
 setTimeout(()=>{
 
+
+
+// automatically open newest projects
+
+if(yearButtons[0]){
+
+
+activateYear(
+yearButtons[0]
+);
+
+
+}
+
+
+
+
+
+// trigger special glow
 
 playTimelineGlow();
 
 
-},900);
+
+
+
+},
+
+700);
+
 
 
 
 
 }
-
 
 );
 
 
 
 }
-
-
-
-
-
-
-
-
 
 /* =====================================================
    PIPELINE ANIMATION
