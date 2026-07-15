@@ -1,32 +1,33 @@
 /* =====================================================
    ADAM MORGAN PORTFOLIO
-   APPLE x TERMINAL ENGINEERING SYSTEM
+   RESTORED APPLE x TERMINAL DESIGN
 ===================================================== */
 
 
 :root {
 
-    --bg:#0a0a0c;
-    --card:#121214;
-    --border:#202023;
+    --bg:#08090b;
+    --card:#111216;
+    --border:#24262d;
 
     --white:#ffffff;
-    --muted:#8e8e93;
+    --muted:#8b8f98;
 
-    --cyan:#00f0ff;
-    --green:#00ff66;
+    --cyan:#00eaff;
+    --green:#00ff88;
 
     --radius:26px;
 
     --transition:
-    all .4s cubic-bezier(
-        .95,
-        .05,
-        .795,
-        .035
+    .35s cubic-bezier(
+        .2,
+        .8,
+        .2,
+        1
     );
 
 }
+
 
 
 
@@ -35,9 +36,11 @@
 
     margin:0;
     padding:0;
+
     box-sizing:border-box;
 
 }
+
 
 
 
@@ -47,6 +50,7 @@ html {
     scroll-behavior:smooth;
 
 }
+
 
 
 
@@ -61,7 +65,7 @@ body {
     "JetBrains Mono",
     monospace;
 
-    padding:30px 40px;
+    padding:40px;
 
     overflow-x:hidden;
 
@@ -71,8 +75,11 @@ body {
 
 
 
+
+
+
 /* =====================================================
-   BACKGROUND
+BACKGROUND
 ===================================================== */
 
 
@@ -84,7 +91,8 @@ body {
 
     pointer-events:none;
 
-    opacity:.03;
+    opacity:.035;
+
 
     background-image:
 
@@ -93,123 +101,8 @@ body {
         transparent 1px
     );
 
-    background-size:16px 16px;
 
-}
-
-
-
-
-
-
-
-
-/* =====================================================
-   NAVBAR
-===================================================== */
-
-
-.navbar {
-
-
-    max-width:1600px;
-
-    margin:0 auto 30px;
-
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-
-    padding:18px 25px;
-
-
-    background:
-
-    rgba(
-        18,
-        18,
-        20,
-        .7
-    );
-
-
-    backdrop-filter:blur(20px);
-
-
-    border:
-
-    1px solid var(--border);
-
-
-    border-radius:20px;
-
-
-
-}
-
-
-
-
-.nav-logo {
-
-
-    color:var(--green);
-
-
-    font-size:14px;
-
-
-    letter-spacing:2px;
-
-
-}
-
-
-
-
-.nav-links {
-
-
-    display:flex;
-
-
-    gap:25px;
-
-
-}
-
-
-
-
-.nav-links a {
-
-
-    text-decoration:none;
-
-
-    color:var(--muted);
-
-
-    font-size:13px;
-
-
-    transition:var(--transition);
-
-
-}
-
-
-
-
-.nav-links a:hover {
-
-
-    color:var(--green);
-
+    background-size:18px 18px;
 
 }
 
@@ -222,7 +115,7 @@ body {
 
 
 /* =====================================================
-   BENTO GRID
+BENTO GRID
 ===================================================== */
 
 
@@ -243,6 +136,7 @@ body {
     repeat(12,1fr);
 
 
+
     gap:22px;
 
 
@@ -255,15 +149,23 @@ body {
 
 
 
+
 /* =====================================================
-   CARDS
+CARDS
 ===================================================== */
 
 
 .card {
 
 
-    background:var(--card);
+    background:
+
+    rgba(
+        17,
+        18,
+        22,
+        .95
+    );
 
 
     border:
@@ -272,7 +174,9 @@ body {
 
 
 
-    border-radius:var(--radius);
+    border-radius:
+
+    var(--radius);
 
 
 
@@ -281,6 +185,7 @@ body {
 
 
     position:relative;
+
 
 
     overflow:hidden;
@@ -324,22 +229,108 @@ body {
 
 
 
+
+
 .card:hover {
 
 
-    border-color:var(--cyan);
+    transform:
+
+    translateY(-5px);
 
 
-    box-shadow:
 
-    0 20px 70px
+    border-color:
+
+    var(--cyan);
+
+
+
+}
+
+
+
+
+
+
+
+/* MOUSE LIGHT */
+
+
+.card::before {
+
+
+    content:"";
+
+
+    position:absolute;
+
+
+    width:300px;
+
+
+    height:300px;
+
+
+
+    left:
+
+    var(--mouse-x,50%);
+
+
+
+    top:
+
+    var(--mouse-y,50%);
+
+
+
+    transform:
+
+    translate(-50%,-50%);
+
+
+
+    background:
+
+    radial-gradient(
+
+    circle,
 
     rgba(
         0,
-        240,
+        234,
         255,
-        .12
+        .15
+    ),
+
+    transparent 70%
+
     );
+
+
+
+    opacity:0;
+
+
+
+    transition:.3s;
+
+
+
+    pointer-events:none;
+
+
+}
+
+
+
+
+
+.card:hover::before {
+
+
+    opacity:1;
 
 
 }
@@ -353,7 +344,7 @@ body {
 
 
 /* =====================================================
-   GRID POSITIONS
+BENTO POSITIONS
 ===================================================== */
 
 
@@ -373,6 +364,8 @@ body {
 
 
 
+
+
 .profile {
 
 
@@ -383,23 +376,19 @@ body {
 
 
 
+
 .hardware {
 
 
     grid-column:span 8;
 
 
-}
-
-
-
-.live-hardware {
-
-
-    grid-column:span 4;
+    grid-row:span 2;
 
 
 }
+
+
 
 
 
@@ -413,6 +402,7 @@ body {
 
 
 
+
 .stack {
 
 
@@ -423,6 +413,8 @@ body {
 
 
 
+
+
 .entrepreneur {
 
 
@@ -430,6 +422,7 @@ body {
 
 
 }
+
 
 
 
@@ -450,7 +443,7 @@ body {
 
 
 /* =====================================================
-   TERMINAL DOTS
+TERMINAL DOTS
 ===================================================== */
 
 
@@ -459,15 +452,11 @@ body {
 
     display:flex;
 
-
     gap:10px;
-
 
     margin-bottom:25px;
 
-
 }
-
 
 
 
@@ -475,7 +464,6 @@ body {
 
 
     width:14px;
-
 
     height:14px;
 
@@ -486,13 +474,13 @@ body {
     display:flex;
 
 
-    align-items:center;
-
-
     justify-content:center;
 
 
-    font-size:9px;
+    align-items:center;
+
+
+    font-size:10px;
 
 
     color:black;
@@ -502,11 +490,10 @@ body {
 
 
 
-
 .mac-red {
 
 
-    background:#ff5f57;
+background:#ff5f57;
 
 }
 
@@ -515,7 +502,7 @@ body {
 .mac-yellow {
 
 
-    background:#febc2e;
+background:#febc2e;
 
 }
 
@@ -524,9 +511,10 @@ body {
 .mac-green {
 
 
-    background:#28c840;
+background:#28c840;
 
 }
+
 
 
 
@@ -536,7 +524,7 @@ body {
 
 
 /* =====================================================
-   TEXT
+TEXT
 ===================================================== */
 
 
@@ -556,6 +544,7 @@ body {
 
 
 }
+
 
 
 
@@ -585,6 +574,8 @@ h1 {
 
 
 
+
+
 h2 {
 
 
@@ -595,6 +586,18 @@ h2 {
 
 
 }
+
+
+
+
+h3 {
+
+
+    margin-bottom:15px;
+
+}
+
+
 
 
 
@@ -618,7 +621,7 @@ p {
 
 
 /* =====================================================
-   BUTTONS
+BUTTONS
 ===================================================== */
 
 
@@ -628,21 +631,22 @@ p {
     display:flex;
 
 
+    flex-wrap:wrap;
+
+
     gap:14px;
 
 
     margin-top:40px;
 
 
-    flex-wrap:wrap;
-
-
 }
 
 
 
-.buttons a,
-.live-hardware a {
+
+
+.buttons a {
 
 
     text-decoration:none;
@@ -651,7 +655,8 @@ p {
     color:white;
 
 
-    background:#18181b;
+    background:#181a20;
+
 
 
     border:
@@ -659,13 +664,15 @@ p {
     1px solid var(--border);
 
 
-    padding:14px 22px;
+
+    padding:
+
+    14px 22px;
+
 
 
     border-radius:14px;
 
-
-    display:inline-block;
 
 
     transition:var(--transition);
@@ -675,8 +682,9 @@ p {
 
 
 
-.buttons a:hover,
-.live-hardware a:hover {
+
+
+.buttons a:hover {
 
 
     color:var(--green);
@@ -699,8 +707,9 @@ p {
 
 
 
+
 /* =====================================================
-   PROFILE
+PROFILE
 ===================================================== */
 
 
@@ -716,7 +725,6 @@ p {
 
 
 }
-
 
 
 
@@ -740,7 +748,7 @@ p {
 
 
 /* =====================================================
-   CPU
+CPU
 ===================================================== */
 
 
@@ -760,6 +768,7 @@ p {
 
 
 
+
 .pipeline div {
 
 
@@ -769,19 +778,20 @@ p {
     text-align:center;
 
 
-    padding:14px;
-
-
-    background:#18181b;
-
-
-    border-radius:12px;
+    background:#181a20;
 
 
     border:1px solid var(--border);
 
 
+    padding:14px;
+
+
+    border-radius:12px;
+
+
 }
+
 
 
 
@@ -804,6 +814,16 @@ pre {
     overflow:auto;
 
 
+    border:
+
+    1px solid rgba(
+        0,
+        255,
+        136,
+        .2
+    );
+
+
 }
 
 
@@ -813,75 +833,9 @@ pre {
 .hardware li {
 
 
-    color:var(--muted);
-
-
     margin-top:15px;
 
 
-}
-
-
-
-
-
-
-
-
-/* =====================================================
-   LIVE HARDWARE
-===================================================== */
-
-
-.hardware-status {
-
-
-    display:flex;
-
-
-    flex-direction:column;
-
-
-    gap:15px;
-
-
-    margin:25px 0;
-
-
-}
-
-
-
-
-.hardware-status div {
-
-
-    display:flex;
-
-
-    justify-content:space-between;
-
-
-    padding:15px;
-
-
-    background:#18181b;
-
-
-    border-radius:14px;
-
-
-    border:1px solid var(--border);
-
-
-}
-
-
-
-
-.hardware-status span {
-
-
     color:var(--muted);
 
 
@@ -889,15 +843,6 @@ pre {
 
 
 
-.hardware-status strong {
-
-
-    color:var(--green);
-
-
-}
-
-
 
 
 
@@ -905,7 +850,7 @@ pre {
 
 
 /* =====================================================
-   TIMELINE
+TIMELINE
 ===================================================== */
 
 
@@ -918,35 +863,54 @@ pre {
     gap:12px;
 
 
+    margin-bottom:25px;
+
+
 }
+
+
 
 
 
 .year-buttons button {
 
 
-    background:#18181b;
+    background:#181a20;
 
 
     color:white;
 
 
-    border:1px solid var(--border);
+    border:
+
+    1px solid var(--border);
 
 
-    padding:12px 20px;
+
+    padding:
+
+    12px 22px;
+
 
 
     border-radius:12px;
 
 
+
     cursor:pointer;
+
 
 
     font-family:inherit;
 
 
+
+    transition:var(--transition);
+
+
 }
+
+
 
 
 
@@ -967,22 +931,44 @@ pre {
 
 
 
+.timeline.project-active {
+
+
+    box-shadow:
+
+    0 0 45px rgba(
+        0,
+        234,
+        255,
+        .15
+    );
+
+
+}
+
+
+
+
+
+
+
+
 
 /* =====================================================
-   TAGS
+TECH TAGS
 ===================================================== */
 
 
 .tags {
 
 
-    display:flex;
+display:flex;
 
 
-    flex-wrap:wrap;
+flex-wrap:wrap;
 
 
-    gap:10px;
+gap:10px;
 
 
 }
@@ -992,19 +978,34 @@ pre {
 .tags span {
 
 
-    padding:8px 14px;
+background:#181a20;
 
 
-    background:#18181b;
+border:1px solid var(--border);
 
 
-    border-radius:999px;
+padding:8px 14px;
 
 
-    border:1px solid var(--border);
+border-radius:999px;
 
 
-    font-size:13px;
+font-size:13px;
+
+
+}
+
+
+
+
+
+.tags span:hover {
+
+
+color:var(--green);
+
+
+border-color:var(--green);
 
 
 }
@@ -1018,23 +1019,24 @@ pre {
 
 
 /* =====================================================
-   CONNECT
+CONNECT
 ===================================================== */
 
 
 .connect {
 
 
-    display:flex;
+display:flex;
 
 
-    flex-direction:column;
+flex-direction:column;
 
 
-    gap:18px;
+gap:18px;
 
 
 }
+
 
 
 
@@ -1042,23 +1044,26 @@ pre {
 .connect a {
 
 
-    color:white;
+color:white;
 
 
-    text-decoration:none;
+text-decoration:none;
 
 
 }
+
+
 
 
 
 .connect a:hover {
 
 
-    color:var(--green);
+color:var(--green);
 
 
 }
+
 
 
 
@@ -1068,7 +1073,7 @@ pre {
 
 
 /* =====================================================
-   RESPONSIVE
+RESPONSIVE
 ===================================================== */
 
 
@@ -1087,6 +1092,7 @@ repeat(6,1fr);
 
 
 
+
 .hero,
 .hardware {
 
@@ -1098,8 +1104,9 @@ grid-column:span 6;
 
 
 
+
+
 .profile,
-.live-hardware,
 .timeline,
 .stack,
 .entrepreneur,
@@ -1110,7 +1117,6 @@ grid-column:span 3;
 
 
 }
-
 
 
 }
@@ -1126,32 +1132,6 @@ body {
 
 
 padding:16px;
-
-
-}
-
-
-
-.navbar {
-
-
-flex-direction:column;
-
-
-gap:20px;
-
-
-}
-
-
-
-.nav-links {
-
-
-flex-wrap:wrap;
-
-
-justify-content:center;
 
 
 }
@@ -1178,6 +1158,19 @@ padding:24px;
 
 
 }
+
+
+
+
+
+.pipeline {
+
+
+flex-wrap:wrap;
+
+
+}
+
 
 
 }
