@@ -3336,3 +3336,159 @@ position:relative;
 z-index:2;
 
 }
+
+/* =====================================================
+   ENGINEERING JOURNEY SMOOTH EXPANSION SYSTEM
+===================================================== */
+
+
+.timeline {
+
+    transform:
+    translateY(0);
+
+
+    transition:
+
+    max-height 1s var(--ease),
+
+    transform .7s var(--ease),
+
+    border-color .6s ease,
+
+    box-shadow .6s ease;
+
+
+}
+
+
+
+
+
+/* same hover movement as other cards */
+
+.timeline:hover {
+
+
+    transform:
+
+    translateY(-8px);
+
+
+
+    border-color:
+
+    rgba(
+        0,
+        234,
+        255,
+        .4
+    );
+
+
+
+    box-shadow:
+
+
+    0 30px 80px rgba(
+        0,
+        0,
+        0,
+        .45
+    ),
+
+
+    0 0 45px rgba(
+        0,
+        234,
+        255,
+        .15
+    );
+
+
+}
+
+
+
+
+
+
+
+/* closed state */
+
+
+.timeline {
+
+
+    max-height:
+
+    300px;
+
+
+    overflow:hidden;
+
+
+}
+
+
+
+
+
+
+
+/* expanded state */
+
+
+.timeline.expanded {
+
+
+    max-height:
+
+    780px;
+
+
+}
+
+
+
+
+
+
+
+/* smoother project appearance */
+
+
+.timeline.expanded .project-item {
+
+
+    animation:
+
+    projectReveal .7s var(--ease) forwards;
+
+
+}
+
+
+
+
+
+
+
+/* selected year glow */
+
+
+.year-buttons button.active {
+
+
+    background:
+
+    rgba(
+        0,
+        234,
+        255,
+        .08
+    );
+
+
+}
+
