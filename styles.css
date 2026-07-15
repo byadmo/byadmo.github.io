@@ -3614,3 +3614,12 @@ opacity:.8;
 
 }
 
+.clock-system {
+    opacity:1 !important;
+    z-index:999 !important;
+}
+
+.clock-wave path {
+    stroke:red !important;
+    stroke-width:5 !important;
+}
