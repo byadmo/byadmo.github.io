@@ -1024,3 +1024,136 @@ console.log(
 }
 
 );
+
+/* =====================================================
+   RANDOM CPU CLOCK SIGNAL GENERATOR
+===================================================== */
+
+
+const cpuField =
+document.getElementById(
+"cpu-field"
+);
+
+
+
+function createCPUPulses(){
+
+
+if(!cpuField)
+return;
+
+
+
+const amount =
+Math.floor(
+Math.random()*8
+)+5;
+
+
+
+for(
+let i=0;
+i<amount;
+i++
+){
+
+
+const pulse =
+document.createElement(
+"div"
+);
+
+
+
+pulse.className =
+"cpu-pulse";
+
+
+
+
+const width =
+Math.random()*300+150;
+
+
+
+const top =
+Math.random()*100;
+
+
+
+const delay =
+Math.random()*5;
+
+
+
+const duration =
+Math.random()*8+5;
+
+
+
+const opacity =
+Math.random()*.5+.2;
+
+
+
+pulse.style.width =
+`${width}px`;
+
+
+
+pulse.style.top =
+`${top}%`;
+
+
+
+pulse.style.left =
+`${Math.random()*100}%`;
+
+
+
+pulse.style.animationDuration =
+`${duration}s`;
+
+
+
+pulse.style.animationDelay =
+`${delay}s`;
+
+
+
+pulse.style.opacity =
+opacity;
+
+
+
+pulse.style.transform =
+
+`
+
+rotate(
+
+${Math.random()*20-10}deg
+
+)
+
+`;
+
+
+
+cpuField.appendChild(
+pulse
+);
+
+
+
+}
+
+
+
+}
+
+
+
+createCPUPulses();
+
