@@ -1357,7 +1357,7 @@ Math.random()*100;
 // prevents stagnant appearing lines
 
 const randomLeft =
--30;
+Math.random()*40-20;
 
 
 
@@ -1368,7 +1368,7 @@ const randomLeft =
 // 14s minimum -> 28s maximum
 
 const randomDuration =
-Math.random()*14+14;
+Math.random()*5+7;
 
 
 
@@ -1494,7 +1494,7 @@ function startSignalSystem(){
 
 for(
 let i=0;
-i<12;
+i<20;
 i++
 ){
 
