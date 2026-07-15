@@ -10,7 +10,7 @@
 ===================================================== */
 
 
-:root {
+:root{
 
 
     --bg:#07080a;
@@ -57,7 +57,8 @@
 ===================================================== */
 
 
-* {
+*{
+
 
     margin:0;
 
@@ -65,49 +66,53 @@
 
     box-sizing:border-box;
 
+
 }
 
 
 
-html {
+
+
+
+html{
+
 
     scroll-behavior:smooth;
 
+
 }
 
 
 
-body {
 
 
-    background:
 
-    var(--bg);
+body{
 
 
-    color:
+    background:var(--bg);
 
-    var(--white);
+
+    color:var(--white);
 
 
 
     font-family:
-
     "JetBrains Mono",
     monospace;
 
 
 
-    padding:
-
-    40px;
+    padding:40px;
 
 
 
     overflow-x:hidden;
 
 
+
     -webkit-font-smoothing:antialiased;
+
 
 
 }
@@ -121,11 +126,11 @@ body {
 
 
 /* =====================================================
-   BACKGROUND SYSTEMS
+   BACKGROUND GRID
 ===================================================== */
 
 
-body::before {
+body::before{
 
 
     content:"";
@@ -138,8 +143,8 @@ body::before {
 
 
 
-    background:
 
+    background:
 
 
     linear-gradient(
@@ -176,9 +181,13 @@ body::before {
 
 
 
+
+
     background-size:
 
     70px 70px;
+
+
 
 
 
@@ -192,7 +201,10 @@ body::before {
 
 
 
+
+
     pointer-events:none;
+
 
 
 }
@@ -204,8 +216,12 @@ body::before {
 
 
 
+/* =====================================================
+   NOISE
+===================================================== */
 
-.noise {
+
+.noise{
 
 
     position:fixed;
@@ -215,6 +231,7 @@ body::before {
 
 
     pointer-events:none;
+
 
 
 
@@ -235,251 +252,12 @@ body::before {
 
 
 
+
     background-size:
 
     18px 18px;
 
 
-}
-
-
-
-
-
-
-
-
-
-/* =====================================================
-   BOOT SCREEN
-===================================================== */
-
-
-.boot-screen {
-
-
-    position:fixed;
-
-
-    inset:0;
-
-
-    background:#050608;
-
-
-    z-index:99999;
-
-
-    display:flex;
-
-
-    justify-content:center;
-
-
-    align-items:center;
-
-
-
-    transition:
-
-    opacity 1s ease,
-
-    visibility 1s ease;
-
-
-}
-
-
-
-.boot-screen.hide {
-
-
-    opacity:0;
-
-
-    visibility:hidden;
-
-
-    pointer-events:none;
-
-
-}
-
-
-
-
-
-
-
-.boot-terminal {
-
-
-    width:min(
-        500px,
-        90%
-    );
-
-
-    padding:35px;
-
-
-    border:
-
-    1px solid var(--border);
-
-
-
-    background:
-
-    linear-gradient(
-        145deg,
-        #111319,
-        #08090c
-    );
-
-
-    border-radius:25px;
-
-
-}
-
-
-
-
-
-.boot-title {
-
-
-    color:
-
-    var(--green);
-
-
-
-    margin-bottom:25px;
-
-
-    letter-spacing:2px;
-
-
-}
-
-
-
-.boot-lines p {
-
-
-    color:
-
-    var(--muted);
-
-
-
-    margin-bottom:12px;
-
-
-    font-size:14px;
-
-
-}
-
-
-
-
-
-
-
-.boot-progress {
-
-
-    height:5px;
-
-
-    margin-top:30px;
-
-
-    background:#20232b;
-
-
-    overflow:hidden;
-
-
-    border-radius:10px;
-
-
-}
-
-
-
-
-.progress-bar {
-
-
-    height:100%;
-
-
-    width:100%;
-
-
-    background:
-
-    linear-gradient(
-        90deg,
-        var(--cyan),
-        var(--green)
-    );
-
-
-    animation:
-
-    bootLoad 2s ease;
-
-
-}
-
-
-
-
-@keyframes bootLoad {
-
-
-from {
-
-
-width:0;
-
-
-}
-
-
-to {
-
-
-width:100%;
-
-
-}
-
-
-
-}
-
-
-
-
-
-
-.boot-status {
-
-
-    margin-top:20px;
-
-
-    color:
-
-    var(--cyan);
-
-
 
 }
 
@@ -492,11 +270,11 @@ width:100%;
 
 
 /* =====================================================
-   FPGA SIGNAL FIELD
+   FPGA SIGNAL BACKGROUND
 ===================================================== */
 
 
-.cpu-field {
+.cpu-field{
 
 
     position:fixed;
@@ -514,31 +292,22 @@ width:100%;
     z-index:0;
 
 
+
 }
 
 
 
 
 
-
-.cpu-pulse {
+.cpu-pulse{
 
 
     position:absolute;
 
 
+
     height:2px;
 
-
-
-    transform:
-
-    rotate(var(--angle))
-    translateX(-100vw);
-
-
-
-    transform-origin:center;
 
 
 
@@ -558,6 +327,7 @@ width:100%;
             .9
         ),
 
+
         rgba(
             0,
             255,
@@ -565,9 +335,11 @@ width:100%;
             .8
         ),
 
+
         transparent
 
     );
+
 
 
 
@@ -584,18 +356,101 @@ width:100%;
 
 
 
-    0 0 35px rgba(
+
+    0 0 40px rgba(
         0,
         255,
         136,
-        .4
+        .35
     );
+
 
 
 
     animation:
 
-    signalMove linear forwards;
+    signalMove linear infinite;
+
+
+
+}/* =====================================================
+   FPGA SIGNAL MOTION
+===================================================== */
+
+
+@keyframes signalMove{
+
+
+    0%{
+
+
+        transform:
+
+        translate(
+            0,
+            0
+        )
+
+        rotate(
+            var(--angle)
+        );
+
+
+        opacity:0;
+
+
+    }
+
+
+
+
+
+    15%{
+
+
+        opacity:.8;
+
+
+    }
+
+
+
+
+
+    75%{
+
+
+        opacity:.45;
+
+
+    }
+
+
+
+
+
+    100%{
+
+
+        transform:
+
+
+        translate(
+            var(--distance),
+            0
+        )
+
+        rotate(
+            var(--angle)
+        );
+
+
+        opacity:0;
+
+
+
+    }
+
 
 
 }
@@ -606,65 +461,6 @@ width:100%;
 
 
 
-
-@keyframes signalMove {
-
-
-0% {
-
-
-transform:
-
-rotate(var(--angle))
-translateX(-100vw);
-
-
-
-opacity:0;
-
-
-}
-
-
-
-15% {
-
-
-opacity:.8;
-
-
-}
-
-
-
-80% {
-
-
-opacity:.6;
-
-
-}
-
-
-
-
-100% {
-
-
-transform:
-
-rotate(var(--angle))
-translateX(var(--distance));
-
-
-
-opacity:0;
-
-
-}
-
-
-}
 
 
 /* =====================================================
@@ -672,7 +468,7 @@ opacity:0;
 ===================================================== */
 
 
-.bento-grid {
+.bento-grid{
 
 
     max-width:
@@ -687,9 +483,11 @@ opacity:0;
 
 
 
+
     display:
 
     grid;
+
 
 
 
@@ -702,16 +500,25 @@ opacity:0;
 
 
 
+
+
     gap:
 
     22px;
 
 
 
-    position:relative;
+
+
+    position:
+
+    relative;
+
+
 
 
     z-index:2;
+
 
 
 }
@@ -729,11 +536,10 @@ opacity:0;
 ===================================================== */
 
 
-.card {
+.card{
 
 
     background:
-
 
 
     linear-gradient(
@@ -747,6 +553,8 @@ opacity:0;
             .98
         ),
 
+
+
         rgba(
             10,
             11,
@@ -758,9 +566,13 @@ opacity:0;
 
 
 
+
+
     border:
 
     1px solid var(--border);
+
+
 
 
 
@@ -770,9 +582,13 @@ opacity:0;
 
 
 
+
+
     padding:
 
     34px;
+
+
 
 
 
@@ -782,9 +598,13 @@ opacity:0;
 
 
 
+
+
     overflow:
 
     hidden;
+
+
 
 
 
@@ -794,12 +614,17 @@ opacity:0;
 
 
 
+
+
     transform:
 
 
     translateY(40px)
 
     scale(.97);
+
+
+
 
 
 
@@ -826,14 +651,18 @@ opacity:0;
 
 
 
-.card.active {
+
+
+.card.active{
 
 
     opacity:1;
 
 
 
+
     transform:
+
 
     translateY(0)
 
@@ -849,13 +678,16 @@ opacity:0;
 
 
 
-.card:hover {
+
+.card:hover{
 
 
     transform:
 
 
     translateY(-8px);
+
+
 
 
 
@@ -871,7 +703,10 @@ opacity:0;
 
 
 
+
+
     box-shadow:
+
 
 
 
@@ -881,6 +716,8 @@ opacity:0;
         0,
         .45
     ),
+
+
 
 
 
@@ -902,7 +739,7 @@ opacity:0;
 
 
 
-.card.touch-active {
+.card.touch-active{
 
 
     transform:
@@ -921,11 +758,11 @@ opacity:0;
 
 
 /* =====================================================
-   CARD LIGHT EFFECT
+   CURSOR GLOW
 ===================================================== */
 
 
-.card::before {
+.card::before{
 
 
     content:"";
@@ -935,9 +772,12 @@ opacity:0;
 
 
 
+
+
     width:
 
     420px;
+
 
 
 
@@ -947,15 +787,21 @@ opacity:0;
 
 
 
+
+
     left:
 
     var(--mouse-x,50%);
 
 
 
+
+
     top:
 
     var(--mouse-y,50%);
+
+
 
 
 
@@ -969,8 +815,9 @@ opacity:0;
 
 
 
-    background:
 
+
+    background:
 
 
     radial-gradient(
@@ -984,9 +831,12 @@ opacity:0;
             .18
         ),
 
+
         transparent 65%
 
     );
+
+
 
 
 
@@ -996,13 +846,17 @@ opacity:0;
 
 
 
+
+
+    pointer-events:none;
+
+
+
+
     transition:
 
     opacity .5s ease;
 
-
-
-    pointer-events:none;
 
 
 }
@@ -1011,7 +865,10 @@ opacity:0;
 
 
 
-.card:hover::before {
+
+
+
+.card:hover::before{
 
 
     opacity:1;
@@ -1025,7 +882,8 @@ opacity:0;
 
 
 
-.card::after {
+
+.card::after{
 
 
     content:"";
@@ -1038,15 +896,13 @@ opacity:0;
 
 
 
+
+
     border-radius:
 
     var(--radius);
 
 
-
-    border:
-
-    1px solid transparent;
 
 
 
@@ -1066,7 +922,6 @@ opacity:0;
 
         transparent 40%,
 
-
         transparent 60%,
 
 
@@ -1081,10 +936,18 @@ opacity:0;
 
 
 
+
+
     opacity:0;
 
 
+
+
+
     pointer-events:none;
+
+
+
 
 
     transition:
@@ -1099,28 +962,36 @@ opacity:0;
 
 
 
-.card:hover::after {
+.card:hover::after{
 
 
     opacity:1;
 
 
 }
-
-
-
-
-
-
-
-
-
 /* =====================================================
    BENTO POSITIONS
 ===================================================== */
 
 
-.hero {
+/* 
+   Desktop Layout
+
+   LEFT SIDE:
+   Hero
+   Hardware
+
+   RIGHT SIDE:
+   Profile
+   Engineering Journey
+   Tech Stack
+   Entrepreneurship
+   Connect
+
+*/
+
+
+.hero{
 
 
     grid-column:
@@ -1140,11 +1011,22 @@ opacity:0;
     600px;
 
 
+
+    isolation:
+
+    isolate;
+
+
 }
 
 
 
-.profile {
+
+
+
+
+
+.profile{
 
 
     grid-column:
@@ -1157,7 +1039,11 @@ opacity:0;
 
 
 
-.hardware {
+
+
+
+
+.hardware{
 
 
     grid-column:
@@ -1176,7 +1062,11 @@ opacity:0;
 
 
 
-.timeline {
+
+
+
+
+.timeline{
 
 
     grid-column:
@@ -1192,6 +1082,8 @@ opacity:0;
 
 
     overflow:hidden;
+
+
 
 
 
@@ -1218,7 +1110,9 @@ opacity:0;
 
 
 
-.timeline.expanded {
+
+
+.timeline.expanded{
 
 
     max-height:
@@ -1226,6 +1120,7 @@ opacity:0;
     850px;
 
 
+
 }
 
 
@@ -1234,24 +1129,13 @@ opacity:0;
 
 
 
-.timeline.project-active {
+
+.timeline:hover{
 
 
-    border-color:
+    transform:
 
-    var(--green);
-
-
-
-    box-shadow:
-
-
-    0 0 50px rgba(
-        0,
-        255,
-        136,
-        .25
-    );
+    translateY(-8px);
 
 
 
@@ -1264,7 +1148,7 @@ opacity:0;
 
 
 
-.stack {
+.stack{
 
 
     grid-column:
@@ -1280,7 +1164,8 @@ opacity:0;
 
 
 
-.entrepreneur {
+
+.entrepreneur{
 
 
     grid-column:
@@ -1296,7 +1181,8 @@ opacity:0;
 
 
 
-.connect {
+
+.connect{
 
 
     grid-column:
@@ -1319,7 +1205,7 @@ opacity:0;
 ===================================================== */
 
 
-.terminal-dots {
+.terminal-dots{
 
 
     display:flex;
@@ -1328,7 +1214,9 @@ opacity:0;
     gap:10px;
 
 
+
     margin-bottom:25px;
+
 
 
 }
@@ -1338,7 +1226,9 @@ opacity:0;
 
 
 
-.terminal-dots span {
+
+
+.terminal-dots span{
 
 
     width:
@@ -1353,9 +1243,11 @@ opacity:0;
 
 
 
+
     border-radius:
 
     50%;
+
 
 
 
@@ -1363,11 +1255,15 @@ opacity:0;
 
 
 
+
     align-items:center;
 
 
 
+
     justify-content:center;
+
+
 
 
 
@@ -1377,7 +1273,10 @@ opacity:0;
 
 
 
+
     color:#000;
+
+
 
 
 
@@ -1392,36 +1291,66 @@ opacity:0;
 
 
 
-.mac-red {
+
+
+
+
+.terminal-dots span:hover{
+
+
+    transform:
+
+
+    scale(1.3)
+
+    rotate(12deg);
+
+
+
+}
+
+
+
+
+
+
+
+
+.mac-red{
 
 
     background:#ff5f57;
 
 
+
 }
 
 
 
 
-.mac-yellow {
+
+.mac-yellow{
 
 
     background:#febc2e;
 
 
+
 }
 
 
 
 
 
-.mac-green {
+.mac-green{
 
 
     background:#28c840;
 
 
+
 }
+
 
 
 
@@ -1431,16 +1360,18 @@ opacity:0;
 
 
 /* =====================================================
-   TYPOGRAPHY
+   TEXT SYSTEM
 ===================================================== */
 
 
-.label {
+.label{
 
 
     color:
 
     var(--green);
+
+
 
 
 
@@ -1450,9 +1381,13 @@ opacity:0;
 
 
 
+
+
     letter-spacing:
 
     2px;
+
+
 
 
 
@@ -1468,22 +1403,22 @@ opacity:0;
 
 
 
-h1 {
+
+
+
+h1{
 
 
     font-size:
 
 
-
     clamp(
-
         3rem,
-
         6vw,
-
         5.5rem
-
     );
+
+
 
 
 
@@ -1493,9 +1428,13 @@ h1 {
 
 
 
+
+
     letter-spacing:
 
     -3px;
+
+
 
 
 
@@ -1511,12 +1450,17 @@ h1 {
 
 
 
-h2 {
+
+
+
+h2{
 
 
     font-size:
 
     30px;
+
+
 
 
 
@@ -1532,7 +1476,10 @@ h2 {
 
 
 
-h3 {
+
+
+
+h3{
 
 
     margin-bottom:
@@ -1547,12 +1494,17 @@ h3 {
 
 
 
-p {
+
+
+
+p{
 
 
     color:
 
     var(--muted);
+
+
 
 
 
@@ -1567,18 +1519,89 @@ p {
 
 
 
-/* =====================================================
-   HERO BUTTONS
-===================================================== */
 
 
-.buttons {
+
+
+
+.typing-line{
 
 
     display:flex;
 
 
     flex-wrap:wrap;
+
+
+
+    gap:8px;
+
+
+
+    margin-bottom:
+
+    30px;
+
+
+
+    color:
+
+    var(--cyan);
+
+
+
+}
+
+
+
+
+
+.cursor{
+
+
+    width:8px;
+
+
+    height:20px;
+
+
+    background:var(--green);
+
+
+    display:inline-block;
+
+
+    animation:blink .8s infinite;
+
+
+
+}
+
+
+
+@keyframes blink{
+
+
+    50%{
+
+        opacity:0;
+
+    }
+
+}
+/* =====================================================
+   HERO BUTTONS
+===================================================== */
+
+
+.buttons{
+
+
+    display:flex;
+
+
+    flex-wrap:wrap;
+
 
 
     gap:14px;
@@ -1597,11 +1620,13 @@ p {
 
 
 
-.buttons a {
+
+
+
+.buttons a{
 
 
     background:
-
 
 
     linear-gradient(
@@ -1616,6 +1641,8 @@ p {
 
 
 
+
+
     border:
 
     1px solid rgba(
@@ -1627,10 +1654,13 @@ p {
 
 
 
+
+
     padding:
 
 
     15px 24px;
+
 
 
 
@@ -1640,11 +1670,14 @@ p {
 
 
 
+
     text-decoration:none;
 
 
 
+
     color:white;
+
 
 
 
@@ -1660,7 +1693,10 @@ p {
 
 
 
-.buttons a:hover {
+
+
+
+.buttons a:hover{
 
 
     color:
@@ -1669,9 +1705,13 @@ p {
 
 
 
+
+
     border-color:
 
     var(--green);
+
+
 
 
 
@@ -1682,8 +1722,9 @@ p {
 
 
 
-    box-shadow:
 
+
+    box-shadow:
 
 
     0 15px 40px rgba(
@@ -1706,16 +1747,17 @@ p {
 
 
 /* =====================================================
-   PROFILE
+   PROFILE SECTION
 ===================================================== */
 
 
-.profile-item {
+.profile-item{
 
 
     padding:
 
     18px 0;
+
 
 
 
@@ -1731,12 +1773,16 @@ p {
 
 
 
-.profile-item span {
+
+
+
+.profile-item span{
 
 
     font-size:
 
     12px;
+
 
 
 
@@ -1761,17 +1807,24 @@ p {
 ===================================================== */
 
 
-.pipeline {
+.pipeline{
 
 
     display:flex;
 
 
-    gap:12px;
+
+
+    gap:
+
+    12px;
+
+
 
 
 
     margin:
+
 
     35px 0;
 
@@ -1783,14 +1836,20 @@ p {
 
 
 
-.pipeline div {
+
+
+
+.pipeline div{
 
 
     flex:1;
 
 
 
+
     text-align:center;
+
+
 
 
 
@@ -1800,9 +1859,13 @@ p {
 
 
 
+
+
     background:
 
     #181a20;
+
+
 
 
 
@@ -1812,9 +1875,13 @@ p {
 
 
 
+
+
     border-radius:
 
     12px;
+
+
 
 
 
@@ -1830,7 +1897,10 @@ p {
 
 
 
-.pipeline div:hover {
+
+
+
+.pipeline div:hover{
 
 
     background:
@@ -1839,9 +1909,12 @@ p {
 
 
 
+
     border-color:
 
     var(--cyan);
+
+
 
 
 
@@ -1858,7 +1931,10 @@ p {
 
 
 
-pre {
+
+
+
+pre{
 
 
     background:
@@ -1876,9 +1952,13 @@ pre {
 
 
 
+
+
     color:
 
     var(--green);
+
+
 
 
 
@@ -1888,13 +1968,17 @@ pre {
 
 
 
+
     border-radius:
 
     22px;
 
 
 
+
+
     overflow:auto;
+
 
 
 
@@ -1915,12 +1999,16 @@ pre {
 
 
 
-.hardware li {
+
+
+
+.hardware li{
 
 
     margin-top:
 
     15px;
+
 
 
 
@@ -1945,13 +2033,17 @@ pre {
 ===================================================== */
 
 
-.year-buttons {
+.year-buttons{
 
 
     display:flex;
 
 
-    gap:12px;
+
+    gap:
+
+    12px;
+
 
 
     margin-bottom:
@@ -1967,7 +2059,9 @@ pre {
 
 
 
-.year-buttons button {
+
+
+.year-buttons button{
 
 
     background:
@@ -1977,13 +2071,19 @@ pre {
 
 
 
+
+
     color:white;
+
+
 
 
 
     border:
 
     1px solid var(--border);
+
+
 
 
 
@@ -1994,9 +2094,13 @@ pre {
 
 
 
+
+
     border-radius:
 
     12px;
+
+
 
 
 
@@ -2004,7 +2108,11 @@ pre {
 
 
 
+
+
     font-family:inherit;
+
+
 
 
 
@@ -2020,7 +2128,10 @@ pre {
 
 
 
-.year-buttons button:hover {
+
+
+
+.year-buttons button:hover{
 
 
     color:
@@ -2029,9 +2140,13 @@ pre {
 
 
 
+
+
     border-color:
 
     var(--green);
+
+
 
 
 
@@ -2051,12 +2166,14 @@ pre {
 
 
 
-.year-buttons button.active {
+.year-buttons button.active{
 
 
     color:
 
     var(--green);
+
+
 
 
 
@@ -2066,7 +2183,10 @@ pre {
 
 
 
+
+
     background:
+
 
     rgba(
         0,
@@ -2074,6 +2194,8 @@ pre {
         255,
         .08
     );
+
+
 
 
 
@@ -2090,21 +2212,12 @@ pre {
 
 
 }
-
-
-
-
-
-
-
-
-
 /* =====================================================
    PROJECT CARDS
 ===================================================== */
 
 
-.project-grid {
+.project-grid{
 
 
     display:flex;
@@ -2113,7 +2226,10 @@ pre {
     flex-direction:column;
 
 
-    gap:15px;
+
+    gap:
+
+    15px;
 
 
 
@@ -2123,7 +2239,10 @@ pre {
 
 
 
-.project-item {
+
+
+
+.project-item{
 
 
     background:
@@ -2140,6 +2259,7 @@ pre {
             .9
         ),
 
+
         rgba(
             15,
             17,
@@ -2148,6 +2268,8 @@ pre {
         )
 
     );
+
+
 
 
 
@@ -2162,9 +2284,13 @@ pre {
 
 
 
+
+
     border-radius:
 
     18px;
+
+
 
 
 
@@ -2174,9 +2300,13 @@ pre {
 
 
 
+
+
     opacity:
 
     0;
+
+
 
 
 
@@ -2184,6 +2314,9 @@ pre {
 
 
     translateY(25px);
+
+
+
 
 
 
@@ -2200,7 +2333,10 @@ pre {
 
 
 
-.project-item:hover {
+
+
+
+.project-item:hover{
 
 
     border-color:
@@ -2209,10 +2345,14 @@ pre {
 
 
 
+
+
     transform:
 
 
     translateY(-5px);
+
+
 
 
 
@@ -2234,7 +2374,10 @@ pre {
 
 
 
-.project-item h4 {
+
+
+
+.project-item h4{
 
 
     margin-bottom:
@@ -2251,38 +2394,47 @@ pre {
 
 
 
-@keyframes projectReveal {
+
+@keyframes projectReveal{
 
 
-from {
+    from{
 
 
-    opacity:0;
-
-
-    transform:
-
-    translateY(25px);
+        opacity:0;
 
 
 
-}
+
+        transform:
+
+
+        translateY(25px);
 
 
 
-to {
-
-
-    opacity:1;
-
-
-    transform:
-
-    translateY(0);
+    }
 
 
 
-}
+
+
+    to{
+
+
+        opacity:1;
+
+
+
+
+        transform:
+
+
+        translateY(0);
+
+
+
+    }
 
 
 
@@ -2301,7 +2453,7 @@ to {
 ===================================================== */
 
 
-.tags {
+.tags{
 
 
     display:flex;
@@ -2310,7 +2462,10 @@ to {
     flex-wrap:wrap;
 
 
-    gap:10px;
+
+    gap:
+
+    10px;
 
 
 
@@ -2326,18 +2481,23 @@ to {
 
 
 
-.tags span {
 
 
-    padding:
 
-    10px 16px;
-
+.tags span{
 
 
     background:
 
-    #181a20;
+
+    rgba(
+        255,
+        255,
+        255,
+        .05
+    );
+
+
 
 
 
@@ -2347,9 +2507,21 @@ to {
 
 
 
+
+
+    padding:
+
+
+    10px 16px;
+
+
+
+
+
     border-radius:
 
     12px;
+
 
 
 
@@ -2359,9 +2531,13 @@ to {
 
 
 
+
+
     color:
 
-    var(--muted);
+    var(--white);
+
+
 
 
 
@@ -2377,13 +2553,10 @@ to {
 
 
 
-.tags span:hover {
 
 
-    color:
 
-    var(--green);
-
+.tags span:hover{
 
 
     border-color:
@@ -2392,7 +2565,29 @@ to {
 
 
 
+
+
+    color:
+
+    var(--green);
+
+
+
+
+
+    transform:
+
+
+    translateY(-4px);
+
+
+
 }
+
+
+
+
+
 
 
 
@@ -2402,7 +2597,7 @@ to {
 ===================================================== */
 
 
-.connect-links {
+.connect{
 
 
     display:flex;
@@ -2411,7 +2606,11 @@ to {
     flex-direction:column;
 
 
-    gap:15px;
+
+
+    gap:
+
+    14px;
 
 
 
@@ -2421,13 +2620,14 @@ to {
 
 
 
-.connect a {
 
 
-    display:block;
+
+.connect a{
 
 
     background:
+
 
     linear-gradient(
 
@@ -2438,6 +2638,8 @@ to {
         #101116
 
     );
+
+
 
 
 
@@ -2452,9 +2654,13 @@ to {
 
 
 
+
+
     padding:
 
     15px 24px;
+
+
 
 
 
@@ -2464,11 +2670,25 @@ to {
 
 
 
+
+
     color:white;
 
 
 
+
     text-decoration:none;
+
+
+
+
+    font-family:
+
+
+    "JetBrains Mono",
+    monospace;
+
+
 
 
 
@@ -2484,12 +2704,17 @@ to {
 
 
 
-.connect a:hover {
+
+
+
+.connect a:hover{
 
 
     color:
 
     var(--green);
+
+
 
 
 
@@ -2499,12 +2724,16 @@ to {
 
 
 
+
+
     transform:
 
 
     translateX(6px)
 
     translateY(-5px);
+
+
 
 
 
@@ -2535,7 +2764,7 @@ to {
 ===================================================== */
 
 
-.scroll-progress {
+.scroll-progress{
 
 
     position:fixed;
@@ -2547,16 +2776,16 @@ to {
     left:0;
 
 
-
     height:3px;
 
 
+    width:0%;
 
-    width:0;
 
 
 
     z-index:9999;
+
 
 
 
@@ -2576,25 +2805,17 @@ to {
 
 
 }
-
-
-
-
-
-
-
-
-
 /* =====================================================
    TABLET OPTIMIZATION
+   1200px - 900px
 ===================================================== */
 
 
-@media(max-width:1100px){
+@media(max-width:1200px){
 
 
 
-body {
+body{
 
 
     padding:
@@ -2608,13 +2829,14 @@ body {
 
 
 
-.bento-grid {
+
+.bento-grid{
 
 
     grid-template-columns:
 
     repeat(
-        6,
+        8,
         1fr
     );
 
@@ -2626,26 +2848,18 @@ body {
 
 
 
-.hero {
+.hero{
 
 
     grid-column:
 
-    span 6;
+    span 8;
 
 
 
-}
+    min-height:
 
-
-
-
-.profile {
-
-
-    grid-column:
-
-    span 3;
+    520px;
 
 
 
@@ -2655,12 +2869,12 @@ body {
 
 
 
-.hardware {
+.profile{
 
 
     grid-column:
 
-    span 6;
+    span 4;
 
 
 
@@ -2670,12 +2884,12 @@ body {
 
 
 
-.timeline {
+.hardware{
 
 
     grid-column:
 
-    span 3;
+    span 8;
 
 
 
@@ -2685,14 +2899,12 @@ body {
 
 
 
-.stack,
-.entrepreneur,
-.connect {
+.timeline{
 
 
     grid-column:
 
-    span 3;
+    span 4;
 
 
 
@@ -2701,14 +2913,61 @@ body {
 
 
 
-h1 {
+
+.stack{
+
+
+    grid-column:
+
+    span 4;
+
+
+
+}
+
+
+
+
+
+.entrepreneur{
+
+
+    grid-column:
+
+    span 4;
+
+
+
+}
+
+
+
+
+
+.connect{
+
+
+    grid-column:
+
+    span 4;
+
+
+
+}
+
+
+
+
+
+h1{
 
 
     font-size:
 
+
     clamp(
         2.8rem,
-        7vw,
+        6vw,
         4.5rem
     );
 
@@ -2716,6 +2975,19 @@ h1 {
 
 }
 
+
+
+
+.card{
+
+
+    padding:
+
+    28px;
+
+
+
+}
 
 
 
@@ -2730,20 +3002,21 @@ h1 {
 
 
 /* =====================================================
-   MOBILE OPTIMIZATION
+   SMALL TABLET
+   900px - 700px
 ===================================================== */
 
 
-@media(max-width:700px){
+@media(max-width:900px){
 
 
 
-body {
+body{
 
 
     padding:
 
-    15px;
+    20px;
 
 
 
@@ -2753,7 +3026,9 @@ body {
 
 
 
-.bento-grid {
+
+
+.bento-grid{
 
 
     display:flex;
@@ -2762,27 +3037,10 @@ body {
     flex-direction:column;
 
 
-    gap:16px;
 
+    gap:
 
-
-}
-
-
-
-
-.card {
-
-
-    padding:
-
-    24px;
-
-
-
-    border-radius:
-
-    22px;
+    18px;
 
 
 
@@ -2792,7 +3050,20 @@ body {
 
 
 
-.hero {
+.card{
+
+
+    width:100%;
+
+
+
+}
+
+
+
+
+
+.hero{
 
 
     min-height:
@@ -2807,18 +3078,139 @@ body {
 
 
 
-h1 {
+.hardware{
 
 
-    font-size:
+    order:2;
 
-    2.6rem;
 
+
+}
+
+
+
+
+
+.profile{
+
+
+    order:3;
+
+
+
+}
+
+
+
+
+
+.timeline{
+
+
+    order:4;
+
+
+
+    max-height:
+
+    none;
+
+
+
+}
+
+
+
+
+
+.timeline.expanded{
+
+
+    max-height:
+
+    1000px;
+
+
+
+}
+
+
+
+
+
+.stack{
+
+
+    order:5;
+
+
+
+}
+
+
+
+
+
+.entrepreneur{
+
+
+    order:6;
+
+
+
+}
+
+
+
+
+
+.connect{
+
+
+    order:7;
+
+
+
+}
+
+
+
+
+
+.pipeline{
+
+
+    flex-wrap:wrap;
+
+
+
+}
+
+
+
+
+
+.pipeline div{
+
+
+    min-width:
+
+    80px;
+
+
+
+}
+
+
+
+
+
+h1{
 
 
     letter-spacing:
 
-    -1.5px;
+    -2px;
 
 
 
@@ -2826,37 +3218,24 @@ h1 {
 
 
 
-h2 {
-
-
-    font-size:
-
-    24px;
-
-
-
 }
+/* =====================================================
+   MOBILE OPTIMIZATION
+   UNDER 700px
+===================================================== */
+
+
+@media(max-width:700px){
 
 
 
+body{
 
 
-.label {
+    padding:
 
+    14px;
 
-    font-size:
-
-    10px;
-
-
-
-}
-
-
-
-
-
-.description {
 
 
     font-size:
@@ -2871,26 +3250,12 @@ h2 {
 
 
 
-.buttons {
+.cpu-field{
 
 
-    flex-direction:column;
+    opacity:
 
-
-
-}
-
-
-
-
-
-.buttons a {
-
-
-    width:100%;
-
-
-    text-align:center;
+    .55;
 
 
 
@@ -2900,28 +3265,12 @@ h2 {
 
 
 
-.pipeline {
+.bento-grid{
 
 
-    overflow-x:auto;
+    gap:
 
-
-    padding-bottom:10px;
-
-
-
-}
-
-
-
-
-
-.pipeline div {
-
-
-    min-width:
-
-    70px;
+    14px;
 
 
 
@@ -2931,17 +3280,209 @@ h2 {
 
 
 
-pre {
+.card{
+
+
+    border-radius:
+
+    22px;
+
+
+
+
+    padding:
+
+    22px;
+
+
+
+}
+
+
+
+
+
+.card:hover{
+
+
+    transform:
+
+    translateY(-3px);
+
+
+
+}
+
+
+
+
+
+/* HERO */
+
+
+.hero{
+
+
+    min-height:
+
+    auto;
+
+
+
+}
+
+
+
+
+
+.label{
 
 
     font-size:
 
+    10px;
+
+
+
+
+    letter-spacing:
+
+    1px;
+
+
+
+}
+
+
+
+
+
+h1{
+
+
+    font-size:
+
+
+    clamp(
+        2.2rem,
+        12vw,
+        3.2rem
+    );
+
+
+
+
+    letter-spacing:
+
+    -1.5px;
+
+
+
+    margin-bottom:
+
+    25px;
+
+
+
+}
+
+
+
+
+
+h2{
+
+
+    font-size:
+
+    24px;
+
+
+
+}
+
+
+
+
+
+h3{
+
+
+    font-size:
+
+    18px;
+
+
+
+}
+
+
+
+
+
+p{
+
+
+    line-height:
+
+    1.6;
+
+
+
+}
+
+
+
+
+
+
+
+
+
+/* BUTTONS */
+
+
+.buttons{
+
+
+    flex-direction:
+
+    column;
+
+
+
+    gap:
+
     12px;
 
 
+
+}
+
+
+
+
+
+.buttons a{
+
+
+    width:
+
+    100%;
+
+
+
+
+    text-align:
+
+    center;
+
+
+
     padding:
 
-    20px;
+
+    14px 18px;
 
 
 
@@ -2951,26 +3492,30 @@ pre {
 
 
 
-.year-buttons {
-
-
-    width:100%;
-
-
-
-}
 
 
 
 
-
-.year-buttons button {
-
-
-    flex:1;
+/* PIPELINE */
 
 
-    padding:
+.pipeline{
+
+
+    display:grid;
+
+
+
+    grid-template-columns:
+
+    repeat(
+        2,
+        1fr
+    );
+
+
+
+    gap:
 
     10px;
 
@@ -2982,7 +3527,107 @@ pre {
 
 
 
-.project-item {
+.pipeline div{
+
+
+    padding:
+
+    12px;
+
+
+
+    font-size:
+
+    12px;
+
+
+
+}
+
+
+
+
+
+
+
+
+pre{
+
+
+    padding:
+
+    18px;
+
+
+
+    font-size:
+
+    12px;
+
+
+
+}
+
+
+
+
+
+
+
+
+
+/* YEAR BUTTONS */
+
+
+.year-buttons{
+
+
+    width:
+
+    100%;
+
+
+
+}
+
+
+
+
+
+.year-buttons button{
+
+
+    flex:1;
+
+
+
+    padding:
+
+
+    10px;
+
+
+
+    font-size:
+
+    12px;
+
+
+
+}
+
+
+
+
+
+
+
+
+
+/* PROJECTS */
+
+
+.project-item{
 
 
     padding:
@@ -2997,55 +3642,55 @@ pre {
 
 
 
-.tags span {
+.project-item h4{
+
+
+    font-size:
+
+    15px;
+
+
+
+}
+
+
+
+
+
+.project-item p{
+
+
+    font-size:
+
+    13px;
+
+
+
+}
+
+
+
+
+
+
+
+
+/* TAGS */
+
+
+.tags span{
 
 
     font-size:
 
     12px;
 
-
-
-}
-
-
-
-
-
-.cpu-pulse {
-
-
-    height:
-
-    1px;
-
-
-
-}
-
-
-
-
-.boot-terminal {
 
 
     padding:
 
-    25px;
 
-
-
-}
-
-
-
-
-.boot-lines p {
-
-
-    font-size:
-
-    12px;
+    8px 12px;
 
 
 
@@ -3055,9 +3700,75 @@ pre {
 
 
 
+
+
+
+
+/* CONNECT */
+
+
+.connect a{
+
+
+    width:
+
+    100%;
+
+
+
+    text-align:
+
+    center;
+
+
+
 }
 
 
+
+
+
+
+
+
+/* REMOVE HEAVY DESKTOP EFFECTS */
+
+
+.card::before,
+
+
+.card::after{
+
+
+    display:none;
+
+
+
+}
+
+
+
+}
+
+/* =====================================================
+   FINAL RESPONSIVE POLISH
+===================================================== */
+
+
+/* Improve scrolling performance */
+
+.cpu-field,
+.noise,
+body::before{
+
+
+    will-change:
+
+    transform;
+
+
+
+}
 
 
 
@@ -3066,20 +3777,20 @@ pre {
 
 
 /* =====================================================
-   SMALL MOBILE DEVICES
+   MOBILE LANDSCAPE
 ===================================================== */
 
 
-@media(max-width:420px){
+@media(max-width:900px) and (orientation:landscape){
 
 
 
-h1 {
+.hero{
 
 
-    font-size:
+    min-height:
 
-    2.2rem;
+    auto;
 
 
 
@@ -3089,7 +3800,22 @@ h1 {
 
 
 
-.card {
+h1{
+
+
+    font-size:
+
+    2.8rem;
+
+
+
+}
+
+
+
+
+
+.card{
 
 
     padding:
@@ -3102,20 +3828,32 @@ h1 {
 
 
 
-
-
-.terminal-dots span {
-
-
-    width:
-
-    12px;
+}
 
 
 
-    height:
 
-    12px;
+
+
+
+
+
+/* =====================================================
+   VERY SMALL PHONES
+   UNDER 400px
+===================================================== */
+
+
+@media(max-width:400px){
+
+
+
+body{
+
+
+    padding:
+
+    10px;
 
 
 
@@ -3125,13 +3863,89 @@ h1 {
 
 
 
-.pipeline div {
+.card{
 
 
     padding:
 
-    10px;
+    18px;
 
+
+
+
+    border-radius:
+
+    18px;
+
+
+
+}
+
+
+
+
+
+h1{
+
+
+    font-size:
+
+    2rem;
+
+
+
+}
+
+
+
+
+
+.year-buttons{
+
+
+    flex-direction:
+
+    column;
+
+
+
+}
+
+
+
+
+
+.year-buttons button{
+
+
+    width:
+
+    100%;
+
+
+
+}
+
+
+
+
+
+.pipeline{
+
+
+    grid-template-columns:
+
+    1fr;
+
+
+
+}
+
+
+
+
+
+.buttons a{
 
 
     font-size:
@@ -3146,37 +3960,165 @@ h1 {
 
 
 
+.connect a{
+
+
+    font-size:
+
+    12px;
+
+
+
 }
+
+
+
+}
+
+
+
+
 
 
 
 
 
 /* =====================================================
-   REDUCE MOTION SUPPORT
+   ACCESSIBILITY
 ===================================================== */
+
+
+/* Users who disable animations */
 
 
 @media(prefers-reduced-motion:reduce){
 
 
 
-* {
+*{
 
 
     animation-duration:
 
-    .01ms!important;
+    .01ms !important;
+
+
+
+    animation-iteration-count:
+
+    1 !important;
 
 
 
     transition-duration:
 
-    .01ms!important;
+    .01ms !important;
+
+
+
+    scroll-behavior:
+
+    auto !important;
 
 
 
 }
+
+
+
+}
+
+
+
+
+
+
+
+
+
+/* =====================================================
+   GPU OPTIMIZATION
+===================================================== */
+
+
+.card,
+.cpu-pulse,
+.project-item,
+.buttons a,
+.year-buttons button{
+
+
+    transform:
+
+    translateZ(0);
+
+
+
+    backface-visibility:
+
+    hidden;
+
+
+
+}
+
+
+
+
+
+
+
+
+
+/* =====================================================
+   FIX IOS SAFARI HEIGHT ISSUES
+===================================================== */
+
+
+html,
+body{
+
+
+    min-height:
+
+    100%;
+
+
+
+    -webkit-overflow-scrolling:
+
+    touch;
+
+
+
+}
+
+
+
+
+
+
+
+
+
+/* =====================================================
+   FINAL LOADED STATE
+===================================================== */
+
+
+body.loaded .card{
+
+
+    transition:
+
+
+    opacity .8s var(--ease),
+
+
+    transform .8s var(--ease),
+
+
+    border-color .5s ease;
 
 
 
