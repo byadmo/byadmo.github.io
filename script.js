@@ -76,7 +76,7 @@ function typeWriter(){
 
 
 
-    let word =
+    const word =
     typingWords[wordIndex];
 
 
@@ -95,7 +95,7 @@ function typeWriter(){
         if(letterIndex > word.length){
 
 
-            deleting=true;
+            deleting = true;
 
 
 
@@ -109,7 +109,6 @@ function typeWriter(){
 
 
         }
-
 
 
     }
@@ -128,7 +127,7 @@ function typeWriter(){
         if(letterIndex < 0){
 
 
-            deleting=false;
+            deleting = false;
 
 
             wordIndex =
@@ -138,7 +137,7 @@ function typeWriter(){
 
 
 
-            letterIndex=0;
+            letterIndex = 0;
 
 
         }
@@ -186,9 +185,7 @@ cards.forEach(card=>{
 
 
     card.addEventListener(
-
         "mousemove",
-
         event=>{
 
 
@@ -207,25 +204,17 @@ cards.forEach(card=>{
 
 
 
-
             card.style.setProperty(
-
                 "--mouse-x",
-
                 `${x}px`
-
             );
 
 
 
             card.style.setProperty(
-
                 "--mouse-y",
-
                 `${y}px`
-
             );
-
 
 
         }
@@ -234,7 +223,6 @@ cards.forEach(card=>{
 
 
 });
-
 
 
 
@@ -261,7 +249,6 @@ const timelineInfo = {
     `,
 
 
-
     "2025":
 
     `
@@ -273,7 +260,6 @@ const timelineInfo = {
     `,
 
 
-
     "2024":
 
     `
@@ -283,8 +269,8 @@ const timelineInfo = {
     and engineering concepts.
     `
 
-};
 
+};
 
 
 
@@ -348,7 +334,6 @@ timelineButtons.forEach(button=>{
     );
 
 
-
 });
 
 
@@ -402,9 +387,11 @@ if(projectsButton && timelineCard){
 
 
 
+
             timelineCard.classList.add(
                 "project-active"
             );
+
 
 
 
@@ -418,7 +405,7 @@ if(projectsButton && timelineCard){
                 );
 
 
-            },5000);
+            },7000);
 
 
 
@@ -452,9 +439,7 @@ terminalDots.forEach(dot=>{
 
 
     dot.addEventListener(
-
         "mouseenter",
-
         ()=>{
 
 
@@ -468,11 +453,8 @@ terminalDots.forEach(dot=>{
 
 
 
-
     dot.addEventListener(
-
         "mouseleave",
-
         ()=>{
 
 
@@ -483,7 +465,6 @@ terminalDots.forEach(dot=>{
         }
 
     );
-
 
 
 });
