@@ -41,11 +41,13 @@
 
 
 
+
 html {
 
     scroll-behavior:smooth;
 
 }
+
 
 
 
@@ -59,7 +61,7 @@ body {
     "JetBrains Mono",
     monospace;
 
-    padding:40px;
+    padding:30px 40px;
 
     overflow-x:hidden;
 
@@ -67,9 +69,11 @@ body {
 
 
 
-/* =========================
-BACKGROUND
-========================= */
+
+
+/* =====================================================
+   BACKGROUND
+===================================================== */
 
 
 .noise {
@@ -80,7 +84,7 @@ BACKGROUND
 
     pointer-events:none;
 
-    opacity:.035;
+    opacity:.03;
 
     background-image:
 
@@ -99,23 +103,113 @@ BACKGROUND
 
 
 
-/* =========================
-BENTO GRID
-========================= */
+
+/* =====================================================
+   NAVBAR
+===================================================== */
 
 
-.bento-grid {
+.navbar {
+
 
     max-width:1600px;
 
-    margin:auto;
+    margin:0 auto 30px;
 
-    display:grid;
 
-    grid-template-columns:
-    repeat(12,1fr);
+    display:flex;
 
-    gap:22px;
+    justify-content:space-between;
+
+    align-items:center;
+
+
+    padding:18px 25px;
+
+
+    background:
+
+    rgba(
+        18,
+        18,
+        20,
+        .7
+    );
+
+
+    backdrop-filter:blur(20px);
+
+
+    border:
+
+    1px solid var(--border);
+
+
+    border-radius:20px;
+
+
+
+}
+
+
+
+
+.nav-logo {
+
+
+    color:var(--green);
+
+
+    font-size:14px;
+
+
+    letter-spacing:2px;
+
+
+}
+
+
+
+
+.nav-links {
+
+
+    display:flex;
+
+
+    gap:25px;
+
+
+}
+
+
+
+
+.nav-links a {
+
+
+    text-decoration:none;
+
+
+    color:var(--muted);
+
+
+    font-size:13px;
+
+
+    transition:var(--transition);
+
+
+}
+
+
+
+
+.nav-links a:hover {
+
+
+    color:var(--green);
+
 
 }
 
@@ -125,33 +219,86 @@ BENTO GRID
 
 
 
-/* =========================
-CARDS
-========================= */
+
+
+/* =====================================================
+   BENTO GRID
+===================================================== */
+
+
+.bento-grid {
+
+
+    max-width:1600px;
+
+
+    margin:auto;
+
+
+    display:grid;
+
+
+    grid-template-columns:
+
+    repeat(12,1fr);
+
+
+    gap:22px;
+
+
+}
+
+
+
+
+
+
+
+
+/* =====================================================
+   CARDS
+===================================================== */
 
 
 .card {
 
+
     background:var(--card);
 
-    border:1px solid var(--border);
+
+    border:
+
+    1px solid var(--border);
+
+
 
     border-radius:var(--radius);
 
+
+
     padding:34px;
 
+
+
     position:relative;
+
 
     overflow:hidden;
 
 
+
     opacity:0;
 
+
+
     transform:
+
     translateY(30px);
 
 
+
     transition:
+
     var(--transition);
 
 
@@ -159,15 +306,20 @@ CARDS
 
 
 
+
+
 .card.active {
+
 
     opacity:1;
 
+
     transform:
+
     translateY(0);
 
-}
 
+}
 
 
 
@@ -180,13 +332,13 @@ CARDS
 
     box-shadow:
 
-    0 20px 60px
+    0 20px 70px
 
     rgba(
         0,
         240,
         255,
-        .10
+        .12
     );
 
 
@@ -196,92 +348,26 @@ CARDS
 
 
 
-.card::before {
-
-
-    content:"";
-
-
-    position:absolute;
-
-
-    width:280px;
-
-
-    height:280px;
-
-
-    left:var(--mouse-x,50%);
-
-
-    top:var(--mouse-y,50%);
-
-
-
-    transform:
-
-    translate(-50%,-50%);
-
-
-
-    background:
-
-    radial-gradient(
-
-        circle,
-
-        rgba(
-            0,
-            240,
-            255,
-            .16
-        ),
-
-        transparent 70%
-
-    );
-
-
-
-    opacity:0;
-
-
-    transition:.5s;
-
-
-    pointer-events:none;
-
-
-}
-
-
-
-.card:hover::before {
-
-    opacity:1;
-
-}
 
 
 
 
-
-
-
-
-
-/* =========================
-BENTO POSITIONS
-========================= */
+/* =====================================================
+   GRID POSITIONS
+===================================================== */
 
 
 .hero {
 
+
     grid-column:span 8;
+
 
     grid-row:span 2;
 
+
     min-height:600px;
+
 
 }
 
@@ -289,7 +375,9 @@ BENTO POSITIONS
 
 .profile {
 
+
     grid-column:span 4;
+
 
 }
 
@@ -297,7 +385,19 @@ BENTO POSITIONS
 
 .hardware {
 
+
     grid-column:span 8;
+
+
+}
+
+
+
+.live-hardware {
+
+
+    grid-column:span 4;
+
 
 }
 
@@ -305,7 +405,9 @@ BENTO POSITIONS
 
 .timeline {
 
+
     grid-column:span 4;
+
 
 }
 
@@ -313,7 +415,9 @@ BENTO POSITIONS
 
 .stack {
 
+
     grid-column:span 4;
+
 
 }
 
@@ -321,7 +425,9 @@ BENTO POSITIONS
 
 .entrepreneur {
 
+
     grid-column:span 4;
+
 
 }
 
@@ -329,7 +435,9 @@ BENTO POSITIONS
 
 .connect {
 
+
     grid-column:span 4;
+
 
 }
 
@@ -340,48 +448,65 @@ BENTO POSITIONS
 
 
 
-/* =========================
-TERMINAL DOTS
-========================= */
+
+/* =====================================================
+   TERMINAL DOTS
+===================================================== */
 
 
 .terminal-dots {
 
+
     display:flex;
+
 
     gap:10px;
 
+
     margin-bottom:25px;
 
+
 }
+
 
 
 
 .terminal-dots span {
 
+
     width:14px;
+
 
     height:14px;
 
+
     border-radius:50%;
+
 
     display:flex;
 
+
     align-items:center;
+
 
     justify-content:center;
 
+
     font-size:9px;
 
+
     color:black;
+
 
 }
 
 
 
+
 .mac-red {
 
-background:#ff5f57;
+
+    background:#ff5f57;
 
 }
 
@@ -389,7 +514,8 @@ background:#ff5f57;
 
 .mac-yellow {
 
-background:#febc2e;
+
+    background:#febc2e;
 
 }
 
@@ -397,7 +523,8 @@ background:#febc2e;
 
 .mac-green {
 
-background:#28c840;
+
+    background:#28c840;
 
 }
 
@@ -408,26 +535,33 @@ background:#28c840;
 
 
 
-/* =========================
-TEXT
-========================= */
+/* =====================================================
+   TEXT
+===================================================== */
 
 
 .label {
 
+
     color:var(--green);
+
 
     font-size:12px;
 
+
     letter-spacing:2px;
 
+
     margin-bottom:25px;
+
 
 }
 
 
 
+
 h1 {
+
 
     font-size:
 
@@ -440,9 +574,12 @@ h1 {
 
     line-height:1.05;
 
+
     letter-spacing:-3px;
 
+
     margin-bottom:35px;
+
 
 }
 
@@ -450,17 +587,12 @@ h1 {
 
 h2 {
 
+
     font-size:30px;
+
 
     margin-bottom:25px;
 
-}
-
-
-
-h3 {
-
-    color:white;
 
 }
 
@@ -468,9 +600,12 @@ h3 {
 
 p {
 
+
     color:var(--muted);
 
+
     line-height:1.8;
+
 
 }
 
@@ -482,54 +617,70 @@ p {
 
 
 
-/* =========================
-BUTTONS
-========================= */
+/* =====================================================
+   BUTTONS
+===================================================== */
 
 
 .buttons {
 
+
     display:flex;
+
 
     gap:14px;
 
+
     margin-top:40px;
 
+
     flex-wrap:wrap;
+
 
 }
 
 
 
-.buttons a {
+.buttons a,
+.live-hardware a {
+
+
+    text-decoration:none;
 
 
     color:white;
 
-    text-decoration:none;
 
     background:#18181b;
 
-    border:1px solid var(--border);
+
+    border:
+
+    1px solid var(--border);
+
 
     padding:14px 22px;
+
 
     border-radius:14px;
 
 
-    transition:
+    display:inline-block;
 
-    var(--transition);
+
+    transition:var(--transition);
 
 
 }
 
 
 
-.buttons a:hover {
+.buttons a:hover,
+.live-hardware a:hover {
 
 
     color:var(--green);
+
 
     border-color:var(--green);
 
@@ -538,6 +689,7 @@ BUTTONS
 
     translateY(-3px);
 
+
 }
 
 
@@ -547,28 +699,35 @@ BUTTONS
 
 
 
-/* =========================
-PROFILE
-========================= */
+/* =====================================================
+   PROFILE
+===================================================== */
 
 
 .profile-item {
 
+
     padding:18px 0;
+
 
     border-bottom:
 
     1px solid var(--border);
 
+
 }
+
 
 
 
 .profile-item span {
 
+
     color:var(--muted);
 
+
     font-size:12px;
+
 
 }
 
@@ -579,9 +738,10 @@ PROFILE
 
 
 
-/* =========================
-CPU PROJECT
-========================= */
+
+/* =====================================================
+   CPU
+===================================================== */
 
 
 .pipeline {
@@ -589,7 +749,9 @@ CPU PROJECT
 
     display:flex;
 
+
     gap:12px;
+
 
     margin:35px 0;
 
@@ -603,13 +765,14 @@ CPU PROJECT
 
     flex:1;
 
+
     text-align:center;
 
 
-    background:#18181b;
-
-
     padding:14px;
+
+
+    background:#18181b;
 
 
     border-radius:12px;
@@ -619,6 +782,7 @@ CPU PROJECT
 
 
 }
+
 
 
 
@@ -644,54 +808,15 @@ pre {
 
 
 
+
+
 .hardware li {
 
 
-    margin-top:18px;
-
     color:var(--muted);
 
-}
 
-
-
-
-
-
-
-
-/* =========================
-ENGINEERING JOURNEY
-========================= */
-
-
-.timeline {
-
-
-    max-height:280px;
-
-
-    transition:
-
-
-    max-height 1s cubic-bezier(
-        .95,
-        .05,
-        .795,
-        .035
-    ),
-
-    box-shadow .8s ease;
-
-
-}
-
-
-
-.timeline.expanded {
-
-
-    max-height:750px;
+    margin-top:15px;
 
 
 }
@@ -700,25 +825,15 @@ ENGINEERING JOURNEY
 
 
 
-.timeline-content {
-
-
-    margin-top:10px;
-
-
-    transition:.6s ease;
-
-
-}
 
 
 
+/* =====================================================
+   LIVE HARDWARE
+===================================================== */
 
 
-#project-list {
-
-
-    margin-top:25px;
+.hardware-status {
 
 
     display:flex;
@@ -727,7 +842,10 @@ ENGINEERING JOURNEY
     flex-direction:column;
 
 
-    gap:16px;
+    gap:15px;
+
+
+    margin:25px 0;
 
 
 }
@@ -735,25 +853,25 @@ ENGINEERING JOURNEY
 
 
 
+.hardware-status div {
 
-.project-item {
+
+    display:flex;
+
+
+    justify-content:space-between;
+
+
+    padding:15px;
 
 
     background:#18181b;
 
 
+    border-radius:14px;
+
+
     border:1px solid var(--border);
-
-
-    border-radius:16px;
-
-
-    padding:18px;
-
-
-    animation:
-
-    projectAppear .7s ease forwards;
 
 
 }
@@ -761,51 +879,22 @@ ENGINEERING JOURNEY
 
 
 
+.hardware-status span {
 
-.project-item h4 {
+
+    color:var(--muted);
+
+
+}
+
+
+
+.hardware-status strong {
 
 
     color:var(--green);
 
 
-    margin-bottom:8px;
-
-
-}
-
-
-
-
-
-@keyframes projectAppear {
-
-
-    from {
-
-
-        opacity:0;
-
-        transform:
-
-        translateY(15px);
-
-
-    }
-
-
-    to {
-
-
-        opacity:1;
-
-        transform:
-
-        translateY(0);
-
-
-    }
-
-
 }
 
 
@@ -814,6 +903,10 @@ ENGINEERING JOURNEY
 
 
 
+
+/* =====================================================
+   TIMELINE
+===================================================== */
 
 
 .year-buttons {
@@ -821,9 +914,9 @@ ENGINEERING JOURNEY
 
     display:flex;
 
+
     gap:12px;
 
-    margin-bottom:25px;
 
 }
 
@@ -834,11 +927,15 @@ ENGINEERING JOURNEY
 
     background:#18181b;
 
+
     color:white;
+
 
     border:1px solid var(--border);
 
+
     padding:12px 20px;
+
 
     border-radius:12px;
 
@@ -847,11 +944,6 @@ ENGINEERING JOURNEY
 
 
     font-family:inherit;
-
-
-    transition:
-
-    var(--transition);
 
 
 }
@@ -867,11 +959,6 @@ ENGINEERING JOURNEY
     border-color:var(--green);
 
 
-    transform:
-
-    translateY(-3px);
-
-
 }
 
 
@@ -881,98 +968,9 @@ ENGINEERING JOURNEY
 
 
 
-/* =========================
-PROJECT SCAN EFFECT
-========================= */
-
-
-.timeline.project-active::after {
-
-
-    content:"";
-
-
-    position:absolute;
-
-
-    inset:-2px;
-
-
-    border-radius:28px;
-
-
-
-    background:
-
-    linear-gradient(
-
-        90deg,
-
-        transparent,
-
-        var(--cyan),
-
-        var(--green),
-
-        transparent
-
-    );
-
-
-
-    background-size:300% 100%;
-
-
-
-    animation:
-
-    borderScan 5s ease forwards;
-
-
-
-    opacity:.6;
-
-
-    pointer-events:none;
-
-
-}
-
-
-
-@keyframes borderScan {
-
-
-    from {
-
-        background-position:0% 50%;
-
-        opacity:.7;
-
-    }
-
-
-    to {
-
-        background-position:300% 50%;
-
-        opacity:0;
-
-    }
-
-
-}
-
-
-
-
-
-
-
-
-/* =========================
-TECH STACK
-========================= */
+/* =====================================================
+   TAGS
+===================================================== */
 
 
 .tags {
@@ -980,7 +978,9 @@ TECH STACK
 
     display:flex;
 
+
     flex-wrap:wrap;
+
 
     gap:10px;
 
@@ -992,10 +992,10 @@ TECH STACK
 .tags span {
 
 
-    background:#18181b;
-
-
     padding:8px 14px;
+
+
+    background:#18181b;
 
 
     border-radius:999px;
@@ -1011,27 +1011,15 @@ TECH STACK
 
 
 
-.tags span:hover {
-
-
-    color:var(--green);
-
-
-    border-color:var(--green);
-
-
-}
 
 
 
 
 
 
-
-
-/* =========================
-CONNECT
-========================= */
+/* =====================================================
+   CONNECT
+===================================================== */
 
 
 .connect {
@@ -1039,7 +1027,9 @@ CONNECT
 
     display:flex;
 
+
     flex-direction:column;
+
 
     gap:18px;
 
@@ -1048,14 +1038,14 @@ CONNECT
 
 
 
+
 .connect a {
 
 
     color:white;
 
-    text-decoration:none;
 
-    font-size:18px;
+    text-decoration:none;
 
 
 }
@@ -1077,20 +1067,12 @@ CONNECT
 
 
 
-/* =========================
-RESPONSIVE
-========================= */
+/* =====================================================
+   RESPONSIVE
+===================================================== */
 
 
 @media(max-width:1100px){
-
-
-body {
-
-padding:25px;
-
-}
-
 
 
 .bento-grid {
@@ -1109,9 +1091,7 @@ repeat(6,1fr);
 .hardware {
 
 
-grid-column:
-
-span 6;
+grid-column:span 6;
 
 
 }
@@ -1119,15 +1099,14 @@ span 6;
 
 
 .profile,
+.live-hardware,
 .timeline,
 .stack,
 .entrepreneur,
 .connect {
 
 
-grid-column:
-
-span 3;
+grid-column:span 3;
 
 
 }
@@ -1145,7 +1124,35 @@ span 3;
 
 body {
 
+
 padding:16px;
+
+
+}
+
+
+
+.navbar {
+
+
+flex-direction:column;
+
+
+gap:20px;
+
+
+}
+
+
+
+.nav-links {
+
+
+flex-wrap:wrap;
+
+
+justify-content:center;
+
 
 }
 
@@ -1155,6 +1162,7 @@ padding:16px;
 
 
 display:flex;
+
 
 flex-direction:column;
 
@@ -1168,28 +1176,8 @@ flex-direction:column;
 
 padding:24px;
 
-}
-
-
-
-h1 {
-
-
-font-size:2.7rem;
-
 
 }
-
-
-
-.pipeline {
-
-
-flex-wrap:wrap;
-
-
-}
-
 
 
 }
