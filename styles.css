@@ -1,24 +1,37 @@
 /* =====================================================
    ADAM MORGAN PORTFOLIO
-   PREMIUM UI OVERHAUL PATCH
-   COPY THIS AT THE END OF STYLES.CSS
+   PREMIUM ENGINEERING BENTO SYSTEM
 ===================================================== */
 
 
-/* =========================
-ROOT ENHANCEMENT
-========================= */
-
 :root {
 
-    --card-glow:
-    0 30px 80px rgba(0,0,0,.45);
+    --bg:#07080a;
 
-    --cyan-glow:
-    0 0 45px rgba(0,234,255,.18);
+    --card:#111319;
 
-    --green-glow:
-    0 0 35px rgba(0,255,136,.15);
+    --card-light:#171a21;
+
+    --border:#252a35;
+
+    --white:#ffffff;
+
+    --muted:#9297a3;
+
+    --cyan:#00eaff;
+
+    --green:#00ff88;
+
+    --radius:28px;
+
+
+    --ease:
+    cubic-bezier(
+        .22,
+        1,
+        .36,
+        1
+    );
 
 }
 
@@ -26,8 +39,250 @@ ROOT ENHANCEMENT
 
 
 
+
 /* =========================
-CARD DEPTH
+RESET
+========================= */
+
+
+* {
+
+    margin:0;
+
+    padding:0;
+
+    box-sizing:border-box;
+
+}
+
+
+
+
+
+html {
+
+    scroll-behavior:smooth;
+
+}
+
+
+
+
+
+body {
+
+
+    background:
+
+    var(--bg);
+
+
+
+    color:
+
+    var(--white);
+
+
+
+    font-family:
+
+    "JetBrains Mono",
+    monospace;
+
+
+
+    padding:
+
+    40px;
+
+
+
+    overflow-x:hidden;
+
+
+}
+
+
+
+
+
+
+/* =========================
+BACKGROUND GRID
+========================= */
+
+
+body::before {
+
+
+    content:"";
+
+
+    position:fixed;
+
+
+    inset:0;
+
+
+
+    background:
+
+
+    linear-gradient(
+
+        90deg,
+
+        rgba(
+            0,
+            234,
+            255,
+            .025
+        ) 1px,
+
+        transparent 1px
+
+    ),
+
+
+    linear-gradient(
+
+        rgba(
+            0,
+            234,
+            255,
+            .025
+        ) 1px,
+
+        transparent 1px
+
+    );
+
+
+
+    background-size:
+
+    70px 70px;
+
+
+
+    mask-image:
+
+    radial-gradient(
+        circle,
+        black,
+        transparent 75%
+    );
+
+
+
+    pointer-events:none;
+
+
+}
+
+
+
+
+
+
+
+.noise {
+
+
+    position:fixed;
+
+
+    inset:0;
+
+
+    pointer-events:none;
+
+
+
+    opacity:.035;
+
+
+
+    background-image:
+
+
+    radial-gradient(
+
+        white 1px,
+
+        transparent 1px
+
+    );
+
+
+
+    background-size:
+
+    18px 18px;
+
+
+}
+
+
+
+
+
+
+
+
+
+/* =========================
+BENTO GRID
+========================= */
+
+
+.bento-grid {
+
+
+    max-width:
+
+    1600px;
+
+
+
+    margin:
+
+    auto;
+
+
+
+    display:
+
+    grid;
+
+
+
+    grid-template-columns:
+
+    repeat(
+        12,
+        1fr
+    );
+
+
+
+    gap:
+
+    22px;
+
+
+}
+
+
+
+
+
+
+
+
+
+/* =========================
+CARDS
 ========================= */
 
 
@@ -36,51 +291,103 @@ CARD DEPTH
 
     background:
 
+
     linear-gradient(
+
         145deg,
-        rgba(20,22,28,.98),
-        rgba(10,11,14,.98)
+
+        rgba(
+            20,
+            22,
+            28,
+            .98
+        ),
+
+        rgba(
+            10,
+            11,
+            15,
+            .98
+        )
+
     );
 
 
 
-    border-color:
+    border:
 
-    rgba(
-        255,
-        255,
-        255,
-        .08
-    );
+    1px solid var(--border);
 
 
 
-    box-shadow:
+    border-radius:
 
-    0 15px 45px rgba(
-        0,
-        0,
-        0,
-        .25
-    );
+    var(--radius);
+
+
+
+    padding:
+
+    34px;
+
+
+
+    position:
+
+    relative;
+
+
+
+    overflow:
+
+    hidden;
+
+
+
+    opacity:
+
+    0;
+
+
+
+    transform:
+
+    translateY(40px);
 
 
 
     transition:
 
-    transform .6s cubic-bezier(
-        .16,
-        1,
-        .3,
-        1
-    ),
+
+    transform .7s var(--ease),
+
 
     border-color .5s ease,
+
 
     box-shadow .5s ease;
 
 
 }
+
+
+
+
+
+.card.active {
+
+
+    opacity:1;
+
+
+    transform:
+
+    translateY(0);
+
+
+}
+
+
 
 
 
@@ -101,19 +408,31 @@ CARD DEPTH
         0,
         234,
         255,
-        .35
+        .4
     );
 
 
 
     box-shadow:
 
-    var(--card-glow),
 
-    var(--cyan-glow);
+    0 30px 80px rgba(
+        0,
+        0,
+        0,
+        .45
+    ),
+
+    0 0 45px rgba(
+        0,
+        234,
+        255,
+        .15
+    );
 
 
 }
+
 
 
 
@@ -128,6 +447,13 @@ CURSOR LIGHT
 .card::before {
 
 
+    content:"";
+
+
+    position:absolute;
+
+
+
     width:
 
     420px;
@@ -140,30 +466,74 @@ CURSOR LIGHT
 
 
 
+    left:
+
+    var(--mouse-x,50%);
+
+
+
+    top:
+
+    var(--mouse-y,50%);
+
+
+
+    transform:
+
+    translate(
+        -50%,
+        -50%
+    );
+
+
+
     background:
 
 
     radial-gradient(
 
-    circle,
+        circle,
 
-    rgba(
-        0,
-        234,
-        255,
-        .18
-    ),
+        rgba(
+            0,
+            234,
+            255,
+            .18
+        ),
 
-
-    transparent 65%
+        transparent 65%
 
     );
 
 
 
+    opacity:
+
+    0;
+
+
+
     transition:
 
-    opacity .7s ease;
+    opacity .6s ease;
+
+
+
+    pointer-events:none;
+
+
+}
+
+
+
+
+
+.card:hover::before {
+
+
+    opacity:
+
+    1;
 
 
 }
@@ -174,9 +544,382 @@ CURSOR LIGHT
 
 
 
+
+
 /* =========================
-BUTTON UPGRADE
+BENTO POSITIONS
 ========================= */
+
+
+.hero {
+
+
+    grid-column:
+
+    span 8;
+
+
+
+    grid-row:
+
+    span 2;
+
+
+
+    min-height:
+
+    600px;
+
+
+}
+
+
+
+
+
+.profile {
+
+
+    grid-column:
+
+    span 4;
+
+
+}
+
+
+
+
+
+.hardware {
+
+
+    grid-column:
+
+    span 8;
+
+
+
+    grid-row:
+
+    span 2;
+
+
+}
+
+
+
+
+
+.timeline {
+
+
+    grid-column:
+
+    span 4;
+
+
+
+    max-height:
+
+    300px;
+
+
+
+    transition:
+
+
+    max-height .9s var(--ease),
+
+
+    box-shadow .8s ease,
+
+
+    border-color .8s ease;
+
+
+}
+
+
+
+
+
+.timeline.expanded {
+
+
+    max-height:
+
+    750px;
+
+
+}
+
+
+
+
+.stack {
+
+
+    grid-column:
+
+    span 4;
+
+
+}
+
+/* =========================
+TERMINAL DOTS
+========================= */
+
+
+.terminal-dots {
+
+
+    display:flex;
+
+
+    gap:10px;
+
+
+    margin-bottom:25px;
+
+
+}
+
+
+
+
+.terminal-dots span {
+
+
+    width:14px;
+
+
+    height:14px;
+
+
+    border-radius:50%;
+
+
+    display:flex;
+
+
+    align-items:center;
+
+
+    justify-content:center;
+
+
+    font-size:10px;
+
+
+    color:#000;
+
+
+    transition:.35s var(--ease);
+
+
+}
+
+
+
+
+.mac-red {
+
+
+    background:#ff5f57;
+
+
+}
+
+
+
+.mac-yellow {
+
+
+    background:#febc2e;
+
+
+}
+
+
+
+.mac-green {
+
+
+    background:#28c840;
+
+
+}
+
+
+
+
+
+
+
+
+/* =========================
+TEXT
+========================= */
+
+
+.label {
+
+
+    color:
+
+    var(--green);
+
+
+
+    font-size:
+
+    12px;
+
+
+
+    letter-spacing:
+
+    2px;
+
+
+
+    margin-bottom:
+
+    25px;
+
+
+}
+
+
+
+
+
+h1 {
+
+
+    font-size:
+
+
+    clamp(
+
+        3rem,
+
+        6vw,
+
+        5.5rem
+
+    );
+
+
+
+    line-height:
+
+    1.05;
+
+
+
+    letter-spacing:
+
+    -3px;
+
+
+
+    margin-bottom:
+
+    35px;
+
+
+}
+
+
+
+
+h2 {
+
+
+    font-size:
+
+    30px;
+
+
+
+    margin-bottom:
+
+    25px;
+
+
+}
+
+
+
+
+h3 {
+
+
+    margin-bottom:
+
+    15px;
+
+
+}
+
+
+
+
+p {
+
+
+    color:
+
+    var(--muted);
+
+
+
+    line-height:
+
+    1.8;
+
+
+}
+
+
+
+
+
+
+
+
+
+/* =========================
+BUTTONS
+========================= */
+
+
+.buttons {
+
+
+    display:flex;
+
+
+    flex-wrap:wrap;
+
+
+    gap:14px;
+
+
+
+    margin-top:
+
+    40px;
+
+
+}
+
+
+
+
 
 
 .buttons a {
@@ -187,19 +930,19 @@ BUTTON UPGRADE
 
     linear-gradient(
 
-    145deg,
+        145deg,
 
-    #191c23,
+        #181b22,
 
-    #101116
+        #101116
 
     );
 
 
 
-    border-color:
+    border:
 
-    rgba(
+    1px solid rgba(
         255,
         255,
         255,
@@ -208,10 +951,30 @@ BUTTON UPGRADE
 
 
 
-    position:relative;
+    padding:
 
 
-    overflow:hidden;
+    15px 24px;
+
+
+
+    border-radius:
+
+    16px;
+
+
+
+    text-decoration:none;
+
+
+
+    color:white;
+
+
+
+    transition:
+
+    .45s var(--ease);
 
 
 }
@@ -220,10 +983,31 @@ BUTTON UPGRADE
 
 
 
+
+
 .buttons a:hover {
 
 
+    color:
+
+    var(--green);
+
+
+
+    border-color:
+
+    var(--green);
+
+
+
+    transform:
+
+    translateY(-5px);
+
+
+
     box-shadow:
+
 
     0 15px 40px rgba(
         0,
@@ -244,8 +1028,122 @@ BUTTON UPGRADE
 
 
 /* =========================
-PROCESSOR WINDOW
+PROFILE
 ========================= */
+
+
+.profile-item {
+
+
+    padding:
+
+    18px 0;
+
+
+
+    border-bottom:
+
+    1px solid var(--border);
+
+
+}
+
+
+
+
+
+.profile-item span {
+
+
+    font-size:
+
+    12px;
+
+
+
+    color:
+
+    var(--muted);
+
+
+}
+
+
+
+
+
+
+
+
+
+/* =========================
+PROCESSOR
+========================= */
+
+
+.pipeline {
+
+
+    display:flex;
+
+
+    gap:12px;
+
+
+
+    margin:
+
+    35px 0;
+
+
+}
+
+
+
+
+
+.pipeline div {
+
+
+    flex:1;
+
+
+
+    text-align:center;
+
+
+
+    padding:
+
+    14px;
+
+
+
+    background:
+
+
+    #181a20;
+
+
+
+    border:
+
+    1px solid var(--border);
+
+
+
+    border-radius:
+
+    12px;
+
+
+}
+
+
+
+
+
+
 
 
 pre {
@@ -256,12 +1154,45 @@ pre {
 
     linear-gradient(
 
-    135deg,
+        135deg,
 
-    #050505,
+        #050505,
 
-    #11151c
+        #11151c
 
+    );
+
+
+
+    color:
+
+    var(--green);
+
+
+
+    padding:
+
+    30px;
+
+
+
+    border-radius:
+
+    22px;
+
+
+
+    overflow:auto;
+
+
+
+    border:
+
+    1px solid rgba(
+        0,
+        255,
+        136,
+        .2
     );
 
 
@@ -283,14 +1214,206 @@ pre {
 
 
 
+.hardware li {
+
+
+    margin-top:
+
+    15px;
+
+
+
+    color:
+
+    var(--muted);
+
+
+}
+
+
+
+
+
 
 
 
 
 /* =========================
-TIMELINE FINAL ANIMATION
-REMOVE OLD DUPLICATES ABOVE
+YEAR BUTTONS
 ========================= */
+
+
+.year-buttons {
+
+
+    display:flex;
+
+
+    gap:12px;
+
+
+    margin-bottom:
+
+    25px;
+
+
+}
+
+
+
+
+
+.year-buttons button {
+
+
+    background:
+
+
+    #181a20;
+
+
+
+    color:white;
+
+
+
+    border:
+
+    1px solid var(--border);
+
+
+
+    padding:
+
+
+    12px 22px;
+
+
+
+    border-radius:
+
+    12px;
+
+
+
+    cursor:pointer;
+
+
+
+    font-family:inherit;
+
+
+
+    transition:
+
+    .4s var(--ease);
+
+
+}
+
+
+
+
+
+.year-buttons button:hover {
+
+
+    color:
+
+    var(--green);
+
+
+
+    border-color:
+
+    var(--green);
+
+
+
+    transform:
+
+    translateY(-4px);
+
+
+}
+
+
+
+
+
+
+
+.year-buttons button.active {
+
+
+    color:
+
+    var(--green);
+
+
+
+    border-color:
+
+    var(--green);
+
+
+
+    box-shadow:
+
+
+    0 0 25px rgba(
+        0,
+        255,
+        136,
+        .2
+    );
+
+
+}
+
+
+
+
+
+
+
+
+/* =========================
+TIMELINE ANIMATION
+========================= */
+
+
+.timeline.project-active {
+
+
+    border-color:
+
+    rgba(
+        0,
+        234,
+        255,
+        .5
+    );
+
+
+
+    box-shadow:
+
+
+    0 0 60px rgba(
+        0,
+        234,
+        255,
+        .15
+    );
+
+
+}
+
+
+
+
+
 
 
 .timeline.project-active::after {
@@ -316,27 +1439,25 @@ REMOVE OLD DUPLICATES ABOVE
 
     linear-gradient(
 
-    90deg,
+        90deg,
 
-    transparent,
+        transparent,
 
-    rgba(
-        0,
-        234,
-        255,
-        .35
-    ),
+        rgba(
+            0,
+            234,
+            255,
+            .35
+        ),
 
+        rgba(
+            0,
+            255,
+            136,
+            .35
+        ),
 
-    rgba(
-        0,
-        255,
-        136,
-        .35
-    ),
-
-
-    transparent
+        transparent
 
     );
 
@@ -356,19 +1477,12 @@ REMOVE OLD DUPLICATES ABOVE
 
     animation:
 
-    timelineSweep 8s cubic-bezier(
-        .16,
-        1,
-        .3,
-        1
-    ) forwards;
+
+    timelineSweep 8s var(--ease) forwards;
 
 
 
     pointer-events:none;
-
-
-    z-index:1;
 
 
 }
@@ -405,9 +1519,7 @@ REMOVE OLD DUPLICATES ABOVE
 opacity:0;
 
 
-background-position:
-
-0%;
+background-position:0%;
 
 
 }
@@ -424,15 +1536,13 @@ opacity:.8;
 
 
 
-60%{
+70%{
 
 
-opacity:.55;
+opacity:.5;
 
 
-background-position:
-
-100%;
+background-position:100%;
 
 
 }
@@ -445,81 +1555,108 @@ background-position:
 opacity:0;
 
 
-background-position:
-
-200%;
+background-position:200%;
 
 
 }
 
 
 }
-
-
-
-
-
-
-
-
-
 /* =========================
 PROJECT CARDS
 ========================= */
 
 
-.project-item {
+.project-grid {
 
 
-background:
+    display:flex;
 
 
-linear-gradient(
-
-145deg,
-
-rgba(
-30,
-33,
-42,
-.9
-),
-
-rgba(
-15,
-17,
-22,
-.9
-
-)
-
-);
+    flex-direction:column;
 
 
-
-border-color:
-
-rgba(
-255,
-255,
-255,
-.12
-);
-
-
-
-transition:
-
-.5s cubic-bezier(
-.16,
-1,
-.3,
-1
-);
-
+    gap:15px;
 
 
 }
+
+
+
+
+
+.project-item {
+
+
+    background:
+
+
+    linear-gradient(
+
+        145deg,
+
+        rgba(
+            30,
+            33,
+            42,
+            .9
+        ),
+
+        rgba(
+            15,
+            17,
+            22,
+            .9
+        )
+
+    );
+
+
+
+    border:
+
+    1px solid rgba(
+        255,
+        255,
+        255,
+        .12
+    );
+
+
+
+    border-radius:
+
+    18px;
+
+
+
+    padding:
+
+    20px;
+
+
+
+    opacity:
+
+    0;
+
+
+
+    transform:
+
+    translateY(25px);
+
+
+
+    animation:
+
+
+    projectReveal .7s var(--ease) forwards;
+
+
+}
+
+
 
 
 
@@ -528,27 +1665,107 @@ transition:
 .project-item:hover {
 
 
-transform:
+    border-color:
 
-translateY(-6px);
-
-
-
-border-color:
-
-var(--cyan);
+    var(--cyan);
 
 
 
-box-shadow:
+    transform:
+
+    translateY(-5px);
 
 
-0 20px 45px rgba(
-0,
-234,
-255,
-.12
-);
+
+    box-shadow:
+
+
+    0 20px 45px rgba(
+        0,
+        234,
+        255,
+        .12
+    );
+
+
+}
+
+
+
+
+
+
+
+.project-item h4 {
+
+
+    color:white;
+
+
+    margin-bottom:
+
+    10px;
+
+
+}
+
+
+
+
+
+
+
+.project-item p {
+
+
+    font-size:
+
+    14px;
+
+
+    line-height:
+
+    1.7;
+
+
+}
+
+
+
+
+
+
+
+@keyframes projectReveal {
+
+
+from {
+
+
+    opacity:0;
+
+
+    transform:
+
+    translateY(25px);
+
+
+}
+
+
+
+to {
+
+
+    opacity:1;
+
+
+    transform:
+
+    translateY(0);
+
+
+}
 
 
 }
@@ -562,74 +1779,81 @@ box-shadow:
 
 
 /* =========================
-SUBTLE ENGINEERING GRID
+TECH STACK
 ========================= */
 
 
-body::before {
+.tags {
 
 
-content:"";
+    display:flex;
 
 
-position:fixed;
+    flex-wrap:wrap;
 
 
-inset:0;
+    gap:10px;
 
 
-
-background:
-
-
-linear-gradient(
-
-90deg,
-
-rgba(
-0,
-234,
-255,
-.025
-) 1px,
-
-transparent 1px
-
-),
-
-
-linear-gradient(
-
-rgba(
-0,
-234,
-255,
-.025
-) 1px,
-
-transparent 1px
-
-);
+}
 
 
 
-background-size:
-
-70px 70px;
 
 
+.tags span {
 
-mask-image:
 
-radial-gradient(
-circle,
-black,
-transparent 75%
-);
+    background:
+
+
+    #181a20;
 
 
 
-pointer-events:none;
+    padding:
+
+
+    8px 14px;
+
+
+
+    border-radius:
+
+    999px;
+
+
+
+    border:
+
+    1px solid var(--border);
+
+
+
+    font-size:
+
+    13px;
+
+
+}
+
+
+
+
+
+
+.tags span:hover {
+
+
+    color:
+
+    var(--green);
+
+
+
+    border-color:
+
+    var(--green);
 
 
 }
@@ -643,22 +1867,412 @@ pointer-events:none;
 
 
 /* =========================
-MOBILE POLISH
+CONNECT
 ========================= */
+
+
+.connect {
+
+
+    display:flex;
+
+
+    flex-direction:column;
+
+
+    gap:18px;
+
+
+}
+
+
+
+
+
+
+
+.connect a {
+
+
+    color:white;
+
+
+    text-decoration:none;
+
+
+
+    transition:
+
+    .3s ease;
+
+
+}
+
+
+
+
+
+.connect a:hover {
+
+
+    color:
+
+    var(--green);
+
+
+
+    transform:
+
+    translateX(5px);
+
+
+}
+
+
+
+
+
+
+
+
+
+/* =========================
+HERO EXTRA DETAIL
+========================= */
+
+
+.hero {
+
+
+    isolation:isolate;
+
+
+}
+
+
+
+
+
+
+
+.hero::after {
+
+
+    content:"";
+
+
+    position:absolute;
+
+
+    width:
+
+    500px;
+
+
+
+    height:
+
+    500px;
+
+
+
+    right:
+
+    -200px;
+
+
+
+    top:
+
+    -200px;
+
+
+
+    background:
+
+
+    radial-gradient(
+
+        circle,
+
+        rgba(
+            0,
+            234,
+            255,
+            .12
+        ),
+
+        transparent 70%
+
+    );
+
+
+
+    pointer-events:none;
+
+
+}
+
+
+
+
+
+
+
+
+/* =========================
+SCROLLBAR
+========================= */
+
+
+::-webkit-scrollbar {
+
+
+    width:
+
+    10px;
+
+
+}
+
+
+
+::-webkit-scrollbar-track {
+
+
+    background:
+
+    var(--bg);
+
+
+}
+
+
+
+::-webkit-scrollbar-thumb {
+
+
+    background:
+
+    #252a35;
+
+
+
+    border-radius:
+
+    20px;
+
+
+}
+
+
+
+::-webkit-scrollbar-thumb:hover {
+
+
+    background:
+
+    var(--cyan);
+
+
+}
+
+
+
+
+
+
+
+
+
+/* =========================
+RESPONSIVE
+========================= */
+
+
+@media(max-width:1100px){
+
+
+
+body {
+
+
+    padding:
+
+    25px;
+
+
+}
+
+
+
+
+
+.bento-grid {
+
+
+    grid-template-columns:
+
+    repeat(
+        6,
+        1fr
+    );
+
+
+}
+
+
+
+
+
+.hero,
+.hardware {
+
+
+    grid-column:
+
+    span 6;
+
+
+}
+
+
+
+
+
+
+.profile,
+.timeline,
+.stack,
+.entrepreneur,
+.connect {
+
+
+    grid-column:
+
+    span 3;
+
+
+}
+
+
+}
+
+
+
+
+
+
+
+
 
 
 @media(max-width:700px){
 
 
-.card:hover {
+
+body {
 
 
-transform:
+    padding:
 
-translateY(-3px);
+    16px;
 
 
 }
+
+
+
+
+
+.bento-grid {
+
+
+    display:flex;
+
+
+    flex-direction:column;
+
+
+}
+
+
+
+
+
+.card {
+
+
+    padding:
+
+    24px;
+
+
+}
+
+
+
+
+
+h1 {
+
+
+    font-size:
+
+    2.7rem;
+
+
+}
+
+
+
+
+
+.pipeline {
+
+
+    flex-wrap:wrap;
+
+
+}
+
+
+
+
+
+.year-buttons {
+
+
+    flex-wrap:wrap;
+
+
+}
+
+
+}
+
+
+
+.entrepreneur {
+
+
+    grid-column:
+
+    span 4;
+
+
+}
+
+
+
+
+
+.connect {
+
+
+    grid-column:
+
+    span 4;
 
 
 }
