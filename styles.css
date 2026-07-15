@@ -31,11 +31,6 @@
 
 
 
-/* =========================
-RESET
-========================= */
-
-
 * {
 
     margin:0;
@@ -58,7 +53,7 @@ body {
 
     background:var(--bg);
 
-    color:var(--white);
+    color:white;
 
     font-family:
     "JetBrains Mono",
@@ -72,10 +67,8 @@ body {
 
 
 
-
-
 /* =========================
-BACKGROUND EFFECT
+BACKGROUND
 ========================= */
 
 
@@ -113,24 +106,18 @@ BENTO GRID
 
 .bento-grid {
 
-
     max-width:1600px;
 
     margin:auto;
 
     display:grid;
 
-
     grid-template-columns:
-
     repeat(12,1fr);
-
 
     gap:22px;
 
-
 }
-
 
 
 
@@ -145,41 +132,26 @@ CARDS
 
 .card {
 
+    background:var(--card);
 
-    background:
+    border:1px solid var(--border);
 
-    var(--card);
-
-
-    border:
-
-    1px solid var(--border);
-
-
-    border-radius:
-
-    var(--radius);
-
+    border-radius:var(--radius);
 
     padding:34px;
 
-
     position:relative;
-
 
     overflow:hidden;
 
 
     opacity:0;
 
-
     transform:
-
     translateY(30px);
 
 
     transition:
-
     var(--transition);
 
 
@@ -189,16 +161,13 @@ CARDS
 
 .card.active {
 
-
     opacity:1;
 
-
     transform:
-
     translateY(0);
 
-
 }
+
 
 
 
@@ -206,30 +175,23 @@ CARDS
 .card:hover {
 
 
-    transform:
-
-    translateY(-6px);
-
-
-    border-color:
-
-    var(--cyan);
-
+    border-color:var(--cyan);
 
 
     box-shadow:
 
-    0 25px 70px
+    0 20px 60px
 
     rgba(
         0,
         240,
         255,
-        .12
+        .10
     );
 
 
 }
+
 
 
 
@@ -255,9 +217,11 @@ CARDS
     top:var(--mouse-y,50%);
 
 
+
     transform:
 
     translate(-50%,-50%);
+
 
 
     background:
@@ -270,7 +234,7 @@ CARDS
             0,
             240,
             255,
-            .15
+            .16
         ),
 
         transparent 70%
@@ -278,13 +242,14 @@ CARDS
     );
 
 
+
     opacity:0;
 
 
+    transition:.5s;
+
+
     pointer-events:none;
-
-
-    transition:.4s;
 
 
 }
@@ -293,11 +258,10 @@ CARDS
 
 .card:hover::before {
 
-
     opacity:1;
 
-
 }
+
 
 
 
@@ -313,32 +277,19 @@ BENTO POSITIONS
 
 .hero {
 
+    grid-column:span 8;
 
-    grid-column:
-
-    span 8;
-
-
-    grid-row:
-
-    span 2;
-
+    grid-row:span 2;
 
     min-height:600px;
-
 
 }
 
 
 
-
 .profile {
 
-
-    grid-column:
-
-    span 4;
-
+    grid-column:span 4;
 
 }
 
@@ -346,29 +297,15 @@ BENTO POSITIONS
 
 .hardware {
 
-
-    grid-column:
-
-    span 8;
-
-
-    grid-row:
-
-    span 2;
-
+    grid-column:span 8;
 
 }
 
 
 
-
 .timeline {
 
-
-    grid-column:
-
-    span 4;
-
+    grid-column:span 4;
 
 }
 
@@ -376,11 +313,7 @@ BENTO POSITIONS
 
 .stack {
 
-
-    grid-column:
-
-    span 4;
-
+    grid-column:span 4;
 
 }
 
@@ -388,11 +321,7 @@ BENTO POSITIONS
 
 .entrepreneur {
 
-
-    grid-column:
-
-    span 4;
-
+    grid-column:span 4;
 
 }
 
@@ -400,14 +329,9 @@ BENTO POSITIONS
 
 .connect {
 
-
-    grid-column:
-
-    span 4;
-
+    grid-column:span 4;
 
 }
-
 
 
 
@@ -417,21 +341,17 @@ BENTO POSITIONS
 
 
 /* =========================
-TERMINAL BUTTONS
+TERMINAL DOTS
 ========================= */
 
 
 .terminal-dots {
 
-
     display:flex;
-
 
     gap:10px;
 
-
     margin-bottom:25px;
-
 
 }
 
@@ -439,30 +359,21 @@ TERMINAL BUTTONS
 
 .terminal-dots span {
 
-
     width:14px;
-
 
     height:14px;
 
-
     border-radius:50%;
-
 
     display:flex;
 
+    align-items:center;
 
     justify-content:center;
 
-
-    align-items:center;
-
-
     font-size:9px;
 
-
-    color:#000;
-
+    color:black;
 
 }
 
@@ -470,7 +381,7 @@ TERMINAL BUTTONS
 
 .mac-red {
 
-    background:#ff5f57;
+background:#ff5f57;
 
 }
 
@@ -478,7 +389,7 @@ TERMINAL BUTTONS
 
 .mac-yellow {
 
-    background:#febc2e;
+background:#febc2e;
 
 }
 
@@ -486,10 +397,9 @@ TERMINAL BUTTONS
 
 .mac-green {
 
-    background:#28c840;
+background:#28c840;
 
 }
-
 
 
 
@@ -505,25 +415,19 @@ TEXT
 
 .label {
 
-
     color:var(--green);
-
 
     font-size:12px;
 
-
     letter-spacing:2px;
 
-
     margin-bottom:25px;
-
 
 }
 
 
 
 h1 {
-
 
     font-size:
 
@@ -536,12 +440,9 @@ h1 {
 
     line-height:1.05;
 
-
     letter-spacing:-3px;
 
-
     margin-bottom:35px;
-
 
 }
 
@@ -549,12 +450,9 @@ h1 {
 
 h2 {
 
-
     font-size:30px;
 
-
     margin-bottom:25px;
-
 
 }
 
@@ -562,9 +460,7 @@ h2 {
 
 h3 {
 
-
     color:white;
-
 
 }
 
@@ -572,14 +468,12 @@ h3 {
 
 p {
 
-
     color:var(--muted);
-
 
     line-height:1.8;
 
-
 }
+
 
 
 
@@ -589,24 +483,19 @@ p {
 
 
 /* =========================
-HERO BUTTONS
+BUTTONS
 ========================= */
 
 
 .buttons {
 
-
     display:flex;
-
 
     gap:14px;
 
-
     margin-top:40px;
 
-
     flex-wrap:wrap;
-
 
 }
 
@@ -617,22 +506,13 @@ HERO BUTTONS
 
     color:white;
 
-
     text-decoration:none;
-
 
     background:#18181b;
 
+    border:1px solid var(--border);
 
-    border:
-
-    1px solid var(--border);
-
-
-    padding:
-
-    14px 22px;
-
+    padding:14px 22px;
 
     border-radius:14px;
 
@@ -651,16 +531,12 @@ HERO BUTTONS
 
     color:var(--green);
 
-
-    border-color:
-
-    var(--green);
+    border-color:var(--green);
 
 
     transform:
 
-    translateY(-4px);
-
+    translateY(-3px);
 
 }
 
@@ -678,14 +554,11 @@ PROFILE
 
 .profile-item {
 
-
     padding:18px 0;
-
 
     border-bottom:
 
     1px solid var(--border);
-
 
 }
 
@@ -693,12 +566,9 @@ PROFILE
 
 .profile-item span {
 
-
     color:var(--muted);
 
-
     font-size:12px;
-
 
 }
 
@@ -710,7 +580,7 @@ PROFILE
 
 
 /* =========================
-PROCESSOR
+CPU PROJECT
 ========================= */
 
 
@@ -719,9 +589,7 @@ PROCESSOR
 
     display:flex;
 
-
     gap:12px;
-
 
     margin:35px 0;
 
@@ -735,22 +603,19 @@ PROCESSOR
 
     flex:1;
 
-
     text-align:center;
-
-
-    padding:14px;
 
 
     background:#18181b;
 
 
-    border:
-
-    1px solid var(--border);
+    padding:14px;
 
 
     border-radius:12px;
+
+
+    border:1px solid var(--border);
 
 
 }
@@ -772,16 +637,6 @@ pre {
     border-radius:18px;
 
 
-    border:
-
-    1px solid rgba(
-        0,
-        255,
-        102,
-        .2
-    );
-
-
     overflow:auto;
 
 
@@ -794,9 +649,7 @@ pre {
 
     margin-top:18px;
 
-
     color:var(--muted);
-
 
 }
 
@@ -808,8 +661,159 @@ pre {
 
 
 /* =========================
-TIMELINE
+ENGINEERING JOURNEY
 ========================= */
+
+
+.timeline {
+
+
+    max-height:280px;
+
+
+    transition:
+
+
+    max-height 1s cubic-bezier(
+        .95,
+        .05,
+        .795,
+        .035
+    ),
+
+    box-shadow .8s ease;
+
+
+}
+
+
+
+.timeline.expanded {
+
+
+    max-height:750px;
+
+
+}
+
+
+
+
+
+.timeline-content {
+
+
+    margin-top:10px;
+
+
+    transition:.6s ease;
+
+
+}
+
+
+
+
+
+#project-list {
+
+
+    margin-top:25px;
+
+
+    display:flex;
+
+
+    flex-direction:column;
+
+
+    gap:16px;
+
+
+}
+
+
+
+
+
+.project-item {
+
+
+    background:#18181b;
+
+
+    border:1px solid var(--border);
+
+
+    border-radius:16px;
+
+
+    padding:18px;
+
+
+    animation:
+
+    projectAppear .7s ease forwards;
+
+
+}
+
+
+
+
+
+.project-item h4 {
+
+
+    color:var(--green);
+
+
+    margin-bottom:8px;
+
+
+}
+
+
+
+
+
+@keyframes projectAppear {
+
+
+    from {
+
+
+        opacity:0;
+
+        transform:
+
+        translateY(15px);
+
+
+    }
+
+
+    to {
+
+
+        opacity:1;
+
+        transform:
+
+        translateY(0);
+
+
+    }
+
+
+}
+
+
+
+
+
+
+
 
 
 .year-buttons {
@@ -817,12 +821,9 @@ TIMELINE
 
     display:flex;
 
-
     gap:12px;
 
-
-    margin-bottom:30px;
-
+    margin-bottom:25px;
 
 }
 
@@ -833,19 +834,11 @@ TIMELINE
 
     background:#18181b;
 
-
     color:white;
 
+    border:1px solid var(--border);
 
-    border:
-
-    1px solid var(--border);
-
-
-    padding:
-
-    12px 20px;
-
+    padding:12px 20px;
 
     border-radius:12px;
 
@@ -871,24 +864,12 @@ TIMELINE
     color:var(--green);
 
 
-    border-color:
-
-    var(--green);
+    border-color:var(--green);
 
 
     transform:
 
-    translateY(-4px);
-
-
-}
-
-
-
-#timeline-content {
-
-
-    min-height:100px;
+    translateY(-3px);
 
 
 }
@@ -901,27 +882,8 @@ TIMELINE
 
 
 /* =========================
-PROJECT SCAN
+PROJECT SCAN EFFECT
 ========================= */
-
-
-.timeline.project-active {
-
-
-    box-shadow:
-
-    0 0 45px
-
-    rgba(
-        0,
-        240,
-        255,
-        .12
-    );
-
-
-}
-
 
 
 .timeline.project-active::after {
@@ -937,6 +899,7 @@ PROJECT SCAN
 
 
     border-radius:28px;
+
 
 
     background:
@@ -956,17 +919,18 @@ PROJECT SCAN
     );
 
 
-    background-size:
 
-    300% 100%;
+    background-size:300% 100%;
+
 
 
     animation:
 
-    borderMove 6s linear infinite;
+    borderScan 5s ease forwards;
 
 
-    opacity:.5;
+
+    opacity:.6;
 
 
     pointer-events:none;
@@ -976,12 +940,14 @@ PROJECT SCAN
 
 
 
-@keyframes borderMove {
+@keyframes borderScan {
 
 
     from {
 
         background-position:0% 50%;
+
+        opacity:.7;
 
     }
 
@@ -989,6 +955,8 @@ PROJECT SCAN
     to {
 
         background-position:300% 50%;
+
+        opacity:0;
 
     }
 
@@ -1003,7 +971,7 @@ PROJECT SCAN
 
 
 /* =========================
-TECH TAGS
+TECH STACK
 ========================= */
 
 
@@ -1012,9 +980,7 @@ TECH TAGS
 
     display:flex;
 
-
     flex-wrap:wrap;
-
 
     gap:10px;
 
@@ -1029,17 +995,13 @@ TECH TAGS
     background:#18181b;
 
 
-    padding:
-
-    8px 14px;
+    padding:8px 14px;
 
 
     border-radius:999px;
 
 
-    border:
-
-    1px solid var(--border);
+    border:1px solid var(--border);
 
 
     font-size:13px;
@@ -1055,9 +1017,7 @@ TECH TAGS
     color:var(--green);
 
 
-    border-color:
-
-    var(--green);
+    border-color:var(--green);
 
 
 }
@@ -1079,9 +1039,7 @@ CONNECT
 
     display:flex;
 
-
     flex-direction:column;
-
 
     gap:18px;
 
@@ -1095,9 +1053,7 @@ CONNECT
 
     color:white;
 
-
     text-decoration:none;
-
 
     font-size:18px;
 
@@ -1129,46 +1085,53 @@ RESPONSIVE
 @media(max-width:1100px){
 
 
-    body {
+body {
 
-        padding:25px;
+padding:25px;
 
-    }
-
-
-
-    .bento-grid {
-
-        grid-template-columns:
-
-        repeat(6,1fr);
-
-    }
+}
 
 
 
-    .hero,
-    .hardware {
-
-        grid-column:
-
-        span 6;
-
-    }
+.bento-grid {
 
 
+grid-template-columns:
 
-    .profile,
-    .timeline,
-    .stack,
-    .entrepreneur,
-    .connect {
+repeat(6,1fr);
 
-        grid-column:
 
-        span 3;
+}
 
-    }
+
+
+.hero,
+.hardware {
+
+
+grid-column:
+
+span 6;
+
+
+}
+
+
+
+.profile,
+.timeline,
+.stack,
+.entrepreneur,
+.connect {
+
+
+grid-column:
+
+span 3;
+
+
+}
+
 
 
 }
@@ -1177,49 +1140,56 @@ RESPONSIVE
 
 
 
-
 @media(max-width:700px){
 
 
-    body {
+body {
 
-        padding:16px;
+padding:16px;
 
-    }
-
-
-
-    .bento-grid {
-
-        display:flex;
-
-        flex-direction:column;
-
-    }
+}
 
 
 
-    .card {
-
-        padding:24px;
-
-    }
+.bento-grid {
 
 
+display:flex;
 
-    h1 {
+flex-direction:column;
 
-        font-size:2.7rem;
 
-    }
+}
 
 
 
-    .pipeline {
+.card {
 
-        flex-wrap:wrap;
 
-    }
+padding:24px;
+
+}
+
+
+
+h1 {
+
+
+font-size:2.7rem;
+
+
+}
+
+
+
+.pipeline {
+
+
+flex-wrap:wrap;
+
+
+}
+
 
 
 }
