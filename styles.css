@@ -1,45 +1,41 @@
 /* =========================================================
-   ADAM MORGAN
-   ELECTRICAL ENGINEERING PORTFOLIO
-   APPLE x SILICON DESIGN SYSTEM
+   ADAM MORGAN ENGINEERING PORTFOLIO
+   APPLE x TERMINAL DESIGN SYSTEM
+========================================================= */
+
+
+/* =========================================================
+   VARIABLES
 ========================================================= */
 
 
 :root {
 
+    --bg:#0a0a0c;
 
-    --bg:#050507;
-
-    --card:#101114;
+    --card:#121214;
 
     --border:#202023;
 
+    --text:#ffffff;
 
-    --text:#f5f5f7;
-
-    --muted:#86868b;
-
-
-    --blue:#4cc9f0;
-
-    --cyan:#00e5ff;
-
-    --green:#00ff95;
-
-    --violet:#7b61ff;
+    --muted:#8e8e93;
 
 
-    --radius:28px;
+    --cyan:#00f0ff;
+
+    --green:#00ff66;
+
+
+    --radius:26px;
 
 
     --transition:
     all .4s cubic-bezier(
-        .95,
-        .05,
-        .795,
-        .035
-    );
-
+    .95,
+    .05,
+    .795,
+    .035);
 
 }
 
@@ -49,7 +45,7 @@
 
 
 /* =========================================================
-RESET
+   RESET
 ========================================================= */
 
 
@@ -73,6 +69,8 @@ html {
 
 
 
+
+
 body {
 
     background:var(--bg);
@@ -83,6 +81,8 @@ body {
     "JetBrains Mono",
     monospace;
 
+
+    line-height:1.6;
 
     padding:40px;
 
@@ -96,35 +96,29 @@ body {
 
 
 /* =========================================================
-BACKGROUND
+   NOISE TEXTURE
 ========================================================= */
 
 
 .noise {
 
-
     position:fixed;
 
     inset:0;
 
-
     pointer-events:none;
-
 
     opacity:.025;
 
 
     background-image:
-
     radial-gradient(
-        white 1px,
-        transparent 1px
-    );
+    white 1px,
+    transparent 1px);
 
 
     background-size:
-    18px 18px;
-
+    14px 14px;
 
 }
 
@@ -133,8 +127,9 @@ BACKGROUND
 
 
 
+
 /* =========================================================
-BENTO GRID
+   BENTO GRID
 ========================================================= */
 
 
@@ -142,7 +137,6 @@ BENTO GRID
 
 
     max-width:1600px;
-
 
     margin:auto;
 
@@ -156,7 +150,6 @@ BENTO GRID
 
     gap:22px;
 
-
 }
 
 
@@ -164,8 +157,9 @@ BENTO GRID
 
 
 
+
 /* =========================================================
-CARDS
+   CARD SYSTEM
 ========================================================= */
 
 
@@ -175,17 +169,8 @@ CARDS
     position:relative;
 
 
-    overflow:hidden;
-
-
     background:
-
-    linear-gradient(
-        145deg,
-        #131417,
-        #0c0d10
-    );
-
+    var(--card);
 
 
     border:
@@ -195,12 +180,15 @@ CARDS
 
 
     border-radius:
+
     var(--radius);
 
 
 
     padding:34px;
 
+
+    overflow:hidden;
 
 
     opacity:0;
@@ -216,13 +204,7 @@ CARDS
 
 
 
-    --x:50%;
-
-    --y:50%;
-
-
 }
-
 
 
 
@@ -240,7 +222,6 @@ CARDS
 
 
 
-
 .card:hover {
 
 
@@ -250,14 +231,14 @@ CARDS
 
 
     border-color:
-    rgba(76,201,240,.8);
+    var(--cyan);
 
 
 
     box-shadow:
 
-    0 25px 60px
-    rgba(0,0,0,.35);
+    0 15px 40px
+    rgba(0,240,255,.08);
 
 
 }
@@ -276,30 +257,28 @@ CARDS
     position:absolute;
 
 
-    width:300px;
+    width:260px;
 
 
-    height:300px;
+    height:260px;
+
 
 
     background:
 
-
     radial-gradient(
-        circle,
-        rgba(76,201,240,.15),
-        transparent 70%
-    );
+
+    circle,
+
+    rgba(0,240,255,.18),
+
+    transparent 70%);
 
 
 
-    left:
-    var(--x);
+    left:var(--x,50%);
 
-
-
-    top:
-    var(--y);
+    top:var(--y,50%);
 
 
 
@@ -311,17 +290,14 @@ CARDS
     opacity:0;
 
 
+    pointer-events:none;
+
 
     transition:
     var(--transition);
 
 
-
-    pointer-events:none;
-
-
 }
-
 
 
 
@@ -339,8 +315,209 @@ CARDS
 
 
 
+
 /* =========================================================
-BENTO SIZES
+   TERMINAL BAR
+========================================================= */
+
+
+.terminal-bar {
+
+
+    display:flex;
+
+    margin-bottom:20px;
+
+
+}
+
+
+
+.dots {
+
+
+    display:flex;
+
+    gap:10px;
+
+
+}
+
+
+
+.dot {
+
+
+    width:14px;
+
+    height:14px;
+
+
+    border-radius:50%;
+
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+
+    font-size:8px;
+
+
+    color:black;
+
+
+    transition:
+    var(--transition);
+
+}
+
+
+
+.dot:hover {
+
+
+    transform:
+    scale(1.25)
+    rotate(15deg);
+
+
+}
+
+
+
+.dot i {
+
+
+    opacity:0;
+
+
+}
+
+
+
+.dot:hover i {
+
+
+    opacity:1;
+
+
+}
+
+
+
+.red {
+
+    background:#ff5f57;
+
+}
+
+
+.yellow {
+
+    background:#febc2e;
+
+}
+
+
+.green {
+
+    background:#28c840;
+
+}
+
+
+
+
+
+
+
+/* =========================================================
+   TYPOGRAPHY
+========================================================= */
+
+
+.label {
+
+
+    display:block;
+
+
+    color:var(--green);
+
+
+    font-size:12px;
+
+
+    letter-spacing:2px;
+
+
+    margin-bottom:22px;
+
+
+}
+
+
+
+h1 {
+
+
+    font-size:
+    clamp(3rem,6vw,5.5rem);
+
+
+    line-height:1.05;
+
+
+    letter-spacing:-3px;
+
+
+}
+
+
+
+h2 {
+
+
+    font-size:28px;
+
+
+    margin-bottom:25px;
+
+
+}
+
+
+
+h3 {
+
+
+    margin-bottom:12px;
+
+}
+
+
+
+p {
+
+
+    color:var(--muted);
+
+
+    font-size:15px;
+
+
+}
+
+
+
+
+
+
+/* =========================================================
+   HERO
 ========================================================= */
 
 
@@ -355,14 +532,193 @@ BENTO SIZES
     span 2;
 
 
-    min-height:600px;
+    min-height:560px;
 
 
 }
 
 
 
-.status {
+.eyebrow {
+
+
+    color:var(--green);
+
+
+    font-size:12px;
+
+
+    letter-spacing:2px;
+
+
+    margin-bottom:30px;
+
+
+}
+
+
+
+
+.typing-line {
+
+
+    margin-top:35px;
+
+
+    font-size:20px;
+
+
+    display:flex;
+
+
+    gap:8px;
+
+
+    flex-wrap:wrap;
+
+
+}
+
+
+
+#typing {
+
+
+    color:var(--green);
+
+
+}
+
+
+
+.cursor {
+
+
+    width:10px;
+
+
+    height:24px;
+
+
+    background:var(--green);
+
+
+    animation:
+    blink 1s infinite;
+
+
+}
+
+
+
+@keyframes blink {
+
+
+    50%{
+
+        opacity:0;
+
+    }
+
+}
+
+
+
+.hero-description {
+
+
+    margin-top:35px;
+
+
+    max-width:700px;
+
+
+    font-size:17px;
+
+
+}
+
+
+
+
+
+.hero-buttons {
+
+
+    margin-top:40px;
+
+
+    display:flex;
+
+
+    gap:15px;
+
+
+    flex-wrap:wrap;
+
+
+}
+
+
+
+
+
+.button {
+
+
+    padding:
+
+    14px 24px;
+
+
+    border-radius:14px;
+
+
+    background:#171719;
+
+
+    border:1px solid var(--border);
+
+
+    color:white;
+
+
+    text-decoration:none;
+
+
+    transition:
+    var(--transition);
+
+
+}
+
+
+
+.button:hover {
+
+
+    color:var(--green);
+
+
+    border-color:var(--green);
+
+
+    transform:
+    translateY(-3px);
+
+
+}
+
+
+
+
+
+/* =========================================================
+   GRID PLACEMENT
+========================================================= */
+
+
+.profile {
 
 
     grid-column:
@@ -370,6 +726,7 @@ BENTO SIZES
 
 
 }
+
 
 
 
@@ -388,7 +745,7 @@ BENTO SIZES
 
 
 
-.creative {
+.architecture {
 
 
     grid-column:
@@ -399,22 +756,33 @@ BENTO SIZES
 
 
 
-.experience {
+.verification {
 
 
     grid-column:
-    span 6;
+    span 4;
 
 
 }
 
 
 
-.metrics {
+.projects {
 
 
     grid-column:
-    span 6;
+    span 8;
+
+
+}
+
+
+
+.experience {
+
+
+    grid-column:
+    span 4;
 
 
 }
@@ -432,7 +800,18 @@ BENTO SIZES
 
 
 
-.projects {
+.creative {
+
+
+    grid-column:
+    span 6;
+
+
+}
+
+
+
+.philosophy {
 
 
     grid-column:
@@ -458,360 +837,14 @@ BENTO SIZES
 
 
 /* =========================================================
-TYPOGRAPHY
-========================================================= */
-
-
-h1 {
-
-
-    font-size:
-
-    clamp(
-        3rem,
-        6vw,
-        5.8rem
-    );
-
-
-
-    line-height:
-    1.05;
-
-
-
-    letter-spacing:
-    -3px;
-
-
-    margin-bottom:40px;
-
-
-}
-
-
-
-h2 {
-
-
-    font-size:30px;
-
-
-    margin-bottom:22px;
-
-
-}
-
-
-
-h3 {
-
-
-    color:
-    var(--blue);
-
-
-    margin-bottom:12px;
-
-
-}
-
-
-
-p {
-
-
-    color:
-    var(--muted);
-
-
-    line-height:1.7;
-
-
-}
-
-
-
-.label {
-
-
-    display:block;
-
-
-    color:
-    var(--green);
-
-
-    font-size:12px;
-
-
-    letter-spacing:3px;
-
-
-    margin-bottom:25px;
-
-
-}
-
-
-
-
-
-
-
-
-/* =========================================================
-HERO
-========================================================= */
-
-
-.hero-description {
-
-
-    max-width:700px;
-
-
-    font-size:17px;
-
-
-}
-
-
-
-.typing-line {
-
-
-    display:flex;
-
-
-    gap:10px;
-
-
-    flex-wrap:wrap;
-
-
-    font-size:20px;
-
-
-}
-
-
-
-#typing {
-
-
-    color:
-    var(--blue);
-
-
-}
-
-
-
-.cursor {
-
-
-    width:10px;
-
-
-    height:24px;
-
-
-    background:
-    var(--blue);
-
-
-    animation:
-    blink 1s infinite;
-
-
-}
-
-
-
-@keyframes blink {
-
-
-50%{
-
-opacity:0;
-
-}
-
-
-}
-
-
-
-
-
-
-
-/* =========================================================
-BUTTONS
-========================================================= */
-
-
-.hero-buttons {
-
-
-    display:flex;
-
-
-    gap:15px;
-
-
-    margin-top:40px;
-
-
-}
-
-
-
-
-.button {
-
-
-    padding:
-    14px 25px;
-
-
-    border:
-    1px solid var(--border);
-
-
-
-    background:#151619;
-
-
-
-    color:white;
-
-
-    text-decoration:none;
-
-
-    border-radius:14px;
-
-
-    transition:
-    var(--transition);
-
-
-}
-
-
-
-.button:hover {
-
-
-    color:
-    var(--blue);
-
-
-
-    border-color:
-    var(--blue);
-
-
-
-    transform:
-    translateY(-4px);
-
-
-}
-
-
-
-
-
-
-/* =========================================================
-TERMINAL DOTS
-========================================================= */
-
-
-.terminal-bar {
-
-
-    margin-bottom:20px;
-
-
-}
-
-
-
-.dots {
-
-
-    display:flex;
-
-
-    gap:10px;
-
-
-}
-
-
-
-.dot {
-
-
-    width:14px;
-
-
-    height:14px;
-
-
-    border-radius:50%;
-
-
-}
-
-
-
-.red {
-
-
-background:#ff5f57;
-
-}
-
-
-.yellow {
-
-
-background:#febc2e;
-
-}
-
-
-.green {
-
-
-background:#28c840;
-
-}
-
-
-
-
-
-
-
-
-/* =========================================================
-ENGINEERING PROFILE
+   STATUS PROFILE
 ========================================================= */
 
 
 .status-grid {
 
 
-    display:flex;
-
-
-    flex-direction:column;
+    display:grid;
 
 
     gap:20px;
@@ -827,14 +860,15 @@ ENGINEERING PROFILE
     display:flex;
 
 
-    justify-content:space-between;
-
-
-    padding-bottom:15px;
+    flex-direction:column;
 
 
     border-bottom:
+
     1px solid var(--border);
+
+
+    padding-bottom:15px;
 
 
 }
@@ -844,8 +878,10 @@ ENGINEERING PROFILE
 .status-grid span {
 
 
-    color:
-    var(--muted);
+    color:var(--muted);
+
+
+    font-size:12px;
 
 
 }
@@ -855,11 +891,7 @@ ENGINEERING PROFILE
 .status-grid strong {
 
 
-    color:
-    var(--blue);
-
-
-    text-align:right;
+    margin-top:5px;
 
 
 }
@@ -869,10 +901,8 @@ ENGINEERING PROFILE
 
 
 
-
-
 /* =========================================================
-CPU PIPELINE
+   CPU PIPELINE
 ========================================================= */
 
 
@@ -888,7 +918,11 @@ CPU PIPELINE
     align-items:center;
 
 
+    margin:35px 0;
+
+
 }
+
 
 
 
@@ -898,7 +932,7 @@ CPU PIPELINE
     display:flex;
 
 
-    gap:10px;
+    gap:8px;
 
 
     flex-wrap:wrap;
@@ -911,23 +945,18 @@ CPU PIPELINE
 .pipeline div {
 
 
-    padding:
-
-    15px 18px;
+    padding:18px;
 
 
     border:
 
-    1px solid var(--blue);
+    1px solid var(--border);
 
 
-
-    border-radius:10px;
-
+    border-radius:12px;
 
 
-    color:
-    var(--blue);
+    background:#18181b;
 
 
     transition:
@@ -941,9 +970,10 @@ CPU PIPELINE
 .pipeline div:hover {
 
 
-    background:
+    border-color:var(--green);
 
-    rgba(76,201,240,.15);
+
+    color:var(--green);
 
 
 }
@@ -951,11 +981,10 @@ CPU PIPELINE
 
 
 
-
 .code-window {
 
 
-    background:#050507;
+    background:#09090b;
 
 
     border:
@@ -963,10 +992,13 @@ CPU PIPELINE
     1px solid var(--border);
 
 
-    border-radius:18px;
+    border-radius:16px;
 
 
     padding:20px;
+
+
+    flex:1;
 
 
 }
@@ -976,11 +1008,7 @@ CPU PIPELINE
 pre {
 
 
-    color:
-    var(--green);
-
-
-    font-size:13px;
+    color:var(--green);
 
 
 }
@@ -992,55 +1020,48 @@ pre {
 
 
 /* =========================================================
-TIMELINE SELECTOR
+   ARCHITECTURE FLOW
 ========================================================= */
 
 
-.year-buttons {
+.architecture-flow {
 
 
     display:flex;
 
 
+    flex-direction:column;
+
+
+    align-items:center;
+
+
     gap:12px;
-
-
-    margin-bottom:30px;
 
 
 }
 
 
 
-.year-buttons button {
+.architecture-flow div {
 
 
-    background:#151619;
+    width:100%;
 
 
-    color:white;
+    padding:12px;
 
 
-    border:
-
-    1px solid var(--border);
-
-
-
-    padding:
-
-    12px 22px;
-
+    text-align:center;
 
 
     border-radius:12px;
 
 
+    background:#18181b;
 
-    cursor:pointer;
 
-
-    font-family:inherit;
+    border:1px solid var(--border);
 
 
     transition:
@@ -1051,95 +1072,10 @@ TIMELINE SELECTOR
 
 
 
-.year-buttons button:hover,
+.architecture-flow div:hover {
 
 
-.year-buttons button.active {
-
-
-    color:
-    var(--blue);
-
-
-    border-color:
-    var(--blue);
-
-
-    transform:
-    translateY(-3px);
-
-
-}
-
-
-
-#timeline-display {
-
-
-    min-height:120px;
-
-
-}
-
-
-
-
-
-
-/* =========================================================
-METRICS
-========================================================= */
-
-
-.metrics {
-
-
-    display:flex;
-
-
-    flex-direction:column;
-
-
-}
-
-
-
-.metric-container {
-
-
-    flex:1;
-
-
-    display:flex;
-
-
-    justify-content:center;
-
-
-    align-items:center;
-
-
-    gap:60px;
-
-
-    text-align:center;
-
-
-}
-
-
-
-.metric-container h2 {
-
-
-    font-size:55px;
-
-
-    color:
-    var(--blue);
-
-
-    margin:0;
+    border-color:var(--cyan);
 
 
 }
@@ -1151,7 +1087,7 @@ METRICS
 
 
 /* =========================================================
-TECH STACK
+   TOOLKIT
 ========================================================= */
 
 
@@ -1165,33 +1101,35 @@ TECH STACK
 
 
 
+.directory h3 {
+
+
+    color:var(--green);
+
+
+    font-size:15px;
+
+
+}
+
+
+
 .directory span {
 
 
     display:inline-block;
 
 
-    padding:
-
-    8px 15px;
+    padding:8px 14px;
 
 
-
-    margin:
-
-    5px;
-
-
-
-    background:#17181b;
-
-
-    border:
-
-    1px solid var(--border);
+    background:#18181b;
 
 
     border-radius:20px;
+
+
+    margin:5px;
 
 
     font-size:13px;
@@ -1204,19 +1142,15 @@ TECH STACK
 
 
 
-
-
 /* =========================================================
-PROJECT LAB
+   PROJECTS
 ========================================================= */
 
 
 .project-item {
 
 
-    padding:
-
-    20px 0;
+    padding:20px 0;
 
 
     border-bottom:
@@ -1231,7 +1165,34 @@ PROJECT LAB
 .project-item:last-child {
 
 
-    border-bottom:none;
+    border:none;
+
+
+}
+
+
+
+
+
+
+/* =========================================================
+   WORKFLOW
+========================================================= */
+
+
+.workflow {
+
+
+    margin-top:25px;
+
+
+    text-align:center;
+
+
+    color:var(--green);
+
+
+    line-height:2.5;
 
 
 }
@@ -1243,14 +1204,23 @@ PROJECT LAB
 
 
 /* =========================================================
-SOCIAL
+   SOCIAL
 ========================================================= */
 
 
 .socials-card a {
 
 
-    display:block;
+    display:flex;
+
+
+    justify-content:space-between;
+
+
+    align-items:center;
+
+
+    padding:15px;
 
 
     color:white;
@@ -1259,7 +1229,9 @@ SOCIAL
     text-decoration:none;
 
 
-    margin-bottom:25px;
+    border-bottom:
+
+    1px solid var(--border);
 
 
     transition:
@@ -1273,8 +1245,7 @@ SOCIAL
 .socials-card a:hover {
 
 
-    color:
-    var(--blue);
+    color:var(--green);
 
 
     transform:
@@ -1285,34 +1256,10 @@ SOCIAL
 
 
 
-.socials-card code {
+code {
 
 
-    display:block;
-
-
-    color:
-    var(--green);
-
-
-    margin-top:8px;
-
-
-    opacity:0;
-
-
-    transition:
-    var(--transition);
-
-
-}
-
-
-
-.socials-card a:hover code {
-
-
-    opacity:1;
+    color:var(--muted);
 
 
 }
@@ -1323,74 +1270,16 @@ SOCIAL
 
 
 /* =========================================================
-RESPONSIVE
+   MOBILE
 ========================================================= */
 
 
-@media(max-width:1100px){
+@media(max-width:900px){
 
 
-.grid {
+body{
 
-
-grid-template-columns:
-repeat(6,1fr);
-
-
-}
-
-
-
-.hero,
-.hardware {
-
-
-grid-column:
-span 6;
-
-
-}
-
-
-
-.status,
-.creative {
-
-
-grid-column:
-span 3;
-
-
-}
-
-
-
-.experience,
-.metrics,
-.toolkit,
-.projects,
-.socials-card {
-
-
-grid-column:
-span 6;
-
-
-}
-
-
-
-}
-
-
-
-
-@media(max-width:700px){
-
-
-body {
-
-padding:16px;
+    padding:20px;
 
 }
 
@@ -1399,9 +1288,10 @@ padding:16px;
 .grid {
 
 
-display:flex;
+    display:flex;
 
-flex-direction:column;
+
+    flex-direction:column;
 
 
 }
@@ -1411,30 +1301,7 @@ flex-direction:column;
 .card {
 
 
-padding:24px;
-
-
-}
-
-
-
-.cpu-layout {
-
-
-flex-direction:column;
-
-
-}
-
-
-
-.metric-container {
-
-
-flex-direction:column;
-
-
-gap:30px;
+    padding:25px;
 
 
 }
@@ -1444,10 +1311,22 @@ gap:30px;
 h1 {
 
 
-font-size:2.8rem;
+    font-size:2.8rem;
 
 
 }
 
 
+.cpu-layout {
+
+
+    flex-direction:column;
+
+
 }
+
+
+
+}
+
+
