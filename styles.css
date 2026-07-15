@@ -2276,3 +2276,15 @@ h1 {
 
 
 }
+
+.pipeline div {
+
+    transition:
+    .6s cubic-bezier(
+        .22,
+        1,
+        .36,
+        1
+    );
+
+}
