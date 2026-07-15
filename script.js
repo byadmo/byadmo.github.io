@@ -1,6 +1,6 @@
 /* =====================================================
    ADAM MORGAN PORTFOLIO
-   RESTORED INTERACTION ENGINE
+   INTERACTION ENGINE
 ===================================================== */
 
 
@@ -12,6 +12,7 @@
 
 const revealCards =
 document.querySelectorAll(".reveal");
+
 
 
 window.addEventListener("load",()=>{
@@ -133,10 +134,12 @@ function typeWriter(){
             deleting=false;
 
 
+
             wordIndex =
             (wordIndex + 1)
             %
             typingWords.length;
+
 
 
             letterIndex=0;
@@ -146,7 +149,6 @@ function typeWriter(){
 
 
     }
-
 
 
 
@@ -174,7 +176,7 @@ typeWriter();
 
 
 /* =====================================================
-   MOUSE CURSOR GLOW OVERLAY
+   CURSOR LIGHT OVERLAY
 ===================================================== */
 
 
@@ -224,7 +226,6 @@ cards.forEach(card=>{
     );
 
 
-
 });
 
 
@@ -240,7 +241,31 @@ cards.forEach(card=>{
 ===================================================== */
 
 
+const timeline =
+document.getElementById(
+"timeline-card"
+);
+
+
+
+const timelineContent =
+document.getElementById(
+"timeline-content"
+);
+
+
+
+const yearButtons =
+document.querySelectorAll(
+".year-buttons button"
+);
+
+
+
+
+
 const timelineData = {
+
 
 
 "2026":`
@@ -249,25 +274,55 @@ const timelineData = {
 2026 — Processor Architecture
 </h3>
 
+
 <p>
 
-• 32-bit pipelined RISC-V CPU Core
+<b>
+32-Bit Pipelined RISC-V CPU Core
+</b>
+
 
 <br><br>
 
-• SystemVerilog RTL design
+
+Designed a custom processor architecture using SystemVerilog RTL.
+
+
+<br><br>
+
+
+Projects:
 
 <br>
 
-• Pipeline control and hazard handling
+• 5-stage instruction pipeline
 
 <br>
 
-• Hardware verification workflow
+• Hazard detection unit
+
+<br>
+
+• Data forwarding logic
+
+<br>
+
+• RTL simulation and verification
+
+
+<br><br>
+
+
+Focus:
+
+Computer Architecture + Digital Systems
+
 
 </p>
 
 `,
+
+
 
 
 
@@ -281,23 +336,39 @@ const timelineData = {
 
 <p>
 
-• Digital systems foundations
+
+Projects:
 
 <br>
 
-• Programming development
+
+• Digital systems projects
 
 <br>
 
-• Mathematics and physics application
+• Programming applications
 
 <br>
 
-• Electronics exploration
+• Mathematics and physics modelling
+
+<br>
+
+• Electronics fundamentals
+
+
+<br><br>
+
+
+Focus:
+
+Building engineering foundations.
+
 
 </p>
 
 `,
+
 
 
 
@@ -312,6 +383,12 @@ const timelineData = {
 
 <p>
 
+
+Projects:
+
+<br>
+
+
 • Programming fundamentals
 
 <br>
@@ -324,7 +401,16 @@ const timelineData = {
 
 <br>
 
-• Building technical curiosity
+• Technical exploration
+
+
+<br><br>
+
+
+Focus:
+
+Developing engineering thinking.
+
 
 </p>
 
@@ -337,18 +423,6 @@ const timelineData = {
 
 
 
-const yearButtons =
-document.querySelectorAll(
-".year-buttons button"
-);
-
-
-
-const timelineContent =
-document.getElementById(
-"timeline-content"
-);
-
 
 
 
@@ -357,7 +431,7 @@ yearButtons.forEach(button=>{
 
 
     button.addEventListener(
-        "click",
+        "mouseenter",
         ()=>{
 
 
@@ -366,14 +440,14 @@ yearButtons.forEach(button=>{
 
 
 
-            if(timelineContent){
+            timeline.classList.add(
+                "expanded"
+            );
 
 
-                timelineContent.innerHTML =
-                timelineData[year];
 
-
-            }
+            timelineContent.innerHTML =
+            timelineData[year];
 
 
 
@@ -381,6 +455,52 @@ yearButtons.forEach(button=>{
 
     );
 
+
+
+
+
+    button.addEventListener(
+        "mouseleave",
+        ()=>{
+
+
+            setTimeout(()=>{
+
+
+                if(!timeline.matches(":hover")){
+
+
+                    timeline.classList.remove(
+                        "expanded"
+                    );
+
+
+                }
+
+
+            },250);
+
+
+
+        }
+
+    );
+
+
+});
+
+
+
+
+
+timeline.addEventListener(
+"mouseleave",
+()=>{
+
+
+timeline.classList.remove(
+"expanded"
+);
 
 
 });
@@ -405,14 +525,7 @@ document.getElementById(
 
 
 
-const timelineCard =
-document.getElementById(
-"timeline-card"
-);
-
-
-
-if(projectsButton && timelineCard){
+if(projectsButton && timeline){
 
 
 projectsButton.addEventListener(
@@ -424,7 +537,7 @@ event.preventDefault();
 
 
 
-timelineCard.scrollIntoView({
+timeline.scrollIntoView({
 
 behavior:"smooth",
 
@@ -434,23 +547,31 @@ block:"center"
 
 
 
-timelineCard.classList.add(
+
+
+setTimeout(()=>{
+
+
+timeline.classList.add(
 "project-active"
 );
-
-
 
 
 
 setTimeout(()=>{
 
 
-timelineCard.classList.remove(
+timeline.classList.remove(
 "project-active"
 );
 
 
+
 },5000);
+
+
+
+},800);
 
 
 
@@ -468,7 +589,7 @@ timelineCard.classList.remove(
 
 
 /* =====================================================
-   TERMINAL DOT ANIMATION
+   TERMINAL DOT EFFECT
 ===================================================== */
 
 
@@ -488,7 +609,7 @@ dot.addEventListener(
 
 
 dot.style.transform =
-"scale(1.3) rotate(10deg)";
+"scale(1.25) rotate(10deg)";
 
 
 });
