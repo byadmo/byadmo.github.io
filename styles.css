@@ -3491,4 +3491,175 @@ z-index:2;
 
 
 }
+/* =====================================================
+   RANDOM CPU SIGNAL FIELD
+===================================================== */
+
+
+.cpu-field {
+
+
+    position:fixed;
+
+
+    inset:0;
+
+
+    overflow:hidden;
+
+
+    pointer-events:none;
+
+
+    z-index:0;
+
+
+}
+
+
+
+
+
+
+.cpu-pulse {
+
+
+    position:absolute;
+
+
+    height:2px;
+
+
+
+    background:
+
+    linear-gradient(
+
+    90deg,
+
+    transparent,
+
+    rgba(
+        0,
+        234,
+        255,
+        .8
+    ),
+
+    transparent
+
+    );
+
+
+
+    box-shadow:
+
+
+    0 0 15px rgba(
+        0,
+        234,
+        255,
+        .8
+    ),
+
+
+    0 0 40px rgba(
+        0,
+        255,
+        136,
+        .4
+    );
+
+
+
+    animation:
+
+    signalMove linear infinite;
+
+
+
+    opacity:.45;
+
+
+
+}
+
+
+
+
+
+
+@keyframes signalMove {
+
+
+0% {
+
+
+    transform:
+
+    translateX(-120%);
+
+
+    opacity:0;
+
+
+}
+
+
+
+20% {
+
+
+    opacity:.8;
+
+
+}
+
+
+
+80% {
+
+
+    opacity:.5;
+
+
+}
+
+
+
+100% {
+
+
+    transform:
+
+    translateX(120vw);
+
+
+    opacity:0;
+
+
+}
+
+
+}
+
+
+
+
+
+
+/* keep website above signals */
+
+
+.bento-grid {
+
+
+    position:relative;
+
+
+    z-index:2;
+
+
+}
+
 
