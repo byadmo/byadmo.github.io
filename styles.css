@@ -1,601 +1,690 @@
 /* =======================================================
    APPLE x TERMINAL PORTFOLIO
-   Design System
+   COMPLETE DESIGN SYSTEM
 ======================================================= */
 
-:root{
+:root {
 
---bg:#0a0a0c;
---card:#121214;
---border:#222225;
+    --bg:#0a0a0c;
+    --card:#121214;
+    --border:#222225;
 
---text:#ffffff;
---muted:#8e8e93;
+    --text:#ffffff;
+    --muted:#8e8e93;
 
---accent:#00f0ff;
---green:#00ff66;
+    --accent:#00f0ff;
+    --green:#00ff66;
 
---radius:26px;
+    --radius:26px;
 
---transition:
-all .5s cubic-bezier(
-0.95,
-0.05,
-0.795,
-0.035);
-
-}
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
-
-html{
-
-scroll-behavior:smooth;
+    --transition:
+    all 0.5s cubic-bezier(
+    0.95,
+    0.05,
+    0.795,
+    0.035);
 
 }
 
-body{
 
-background:var(--bg);
+* {
 
-color:var(--text);
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 
-font-family:
-"JetBrains Mono",
-monospace;
+}
 
-overflow-x:hidden;
 
-line-height:1.6;
+html {
 
-padding:40px;
+    scroll-behavior:smooth;
+
+}
+
+
+
+body {
+
+    background:var(--bg);
+
+    color:var(--text);
+
+    font-family:
+    "JetBrains Mono",
+    monospace;
+
+    overflow-x:hidden;
+
+    line-height:1.6;
+
+    padding:40px;
+
+}
+
+
+
+/* =======================================================
+   NOISE TEXTURE
+======================================================= */
+
+
+.noise {
+
+    position:fixed;
+
+    inset:0;
+
+    pointer-events:none;
+
+    opacity:.03;
+
+    background-image:
+    radial-gradient(#fff 1px, transparent 0);
+
+    background-size:14px 14px;
+
+}
+
+
+
+/* =======================================================
+   BENTO GRID
+======================================================= */
+
+
+.grid {
+
+    max-width:1600px;
+
+    margin:auto;
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(12,1fr);
+
+    gap:22px;
+
+}
+
+
+
+/* =======================================================
+   CARDS
+======================================================= */
+
+
+.card {
+
+    position:relative;
+
+    overflow:hidden;
+
+    background:var(--card);
+
+    border:1px solid var(--border);
+
+    border-radius:var(--radius);
+
+    padding:34px;
+
+    transition:var(--transition);
+
+    opacity:0;
+
+    transform:
+    translateY(30px);
+
+    --x:50%;
+    --y:50%;
+
+}
+
+
+
+.active {
+
+    opacity:1;
+
+    transform:
+    translateY(0);
+
+}
+
+
+
+.card:hover {
+
+    border-color:var(--accent);
+
+    transform:
+    translateY(-5px)
+    scale(1.015);
+
+    box-shadow:
+    0 0 30px rgba(0,240,255,.08);
+
+}
+
+
+
+.card::before {
+
+    content:"";
+
+    position:absolute;
+
+    width:260px;
+
+    height:260px;
+
+    background:
+    radial-gradient(
+    circle,
+    rgba(0,240,255,.18),
+    transparent 70%);
+
+    left:var(--x);
+
+    top:var(--y);
+
+    transform:
+    translate(-50%,-50%);
+
+    opacity:0;
+
+    transition:var(--transition);
+
+    pointer-events:none;
+
+}
+
+
+
+.card:hover::before {
+
+    opacity:1;
+
+}
+
+
+
+/* =======================================================
+   HERO
+======================================================= */
+
+
+.hero {
+
+    grid-column:span 8;
+
+    min-height:560px;
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+
+
+.hero-content {
+
+    margin-top:40px;
+
+}
+
+
+
+.eyebrow {
+
+    font-size:12px;
+
+    letter-spacing:2px;
+
+    color:var(--green);
+
+    margin-bottom:24px;
+
+}
+
+
+
+.hero h1 {
+
+    font-size:
+    clamp(3rem,6vw,5.6rem);
+
+    font-weight:700;
+
+    line-height:1.05;
+
+    letter-spacing:-2px;
+
+    margin-bottom:40px;
+
+}
+
+
+
+.hero-description {
+
+    max-width:700px;
+
+    font-size:18px;
+
+    color:var(--muted);
+
+    margin-top:34px;
+
+}
+
+
+
+/* =======================================================
+   BUTTONS
+======================================================= */
+
+
+.hero-buttons {
+
+    display:flex;
+
+    gap:16px;
+
+    margin-top:40px;
+
+    flex-wrap:wrap;
+
+}
+
+
+
+.button {
+
+    padding:15px 26px;
+
+    border-radius:14px;
+
+    border:1px solid var(--border);
+
+    background:#171719;
+
+    color:white;
+
+    text-decoration:none;
+
+    transition:var(--transition);
+
+}
+
+
+
+.button:hover {
+
+    border-color:var(--green);
+
+    color:var(--green);
+
+    transform:
+    translateY(-3px);
+
+}
+
+
+
+.secondary {
+
+    background:transparent;
+
+}
+
+
+
+/* =======================================================
+   TYPING
+======================================================= */
+
+
+.typing-line {
+
+    font-size:22px;
+
+    margin-top:10px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    flex-wrap:wrap;
+
+}
+
+
+
+#typing {
+
+    color:var(--green);
+
+}
+
+
+
+.cursor {
+
+    width:11px;
+
+    height:26px;
+
+    background:var(--green);
+
+    animation:blink 1s infinite;
+
+}
+
+
+
+.cursor.typing {
+
+    animation:none;
+
+}
+
+
+
+@keyframes blink {
+
+    50% {
+
+        opacity:0;
+
+    }
 
 }
 
 /* =======================================================
-Noise Overlay
+   LABELS
 ======================================================= */
 
-.noise{
 
-position:fixed;
+.label {
 
-inset:0;
+    display:block;
 
-pointer-events:none;
+    font-size:12px;
 
-opacity:.03;
+    letter-spacing:2px;
 
-background-image:
-radial-gradient(#ffffff 1px, transparent 0);
+    margin-bottom:22px;
 
-background-size:14px 14px;
+    color:var(--green);
 
 }
 
-/* =======================================================
-Grid
-======================================================= */
-
-.grid{
-
-max-width:1600px;
-
-margin:auto;
-
-display:grid;
-
-grid-template-columns:
-repeat(12,1fr);
-
-gap:22px;
-
-}
-
-/* =======================================================
-Cards
-======================================================= */
-
-.card{
-
-position:relative;
-
-overflow:hidden;
-
-background:var(--card);
-
-border:1px solid var(--border);
-
-border-radius:var(--radius);
-
-padding:34px;
-
-transition:var(--transition);
-
-opacity:0;
-
-transform:
-translateY(30px);
-
-}
-
-/* reveal */
-
-.active{
-
-opacity:1;
-
-transform:translateY(0);
-
-}
-
-/* hover */
-
-.card:hover{
-
-border-color:var(--accent);
-
-transform:
-translateY(-5px)
-scale(1.015);
-
-}
-
-/* glow */
-
-.card::before{
-
-content:"";
-
-position:absolute;
-
-width:260px;
-height:260px;
-
-background:
-radial-gradient(circle,
-rgba(0,240,255,.18),
-transparent 70%);
-
-left:var(--x);
-
-top:var(--y);
-
-transform:
-translate(-50%,-50%);
-
-opacity:0;
-
-transition:var(--transition);
-
-pointer-events:none;
-
-}
-
-.card:hover::before{
-
-opacity:1;
-
-}
-
-/* =======================================================
-Hero
-======================================================= */
-
-.hero{
-
-grid-column:
-span 8;
-
-min-height:560px;
-
-display:flex;
-
-flex-direction:column;
-
-justify-content:flex-start;
-
-}
-
-.hero-content{
-
-margin-top:40px;
-
-}
-
-.eyebrow{
-
-font-size:12px;
-
-letter-spacing:2px;
-
-color:var(--green);
-
-margin-bottom:24px;
-
-}
-
-.hero h1{
-
-font-size:clamp(
-3rem,
-6vw,
-5.6rem);
-
-font-weight:700;
-
-line-height:1.05;
-
-letter-spacing:-2px;
-
-margin-bottom:40px;
-
-max-width:850px;
-
-}
-
-.hero-description{
-
-max-width:700px;
-
-font-size:18px;
-
-color:var(--muted);
-
-margin-top:34px;
-
-}
-
-.hero-buttons{
-
-display:flex;
-
-gap:16px;
-
-margin-top:40px;
-
-flex-wrap:wrap;
-
-}
-
-/* =======================================================
-Buttons
-======================================================= */
-
-.button{
-
-padding:15px 26px;
-
-border-radius:14px;
-
-border:1px solid var(--border);
-
-background:#171719;
-
-color:white;
-
-text-decoration:none;
-
-transition:var(--transition);
-
-}
-
-.button:hover{
-
-border-color:var(--green);
-
-background:#111;
-
-color:var(--green);
-
-}
-
-.secondary{
-
-background:transparent;
-
-}
-
-/* =======================================================
-Typing
-======================================================= */
-
-.typing-line{
-
-font-size:22px;
-
-margin-top:10px;
-
-color:white;
-
-display:flex;
-
-align-items:center;
-
-gap:8px;
-
-flex-wrap:wrap;
-
-}
-
-#typing{
-
-color:var(--green);
-
-}
-
-.cursor{
-
-width:11px;
-
-height:26px;
-
-background:var(--green);
-
-animation:blink 1s infinite;
-
-}
-
-.cursor.typing{
-
-animation:none;
-
-}
-
-@keyframes blink{
-
-50%{
-
-opacity:0;
-
-}
-
-}
-
-/* =======================================================
-Labels
-======================================================= */
-
-.label{
-
-display:block;
-
-font-size:12px;
-
-letter-spacing:2px;
-
-margin-bottom:22px;
-
-color:var(--green);
-
-}
-
-/* =======================================================
-Typography
-======================================================= */
-
-h2,h3{
-
-font-weight:700;
-
-}
-
-p{
-
-color:var(--muted);
-
-}
-
-/* =======================================================
-Terminal Bar
-======================================================= */
-
-.terminal-bar{
-
-display:flex;
-
-align-items:center;
-
-margin-bottom:18px;
-
-}
-
-.dots{
-
-display:flex;
-
-gap:10px;
-
-}
-
-.dot{
-
-width:14px;
-
-height:14px;
-
-border-radius:50%;
-
-display:flex;
-
-justify-content:center;
-
-align-items:center;
-
-font-size:7px;
-
-color:black;
-
-cursor:pointer;
-
-transition:var(--transition);
-
-}
-
-.red{
-
-background:#ff5f57;
-
-}
-
-.yellow{
-
-background:#febc2e;
-
-}
-
-.green{
-
-background:#28c840;
-
-}
-
-.dot i{
-
-opacity:0;
-
-transition:.2s;
-
-}
-
-.dot:hover i{
-
-opacity:1;
-
-}
-
-/* =======================================================
-Skills
-======================================================= */
-
-.skills{
-
-grid-column:span 4;
-
-}
-
-.chips{
-
-display:flex;
-
-flex-wrap:wrap;
-
-gap:12px;
-
-}
-
-.chips span{
-
-padding:10px 16px;
-
-border-radius:999px;
-
-border:1px solid var(--border);
-
-background:#18181b;
-
-font-size:13px;
-
-transition:var(--transition);
-
-}
-
-.chips span:hover{
-
-border-color:var(--green);
-
-color:var(--green);
-
-}
-/* =======================================================
-   BENTO GRID STRUCTURE
-======================================================= */
-
-/* Hero companion cards */
-
-.small-card{
-
-grid-column:span 4;
-
-}
-
-
-.skills{
-
-grid-column:span 4;
-
-}
-
-
-.timeline{
-
-list-style:none;
-
-display:flex;
-
-flex-direction:column;
-
-gap:20px;
-
-}
-
-
-.timeline li{
-
-display:flex;
-
-align-items:center;
-
-gap:20px;
-
-padding-bottom:16px;
-
-border-bottom:1px solid var(--border);
-
-}
-
-
-.timeline li:last-child{
-
-border-bottom:none;
-
-}
-
-
-.year{
-
-font-size:13px;
-
-color:var(--green);
-
-min-width:50px;
-
-}
 
 
 /* =======================================================
-   ABOUT / LARGE CARDS
+   TYPOGRAPHY
 ======================================================= */
 
 
-.wide{
+h2,
+h3 {
 
-grid-column:span 8;
+    font-weight:700;
+
+}
+
+
+
+.card p {
+
+    color:var(--muted);
+
+    font-size:15px;
 
 }
 
 
-.wide p{
 
-font-size:18px;
+/* =======================================================
+   TERMINAL CONTROLS
+======================================================= */
 
-line-height:2;
+
+.terminal-bar {
+
+    display:flex;
+
+    align-items:center;
+
+    margin-bottom:18px;
 
 }
+
+
+
+.dots {
+
+    display:flex;
+
+    gap:10px;
+
+}
+
+
+
+.dot {
+
+    width:14px;
+
+    height:14px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:7px;
+
+    color:#000;
+
+    cursor:pointer;
+
+    transition:var(--transition);
+
+}
+
+
+
+.dot:hover {
+
+    transform:
+    scale(1.25)
+    rotate(15deg);
+
+}
+
+
+
+.red {
+
+    background:#ff5f57;
+
+}
+
+
+
+.yellow {
+
+    background:#febc2e;
+
+}
+
+
+
+.green {
+
+    background:#28c840;
+
+}
+
+
+
+.dot i {
+
+    opacity:0;
+
+    transition:var(--transition);
+
+}
+
+
+
+.dot:hover i {
+
+    opacity:1;
+
+}
+
+
+
+/* =======================================================
+   BENTO CARD SIZING
+======================================================= */
+
+
+.small-card {
+
+    grid-column:span 4;
+
+}
+
+
+
+.skills {
+
+    grid-column:span 4;
+
+}
+
+
+
+.wide {
+
+    grid-column:span 8;
+
+}
+
+
+
+/* =======================================================
+   SKILLS
+======================================================= */
+
+
+.chips {
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:12px;
+
+}
+
+
+
+.chips span {
+
+    padding:10px 16px;
+
+    border-radius:999px;
+
+    border:1px solid var(--border);
+
+    background:#18181b;
+
+    font-size:13px;
+
+    transition:var(--transition);
+
+}
+
+
+
+.chips span:hover {
+
+    border-color:var(--green);
+
+    color:var(--green);
+
+    transform:
+    translateY(-3px);
+
+}
+
+
+
+/* =======================================================
+   EXPERIENCE TIMELINE
+======================================================= */
+
+
+.timeline {
+
+    list-style:none;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:20px;
+
+}
+
+
+
+.timeline li {
+
+    display:flex;
+
+    align-items:center;
+
+    gap:20px;
+
+    padding-bottom:16px;
+
+    border-bottom:1px solid var(--border);
+
+}
+
+
+
+.timeline li:last-child {
+
+    border-bottom:none;
+
+}
+
+
+
+.year {
+
+    color:var(--green);
+
+    font-size:13px;
+
+    min-width:50px;
+
+}
+
 
 
 /* =======================================================
@@ -603,22 +692,16 @@ line-height:2;
 ======================================================= */
 
 
-.card h3{
+.card h3 {
 
-font-size:28px;
+    font-size:28px;
 
-line-height:1.3;
+    line-height:1.3;
 
-margin-bottom:18px;
-
-}
-
-
-.card p{
-
-font-size:15px;
+    margin-bottom:18px;
 
 }
+
 
 
 /* =======================================================
@@ -626,88 +709,79 @@ font-size:15px;
 ======================================================= */
 
 
-.socials{
+.socials {
 
-display:flex;
+    display:flex;
 
-flex-direction:column;
+    flex-direction:column;
 
-gap:18px;
-
-}
-
-
-.socials a{
-
-display:flex;
-
-align-items:center;
-
-gap:14px;
-
-text-decoration:none;
-
-color:var(--text);
-
-font-size:16px;
-
-transition:var(--transition);
+    gap:18px;
 
 }
 
 
-.socials i{
 
-font-size:22px;
+.socials a {
 
-transition:var(--transition);
+    display:flex;
 
-}
+    align-items:center;
 
+    gap:14px;
 
-.socials a:hover{
+    color:white;
 
-color:var(--green);
+    text-decoration:none;
 
-transform:
-translateX(8px);
+    font-size:16px;
 
-}
-
-
-.socials a:hover i{
-
-color:var(--accent);
-
-transform:
-rotate(12deg)
-scale(1.2);
+    transition:var(--transition);
 
 }
 
 
-/* terminal cursor effect */
 
-.socials a:hover::after{
+.socials i {
 
-content:"_";
+    font-size:22px;
 
-color:var(--green);
-
-animation:cursorMove .7s infinite;
+    transition:var(--transition);
 
 }
 
 
-@keyframes cursorMove{
 
-50%{
+.socials a:hover {
 
-opacity:0;
+    color:var(--green);
+
+    transform:
+    translateX(8px);
 
 }
 
+
+
+.socials a:hover i {
+
+    color:var(--accent);
+
+    transform:
+    rotate(12deg)
+    scale(1.2);
+
 }
+
+
+
+.socials a:hover::after {
+
+    content:"_";
+
+    color:var(--green);
+
+}
+
 
 
 /* =======================================================
@@ -715,57 +789,27 @@ opacity:0;
 ======================================================= */
 
 
-.quote{
+.quote {
 
-display:flex;
+    display:flex;
 
-align-items:center;
+    justify-content:center;
 
-justify-content:center;
+    align-items:center;
 
-text-align:center;
-
-}
-
-
-.quote p{
-
-font-size:24px;
-
-font-weight:600;
-
-color:white;
-
-line-height:1.5;
+    text-align:center;
 
 }
 
 
 
-/* =======================================================
-   POINTER GLOW TRACKING
-======================================================= */
+.quote p {
 
+    color:white;
 
-.card{
+    font-size:24px;
 
---x:50%;
---y:50%;
-
-}
-
-
-
-/* =======================================================
-   PREMIUM BORDER LIGHT
-======================================================= */
-
-
-.card:hover{
-
-box-shadow:
-
-0 0 30px rgba(0,240,255,.08);
+    font-weight:600;
 
 }
 
@@ -776,195 +820,83 @@ box-shadow:
 ======================================================= */
 
 
-::-webkit-scrollbar{
+::-webkit-scrollbar {
 
-width:10px;
-
-}
-
-
-::-webkit-scrollbar-track{
-
-background:var(--bg);
-
-}
-
-
-::-webkit-scrollbar-thumb{
-
-background:#242426;
-
-border-radius:10px;
-
-}
-
-
-::-webkit-scrollbar-thumb:hover{
-
-background:var(--green);
+    width:10px;
 
 }
 
 
 
-/* =======================================================
-   RESPONSIVE TABLET
-======================================================= */
+::-webkit-scrollbar-track {
 
-
-@media(max-width:1100px){
-
-
-body{
-
-padding:24px;
+    background:var(--bg);
 
 }
 
 
-.grid{
 
-grid-template-columns:
-repeat(6,1fr);
+::-webkit-scrollbar-thumb {
 
-}
+    background:#242426;
 
-
-.hero{
-
-grid-column:
-span 6;
+    border-radius:10px;
 
 }
 
 
-.small-card,
-.skills{
 
-grid-column:
-span 3;
+::-webkit-scrollbar-thumb:hover {
 
-}
-
-
-.wide{
-
-grid-column:
-span 6;
-
-}
-
+    background:var(--green);
 
 }
 
 
 
 /* =======================================================
-   RESPONSIVE MOBILE
+   TABLET RESPONSIVE
 ======================================================= */
 
 
-@media(max-width:700px){
+@media(max-width:1100px) {
 
 
-body{
+    body {
 
-padding:16px;
+        padding:24px;
 
-}
-
-
-.grid{
-
-display:flex;
-
-flex-direction:column;
-
-gap:16px;
-
-}
+    }
 
 
-.card{
+    .grid {
 
-padding:24px;
+        grid-template-columns:
+        repeat(6,1fr);
 
-border-radius:20px;
-
-}
-
+    }
 
 
-.hero{
+    .hero {
 
-min-height:auto;
+        grid-column:span 6;
 
-}
-
-
-.hero h1{
-
-font-size:clamp(
-2.4rem,
-12vw,
-3.5rem);
-
-letter-spacing:-1px;
-
-}
+    }
 
 
-.hero-description{
+    .small-card,
+    .skills {
 
-font-size:15px;
+        grid-column:span 3;
 
-}
-
-
-.typing-line{
-
-font-size:16px;
-
-}
+    }
 
 
-.hero-buttons{
+    .wide {
 
-flex-direction:column;
+        grid-column:span 6;
 
-}
-
-
-.button{
-
-text-align:center;
-
-width:100%;
-
-}
-
-
-.card h3{
-
-font-size:22px;
-
-}
-
-
-.wide p{
-
-font-size:15px;
-
-line-height:1.8;
-
-}
-
-
-.quote p{
-
-font-size:18px;
-
-}
+    }
 
 
 }
@@ -972,70 +904,191 @@ font-size:18px;
 
 
 /* =======================================================
-   VERY SMALL DEVICES
+   MOBILE RESPONSIVE
 ======================================================= */
 
 
-@media(max-width:380px){
+@media(max-width:700px) {
 
 
-.hero h1{
+    body {
 
-font-size:2.1rem;
+        padding:16px;
+
+    }
+
+
+
+    .grid {
+
+        display:flex;
+
+        flex-direction:column;
+
+        gap:16px;
+
+    }
+
+
+
+    .card {
+
+        padding:24px;
+
+        border-radius:20px;
+
+    }
+
+
+
+    .hero {
+
+        min-height:auto;
+
+    }
+
+
+
+    .hero h1 {
+
+        font-size:
+        clamp(2.4rem,12vw,3.5rem);
+
+        letter-spacing:-1px;
+
+    }
+
+
+
+    .hero-description {
+
+        font-size:15px;
+
+    }
+
+
+
+    .typing-line {
+
+        font-size:16px;
+
+    }
+
+
+
+    .hero-buttons {
+
+        flex-direction:column;
+
+    }
+
+
+
+    .button {
+
+        width:100%;
+
+        text-align:center;
+
+    }
+
+
+
+    .card h3 {
+
+        font-size:22px;
+
+    }
+
+
+
+    .wide p {
+
+        font-size:15px;
+
+        line-height:1.8;
+
+    }
+
+
+
+    .quote p {
+
+        font-size:18px;
+
+    }
+
 
 }
 
-
-.card{
-
-padding:20px;
-
-}
-
-
-}
 
 
 /* =======================================================
-   INITIAL LOAD POLISH
+   SMALL PHONES
 ======================================================= */
 
 
-.reveal{
+@media(max-width:380px) {
 
-transition:
-opacity .8s cubic-bezier(
-0.95,
-0.05,
-0.795,
-0.035
-),
-transform .8s cubic-bezier(
-0.95,
-0.05,
-0.795,
-0.035
-);
+
+    .hero h1 {
+
+        font-size:2.1rem;
+
+    }
+
+
+    .card {
+
+        padding:20px;
+
+    }
+
 
 }
 
 
 
 /* =======================================================
-   REDUCED MOTION SUPPORT
+   LOAD ANIMATION
 ======================================================= */
 
 
-@media(prefers-reduced-motion:reduce){
+.reveal {
 
-
-*{
-
-animation:none!important;
-
-transition:none!important;
+    transition:
+    opacity .8s cubic-bezier(
+    0.95,
+    0.05,
+    0.795,
+    0.035
+    ),
+    transform .8s cubic-bezier(
+    0.95,
+    0.05,
+    0.795,
+    0.035
+    );
 
 }
+
+
+
+/* =======================================================
+   ACCESSIBILITY
+======================================================= */
+
+
+@media(prefers-reduced-motion:reduce) {
+
+
+    * {
+
+        animation:none!important;
+
+        transition:none!important;
+
+    }
 
 
 }
