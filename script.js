@@ -4,14 +4,12 @@
 ===================================================== */
 
 
-
 /* =====================================================
-   CARD LOAD ANIMATION
+   CARD REVEAL
 ===================================================== */
 
 
-const revealCards =
-document.querySelectorAll(".reveal");
+const revealCards = document.querySelectorAll(".reveal");
 
 
 window.addEventListener("load",()=>{
@@ -26,13 +24,15 @@ window.addEventListener("load",()=>{
             card.classList.add("active");
 
 
-        },index*120);
+        },index * 120);
 
 
     });
 
 
 });
+
+
 
 
 
@@ -50,112 +50,109 @@ document.getElementById("typing");
 
 
 
-const typingWords=[
+const typingWords = [
 
 "32-bit pipelined RISC-V cores...",
 
-"synthesizable hardware...",
+"synthesizable RTL architectures...",
 
-"optimized RTL architectures..."
+"FPGA hardware systems..."
 
 ];
 
 
 
-let wordIndex=0;
+let wordIndex = 0;
 
-let letterIndex=0;
+let letterIndex = 0;
 
-let deleting=false;
+let deleting = false;
 
 
 
 function typeWriter(){
 
 
-if(!typingElement)
-return;
+    if(!typingElement)
+        return;
 
 
 
-let word=
-typingWords[wordIndex];
+    const word =
+    typingWords[wordIndex];
 
 
 
-if(!deleting){
+    if(!deleting){
 
 
-typingElement.textContent =
-word.substring(
-0,
-letterIndex++
-);
-
-
-
-if(letterIndex>word.length){
-
-
-deleting=true;
-
-
-setTimeout(
-typeWriter,
-1400
-);
-
-
-return;
-
-
-}
+        typingElement.textContent =
+        word.substring(
+            0,
+            letterIndex++
+        );
 
 
 
-}
-
-else{
+        if(letterIndex > word.length){
 
 
-typingElement.textContent =
-word.substring(
-0,
-letterIndex--
-);
+            deleting=true;
 
 
-
-if(letterIndex<0){
-
-
-deleting=false;
-
-
-wordIndex =
-(wordIndex+1)
-%
-typingWords.length;
+            setTimeout(
+                typeWriter,
+                1300
+            );
 
 
-letterIndex=0;
+            return;
+
+        }
 
 
-}
+    }
+
+    else{
+
+
+        typingElement.textContent =
+        word.substring(
+            0,
+            letterIndex--
+        );
 
 
 
-}
+        if(letterIndex < 0){
+
+
+            deleting=false;
+
+
+            wordIndex =
+            (wordIndex+1)
+            %
+            typingWords.length;
+
+
+            letterIndex=0;
+
+
+        }
+
+
+    }
 
 
 
-setTimeout(
+    setTimeout(
 
-typeWriter,
+        typeWriter,
 
-deleting ? 45 : 90
+        deleting ? 40 : 90
 
-);
+    );
 
 
 }
@@ -172,8 +169,9 @@ typeWriter();
 
 
 
+
 /* =====================================================
-   CARD LIGHT FOLLOW
+   CARD MOUSE LIGHT
 ===================================================== */
 
 
@@ -187,7 +185,7 @@ cards.forEach(card=>{
 
 card.addEventListener(
 "mousemove",
-event=>{
+(e)=>{
 
 
 const rect =
@@ -195,16 +193,26 @@ card.getBoundingClientRect();
 
 
 
+const x =
+e.clientX - rect.left;
+
+
+
+const y =
+e.clientY - rect.top;
+
+
+
 card.style.setProperty(
 "--mouse-x",
-`${event.clientX-rect.left}px`
+`${x}px`
 );
 
 
 
 card.style.setProperty(
 "--mouse-y",
-`${event.clientY-rect.top}px`
+`${y}px`
 );
 
 
@@ -224,121 +232,79 @@ card.style.setProperty(
 
 
 /* =====================================================
-   ENGINEERING JOURNEY DATA
+   ENGINEERING JOURNEY
 ===================================================== */
 
 
-const engineeringData={
+const timelineInfo = {
 
 
+"2026":`
 
-2026:{
+<h3>
+Processor Design
+</h3>
 
+<p>
 
-title:
-"Processor Architecture & RTL Design",
+Designed a 32-bit pipelined RISC-V processor using SystemVerilog.
 
+<br><br>
 
-description:
-"Developing digital systems focused on CPU architecture, hardware description languages, and processor verification.",
+Focus:
+• Pipeline architecture
+• Hazard detection
+• Forwarding logic
+• RTL verification
 
+</p>
 
-
-projects:[
-
-
-"32-Bit Pipelined RISC-V CPU Core",
-
-"SystemVerilog RTL implementation",
-
-"5-stage pipeline: IF → ID → EX → MEM → WB",
-
-"Hazard detection and data forwarding logic",
-
-"Waveform verification using GTKWave"
+`,
 
 
-]
+"2025":`
 
-},
+<h3>
+Engineering Foundations
+</h3>
 
+<p>
 
+Developed foundations in:
 
+<br><br>
 
+• Programming
+• Mathematics
+• Physics
+• Digital logic
+• Electronics
 
-2025:{
+</p>
 
-
-title:
-"Digital Systems Development",
-
-
-description:
-"Building engineering fundamentals through programming, hardware design, and digital logic.",
-
-
-
-projects:[
-
-
-"Digital logic design projects",
-
-"FPGA development foundations",
-
-"Embedded programming concepts",
-
-"Circuit analysis and simulation"
+`,
 
 
-]
+"2024":`
 
-},
+<h3>
+Technical Foundation
+</h3>
 
+<p>
 
+Explored programming,
+problem solving,
+and engineering concepts.
 
+</p>
 
-
-2024:{
-
-
-title:
-"Engineering Foundation",
-
-
-description:
-"Developing the mathematical and technical foundation required for electrical engineering.",
-
-
-
-projects:[
-
-
-"Programming fundamentals",
-
-"Mathematics and physics development",
-
-"Introduction to electronics",
-
-"Problem solving and engineering concepts"
-
-
-]
-
-}
-
+`
 
 };
 
 
 
-
-
-
-
-
-/* =====================================================
-   TIMELINE CONTROLS
-===================================================== */
 
 
 const timelineButtons =
@@ -348,74 +314,10 @@ document.querySelectorAll(
 
 
 
-const timelineCard =
-document.getElementById(
-"timeline-card"
-);
-
-
-
-const timelineContent =
+const timelineText =
 document.getElementById(
 "timeline-content"
 );
-
-
-
-
-
-
-function loadYear(year){
-
-
-const data =
-engineeringData[year];
-
-
-
-timelineCard.classList.add(
-"expanded"
-);
-
-
-
-timelineContent.innerHTML=`
-
-<h3>
-${data.title}
-</h3>
-
-
-<p>
-${data.description}
-</p>
-
-
-<div id="project-list">
-
-${data.projects.map(project=>`
-
-<div class="project-item">
-
-<h4>${year}</h4>
-
-<p>${project}</p>
-
-</div>
-
-`).join("")}
-
-
-</div>
-
-`;
-
-
-
-}
-
-
-
 
 
 
@@ -429,9 +331,16 @@ button.addEventListener(
 ()=>{
 
 
-loadYear(
-button.dataset.year
-);
+const year =
+button.dataset.year;
+
+
+if(timelineText){
+
+timelineText.innerHTML =
+timelineInfo[year];
+
+}
 
 
 });
@@ -445,9 +354,17 @@ button.addEventListener(
 ()=>{
 
 
-loadYear(
-button.dataset.year
-);
+const year =
+button.dataset.year;
+
+
+
+if(timelineText){
+
+timelineText.innerHTML =
+timelineInfo[year];
+
+}
 
 
 });
@@ -476,15 +393,24 @@ document.getElementById(
 
 
 
+const timelineCard =
+document.getElementById(
+"timeline-card"
+);
+
+
+
+
+
 if(projectsButton && timelineCard){
 
 
 projectsButton.addEventListener(
 "click",
-event=>{
+(e)=>{
 
 
-event.preventDefault();
+e.preventDefault();
 
 
 
@@ -495,15 +421,6 @@ behavior:"smooth",
 block:"center"
 
 });
-
-
-
-setTimeout(()=>{
-
-
-timelineCard.classList.add(
-"expanded"
-);
 
 
 
@@ -522,11 +439,7 @@ timelineCard.classList.remove(
 
 
 
-},5000);
-
-
-
-},700);
+},4500);
 
 
 
@@ -544,18 +457,68 @@ timelineCard.classList.remove(
 
 
 /* =====================================================
-   TERMINAL DOT ANIMATION
+   NAV ACTIVE EFFECT
 ===================================================== */
 
 
-const terminalDots =
+const navLinks =
+document.querySelectorAll(
+".nav-links a"
+);
+
+
+
+navLinks.forEach(link=>{
+
+
+link.addEventListener(
+"mouseenter",
+()=>{
+
+
+link.style.transform =
+"translateY(-2px)";
+
+
+});
+
+
+
+link.addEventListener(
+"mouseleave",
+()=>{
+
+
+link.style.transform =
+"translateY(0)";
+
+
+});
+
+
+});
+
+
+
+
+
+
+
+
+
+/* =====================================================
+   TERMINAL DOT EFFECT
+===================================================== */
+
+
+const dots =
 document.querySelectorAll(
 ".terminal-dots span"
 );
 
 
 
-terminalDots.forEach(dot=>{
+dots.forEach(dot=>{
 
 
 dot.addEventListener(
@@ -564,7 +527,7 @@ dot.addEventListener(
 
 
 dot.style.transform =
-"scale(1.3) rotate(15deg)";
+"scale(1.25)";
 
 
 });
@@ -577,10 +540,61 @@ dot.addEventListener(
 
 
 dot.style.transform =
-"scale(1) rotate(0deg)";
+"scale(1)";
 
 
 });
 
 
 });
+
+
+
+
+
+
+
+
+
+/* =====================================================
+   LIVE HARDWARE STATUS
+===================================================== */
+
+
+const hardwareCard =
+document.querySelector(
+".live-hardware"
+);
+
+
+
+if(hardwareCard){
+
+
+hardwareCard.addEventListener(
+"mouseenter",
+()=>{
+
+
+hardwareCard.style.boxShadow =
+
+"0 0 45px rgba(0,240,255,.15)";
+
+
+});
+
+
+
+hardwareCard.addEventListener(
+"mouseleave",
+()=>{
+
+
+hardwareCard.style.boxShadow =
+"";
+
+
+});
+
+
+}
