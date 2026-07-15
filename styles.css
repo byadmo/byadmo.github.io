@@ -1,13 +1,14 @@
 /* =====================================================
    ADAM MORGAN PORTFOLIO
    PREMIUM ENGINEERING BENTO SYSTEM
-   MOBILE OPTIMIZED VERSION
+   OPTIMIZED RESPONSIVE VERSION
 ===================================================== */
 
 
 /* =====================================================
    ROOT VARIABLES
 ===================================================== */
+
 
 :root {
 
@@ -50,6 +51,7 @@
 
 
 
+
 /* =====================================================
    RESET
 ===================================================== */
@@ -57,29 +59,21 @@
 
 * {
 
-
     margin:0;
 
     padding:0;
 
     box-sizing:border-box;
 
-
 }
-
-
 
 
 
 html {
 
-
     scroll-behavior:smooth;
 
-
 }
-
-
 
 
 
@@ -127,7 +121,7 @@ body {
 
 
 /* =====================================================
-   BACKGROUND GRID
+   BACKGROUND SYSTEMS
 ===================================================== */
 
 
@@ -209,9 +203,6 @@ body::before {
 
 
 
-/* =====================================================
-   NOISE
-===================================================== */
 
 
 .noise {
@@ -260,7 +251,248 @@ body::before {
 
 
 /* =====================================================
-   RANDOM FPGA SIGNAL BACKGROUND
+   BOOT SCREEN
+===================================================== */
+
+
+.boot-screen {
+
+
+    position:fixed;
+
+
+    inset:0;
+
+
+    background:#050608;
+
+
+    z-index:99999;
+
+
+    display:flex;
+
+
+    justify-content:center;
+
+
+    align-items:center;
+
+
+
+    transition:
+
+    opacity 1s ease,
+
+    visibility 1s ease;
+
+
+}
+
+
+
+.boot-screen.hide {
+
+
+    opacity:0;
+
+
+    visibility:hidden;
+
+
+    pointer-events:none;
+
+
+}
+
+
+
+
+
+
+
+.boot-terminal {
+
+
+    width:min(
+        500px,
+        90%
+    );
+
+
+    padding:35px;
+
+
+    border:
+
+    1px solid var(--border);
+
+
+
+    background:
+
+    linear-gradient(
+        145deg,
+        #111319,
+        #08090c
+    );
+
+
+    border-radius:25px;
+
+
+}
+
+
+
+
+
+.boot-title {
+
+
+    color:
+
+    var(--green);
+
+
+
+    margin-bottom:25px;
+
+
+    letter-spacing:2px;
+
+
+}
+
+
+
+.boot-lines p {
+
+
+    color:
+
+    var(--muted);
+
+
+
+    margin-bottom:12px;
+
+
+    font-size:14px;
+
+
+}
+
+
+
+
+
+
+
+.boot-progress {
+
+
+    height:5px;
+
+
+    margin-top:30px;
+
+
+    background:#20232b;
+
+
+    overflow:hidden;
+
+
+    border-radius:10px;
+
+
+}
+
+
+
+
+.progress-bar {
+
+
+    height:100%;
+
+
+    width:100%;
+
+
+    background:
+
+    linear-gradient(
+        90deg,
+        var(--cyan),
+        var(--green)
+    );
+
+
+    animation:
+
+    bootLoad 2s ease;
+
+
+}
+
+
+
+
+@keyframes bootLoad {
+
+
+from {
+
+
+width:0;
+
+
+}
+
+
+to {
+
+
+width:100%;
+
+
+}
+
+
+
+}
+
+
+
+
+
+
+.boot-status {
+
+
+    margin-top:20px;
+
+
+    color:
+
+    var(--cyan);
+
+
+
+}
+
+
+
+
+
+
+
+
+
+/* =====================================================
+   FPGA SIGNAL FIELD
 ===================================================== */
 
 
@@ -282,9 +514,7 @@ body::before {
     z-index:0;
 
 
-
 }
-
 
 
 
@@ -298,6 +528,17 @@ body::before {
 
 
     height:2px;
+
+
+
+    transform:
+
+    rotate(var(--angle))
+    translateX(-100vw);
+
+
+
+    transform-origin:center;
 
 
 
@@ -330,7 +571,6 @@ body::before {
 
 
 
-
     box-shadow:
 
 
@@ -344,22 +584,24 @@ body::before {
 
 
 
-    0 0 40px rgba(
+    0 0 35px rgba(
         0,
         255,
         136,
-        .35
+        .4
     );
 
 
 
     animation:
 
-    signalMove linear infinite;
-
+    signalMove linear forwards;
 
 
 }
+
+
+
 
 
 
@@ -368,57 +610,37 @@ body::before {
 @keyframes signalMove {
 
 
-    0% {
+0% {
 
 
-        transform:
+transform:
 
-        translateX(-140vw);
-
-
-
-        opacity:0;
-
-
-    }
+rotate(var(--angle))
+translateX(-100vw);
 
 
 
-    15% {
+opacity:0;
 
 
-        opacity:.8;
-
-
-    }
+}
 
 
 
-
-    70% {
-
-
-        opacity:.5;
+15% {
 
 
-    }
+opacity:.8;
 
 
-
-    100% {
-
-
-        transform:
-
-        translateX(140vw);
+}
 
 
 
-        opacity:0;
+80% {
 
 
-    }
-
+opacity:.6;
 
 
 }
@@ -426,7 +648,23 @@ body::before {
 
 
 
+100% {
 
+
+transform:
+
+rotate(var(--angle))
+translateX(var(--distance));
+
+
+
+opacity:0;
+
+
+}
+
+
+}
 
 
 /* =====================================================
@@ -477,6 +715,15 @@ body::before {
 
 
 }
+
+
+
+
+
+
+
+
+
 /* =====================================================
    CARD SYSTEM
 ===================================================== */
@@ -556,7 +803,6 @@ body::before {
 
 
 
-
     transition:
 
 
@@ -580,7 +826,6 @@ body::before {
 
 
 
-
 .card.active {
 
 
@@ -590,7 +835,6 @@ body::before {
 
     transform:
 
-
     translateY(0)
 
     scale(1);
@@ -598,8 +842,6 @@ body::before {
 
 
 }
-
-
 
 
 
@@ -660,15 +902,12 @@ body::before {
 
 
 
-
 .card.touch-active {
 
 
     transform:
 
-
     scale(.98);
-
 
 
 }
@@ -682,7 +921,7 @@ body::before {
 
 
 /* =====================================================
-   CURSOR LIGHT EFFECT
+   CARD LIGHT EFFECT
 ===================================================== */
 
 
@@ -772,8 +1011,6 @@ body::before {
 
 
 
-
-
 .card:hover::before {
 
 
@@ -781,8 +1018,6 @@ body::before {
 
 
 }
-
-
 
 
 
@@ -849,14 +1084,13 @@ body::before {
     opacity:0;
 
 
-
     pointer-events:none;
-
 
 
     transition:
 
     opacity .5s ease;
+
 
 
 }
@@ -906,15 +1140,7 @@ body::before {
     600px;
 
 
-
-    isolation:isolate;
-
-
 }
-
-
-
-
 
 
 
@@ -927,9 +1153,6 @@ body::before {
 
 
 }
-
-
-
 
 
 
@@ -949,9 +1172,6 @@ body::before {
 
 
 }
-
-
-
 
 
 
@@ -998,7 +1218,6 @@ body::before {
 
 
 
-
 .timeline.expanded {
 
 
@@ -1015,18 +1234,28 @@ body::before {
 
 
 
-.timeline:hover {
+.timeline.project-active {
 
 
-    transform:
+    border-color:
+
+    var(--green);
 
 
-    translateY(-8px);
+
+    box-shadow:
+
+
+    0 0 50px rgba(
+        0,
+        255,
+        136,
+        .25
+    );
 
 
 
 }
-
 
 
 
@@ -1109,7 +1338,6 @@ body::before {
 
 
 
-
 .terminal-dots span {
 
 
@@ -1158,29 +1386,8 @@ body::before {
     .35s var(--ease);
 
 
-}
-
-
-
-
-
-
-
-.terminal-dots span:hover {
-
-
-    transform:
-
-
-    scale(1.3)
-
-    rotate(12deg);
-
 
 }
-
-
-
 
 
 
@@ -1195,6 +1402,7 @@ body::before {
 
 
 
+
 .mac-yellow {
 
 
@@ -1202,6 +1410,8 @@ body::before {
 
 
 }
+
+
 
 
 
@@ -1213,8 +1423,15 @@ body::before {
 
 }
 
+
+
+
+
+
+
+
 /* =====================================================
-   TEXT SYSTEM
+   TYPOGRAPHY
 ===================================================== */
 
 
@@ -1244,9 +1461,8 @@ body::before {
     25px;
 
 
+
 }
-
-
 
 
 
@@ -1288,9 +1504,8 @@ h1 {
     35px;
 
 
+
 }
-
-
 
 
 
@@ -1310,9 +1525,8 @@ h2 {
     25px;
 
 
+
 }
-
-
 
 
 
@@ -1326,9 +1540,8 @@ h3 {
     15px;
 
 
+
 }
-
-
 
 
 
@@ -1348,12 +1561,8 @@ p {
     1.8;
 
 
+
 }
-
-
-
-
-
 
 
 
@@ -1383,8 +1592,6 @@ p {
 
 
 }
-
-
 
 
 
@@ -1446,9 +1653,8 @@ p {
     .45s var(--ease);
 
 
+
 }
-
-
 
 
 
@@ -1518,9 +1724,8 @@ p {
     1px solid var(--border);
 
 
+
 }
-
-
 
 
 
@@ -1538,6 +1743,7 @@ p {
     color:
 
     var(--muted);
+
 
 
 }
@@ -1570,9 +1776,8 @@ p {
     35px 0;
 
 
+
 }
-
-
 
 
 
@@ -1618,9 +1823,8 @@ p {
     .5s var(--ease);
 
 
+
 }
-
-
 
 
 
@@ -1647,9 +1851,8 @@ p {
     translateY(-5px);
 
 
+
 }
-
-
 
 
 
@@ -1712,8 +1915,6 @@ pre {
 
 
 
-
-
 .hardware li {
 
 
@@ -1726,6 +1927,7 @@ pre {
     color:
 
     var(--muted);
+
 
 
 }
@@ -1757,8 +1959,8 @@ pre {
     25px;
 
 
-}
 
+}
 
 
 
@@ -1811,9 +2013,8 @@ pre {
     .4s var(--ease);
 
 
+
 }
-
-
 
 
 
@@ -1840,7 +2041,9 @@ pre {
     translateY(-4px);
 
 
+
 }
+
 
 
 
@@ -1885,6 +2088,7 @@ pre {
     );
 
 
+
 }
 
 
@@ -1912,9 +2116,8 @@ pre {
     gap:15px;
 
 
+
 }
-
-
 
 
 
@@ -1990,9 +2193,8 @@ pre {
     projectReveal .7s var(--ease) forwards;
 
 
+
 }
-
-
 
 
 
@@ -2025,9 +2227,8 @@ pre {
     );
 
 
+
 }
-
-
 
 
 
@@ -2041,6 +2242,7 @@ pre {
     10px;
 
 
+
 }
 
 
@@ -2052,170 +2254,36 @@ pre {
 @keyframes projectReveal {
 
 
-    from {
+from {
 
 
-        opacity:0;
+    opacity:0;
 
 
-        transform:
+    transform:
 
-        translateY(25px);
+    translateY(25px);
 
-
-    }
-
-
-
-    to {
-
-
-        opacity:1;
-
-
-        transform:
-
-        translateY(0);
-
-
-    }
-
-
-}
-
-/* =====================================================
-   TEXT SYSTEM
-===================================================== */
-
-
-.label {
-
-
-    color:
-
-    var(--green);
-
-
-
-    font-size:
-
-    12px;
-
-
-
-    letter-spacing:
-
-    2px;
-
-
-
-    margin-bottom:
-
-    25px;
 
 
 }
 
 
 
+to {
 
 
+    opacity:1;
 
 
-h1 {
+    transform:
 
+    translateY(0);
 
-    font-size:
-
-
-
-    clamp(
-
-        3rem,
-
-        6vw,
-
-        5.5rem
-
-    );
-
-
-
-    line-height:
-
-    1.05;
-
-
-
-    letter-spacing:
-
-    -3px;
-
-
-
-    margin-bottom:
-
-    35px;
 
 
 }
 
-
-
-
-
-
-
-h2 {
-
-
-    font-size:
-
-    30px;
-
-
-
-    margin-bottom:
-
-    25px;
-
-
-}
-
-
-
-
-
-
-
-h3 {
-
-
-    margin-bottom:
-
-    15px;
-
-
-}
-
-
-
-
-
-
-
-p {
-
-
-    color:
-
-    var(--muted);
-
-
-
-    line-height:
-
-    1.8;
 
 
 }
@@ -2229,11 +2297,11 @@ p {
 
 
 /* =====================================================
-   HERO BUTTONS
+   TECH STACK
 ===================================================== */
 
 
-.buttons {
+.tags {
 
 
     display:flex;
@@ -2242,410 +2310,34 @@ p {
     flex-wrap:wrap;
 
 
-    gap:14px;
+    gap:10px;
 
 
 
-    margin-top:
-
-    40px;
-
-
-
-}
-
-
-
-
-
-
-
-.buttons a {
-
-
-    background:
-
-
-
-    linear-gradient(
-
-        145deg,
-
-        #181b22,
-
-        #101116
-
-    );
-
-
-
-    border:
-
-    1px solid rgba(
-        255,
-        255,
-        255,
-        .12
-    );
-
-
-
-    padding:
-
-
-    15px 24px;
-
-
-
-    border-radius:
-
-    16px;
-
-
-
-    text-decoration:none;
-
-
-
-    color:white;
-
-
-
-    transition:
-
-    .45s var(--ease);
-
-
-}
-
-
-
-
-
-
-
-.buttons a:hover {
-
-
-    color:
-
-    var(--green);
-
-
-
-    border-color:
-
-    var(--green);
-
-
-
-    transform:
-
-
-    translateY(-5px);
-
-
-
-    box-shadow:
-
-
-
-    0 15px 40px rgba(
-        0,
-        255,
-        136,
-        .15
-    );
-
-
-
-}
-
-
-
-
-
-
-
-
-
-/* =====================================================
-   PROFILE
-===================================================== */
-
-
-.profile-item {
-
-
-    padding:
-
-    18px 0;
-
-
-
-    border-bottom:
-
-    1px solid var(--border);
-
-
-}
-
-
-
-
-
-
-
-.profile-item span {
-
-
-    font-size:
-
-    12px;
-
-
-
-    color:
-
-    var(--muted);
-
-
-}
-
-
-
-
-
-
-
-
-
-/* =====================================================
-   CPU PROJECT
-===================================================== */
-
-
-.pipeline {
-
-
-    display:flex;
-
-
-    gap:12px;
-
-
-
-    margin:
-
-    35px 0;
-
-
-}
-
-
-
-
-
-
-
-.pipeline div {
-
-
-    flex:1;
-
-
-
-    text-align:center;
-
-
-
-    padding:
-
-    14px;
-
-
-
-    background:
-
-    #181a20;
-
-
-
-    border:
-
-    1px solid var(--border);
-
-
-
-    border-radius:
-
-    12px;
-
-
-
-    transition:
-
-    .5s var(--ease);
-
-
-}
-
-
-
-
-
-
-
-.pipeline div:hover {
-
-
-    background:
-
-    #202631;
-
-
-
-    border-color:
-
-    var(--cyan);
-
-
-
-    transform:
-
-
-    translateY(-5px);
-
-
-}
-
-
-
-
-
-
-
-pre {
-
-
-    background:
-
-
-    linear-gradient(
-
-        135deg,
-
-        #050505,
-
-        #11151c
-
-    );
-
-
-
-    color:
-
-    var(--green);
-
-
-
-    padding:
+    margin-bottom:
 
     30px;
 
 
 
-    border-radius:
-
-    22px;
-
-
-
-    overflow:auto;
-
-
-
-    border:
-
-    1px solid rgba(
-        0,
-        255,
-        136,
-        .2
-    );
-
-
-
 }
 
 
 
 
 
+.tags span {
 
 
-.hardware li {
+    padding:
 
+    10px 16px;
 
-    margin-top:
-
-    15px;
-
-
-
-    color:
-
-    var(--muted);
-
-
-}
-
-
-
-
-
-
-
-
-
-/* =====================================================
-   YEAR BUTTONS
-===================================================== */
-
-
-.year-buttons {
-
-
-    display:flex;
-
-
-    gap:12px;
-
-
-    margin-bottom:
-
-    25px;
-
-
-}
-
-
-
-
-
-
-
-.year-buttons button {
 
 
     background:
 
-
     #181a20;
-
-
-
-    color:white;
 
 
 
@@ -2655,30 +2347,28 @@ pre {
 
 
 
-    padding:
-
-
-    12px 22px;
-
-
-
     border-radius:
 
     12px;
 
 
 
-    cursor:pointer;
+    font-size:
+
+    13px;
 
 
 
-    font-family:inherit;
+    color:
+
+    var(--muted);
 
 
 
     transition:
 
-    .4s var(--ease);
+    .35s var(--ease);
+
 
 
 }
@@ -2687,9 +2377,7 @@ pre {
 
 
 
-
-
-.year-buttons button:hover {
+.tags span:hover {
 
 
     color:
@@ -2704,73 +2392,17 @@ pre {
 
 
 
-    transform:
-
-
-    translateY(-4px);
-
-
 }
-
-
-
-
-
-
-
-.year-buttons button.active {
-
-
-    color:
-
-    var(--green);
-
-
-
-    border-color:
-
-    var(--green);
-
-
-
-    background:
-
-    rgba(
-        0,
-        234,
-        255,
-        .08
-    );
-
-
-
-    box-shadow:
-
-
-    0 0 25px rgba(
-        0,
-        255,
-        136,
-        .25
-    );
-
-
-}
-
-
-
-
-
 
 
 
 
 /* =====================================================
-   PROJECT CARDS
+   CONNECT SECTION
 ===================================================== */
 
 
-.project-grid {
+.connect-links {
 
 
     display:flex;
@@ -2782,193 +2414,35 @@ pre {
     gap:15px;
 
 
-}
-
-
-
-
-
-
-
-.project-item {
-
-
-    background:
-
-
-    linear-gradient(
-
-        145deg,
-
-        rgba(
-            30,
-            33,
-            42,
-            .9
-        ),
-
-        rgba(
-            15,
-            17,
-            22,
-            .9
-        )
-
-    );
-
-
-
-    border:
-
-    1px solid rgba(
-        255,
-        255,
-        255,
-        .12
-    );
-
-
-
-    border-radius:
-
-    18px;
-
-
-
-    padding:
-
-    20px;
-
-
-
-    opacity:
-
-    0;
-
-
-
-    transform:
-
-
-    translateY(25px);
-
-
-
-    animation:
-
-
-    projectReveal .7s var(--ease) forwards;
-
 
 }
 
 
 
-
-
-
-
-.project-item:hover {
-
-
-    border-color:
-
-    var(--cyan);
-
-
-
-    transform:
-
-
-    translateY(-5px);
-
-
-
-    box-shadow:
-
-
-    0 20px 45px rgba(
-        0,
-        234,
-        255,
-        .12
-    );
-
-
-}
-
-
-
-
-
-
-
-.project-item h4 {
-
-
-    margin-bottom:
-
-    10px;
-
-
-}
-
-
-
-
-
-
-
-@keyframes projectReveal {
-
-
-    from {
-
-
-        opacity:0;
-
-
-        transform:
-
-        translateY(25px);
-
-
-    }
-
-
-
-    to {
-
-
-        opacity:1;
-
-
-        transform:
-
-        translateY(0);
-
-
-    }
-
-
-}
-
-/* =====================================================
-   CONNECT TERMINAL BUTTON STYLE FIX
-===================================================== */
 
 
 .connect a {
 
+
+    display:block;
+
+
     background:
+
     linear-gradient(
+
         145deg,
+
         #181b22,
+
         #101116
+
     );
 
 
+
     border:
+
     1px solid rgba(
         255,
         255,
@@ -2977,30 +2451,36 @@ pre {
     );
 
 
+
     padding:
+
     15px 24px;
 
 
+
     border-radius:
+
     16px;
+
 
 
     color:white;
 
 
+
     text-decoration:none;
 
 
-    font-family:
-    "JetBrains Mono",
-    monospace;
-
 
     transition:
+
     .45s var(--ease);
 
 
+
 }
+
+
 
 
 
@@ -3008,22 +2488,28 @@ pre {
 
 
     color:
+
     var(--green);
 
 
 
     border-color:
+
     var(--green);
 
 
 
     transform:
+
+
     translateX(6px)
+
     translateY(-5px);
 
 
 
     box-shadow:
+
 
     0 15px 40px rgba(
         0,
@@ -3031,6 +2517,667 @@ pre {
         136,
         .15
     );
+
+
+
+}
+
+
+
+
+
+
+
+
+
+/* =====================================================
+   SCROLL PROGRESS
+===================================================== */
+
+
+.scroll-progress {
+
+
+    position:fixed;
+
+
+    top:0;
+
+
+    left:0;
+
+
+
+    height:3px;
+
+
+
+    width:0;
+
+
+
+    z-index:9999;
+
+
+
+    background:
+
+
+    linear-gradient(
+
+        90deg,
+
+        var(--cyan),
+
+        var(--green)
+
+    );
+
+
+
+}
+
+
+
+
+
+
+
+
+
+/* =====================================================
+   TABLET OPTIMIZATION
+===================================================== */
+
+
+@media(max-width:1100px){
+
+
+
+body {
+
+
+    padding:
+
+    25px;
+
+
+
+}
+
+
+
+
+.bento-grid {
+
+
+    grid-template-columns:
+
+    repeat(
+        6,
+        1fr
+    );
+
+
+
+}
+
+
+
+
+
+.hero {
+
+
+    grid-column:
+
+    span 6;
+
+
+
+}
+
+
+
+
+.profile {
+
+
+    grid-column:
+
+    span 3;
+
+
+
+}
+
+
+
+
+
+.hardware {
+
+
+    grid-column:
+
+    span 6;
+
+
+
+}
+
+
+
+
+
+.timeline {
+
+
+    grid-column:
+
+    span 3;
+
+
+
+}
+
+
+
+
+
+.stack,
+.entrepreneur,
+.connect {
+
+
+    grid-column:
+
+    span 3;
+
+
+
+}
+
+
+
+
+h1 {
+
+
+    font-size:
+
+    clamp(
+        2.8rem,
+        7vw,
+        4.5rem
+    );
+
+
+
+}
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+/* =====================================================
+   MOBILE OPTIMIZATION
+===================================================== */
+
+
+@media(max-width:700px){
+
+
+
+body {
+
+
+    padding:
+
+    15px;
+
+
+
+}
+
+
+
+
+
+.bento-grid {
+
+
+    display:flex;
+
+
+    flex-direction:column;
+
+
+    gap:16px;
+
+
+
+}
+
+
+
+
+.card {
+
+
+    padding:
+
+    24px;
+
+
+
+    border-radius:
+
+    22px;
+
+
+
+}
+
+
+
+
+
+.hero {
+
+
+    min-height:
+
+    auto;
+
+
+
+}
+
+
+
+
+
+h1 {
+
+
+    font-size:
+
+    2.6rem;
+
+
+
+    letter-spacing:
+
+    -1.5px;
+
+
+
+}
+
+
+
+h2 {
+
+
+    font-size:
+
+    24px;
+
+
+
+}
+
+
+
+
+
+.label {
+
+
+    font-size:
+
+    10px;
+
+
+
+}
+
+
+
+
+
+.description {
+
+
+    font-size:
+
+    14px;
+
+
+
+}
+
+
+
+
+
+.buttons {
+
+
+    flex-direction:column;
+
+
+
+}
+
+
+
+
+
+.buttons a {
+
+
+    width:100%;
+
+
+    text-align:center;
+
+
+
+}
+
+
+
+
+
+.pipeline {
+
+
+    overflow-x:auto;
+
+
+    padding-bottom:10px;
+
+
+
+}
+
+
+
+
+
+.pipeline div {
+
+
+    min-width:
+
+    70px;
+
+
+
+}
+
+
+
+
+
+pre {
+
+
+    font-size:
+
+    12px;
+
+
+    padding:
+
+    20px;
+
+
+
+}
+
+
+
+
+
+.year-buttons {
+
+
+    width:100%;
+
+
+
+}
+
+
+
+
+
+.year-buttons button {
+
+
+    flex:1;
+
+
+    padding:
+
+    10px;
+
+
+
+}
+
+
+
+
+
+.project-item {
+
+
+    padding:
+
+    16px;
+
+
+
+}
+
+
+
+
+
+.tags span {
+
+
+    font-size:
+
+    12px;
+
+
+
+}
+
+
+
+
+
+.cpu-pulse {
+
+
+    height:
+
+    1px;
+
+
+
+}
+
+
+
+
+.boot-terminal {
+
+
+    padding:
+
+    25px;
+
+
+
+}
+
+
+
+
+.boot-lines p {
+
+
+    font-size:
+
+    12px;
+
+
+
+}
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+/* =====================================================
+   SMALL MOBILE DEVICES
+===================================================== */
+
+
+@media(max-width:420px){
+
+
+
+h1 {
+
+
+    font-size:
+
+    2.2rem;
+
+
+
+}
+
+
+
+
+
+.card {
+
+
+    padding:
+
+    20px;
+
+
+
+}
+
+
+
+
+
+.terminal-dots span {
+
+
+    width:
+
+    12px;
+
+
+
+    height:
+
+    12px;
+
+
+
+}
+
+
+
+
+
+.pipeline div {
+
+
+    padding:
+
+    10px;
+
+
+
+    font-size:
+
+    12px;
+
+
+
+}
+
+
+
+
+
+}
+
+
+
+
+
+/* =====================================================
+   REDUCE MOTION SUPPORT
+===================================================== */
+
+
+@media(prefers-reduced-motion:reduce){
+
+
+
+* {
+
+
+    animation-duration:
+
+    .01ms!important;
+
+
+
+    transition-duration:
+
+    .01ms!important;
+
+
+
+}
+
 
 
 }
