@@ -95,42 +95,10 @@ if (prefersReducedMotion) {
 
 if (!isTouchDevice && !prefersReducedMotion) {
   cards.forEach((card) => {
-    let mouseX = 0;
-    let mouseY = 0;
-    let currentX = 0;
-    let currentY = 0;
-    let rafId = null;
-    let active = false;
-
-    function step() {
-      currentX += (mouseX - currentX) * 0.15;
-      currentY += (mouseY - currentY) * 0.15;
-
-      card.style.setProperty("--mouse-x", `${currentX}px`);
-      card.style.setProperty("--mouse-y", `${currentY}px`);
-
-      if (active) {
-        rafId = requestAnimationFrame(step);
-      }
-    }
-
-    card.addEventListener("mouseenter", () => {
-      active = true;
-      if (!rafId) rafId = requestAnimationFrame(step);
-    });
-
     card.addEventListener("mousemove", (e) => {
       const rect = card.getBoundingClientRect();
-      mouseX = e.clientX - rect.left;
-      mouseY = e.clientY - rect.top;
-    });
-
-    card.addEventListener("mouseleave", () => {
-      active = false;
-      if (rafId) {
-        cancelAnimationFrame(rafId);
-        rafId = null;
-      }
+      card.style.setProperty("--mouse-x", `${e.clientX - rect.left}px`);
+      card.style.setProperty("--mouse-y", `${e.clientY - rect.top}px`);
     });
   });
 }
@@ -139,7 +107,7 @@ if (!isTouchDevice && !prefersReducedMotion) {
    HERO PARALLAX
 ===================================================== */
 
-if (hero && !isTouchDevice && !prefersReducedMotion) {
+if (hero && !prefersReducedMotion) {
   hero.addEventListener("mousemove", (e) => {
     const rect = hero.getBoundingClientRect();
     const x = (e.clientX - rect.left) / rect.width - 0.5;
@@ -268,6 +236,16 @@ yearButtons.forEach((button) => {
   button.addEventListener("click", () => activateYear(button));
   button.addEventListener("focus", () => activateYear(button));
 });
+
+// Delegated fallback: catches hover even if a per-button listener somehow
+// didn't attach (e.g. buttons re-rendered after this script ran).
+const yearButtonsContainer = document.querySelector(".year-buttons");
+if (yearButtonsContainer) {
+  yearButtonsContainer.addEventListener("mouseover", (e) => {
+    const btn = e.target.closest("button[data-year]");
+    if (btn) activateYear(btn);
+  });
+}
 
 /* =====================================================
    TIMELINE COLLAPSE SYSTEM
