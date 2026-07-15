@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<title>
+Adam Morgan | Electrical Engineering Portfolio
+</title>
+
+
+<meta name="description" content="
+Adam Morgan — Electrical Engineering student specializing in digital systems, processor architecture, RTL design, FPGA development, and computer architecture.
+">
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+
+<link href="
+https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap
+" rel="stylesheet">
+
+
+<link rel="stylesheet" href="styles.css">
+
+
+</head>
+
+
+<body>
+
+
+<!-- FPGA SIGNAL BACKGROUND -->
+
+<div 
+class="cpu-field" 
+id="cpu-field">
+</div>
+
+
+<div class="noise"></div>
+
+
+
+
+<main class="bento-grid">
+
+
+
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+
+<section class="card hero reveal">
+
+
+<div class="terminal-dots">
+
+<span class="mac-red"></span>
+
+<span class="mac-yellow"></span>
+
+<span class="mac-green"></span>
+
+</div>
+
+
+
+<div class="label">
+
+ELECTRICAL_ENGINEERING // COMPUTER_ARCHITECTURE
+
+</div>
+
+
+
+
+<h1>
+
+Hi, I'm Adam.<br>
+
+I design computer processors.
+
+</h1>
+
+
+
+
+<div class="typing-line">
+
+
+<span>
+
+Currently Working On:
+
+</span>
+
+
+<span id="typing"></span>
+
+
+<span class="cursor"></span>
+
+
+</div>
+
+
+
+
+<p class="description">
+
+
+Electrical Engineering student specializing in digital systems,
+processor architecture, RTL design, FPGA development,
+and efficient hardware implementation.
+
+
+</p>
+
+
+
+
+<div class="buttons">
+
+
+<a href="#timeline-card" id="projects-button">
+
+$ view_projects
+
+</a>
+
+
+
+<a href="resume.pdf" download>
+
+$ download_resume
+
+</a>
+
+
+
+
+<a 
+href="https://www.linkedin.com/in/adammorgan05/" 
+target="_blank">
+
+$ contact_adam
+
+</a>
+
+
+
+
+<a href="notes.html">
+
+$ engineering_notes
+
+</a>
+
+
+
+</div>
+
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<!-- =========================
+     PROFILE
+========================= -->
+
+
+<section class="card profile reveal">
+
+
+<div class="label">
+
+ENGINEERING_PROFILE
+
+</div>
+
+
+
+
+<h2>
+
+Current Focus
+
+</h2>
+
+
+
+
+<div class="profile-item">
+
+<span>
+
+FIELD
+
+</span>
+
+
+<p>
+
+Electrical Engineering
+
+</p>
+
+
+</div>
+
+
+
+
+
+<div class="profile-item">
+
+<span>
+
+SPECIALIZATION
+
+</span>
+
+
+<p>
+
+Digital Systems
+
+</p>
+
+
+</div>
+
+
+
+
+
+<div class="profile-item">
+
+<span>
+
+INTERESTS
+
+</span>
+
+
+<p>
+
+CPU Architecture + FPGA
+
+</p>
+
+
+</div>
+
+
+
+</section>
+
+
+
+
+
+
+
+
+<!-- =========================
+     HARDWARE PROJECT
+========================= -->
+
+
+<section class="card hardware reveal">
+
+
+<div class="terminal-dots">
+
+<span class="mac-red">
+×
+</span>
+
+<span class="mac-yellow">
+−
+</span>
+
+<span class="mac-green">
++
+</span>
+
+</div>
+
+
+
+
+<div class="label">
+
+PROJECT_001 // PROCESSOR_DESIGN
+
+</div>
+
+
+
+
+<h2>
+
+32-Bit Pipelined RISC-V CPU Core
+
+</h2>
+
+
+
+
+
+<div class="pipeline">
+
+
+<div>
+
+IF
+
+</div>
+
+
+<div>
+
+ID
+
+</div>
+
+
+<div>
+
+EX
+
+</div>
+
+
+<div>
+
+MEM
+
+</div>
+
+
+<div>
+
+WB
+
+</div>
+
+
+</div>
+
+
+
+
+
+<pre>
+module risc_v_cpu (
+
+input clk,
+input reset
+
+);
+
+
+control_unit CU();
+
+hazard_unit HU();
+
+forwarding_unit FU();
+
+
+endmodule
+</pre>
+
+
+
+
+
+<ul>
+
+
+<li>
+
+5-stage instruction pipeline architecture
+
+</li>
+
+
+<li>
+
+Hazard detection and forwarding logic
+
+</li>
+
+
+<li>
+
+RTL verification using waveform simulation
+
+</li>
+
+
+</ul>
+
+
+
+</section>
+
+     <!-- =========================
+     ENGINEERING JOURNEY
+========================= -->
+
+
+<section 
+class="card timeline reveal"
+id="timeline-card">
+
+
+<div class="label">
+
+ENGINEERING_JOURNEY
+
+</div>
+
+
+
+
+<div class="year-buttons">
+
+
+<button data-year="2026">
+
+2026
+
+</button>
+
+
+
+<button data-year="2025">
+
+2025
+
+</button>
+
+
+
+<button data-year="2024">
+
+2024
+
+</button>
+
+
+
+</div>
+
+
+
+
+
+<div id="timeline-content">
+
+
+<div class="project-grid">
+
+
+<p>
+
+Hover a year to explore projects.
+
+</p>
+
+
+
+</div>
+
+
+</div>
+
+
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<!-- =========================
+     TECH STACK
+========================= -->
+
+
+<section class="card stack reveal">
+
+
+<div class="label">
+
+TECH_STACK
+
+</div>
+
+
+
+
+
+<h3>
+
+HARDWARE/
+
+</h3>
+
+
+
+<div class="tags">
+
+
+<span>
+
+SystemVerilog
+
+</span>
+
+
+<span>
+
+Verilog
+
+</span>
+
+
+<span>
+
+FPGA
+
+</span>
+
+
+<span>
+
+RISC-V
+
+</span>
+
+
+
+</div>
+
+
+
+
+
+<h3>
+
+TOOLS/
+
+</h3>
+
+
+
+<div class="tags">
+
+
+<span>
+
+Quartus
+
+</span>
+
+
+<span>
+
+GTKWave
+
+</span>
+
+
+<span>
+
+ModelSim
+
+</span>
+
+
+<span>
+
+Icarus Verilog
+
+</span>
+
+
+</div>
+
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<!-- =========================
+     ENTREPRENEURSHIP
+========================= -->
+
+
+<section class="card entrepreneur reveal">
+
+
+<div class="label">
+
+ENTREPRENEURSHIP
+
+</div>
+
+
+
+
+
+<h2>
+
+Founder & Product Developer
+
+</h2>
+
+
+
+
+
+<p>
+
+
+Built and managed an independent product venture involving
+manufacturing decisions, supplier communication,
+budgeting, branding, and product development.
+
+
+</p>
+
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<!-- =========================
+     CONNECT
+========================= -->
+
+
+<section class="card connect reveal">
+
+
+<div class="label">
+
+CONNECT
+
+</div>
+
+
+
+
+
+<div class="connect-links">
+
+
+<a 
+href="https://github.com/"
+target="_blank">
+
+$ github
+
+</a>
+
+
+
+<a 
+href="https://www.linkedin.com/in/adammorgan05/"
+target="_blank">
+
+$ linkedin
+
+</a>
+
+
+
+</div>
+
+
+
+</section>
+
+
+
+
+
+
+</main>
+
+
+
+
+
+
+<script src="script.js"></script>
+
+
+
+</body>
+
+
+</html>
+     

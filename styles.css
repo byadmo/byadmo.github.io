@@ -1,0 +1,4125 @@
+/* =====================================================
+   ADAM MORGAN PORTFOLIO
+   PREMIUM ENGINEERING BENTO SYSTEM
+   OPTIMIZED RESPONSIVE VERSION
+===================================================== */
+
+
+/* =====================================================
+   ROOT VARIABLES
+===================================================== */
+
+
+:root{
+
+
+    --bg:#07080a;
+
+    --card:#111319;
+
+    --card-light:#171a21;
+
+    --border:#252a35;
+
+
+    --white:#ffffff;
+
+    --muted:#9297a3;
+
+
+    --cyan:#00eaff;
+
+    --green:#00ff88;
+
+
+    --radius:28px;
+
+
+    --ease:cubic-bezier(
+        .22,
+        1,
+        .36,
+        1
+    );
+
+
+}
+
+
+
+
+
+
+
+
+/* =====================================================
+   RESET
+===================================================== */
+
+
+*{
+
+
+    margin:0;
+
+    padding:0;
+
+    box-sizing:border-box;
+
+
+}
+
+
+
+
+
+
+html{
+
+
+    scroll-behavior:smooth;
+
+
+}
+
+
+
+
+
+
+body{
+
+
+    background:var(--bg);
+
+
+    color:var(--white);
+
+
+
+    font-family:
+    "JetBrains Mono",
+    monospace;
+
+
+
+    padding:40px;
+
+
+
+    overflow-x:hidden;
+
+
+
+    -webkit-font-smoothing:antialiased;
+
+
+
+}
+
+
+
+
+
+
+
+
+
+/* =====================================================
+   BACKGROUND GRID
+===================================================== */
+
+
+body::before{
+
+
+    content:"";
+
+
+    position:fixed;
+
+
+    inset:0;
+
+
+
+
+    background:
+
+
+    linear-gradient(
+
+        90deg,
+
+        rgba(
+            0,
+            234,
+            255,
+            .025
+        )
+        1px,
+
+        transparent 1px
+
+    ),
+
+
+
+    linear-gradient(
+
+        rgba(
+            0,
+            234,
+            255,
+            .025
+        )
+        1px,
+
+        transparent 1px
+
+    );
+
+
+
+
+
+    background-size:
+
+    70px 70px;
+
+
+
+
+
+    mask-image:
+
+    radial-gradient(
+        circle,
+        black,
+        transparent 75%
+    );
+
+
+
+
+
+    pointer-events:none;
+
+
+
+}
+
+
+
+
+
+
+
+
+/* =====================================================
+   NOISE
+===================================================== */
+
+
+.noise{
+
+
+    position:fixed;
+
+
+    inset:0;
+
+
+    pointer-events:none;
+
+
+
+
+    opacity:.035;
+
+
+
+    background-image:
+
+
+    radial-gradient(
+
+        white 1px,
+
+        transparent 1px
+
+    );
+
+
+
+
+    background-size:
+
+    18px 18px;
+
+
+
+}
+
+
+
+
+
+
+
+
+
+/* =====================================================
+   FPGA SIGNAL BACKGROUND
+===================================================== */
+
+
+.cpu-field{
+
+
+    position:fixed;
+
+
+    inset:0;
+
+
+    overflow:hidden;
+
+
+    pointer-events:none;
+
+
+    z-index:0;
+
+
+
+}
+
+
+
+
+
+.cpu-pulse{
+
+
+    position:absolute;
+
+
+
+    height:2px;
+
+
+
+
+    background:
+
+
+    linear-gradient(
+
+        90deg,
+
+        transparent,
+
+        rgba(
+            0,
+            234,
+            255,
+            .9
+        ),
+
+
+        rgba(
+            0,
+            255,
+            136,
+            .8
+        ),
+
+
+        transparent
+
+    );
+
+
+
+
+    box-shadow:
+
+
+
+    0 0 15px rgba(
+        0,
+        234,
+        255,
+        .8
+    ),
+
+
+
+
+    0 0 40px rgba(
+        0,
+        255,
+        136,
+        .35
+    );
+
+
+
+
+    animation:
+
+    signalMove linear infinite;
+
+
+
+}/* =====================================================
+   FPGA SIGNAL MOTION
+===================================================== */
+
+
+@keyframes signalMove{
+
+
+    0%{
+
+
+        transform:
+
+        translate(
+            0,
+            0
+        )
+
+        rotate(
+            var(--angle)
+        );
+
+
+        opacity:0;
+
+
+    }
+
+
+
+
+
+    15%{
+
+
+        opacity:.8;
+
+
+    }
+
+
+
+
+
+    75%{
+
+
+        opacity:.45;
+
+
+    }
+
+
+
+
+
+    100%{
+
+
+        transform:
+
+
+        translate(
+            var(--distance),
+            0
+        )
+
+        rotate(
+            var(--angle)
+        );
+
+
+        opacity:0;
+
+
+
+    }
+
+
+
+}
+
+
+
+
+
+
+
+
+
+/* =====================================================
+   BENTO GRID
+===================================================== */
+
+
+.bento-grid{
+
+
+    max-width:
+
+    1600px;
+
+
+
+    margin:
+
+    auto;
+
+
+
+
+    display:
+
+    grid;
+
+
+
+
+    grid-template-columns:
+
+    repeat(
+        12,
+        1fr
+    );
+
+
+
+
+
+    gap:
+
+    22px;
+
+
+
+
+
+    position:
+
+    relative;
+
+
+
+
+    z-index:2;
+
+
+
+}
+
+
+
+
+
+
+
+
+
+/* =====================================================
+   CARD SYSTEM
+===================================================== */
+
+
+.card{
+
+
+    background:
+
+
+    linear-gradient(
+
+        145deg,
+
+        rgba(
+            20,
+            22,
+            28,
+            .98
+        ),
+
+
+
+        rgba(
+            10,
+            11,
+            15,
+            .98
+        )
+
+    );
+
+
+
+
+
+    border:
+
+    1px solid var(--border);
+
+
+
+
+
+    border-radius:
+
+    var(--radius);
+
+
+
+
+
+    padding:
+
+    34px;
+
+
+
+
+
+    position:
+
+    relative;
+
+
+
+
+
+    overflow:
+
+    hidden;
+
+
+
+
+
+    opacity:
+
+    0;
+
+
+
+
+
+    transform:
+
+
+    translateY(40px)
+
+    scale(.97);
+
+
+
+
+
+
+    transition:
+
+
+    opacity .8s var(--ease),
+
+
+    transform .8s var(--ease),
+
+
+    border-color .5s ease,
+
+
+    box-shadow .5s ease;
+
+
+
+}
+
+
+
+
+
+
+
+
+.card.active{
+
+
+    opacity:1;
+
+
+
+
+    transform:
+
+
+    translateY(0)
+
+    scale(1);
+
+
+
+}
+
+
+
+
+
+
+
+
+.card:hover{
+
+
+    transform:
+
+
+    translateY(-8px);
+
+
+
+
+
+    border-color:
+
+
+    rgba(
+        0,
+        234,
+        255,
+        .45
+    );
+
+
+
+
+
+    box-shadow:
+
+
+
+
+    0 30px 80px rgba(
+        0,
+        0,
+        0,
+        .45
+    ),
+
+
+
+
+
+    0 0 45px rgba(
+        0,
+        234,
+        255,
+        .15
+    );
+
+
+
+}
+
+
+
+
+
+
+
+
+.card.touch-active{
+
+
+    transform:
+
+    scale(.98);
+
+
+}
+
+
+
+
+
+
+
+
+
+/* =====================================================
+   CURSOR GLOW
+===================================================== */
+
+
+.card::before{
+
+
+    content:"";
+
+
+    position:absolute;
+
+
+
+
+
+    width:
+
+    420px;
+
+
+
+
+    height:
+
+    420px;
+
+
+
+
+
+    left:
+
+    var(--mouse-x,50%);
+
+
+
+
+
+    top:
+
+    var(--mouse-y,50%);
+
+
+
+
+
+    transform:
+
+
+    translate(
+        -50%,
+        -50%
+    );
+
+
+
+
+
+    background:
+
+
+    radial-gradient(
+
+        circle,
+
+        rgba(
+            0,
+            234,
+            255,
+            .18
+        ),
+
+
+        transparent 65%
+
+    );
+
+
+
+
+
+    opacity:
+
+    0;
+
+
+
+
+
+    pointer-events:none;
+
+
+
+
+    transition:
+
+    opacity .5s ease;
+
+
+
+}
+
+
+
+
+
+
+
+
+.card:hover::before{
+
+
+    opacity:1;
+
+
+}
+
+
+
+
+
+
+
+
+.card::after{
+
+
+    content:"";
+
+
+    position:absolute;
+
+
+    inset:0;
+
+
+
+
+
+    border-radius:
+
+    var(--radius);
+
+
+
+
+
+    background:
+
+
+    linear-gradient(
+
+        135deg,
+
+        rgba(
+            0,
+            234,
+            255,
+            .08
+        ),
+
+        transparent 40%,
+
+        transparent 60%,
+
+
+        rgba(
+            0,
+            255,
+            136,
+            .08
+        )
+
+    );
+
+
+
+
+
+    opacity:0;
+
+
+
+
+
+    pointer-events:none;
+
+
+
+
+
+    transition:
+
+    opacity .5s ease;
+
+
+
+}
+
+
+
+
+
+.card:hover::after{
+
+
+    opacity:1;
+
+
+}
+/* =====================================================
+   BENTO POSITIONS
+===================================================== */
+
+
+/* 
+   Desktop Layout
+
+   LEFT SIDE:
+   Hero
+   Hardware
+
+   RIGHT SIDE:
+   Profile
+   Engineering Journey
+   Tech Stack
+   Entrepreneurship
+   Connect
+
+*/
+
+
+.hero{
+
+
+    grid-column:
+
+    span 8;
+
+
+
+    grid-row:
+
+    span 2;
+
+
+
+    min-height:
+
+    600px;
+
+
+
+    isolation:
+
+    isolate;
+
+
+}
+
+
+
+
+
+
+
+
+.profile{
+
+
+    grid-column:
+
+    span 4;
+
+
+}
+
+
+
+
+
+
+
+
+.hardware{
+
+
+    grid-column:
+
+    span 8;
+
+
+
+    grid-row:
+
+    span 2;
+
+
+}
+
+
+
+
+
+
+
+
+.timeline{
+
+
+    grid-column:
+
+    span 4;
+
+
+
+    max-height:
+
+    300px;
+
+
+
+    overflow:hidden;
+
+
+
+
+
+    transition:
+
+
+    max-height 1s var(--ease),
+
+
+    transform .7s var(--ease),
+
+
+    border-color .5s ease,
+
+
+    box-shadow .5s ease;
+
+
+
+}
+
+
+
+
+
+
+
+
+.timeline.expanded{
+
+
+    max-height:
+
+    850px;
+
+
+
+}
+
+
+
+
+
+
+
+
+.timeline:hover{
+
+
+    transform:
+
+    translateY(-8px);
+
+
+
+}
+
+
+
+
+
+
+
+
+.stack{
+
+
+    grid-column:
+
+    span 4;
+
+
+}
+
+
+
+
+
+
+
+
+.entrepreneur{
+
+
+    grid-column:
+
+    span 4;
+
+
+}
+
+
+
+
+
+
+
+
+.connect{
+
+
+    grid-column:
+
+    span 4;
+
+
+}
+
+
+
+
+
+
+
+
+
+/* =====================================================
+   TERMINAL DOTS
+===================================================== */
+
+
+.terminal-dots{
+
+
+    display:flex;
+
+
+    gap:10px;
+
+
+
+    margin-bottom:25px;
+
+
+
+}
+
+
+
+
+
+
+
+
+.terminal-dots span{
+
+
+    width:
+
+    14px;
+
+
+
+    height:
+
+    14px;
+
+
+
+
+    border-radius:
+
+    50%;
+
+
+
+
+    display:flex;
+
+
+
+
+    align-items:center;
+
+
+
+
+    justify-content:center;
+
+
+
+
+
+    font-size:
+
+    10px;
+
+
+
+
+    color:#000;
+
+
+
+
+
+    transition:
+
+    .35s var(--ease);
+
+
+
+}
+
+
+
+
+
+
+
+
+.terminal-dots span:hover{
+
+
+    transform:
+
+
+    scale(1.3)
+
+    rotate(12deg);
+
+
+
+}
+
+
+
+
+
+
+
+
+.mac-red{
+
+
+    background:#ff5f57;
+
+
+
+}
+
+
+
+
+
+.mac-yellow{
+
+
+    background:#febc2e;
+
+
+
+}
+
+
+
+
+
+.mac-green{
+
+
+    background:#28c840;
+
+
+
+}
+
+
+
+
+
+
+
+
+
+/* =====================================================
+   TEXT SYSTEM
+===================================================== */
+
+
+.label{
+
+
+    color:
+
+    var(--green);
+
+
+
+
+
+    font-size:
+
+    12px;
+
+
+
+
+
+    letter-spacing:
+
+    2px;
+
+
+
+
+
+    margin-bottom:
+
+    25px;
+
+
+
+}
+
+
+
+
+
+
+
+
+h1{
+
+
+    font-size:
+
+
+    clamp(
+        3rem,
+        6vw,
+        5.5rem
+    );
+
+
+
+
+
+    line-height:
+
+    1.05;
+
+
+
+
+
+    letter-spacing:
+
+    -3px;
+
+
+
+
+
+    margin-bottom:
+
+    35px;
+
+
+
+}
+
+
+
+
+
+
+
+
+h2{
+
+
+    font-size:
+
+    30px;
+
+
+
+
+
+    margin-bottom:
+
+    25px;
+
+
+
+}
+
+
+
+
+
+
+
+
+h3{
+
+
+    margin-bottom:
+
+    15px;
+
+
+
+}
+
+
+
+
+
+
+
+
+p{
+
+
+    color:
+
+    var(--muted);
+
+
+
+
+
+    line-height:
+
+    1.8;
+
+
+
+}
+
+
+
+
+
+
+
+
+
+.typing-line{
+
+
+    display:flex;
+
+
+    flex-wrap:wrap;
+
+
+
+    gap:8px;
+
+
+
+    margin-bottom:
+
+    30px;
+
+
+
+    color:
+
+    var(--cyan);
+
+
+
+}
+
+
+
+
+
+.cursor{
+
+
+    width:8px;
+
+
+    height:20px;
+
+
+    background:var(--green);
+
+
+    display:inline-block;
+
+
+    animation:blink .8s infinite;
+
+
+
+}
+
+
+
+@keyframes blink{
+
+
+    50%{
+
+        opacity:0;
+
+    }
+
+}
+/* =====================================================
+   HERO BUTTONS
+===================================================== */
+
+
+.buttons{
+
+
+    display:flex;
+
+
+    flex-wrap:wrap;
+
+
+
+    gap:14px;
+
+
+
+    margin-top:
+
+    40px;
+
+
+
+}
+
+
+
+
+
+
+
+
+.buttons a{
+
+
+    background:
+
+
+    linear-gradient(
+
+        145deg,
+
+        #181b22,
+
+        #101116
+
+    );
+
+
+
+
+
+    border:
+
+    1px solid rgba(
+        255,
+        255,
+        255,
+        .12
+    );
+
+
+
+
+
+    padding:
+
+
+    15px 24px;
+
+
+
+
+    border-radius:
+
+    16px;
+
+
+
+
+    text-decoration:none;
+
+
+
+
+    color:white;
+
+
+
+
+    transition:
+
+    .45s var(--ease);
+
+
+
+}
+
+
+
+
+
+
+
+
+.buttons a:hover{
+
+
+    color:
+
+    var(--green);
+
+
+
+
+
+    border-color:
+
+    var(--green);
+
+
+
+
+
+    transform:
+
+
+    translateY(-5px);
+
+
+
+
+
+    box-shadow:
+
+
+    0 15px 40px rgba(
+        0,
+        255,
+        136,
+        .15
+    );
+
+
+
+}
+
+
+
+
+
+
+
+
+
+/* =====================================================
+   PROFILE SECTION
+===================================================== */
+
+
+.profile-item{
+
+
+    padding:
+
+    18px 0;
+
+
+
+
+    border-bottom:
+
+    1px solid var(--border);
+
+
+
+}
+
+
+
+
+
+
+
+
+.profile-item span{
+
+
+    font-size:
+
+    12px;
+
+
+
+
+    color:
+
+    var(--muted);
+
+
+
+}
+
+
+
+
+
+
+
+
+
+/* =====================================================
+   CPU PROJECT
+===================================================== */
+
+
+.pipeline{
+
+
+    display:flex;
+
+
+
+
+    gap:
+
+    12px;
+
+
+
+
+
+    margin:
+
+
+    35px 0;
+
+
+
+}
+
+
+
+
+
+
+
+
+.pipeline div{
+
+
+    flex:1;
+
+
+
+
+    text-align:center;
+
+
+
+
+
+    padding:
+
+    14px;
+
+
+
+
+
+    background:
+
+    #181a20;
+
+
+
+
+
+    border:
+
+    1px solid var(--border);
+
+
+
+
+
+    border-radius:
+
+    12px;
+
+
+
+
+
+    transition:
+
+    .5s var(--ease);
+
+
+
+}
+
+
+
+
+
+
+
+
+.pipeline div:hover{
+
+
+    background:
+
+    #202631;
+
+
+
+
+    border-color:
+
+    var(--cyan);
+
+
+
+
+
+    transform:
+
+
+    translateY(-5px);
+
+
+
+}
+
+
+
+
+
+
+
+
+pre{
+
+
+    background:
+
+
+    linear-gradient(
+
+        135deg,
+
+        #050505,
+
+        #11151c
+
+    );
+
+
+
+
+
+    color:
+
+    var(--green);
+
+
+
+
+
+    padding:
+
+    30px;
+
+
+
+
+    border-radius:
+
+    22px;
+
+
+
+
+
+    overflow:auto;
+
+
+
+
+    border:
+
+    1px solid rgba(
+        0,
+        255,
+        136,
+        .2
+    );
+
+
+
+}
+
+
+
+
+
+
+
+
+.hardware li{
+
+
+    margin-top:
+
+    15px;
+
+
+
+
+    color:
+
+    var(--muted);
+
+
+
+}
+
+
+
+
+
+
+
+
+
+/* =====================================================
+   YEAR BUTTONS
+===================================================== */
+
+
+.year-buttons{
+
+
+    display:flex;
+
+
+
+    gap:
+
+    12px;
+
+
+
+    margin-bottom:
+
+    25px;
+
+
+
+}
+
+
+
+
+
+
+
+
+.year-buttons button{
+
+
+    background:
+
+
+    #181a20;
+
+
+
+
+
+    color:white;
+
+
+
+
+
+    border:
+
+    1px solid var(--border);
+
+
+
+
+
+    padding:
+
+
+    12px 22px;
+
+
+
+
+
+    border-radius:
+
+    12px;
+
+
+
+
+
+    cursor:pointer;
+
+
+
+
+
+    font-family:inherit;
+
+
+
+
+
+    transition:
+
+    .4s var(--ease);
+
+
+
+}
+
+
+
+
+
+
+
+
+.year-buttons button:hover{
+
+
+    color:
+
+    var(--green);
+
+
+
+
+
+    border-color:
+
+    var(--green);
+
+
+
+
+
+    transform:
+
+
+    translateY(-4px);
+
+
+
+}
+
+
+
+
+
+
+
+
+.year-buttons button.active{
+
+
+    color:
+
+    var(--green);
+
+
+
+
+
+    border-color:
+
+    var(--green);
+
+
+
+
+
+    background:
+
+
+    rgba(
+        0,
+        234,
+        255,
+        .08
+    );
+
+
+
+
+
+    box-shadow:
+
+
+    0 0 25px rgba(
+        0,
+        255,
+        136,
+        .25
+    );
+
+
+
+}
+/* =====================================================
+   PROJECT CARDS
+===================================================== */
+
+
+.project-grid{
+
+
+    display:flex;
+
+
+    flex-direction:column;
+
+
+
+    gap:
+
+    15px;
+
+
+
+}
+
+
+
+
+
+
+
+
+.project-item{
+
+
+    background:
+
+
+    linear-gradient(
+
+        145deg,
+
+        rgba(
+            30,
+            33,
+            42,
+            .9
+        ),
+
+
+        rgba(
+            15,
+            17,
+            22,
+            .9
+        )
+
+    );
+
+
+
+
+
+    border:
+
+    1px solid rgba(
+        255,
+        255,
+        255,
+        .12
+    );
+
+
+
+
+
+    border-radius:
+
+    18px;
+
+
+
+
+
+    padding:
+
+    20px;
+
+
+
+
+
+    opacity:
+
+    0;
+
+
+
+
+
+    transform:
+
+
+    translateY(25px);
+
+
+
+
+
+
+    animation:
+
+
+    projectReveal .7s var(--ease) forwards;
+
+
+
+}
+
+
+
+
+
+
+
+
+.project-item:hover{
+
+
+    border-color:
+
+    var(--cyan);
+
+
+
+
+
+    transform:
+
+
+    translateY(-5px);
+
+
+
+
+
+    box-shadow:
+
+
+    0 20px 45px rgba(
+        0,
+        234,
+        255,
+        .12
+    );
+
+
+
+}
+
+
+
+
+
+
+
+
+.project-item h4{
+
+
+    margin-bottom:
+
+    10px;
+
+
+
+}
+
+
+
+
+
+
+
+
+@keyframes projectReveal{
+
+
+    from{
+
+
+        opacity:0;
+
+
+
+
+        transform:
+
+
+        translateY(25px);
+
+
+
+    }
+
+
+
+
+
+    to{
+
+
+        opacity:1;
+
+
+
+
+        transform:
+
+
+        translateY(0);
+
+
+
+    }
+
+
+
+}
+
+
+
+
+
+
+
+
+
+/* =====================================================
+   TECH STACK
+===================================================== */
+
+
+.tags{
+
+
+    display:flex;
+
+
+    flex-wrap:wrap;
+
+
+
+    gap:
+
+    10px;
+
+
+
+    margin-bottom:
+
+    30px;
+
+
+
+}
+
+
+
+
+
+
+
+
+.tags span{
+
+
+    background:
+
+
+    rgba(
+        255,
+        255,
+        255,
+        .05
+    );
+
+
+
+
+
+    border:
+
+    1px solid var(--border);
+
+
+
+
+
+    padding:
+
+
+    10px 16px;
+
+
+
+
+
+    border-radius:
+
+    12px;
+
+
+
+
+    font-size:
+
+    13px;
+
+
+
+
+
+    color:
+
+    var(--white);
+
+
+
+
+
+    transition:
+
+    .35s var(--ease);
+
+
+
+}
+
+
+
+
+
+
+
+
+.tags span:hover{
+
+
+    border-color:
+
+    var(--green);
+
+
+
+
+
+    color:
+
+    var(--green);
+
+
+
+
+
+    transform:
+
+
+    translateY(-4px);
+
+
+
+}
+
+
+
+
+
+
+
+
+
+/* =====================================================
+   CONNECT SECTION
+===================================================== */
+
+
+.connect{
+
+
+    display:flex;
+
+
+    flex-direction:column;
+
+
+
+
+    gap:
+
+    14px;
+
+
+
+}
+
+
+
+
+
+
+
+
+.connect a{
+
+
+    background:
+
+
+    linear-gradient(
+
+        145deg,
+
+        #181b22,
+
+        #101116
+
+    );
+
+
+
+
+
+    border:
+
+    1px solid rgba(
+        255,
+        255,
+        255,
+        .12
+    );
+
+
+
+
+
+    padding:
+
+    15px 24px;
+
+
+
+
+
+    border-radius:
+
+    16px;
+
+
+
+
+
+    color:white;
+
+
+
+
+    text-decoration:none;
+
+
+
+
+    font-family:
+
+
+    "JetBrains Mono",
+    monospace;
+
+
+
+
+
+    transition:
+
+    .45s var(--ease);
+
+
+
+}
+
+
+
+
+
+
+
+
+.connect a:hover{
+
+
+    color:
+
+    var(--green);
+
+
+
+
+
+    border-color:
+
+    var(--green);
+
+
+
+
+
+    transform:
+
+
+    translateX(6px)
+
+    translateY(-5px);
+
+
+
+
+
+    box-shadow:
+
+
+    0 15px 40px rgba(
+        0,
+        255,
+        136,
+        .15
+    );
+
+
+
+}
+
+
+
+
+
+
+
+
+
+/* =====================================================
+   SCROLL PROGRESS
+===================================================== */
+
+
+.scroll-progress{
+
+
+    position:fixed;
+
+
+    top:0;
+
+
+    left:0;
+
+
+    height:3px;
+
+
+    width:0%;
+
+
+
+
+    z-index:9999;
+
+
+
+
+    background:
+
+
+    linear-gradient(
+
+        90deg,
+
+        var(--cyan),
+
+        var(--green)
+
+    );
+
+
+
+}
+/* =====================================================
+   TABLET OPTIMIZATION
+   1200px - 900px
+===================================================== */
+
+
+@media(max-width:1200px){
+
+
+
+body{
+
+
+    padding:
+
+    25px;
+
+
+
+}
+
+
+
+
+
+.bento-grid{
+
+
+    grid-template-columns:
+
+    repeat(
+        8,
+        1fr
+    );
+
+
+
+}
+
+
+
+
+
+.hero{
+
+
+    grid-column:
+
+    span 8;
+
+
+
+    min-height:
+
+    520px;
+
+
+
+}
+
+
+
+
+
+.profile{
+
+
+    grid-column:
+
+    span 4;
+
+
+
+}
+
+
+
+
+
+.hardware{
+
+
+    grid-column:
+
+    span 8;
+
+
+
+}
+
+
+
+
+
+.timeline{
+
+
+    grid-column:
+
+    span 4;
+
+
+
+}
+
+
+
+
+
+.stack{
+
+
+    grid-column:
+
+    span 4;
+
+
+
+}
+
+
+
+
+
+.entrepreneur{
+
+
+    grid-column:
+
+    span 4;
+
+
+
+}
+
+
+
+
+
+.connect{
+
+
+    grid-column:
+
+    span 4;
+
+
+
+}
+
+
+
+
+
+h1{
+
+
+    font-size:
+
+
+    clamp(
+        2.8rem,
+        6vw,
+        4.5rem
+    );
+
+
+
+}
+
+
+
+
+.card{
+
+
+    padding:
+
+    28px;
+
+
+
+}
+
+
+
+}
+
+
+
+
+
+
+
+
+
+/* =====================================================
+   SMALL TABLET
+   900px - 700px
+===================================================== */
+
+
+@media(max-width:900px){
+
+
+
+body{
+
+
+    padding:
+
+    20px;
+
+
+
+}
+
+
+
+
+
+
+
+.bento-grid{
+
+
+    display:flex;
+
+
+    flex-direction:column;
+
+
+
+    gap:
+
+    18px;
+
+
+
+}
+
+
+
+
+
+.card{
+
+
+    width:100%;
+
+
+
+}
+
+
+
+
+
+.hero{
+
+
+    min-height:
+
+    auto;
+
+
+
+}
+
+
+
+
+
+.hardware{
+
+
+    order:2;
+
+
+
+}
+
+
+
+
+
+.profile{
+
+
+    order:3;
+
+
+
+}
+
+
+
+
+
+.timeline{
+
+
+    order:4;
+
+
+
+    max-height:
+
+    none;
+
+
+
+}
+
+
+
+
+
+.timeline.expanded{
+
+
+    max-height:
+
+    1000px;
+
+
+
+}
+
+
+
+
+
+.stack{
+
+
+    order:5;
+
+
+
+}
+
+
+
+
+
+.entrepreneur{
+
+
+    order:6;
+
+
+
+}
+
+
+
+
+
+.connect{
+
+
+    order:7;
+
+
+
+}
+
+
+
+
+
+.pipeline{
+
+
+    flex-wrap:wrap;
+
+
+
+}
+
+
+
+
+
+.pipeline div{
+
+
+    min-width:
+
+    80px;
+
+
+
+}
+
+
+
+
+
+h1{
+
+
+    letter-spacing:
+
+    -2px;
+
+
+
+}
+
+
+
+}
+/* =====================================================
+   MOBILE OPTIMIZATION
+   UNDER 700px
+===================================================== */
+
+
+@media(max-width:700px){
+
+
+
+body{
+
+
+    padding:
+
+    14px;
+
+
+
+    font-size:
+
+    14px;
+
+
+
+}
+
+
+
+
+
+.cpu-field{
+
+
+    opacity:
+
+    .55;
+
+
+
+}
+
+
+
+
+
+.bento-grid{
+
+
+    gap:
+
+    14px;
+
+
+
+}
+
+
+
+
+
+.card{
+
+
+    border-radius:
+
+    22px;
+
+
+
+
+    padding:
+
+    22px;
+
+
+
+}
+
+
+
+
+
+.card:hover{
+
+
+    transform:
+
+    translateY(-3px);
+
+
+
+}
+
+
+
+
+
+/* HERO */
+
+
+.hero{
+
+
+    min-height:
+
+    auto;
+
+
+
+}
+
+
+
+
+
+.label{
+
+
+    font-size:
+
+    10px;
+
+
+
+
+    letter-spacing:
+
+    1px;
+
+
+
+}
+
+
+
+
+
+h1{
+
+
+    font-size:
+
+
+    clamp(
+        2.2rem,
+        12vw,
+        3.2rem
+    );
+
+
+
+
+    letter-spacing:
+
+    -1.5px;
+
+
+
+    margin-bottom:
+
+    25px;
+
+
+
+}
+
+
+
+
+
+h2{
+
+
+    font-size:
+
+    24px;
+
+
+
+}
+
+
+
+
+
+h3{
+
+
+    font-size:
+
+    18px;
+
+
+
+}
+
+
+
+
+
+p{
+
+
+    line-height:
+
+    1.6;
+
+
+
+}
+
+
+
+
+
+
+
+
+
+/* BUTTONS */
+
+
+.buttons{
+
+
+    flex-direction:
+
+    column;
+
+
+
+    gap:
+
+    12px;
+
+
+
+}
+
+
+
+
+
+.buttons a{
+
+
+    width:
+
+    100%;
+
+
+
+
+    text-align:
+
+    center;
+
+
+
+    padding:
+
+
+    14px 18px;
+
+
+
+}
+
+
+
+
+
+
+
+
+
+/* PIPELINE */
+
+
+.pipeline{
+
+
+    display:grid;
+
+
+
+    grid-template-columns:
+
+    repeat(
+        2,
+        1fr
+    );
+
+
+
+    gap:
+
+    10px;
+
+
+
+}
+
+
+
+
+
+.pipeline div{
+
+
+    padding:
+
+    12px;
+
+
+
+    font-size:
+
+    12px;
+
+
+
+}
+
+
+
+
+
+
+
+
+pre{
+
+
+    padding:
+
+    18px;
+
+
+
+    font-size:
+
+    12px;
+
+
+
+}
+
+
+
+
+
+
+
+
+
+/* YEAR BUTTONS */
+
+
+.year-buttons{
+
+
+    width:
+
+    100%;
+
+
+
+}
+
+
+
+
+
+.year-buttons button{
+
+
+    flex:1;
+
+
+
+    padding:
+
+
+    10px;
+
+
+
+    font-size:
+
+    12px;
+
+
+
+}
+
+
+
+
+
+
+
+
+
+/* PROJECTS */
+
+
+.project-item{
+
+
+    padding:
+
+    16px;
+
+
+
+}
+
+
+
+
+
+.project-item h4{
+
+
+    font-size:
+
+    15px;
+
+
+
+}
+
+
+
+
+
+.project-item p{
+
+
+    font-size:
+
+    13px;
+
+
+
+}
+
+
+
+
+
+
+
+
+/* TAGS */
+
+
+.tags span{
+
+
+    font-size:
+
+    12px;
+
+
+
+    padding:
+
+
+    8px 12px;
+
+
+
+}
+
+
+
+
+
+
+
+
+
+/* CONNECT */
+
+
+.connect a{
+
+
+    width:
+
+    100%;
+
+
+
+    text-align:
+
+    center;
+
+
+
+}
+
+
+
+
+
+
+
+
+/* REMOVE HEAVY DESKTOP EFFECTS */
+
+
+.card::before,
+
+
+.card::after{
+
+
+    display:none;
+
+
+
+}
+
+
+
+}
+
+/* =====================================================
+   FINAL RESPONSIVE POLISH
+===================================================== */
+
+
+/* Improve scrolling performance */
+
+.cpu-field,
+.noise,
+body::before{
+
+
+    will-change:
+
+    transform;
+
+
+
+}
+
+
+
+
+
+
+
+/* =====================================================
+   MOBILE LANDSCAPE
+===================================================== */
+
+
+@media(max-width:900px) and (orientation:landscape){
+
+
+
+.hero{
+
+
+    min-height:
+
+    auto;
+
+
+
+}
+
+
+
+
+
+h1{
+
+
+    font-size:
+
+    2.8rem;
+
+
+
+}
+
+
+
+
+
+.card{
+
+
+    padding:
+
+    20px;
+
+
+
+}
+
+
+
+}
+
+
+
+
+
+
+
+
+
+/* =====================================================
+   VERY SMALL PHONES
+   UNDER 400px
+===================================================== */
+
+
+@media(max-width:400px){
+
+
+
+body{
+
+
+    padding:
+
+    10px;
+
+
+
+}
+
+
+
+
+
+.card{
+
+
+    padding:
+
+    18px;
+
+
+
+
+    border-radius:
+
+    18px;
+
+
+
+}
+
+
+
+
+
+h1{
+
+
+    font-size:
+
+    2rem;
+
+
+
+}
+
+
+
+
+
+.year-buttons{
+
+
+    flex-direction:
+
+    column;
+
+
+
+}
+
+
+
+
+
+.year-buttons button{
+
+
+    width:
+
+    100%;
+
+
+
+}
+
+
+
+
+
+.pipeline{
+
+
+    grid-template-columns:
+
+    1fr;
+
+
+
+}
+
+
+
+
+
+.buttons a{
+
+
+    font-size:
+
+    12px;
+
+
+
+}
+
+
+
+
+
+.connect a{
+
+
+    font-size:
+
+    12px;
+
+
+
+}
+
+
+
+}
+
+
+
+
+
+
+
+
+
+/* =====================================================
+   ACCESSIBILITY
+===================================================== */
+
+
+/* Users who disable animations */
+
+
+@media(prefers-reduced-motion:reduce){
+
+
+
+*{
+
+
+    animation-duration:
+
+    .01ms !important;
+
+
+
+    animation-iteration-count:
+
+    1 !important;
+
+
+
+    transition-duration:
+
+    .01ms !important;
+
+
+
+    scroll-behavior:
+
+    auto !important;
+
+
+
+}
+
+
+
+}
+
+
+
+
+
+
+
+
+
+/* =====================================================
+   GPU OPTIMIZATION
+===================================================== */
+
+
+.card,
+.cpu-pulse,
+.project-item,
+.buttons a,
+.year-buttons button{
+
+
+    transform:
+
+    translateZ(0);
+
+
+
+    backface-visibility:
+
+    hidden;
+
+
+
+}
+
+
+
+
+
+
+
+
+
+/* =====================================================
+   FIX IOS SAFARI HEIGHT ISSUES
+===================================================== */
+
+
+html,
+body{
+
+
+    min-height:
+
+    100%;
+
+
+
+    -webkit-overflow-scrolling:
+
+    touch;
+
+
+
+}
+
+
+
+
+
+
+
+
+
+/* =====================================================
+   FINAL LOADED STATE
+===================================================== */
+
+
+body.loaded .card{
+
+
+    transition:
+
+
+    opacity .8s var(--ease),
+
+
+    transform .8s var(--ease),
+
+
+    border-color .5s ease;
+
+
+
+}
