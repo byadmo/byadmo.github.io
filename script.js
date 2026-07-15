@@ -1310,9 +1310,8 @@ FPGA SYSTEMS
 
 
 
-
 /* =====================================================
-   RANDOM FPGA SIGNAL FIELD
+   RANDOM FPGA SIGNAL FIELD V2
 ===================================================== */
 
 
@@ -1325,7 +1324,6 @@ document.getElementById(
 
 
 function createSignal(){
-
 
 
 if(!cpuField)
@@ -1350,10 +1348,17 @@ pulse.className =
 
 
 
+
+// random signal length
+
 const randomWidth =
-Math.random()*350+100;
+Math.random()*300+150;
 
 
+
+
+
+// random position
 
 const randomTop =
 Math.random()*100;
@@ -1365,25 +1370,47 @@ Math.random()*120-20;
 
 
 
+
+
+
+// slower controlled movement
+// minimum 12s, maximum 25s
+
 const randomDuration =
-Math.random()*12+4;
+Math.random()*13+12;
 
 
+
+
+
+// small delay only
+// prevents frozen signals
 
 const randomDelay =
-Math.random()*8;
+Math.random()*2;
 
 
+
+
+
+
+
+// random angle
 
 const randomRotation =
-Math.random()*80-40;
+Math.random()*40-20;
 
 
 
 
+
+
+
+// random brightness
 
 const randomOpacity =
-Math.random()*.5+.15;
+Math.random()*.35+.25;
+
 
 
 
@@ -1435,6 +1462,7 @@ ${randomRotation}deg
 
 
 
+
 cpuField.appendChild(
 pulse
 );
@@ -1445,6 +1473,9 @@ pulse
 
 
 
+
+// remove old signals
+
 setTimeout(()=>{
 
 
@@ -1453,7 +1484,6 @@ pulse.remove();
 
 
 },
-
 
 (randomDuration+randomDelay)
 *
@@ -1477,10 +1507,15 @@ function startSignalSystem(){
 
 
 
+// initial random signals
+
 const initialAmount =
 Math.floor(
-Math.random()*12
+Math.random()*8
 )+8;
+
+
+
 
 
 
@@ -1500,8 +1535,7 @@ createSignal();
 
 },
 
-
-Math.random()*3000
+Math.random()*4000
 
 
 );
@@ -1513,6 +1547,10 @@ Math.random()*3000
 
 
 
+
+
+
+// continuously create signals
 
 setInterval(()=>{
 
@@ -1524,8 +1562,7 @@ createSignal();
 
 },
 
-
-Math.random()*1200+600
+Math.random()*2500+2500
 
 
 
@@ -1534,6 +1571,9 @@ Math.random()*1200+600
 
 
 }
+
+
+
 
 
 
@@ -1559,8 +1599,9 @@ function randomBurst(){
 
 const amount =
 Math.floor(
-Math.random()*5
+Math.random()*4
 )+2;
+
 
 
 
@@ -1583,22 +1624,20 @@ createSignal();
 
 },
 
-i*150
+i*300
 
 );
 
 
 
 }
-
-
 
 
 setTimeout(
 
 randomBurst,
 
-Math.random()*10000+8000
+Math.random()*15000+15000
 
 );
 
@@ -1609,14 +1648,8 @@ Math.random()*10000+8000
 
 
 
+
 randomBurst();
-
-
-
-
-
-
-
 
 
 /* =====================================================
