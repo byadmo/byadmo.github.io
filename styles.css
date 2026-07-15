@@ -1092,3 +1092,113 @@ h3 {
 
 
 }
+/* =======================================================
+   FIXED BENTO LAYOUT
+======================================================= */
+
+
+.hero {
+    grid-column: span 8;
+    grid-row: span 2;
+}
+
+
+.small-card {
+    grid-column: span 4;
+}
+
+
+.skills {
+    grid-column: span 4;
+}
+
+
+.experience {
+    grid-column: span 4;
+}
+
+
+.card:nth-child(5) {
+    grid-column: span 4;
+}
+
+
+.wide {
+    grid-column: span 8;
+}
+
+
+.socials {
+    grid-column: span 4;
+}
+
+
+.quote {
+    grid-column: span 4;
+}
+
+
+
+/* EXPERIENCE BUTTONS */
+
+
+.year-buttons {
+
+    display:flex;
+
+    gap:10px;
+
+    margin-bottom:25px;
+
+}
+
+
+
+.year-buttons button {
+
+
+    background:#18181b;
+
+    border:1px solid var(--border);
+
+    color:white;
+
+    padding:12px 18px;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    font-family:inherit;
+
+    transition:var(--transition);
+
+}
+
+
+
+.year-buttons button:hover {
+
+    color:var(--green);
+
+    border-color:var(--green);
+
+    transform:translateY(-3px);
+
+}
+
+
+
+#experience-display {
+
+    min-height:120px;
+
+}
+
+
+
+#experience-display p {
+
+    line-height:1.8;
+
+}
