@@ -1482,7 +1482,26 @@ pulse.remove();
 }
 
 
+/* =====================================================
+   MULTI DIRECTION FPGA SIGNALS
+===================================================== */
 
+
+.cpu-pulse {
+
+    position:absolute;
+
+    height:2px;
+
+    ...
+}
+
+
+@keyframes signalMove {
+
+    ...
+
+}
 
 
 
