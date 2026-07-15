@@ -1,68 +1,83 @@
 /* =====================================================
    ADAM MORGAN PORTFOLIO
-   APPLE x TERMINAL ENGINEERING SYSTEM
+   PREMIUM ENGINEERING BENTO SYSTEM
 ===================================================== */
 
 
 :root {
 
-    --bg:#08090b;
-    --card:#111216;
-    --border:#24262d;
+--bg:#08090b;
 
-    --white:#ffffff;
-    --muted:#8b8f98;
+--card:#111216;
 
-    --cyan:#00eaff;
-    --green:#00ff88;
+--border:#24262d;
 
-    --radius:26px;
+--white:#ffffff;
 
-    --transition:
-    .4s cubic-bezier(
-        .22,
-        1,
-        .36,
-        1
-    );
+--muted:#8b8f98;
+
+--cyan:#00eaff;
+
+--green:#00ff88;
+
+--radius:26px;
+
+
+--ease:
+
+cubic-bezier(
+.22,
+1,
+.36,
+1
+);
+
+}
+
+
+
+
+
+*{
+
+margin:0;
+
+padding:0;
+
+box-sizing:border-box;
 
 }
 
 
 
 
+html{
 
-* {
-
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+scroll-behavior:smooth;
 
 }
 
 
 
-html {
 
-    scroll-behavior:smooth;
-
-}
+body{
 
 
+background:var(--bg);
 
-body {
+color:white;
 
-    background:var(--bg);
+font-family:
 
-    color:white;
+"JetBrains Mono",
+monospace;
 
-    font-family:
-    "JetBrains Mono",
-    monospace;
 
-    padding:40px;
+padding:40px;
 
-    overflow-x:hidden;
+
+overflow-x:hidden;
+
 
 }
 
@@ -77,28 +92,35 @@ BACKGROUND
 ========================= */
 
 
-.noise {
-
-    position:fixed;
-
-    inset:0;
-
-    pointer-events:none;
-
-    opacity:.035;
+.noise{
 
 
-    background-image:
-
-    radial-gradient(
-        white 1px,
-        transparent 1px
-    );
+position:fixed;
 
 
-    background-size:18px 18px;
+inset:0;
+
+
+pointer-events:none;
+
+
+opacity:.035;
+
+
+background-image:
+
+radial-gradient(
+white 1px,
+transparent 1px
+);
+
+
+background-size:18px 18px;
+
 
 }
+
+
 
 
 
@@ -111,25 +133,29 @@ BENTO GRID
 ========================= */
 
 
-.bento-grid {
+.bento-grid{
 
 
-    max-width:1600px;
-
-    margin:auto;
-
-    display:grid;
+max-width:1600px;
 
 
-    grid-template-columns:
-
-    repeat(12,1fr);
+margin:auto;
 
 
-    gap:22px;
+display:grid;
+
+
+grid-template-columns:
+
+repeat(12,1fr);
+
+
+gap:22px;
 
 
 }
+
+
 
 
 
@@ -142,56 +168,73 @@ CARDS
 ========================= */
 
 
-.card {
+.card{
 
 
-    background:
+background:
 
-    rgba(
-        17,
-        18,
-        22,
-        .95
-    );
-
-
-    border:
-
-    1px solid var(--border);
+rgba(
+17,
+18,
+22,
+.96
+);
 
 
+border:
 
-    border-radius:
-
-    var(--radius);
+1px solid var(--border);
 
 
 
-    padding:34px;
+border-radius:
+
+var(--radius);
 
 
 
-    position:relative;
+padding:34px;
 
 
 
-    overflow:hidden;
+position:relative;
 
 
 
-    opacity:0;
+overflow:hidden;
 
 
 
-    transform:
-
-    translateY(30px);
+opacity:0;
 
 
 
-    transition:
+transform:
 
-    var(--transition);
+translateY(30px);
+
+
+
+transition:
+
+.5s var(--ease);
+
+
+
+}
+
+
+
+
+.card.active{
+
+
+opacity:1;
+
+
+transform:
+
+translateY(0);
 
 
 }
@@ -200,33 +243,17 @@ CARDS
 
 
 
-.card.active {
+.card:hover{
 
 
-    opacity:1;
+transform:
+
+translateY(-5px);
 
 
-    transform:
+border-color:
 
-    translateY(0);
-
-
-}
-
-
-
-
-.card:hover {
-
-
-    transform:
-
-    translateY(-5px);
-
-
-    border-color:
-
-    var(--cyan);
+var(--cyan);
 
 
 }
@@ -237,63 +264,70 @@ CARDS
 
 
 
-/* CURSOR LIGHT EFFECT */
+
+/* CURSOR GLOW */
 
 
-.card::before {
+.card::before{
 
 
-    content:"";
+content:"";
 
 
-    position:absolute;
+position:absolute;
 
 
-    width:300px;
+width:300px;
 
 
-    height:300px;
-
-
-    left:var(--mouse-x,50%);
-
-
-    top:var(--mouse-y,50%);
+height:300px;
 
 
 
-    transform:
+left:
 
-    translate(-50%,-50%);
-
-
-
-    background:
-
-    radial-gradient(
-
-        circle,
-
-        rgba(
-            0,
-            234,
-            255,
-            .15
-        ),
-
-        transparent 70%
-
-    );
+var(--mouse-x,50%);
 
 
 
-    opacity:0;
+top:
+
+var(--mouse-y,50%);
 
 
-    transition:.5s;
+
+transform:
+
+translate(-50%,-50%);
 
 
-    pointer-events:none;
+
+background:
+
+radial-gradient(
+
+circle,
+
+rgba(
+0,
+234,
+255,
+.16
+),
+
+transparent 70%
+
+);
+
+
+
+opacity:0;
+
+
+transition:.5s;
+
+
+pointer-events:none;
 
 
 }
@@ -301,10 +335,10 @@ CARDS
 
 
 
-.card:hover::before {
+.card:hover::before{
 
 
-    opacity:1;
+opacity:1;
 
 
 }
@@ -322,37 +356,20 @@ BENTO POSITIONS
 ========================= */
 
 
-.hero {
+.hero{
 
 
-    grid-column:span 8;
+grid-column:
 
-    grid-row:span 2;
-
-    min-height:600px;
+span 8;
 
 
-}
+grid-row:
+
+span 2;
 
 
-
-.profile {
-
-
-    grid-column:span 4;
-
-
-}
-
-
-
-.hardware {
-
-
-    grid-column:span 8;
-
-
-    grid-row:span 2;
+min-height:600px;
 
 
 }
@@ -360,37 +377,12 @@ BENTO POSITIONS
 
 
 
-.timeline {
+.profile{
 
 
-    grid-column:span 4;
+grid-column:
 
-
-    max-height:280px;
-
-
-    transition:
-
-    max-height .9s cubic-bezier(
-        .22,
-        1,
-        .36,
-        1
-    ),
-
-    box-shadow 1s ease,
-
-    border-color 1s ease;
-
-
-}
-
-
-
-.timeline.expanded {
-
-
-    max-height:700px;
+span 4;
 
 
 }
@@ -398,23 +390,17 @@ BENTO POSITIONS
 
 
 
+.hardware{
 
 
-.stack {
+grid-column:
+
+span 8;
 
 
-    grid-column:span 4;
+grid-row:
 
-
-}
-
-
-
-
-.entrepreneur {
-
-
-    grid-column:span 4;
+span 2;
 
 
 }
@@ -422,10 +408,217 @@ BENTO POSITIONS
 
 
 
-.connect {
+.timeline{
 
 
-    grid-column:span 4;
+grid-column:
+
+span 4;
+
+
+max-height:300px;
+
+
+transition:
+
+
+max-height .9s var(--ease),
+
+
+box-shadow 1s ease,
+
+
+border-color 1s ease;
+
+
+
+}
+
+
+
+
+
+.timeline.expanded{
+
+
+max-height:750px;
+
+
+}
+
+
+
+
+
+.stack{
+
+
+grid-column:
+
+span 4;
+
+
+}
+
+
+
+
+.entrepreneur{
+
+
+grid-column:
+
+span 4;
+
+
+}
+
+
+
+
+.connect{
+
+
+grid-column:
+
+span 4;
+
+
+}
+
+
+
+
+
+
+
+
+
+/* =========================
+TIMELINE GLOW ANIMATION
+========================= */
+
+
+.timeline.project-active::after{
+
+
+content:"";
+
+
+position:absolute;
+
+
+inset:-2px;
+
+
+
+border-radius:
+
+28px;
+
+
+
+background:
+
+linear-gradient(
+
+90deg,
+
+transparent,
+
+var(--cyan),
+
+var(--green),
+
+var(--cyan),
+
+transparent
+
+);
+
+
+
+background-size:
+
+300% 100%;
+
+
+
+animation:
+
+borderFlow 5s var(--ease) forwards;
+
+
+
+pointer-events:none;
+
+
+
+z-index:0;
+
+
+}
+
+
+
+
+
+@keyframes borderFlow{
+
+
+0%{
+
+
+background-position:
+
+0%;
+
+
+
+opacity:0;
+
+
+}
+
+
+
+20%{
+
+
+opacity:1;
+
+
+}
+
+
+
+70%{
+
+
+background-position:
+
+100%;
+
+
+opacity:1;
+
+
+}
+
+
+
+100%{
+
+
+background-position:
+
+200%;
+
+
+opacity:0;
+
+
+}
 
 
 }
@@ -443,76 +636,81 @@ TERMINAL DOTS
 ========================= */
 
 
-.terminal-dots {
+.terminal-dots{
 
 
-    display:flex;
+display:flex;
 
 
-    gap:10px;
+gap:10px;
 
 
-    margin-bottom:25px;
-
-
-}
-
-
-
-.terminal-dots span {
-
-
-    width:14px;
-
-
-    height:14px;
-
-
-    border-radius:50%;
-
-
-    display:flex;
-
-
-    justify-content:center;
-
-
-    align-items:center;
-
-
-    font-size:10px;
-
-
-    color:black;
+margin-bottom:25px;
 
 
 }
 
 
 
+.terminal-dots span{
 
-.mac-red {
+
+width:14px;
+
+
+height:14px;
+
+
+border-radius:50%;
+
+
+display:flex;
+
+
+align-items:center;
+
+
+justify-content:center;
+
+
+font-size:10px;
+
+
+color:black;
+
+
+transition:.3s;
+
+
+}
+
+
+
+.mac-red{
 
 
 background:#ff5f57;
 
+
 }
 
 
 
-.mac-yellow {
+.mac-yellow{
 
 
 background:#febc2e;
 
+
 }
 
 
 
-.mac-green {
+.mac-green{
 
 
 background:#28c840;
+
 
 }
 
@@ -529,19 +727,19 @@ TEXT
 ========================= */
 
 
-.label {
+.label{
 
 
-    color:var(--green);
+color:var(--green);
 
 
-    font-size:12px;
+font-size:12px;
 
 
-    letter-spacing:2px;
+letter-spacing:2px;
 
 
-    margin-bottom:25px;
+margin-bottom:25px;
 
 
 }
@@ -549,7 +747,8 @@ TEXT
 
 
 
-h1 {
+
+h1{
 
 
 font-size:
@@ -574,10 +773,12 @@ margin-bottom:35px;
 
 
 
-h2 {
+
+h2{
 
 
 font-size:30px;
+
 
 margin-bottom:25px;
 
@@ -586,18 +787,24 @@ margin-bottom:25px;
 
 
 
-h3 {
+
+
+h3{
+
 
 margin-bottom:15px;
+
 
 }
 
 
 
-p {
+
+p{
 
 
 color:var(--muted);
+
 
 line-height:1.8;
 
@@ -617,10 +824,13 @@ BUTTONS
 ========================= */
 
 
-.buttons {
+.buttons{
 
 
 display:flex;
+
+
+flex-wrap:wrap;
 
 
 gap:14px;
@@ -629,20 +839,12 @@ gap:14px;
 margin-top:40px;
 
 
-flex-wrap:wrap;
-
-
 }
 
 
 
-.buttons a {
 
-
-text-decoration:none;
-
-
-color:white;
+.buttons a{
 
 
 background:#181a20;
@@ -663,8 +865,13 @@ padding:
 border-radius:14px;
 
 
+text-decoration:none;
 
-transition:var(--transition);
+
+color:white;
+
+
+transition:.4s var(--ease);
 
 
 }
@@ -672,7 +879,7 @@ transition:var(--transition);
 
 
 
-.buttons a:hover {
+.buttons a:hover{
 
 
 color:var(--green);
@@ -701,7 +908,7 @@ PROFILE
 ========================= */
 
 
-.profile-item {
+.profile-item{
 
 
 padding:18px 0;
@@ -716,13 +923,14 @@ border-bottom:
 
 
 
-.profile-item span {
 
-
-color:var(--muted);
+.profile-item span{
 
 
 font-size:12px;
+
+
+color:var(--muted);
 
 
 }
@@ -740,7 +948,7 @@ PROCESSOR
 ========================= */
 
 
-.pipeline {
+.pipeline{
 
 
 display:flex;
@@ -756,7 +964,7 @@ margin:35px 0;
 
 
 
-.pipeline div {
+.pipeline div{
 
 
 flex:1;
@@ -785,7 +993,7 @@ border-radius:12px;
 
 
 
-pre {
+pre{
 
 
 background:#050505;
@@ -808,7 +1016,7 @@ overflow:auto;
 
 
 
-.hardware li {
+.hardware li{
 
 
 margin-top:15px;
@@ -828,11 +1036,11 @@ color:var(--muted);
 
 
 /* =========================
-TIMELINE
+YEAR BUTTONS
 ========================= */
 
 
-.year-buttons {
+.year-buttons{
 
 
 display:flex;
@@ -848,7 +1056,7 @@ margin-bottom:25px;
 
 
 
-.year-buttons button {
+.year-buttons button{
 
 
 background:#181a20;
@@ -876,14 +1084,15 @@ cursor:pointer;
 font-family:inherit;
 
 
-transition:var(--transition);
+transition:.4s var(--ease);
 
 
 }
 
 
 
-.year-buttons button:hover {
+
+.year-buttons button:hover{
 
 
 color:var(--green);
@@ -903,24 +1112,97 @@ translateY(-3px);
 
 
 
-#timeline-content {
 
 
-opacity:.8;
 
 
-transition:
+/* =========================
+PROJECT CARDS INSIDE TIMELINE
+========================= */
 
-opacity .6s ease,
 
-transform .6s ease;
+.project-grid{
+
+
+display:flex;
+
+
+flex-direction:column;
+
+
+gap:15px;
 
 
 }
 
 
 
-.timeline.expanded #timeline-content {
+
+.project-item{
+
+
+background:#181a20;
+
+
+border:
+
+1px solid var(--border);
+
+
+border-radius:18px;
+
+
+padding:20px;
+
+
+opacity:0;
+
+
+transform:
+
+translateY(20px);
+
+
+
+animation:
+
+projectReveal .6s var(--ease) forwards;
+
+
+}
+
+
+
+
+.project-item h4{
+
+
+color:white;
+
+
+margin-bottom:10px;
+
+
+}
+
+
+
+.project-item p{
+
+
+font-size:14px;
+
+
+}
+
+
+
+
+
+@keyframes projectReveal{
+
+
+to{
 
 
 opacity:1;
@@ -929,98 +1211,6 @@ opacity:1;
 transform:
 
 translateY(0);
-
-
-}
-
-
-
-
-
-
-
-
-
-/* PROJECT SCAN EFFECT */
-
-
-.timeline.project-active {
-
-
-animation:
-
-timelineGlow 5s ease forwards;
-
-
-}
-
-
-
-
-
-@keyframes timelineGlow {
-
-
-0% {
-
-
-border-color:var(--border);
-
-
-box-shadow:none;
-
-
-}
-
-
-
-20% {
-
-
-border-color:var(--cyan);
-
-
-box-shadow:
-
-0 0 35px rgba(
-0,
-234,
-255,
-.25
-);
-
-
-}
-
-
-
-60% {
-
-
-border-color:var(--green);
-
-
-box-shadow:
-
-0 0 45px rgba(
-0,
-255,
-136,
-.2
-);
-
-
-}
-
-
-
-100% {
-
-
-border-color:var(--border);
-
-
-box-shadow:none;
 
 
 }
@@ -1041,7 +1231,7 @@ TECH TAGS
 ========================= */
 
 
-.tags {
+.tags{
 
 
 display:flex;
@@ -1057,7 +1247,8 @@ gap:10px;
 
 
 
-.tags span {
+
+.tags span{
 
 
 background:#181a20;
@@ -1083,7 +1274,8 @@ font-size:13px;
 
 
 
-.tags span:hover {
+
+.tags span:hover{
 
 
 color:var(--green);
@@ -1107,7 +1299,7 @@ CONNECT
 ========================= */
 
 
-.connect {
+.connect{
 
 
 display:flex;
@@ -1123,7 +1315,7 @@ gap:18px;
 
 
 
-.connect a {
+.connect a{
 
 
 color:white;
@@ -1136,7 +1328,7 @@ text-decoration:none;
 
 
 
-.connect a:hover {
+.connect a:hover{
 
 
 color:var(--green);
@@ -1160,7 +1352,7 @@ RESPONSIVE
 @media(max-width:1100px){
 
 
-.bento-grid {
+.bento-grid{
 
 
 grid-template-columns:
@@ -1172,11 +1364,14 @@ repeat(6,1fr);
 
 
 
+
 .hero,
-.hardware {
+.hardware{
 
 
-grid-column:span 6;
+grid-column:
+
+span 6;
 
 
 }
@@ -1188,18 +1383,18 @@ grid-column:span 6;
 .timeline,
 .stack,
 .entrepreneur,
-.connect {
+.connect{
 
 
-grid-column:span 3;
+grid-column:
+
+span 3;
 
 
 }
 
 
 }
-
-
 
 
 
@@ -1208,15 +1403,17 @@ grid-column:span 3;
 @media(max-width:700px){
 
 
-body {
+body{
+
 
 padding:16px;
+
 
 }
 
 
 
-.bento-grid {
+.bento-grid{
 
 
 display:flex;
@@ -1229,7 +1426,7 @@ flex-direction:column;
 
 
 
-.card {
+.card{
 
 
 padding:24px;
