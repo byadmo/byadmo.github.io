@@ -262,9 +262,9 @@ function activateYear(button) {
 }
 
 yearButtons.forEach((button) => {
-  if (!isTouchDevice) {
-    button.addEventListener("mouseenter", () => activateYear(button));
-  }
+  // Always attach hover — touch devices simply never fire mouseenter from a tap,
+  // so this is safe on phones and fixes hover on touch-capable laptops that use a mouse.
+  button.addEventListener("mouseenter", () => activateYear(button));
   button.addEventListener("click", () => activateYear(button));
   button.addEventListener("focus", () => activateYear(button));
 });
