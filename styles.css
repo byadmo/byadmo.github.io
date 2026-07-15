@@ -1,6 +1,6 @@
 /* =====================================================
    ADAM MORGAN PORTFOLIO
-   RESTORED APPLE x TERMINAL DESIGN
+   APPLE x TERMINAL ENGINEERING SYSTEM
 ===================================================== */
 
 
@@ -19,10 +19,10 @@
     --radius:26px;
 
     --transition:
-    .35s cubic-bezier(
-        .2,
-        .8,
-        .2,
+    .4s cubic-bezier(
+        .22,
+        1,
+        .36,
         1
     );
 
@@ -36,12 +36,9 @@
 
     margin:0;
     padding:0;
-
     box-sizing:border-box;
 
 }
-
-
 
 
 
@@ -50,8 +47,6 @@ html {
     scroll-behavior:smooth;
 
 }
-
-
 
 
 
@@ -77,10 +72,9 @@ body {
 
 
 
-
-/* =====================================================
+/* =========================
 BACKGROUND
-===================================================== */
+========================= */
 
 
 .noise {
@@ -112,11 +106,9 @@ BACKGROUND
 
 
 
-
-
-/* =====================================================
+/* =========================
 BENTO GRID
-===================================================== */
+========================= */
 
 
 .bento-grid {
@@ -124,9 +116,7 @@ BENTO GRID
 
     max-width:1600px;
 
-
     margin:auto;
-
 
     display:grid;
 
@@ -134,7 +124,6 @@ BENTO GRID
     grid-template-columns:
 
     repeat(12,1fr);
-
 
 
     gap:22px;
@@ -148,11 +137,9 @@ BENTO GRID
 
 
 
-
-
-/* =====================================================
+/* =========================
 CARDS
-===================================================== */
+========================= */
 
 
 .card {
@@ -229,8 +216,6 @@ CARDS
 
 
 
-
-
 .card:hover {
 
 
@@ -239,11 +224,9 @@ CARDS
     translateY(-5px);
 
 
-
     border-color:
 
     var(--cyan);
-
 
 
 }
@@ -254,7 +237,7 @@ CARDS
 
 
 
-/* MOUSE LIGHT */
+/* CURSOR LIGHT EFFECT */
 
 
 .card::before {
@@ -272,16 +255,10 @@ CARDS
     height:300px;
 
 
-
-    left:
-
-    var(--mouse-x,50%);
+    left:var(--mouse-x,50%);
 
 
-
-    top:
-
-    var(--mouse-y,50%);
+    top:var(--mouse-y,50%);
 
 
 
@@ -295,16 +272,16 @@ CARDS
 
     radial-gradient(
 
-    circle,
+        circle,
 
-    rgba(
-        0,
-        234,
-        255,
-        .15
-    ),
+        rgba(
+            0,
+            234,
+            255,
+            .15
+        ),
 
-    transparent 70%
+        transparent 70%
 
     );
 
@@ -313,16 +290,13 @@ CARDS
     opacity:0;
 
 
-
-    transition:.3s;
-
+    transition:.5s;
 
 
     pointer-events:none;
 
 
 }
-
 
 
 
@@ -343,9 +317,9 @@ CARDS
 
 
 
-/* =====================================================
+/* =========================
 BENTO POSITIONS
-===================================================== */
+========================= */
 
 
 .hero {
@@ -353,16 +327,12 @@ BENTO POSITIONS
 
     grid-column:span 8;
 
-
     grid-row:span 2;
-
 
     min-height:600px;
 
 
 }
-
-
 
 
 
@@ -373,7 +343,6 @@ BENTO POSITIONS
 
 
 }
-
 
 
 
@@ -391,14 +360,42 @@ BENTO POSITIONS
 
 
 
-
 .timeline {
 
 
     grid-column:span 4;
 
 
+    max-height:280px;
+
+
+    transition:
+
+    max-height .9s cubic-bezier(
+        .22,
+        1,
+        .36,
+        1
+    ),
+
+    box-shadow 1s ease,
+
+    border-color 1s ease;
+
+
 }
+
+
+
+.timeline.expanded {
+
+
+    max-height:700px;
+
+
+}
+
+
 
 
 
@@ -410,7 +407,6 @@ BENTO POSITIONS
 
 
 }
-
 
 
 
@@ -442,9 +438,9 @@ BENTO POSITIONS
 
 
 
-/* =====================================================
+/* =========================
 TERMINAL DOTS
-===================================================== */
+========================= */
 
 
 .terminal-dots {
@@ -452,9 +448,12 @@ TERMINAL DOTS
 
     display:flex;
 
+
     gap:10px;
 
+
     margin-bottom:25px;
+
 
 }
 
@@ -464,6 +463,7 @@ TERMINAL DOTS
 
 
     width:14px;
+
 
     height:14px;
 
@@ -487,6 +487,7 @@ TERMINAL DOTS
 
 
 }
+
 
 
 
@@ -523,9 +524,9 @@ background:#28c840;
 
 
 
-/* =====================================================
+/* =========================
 TEXT
-===================================================== */
+========================= */
 
 
 .label {
@@ -548,66 +549,57 @@ TEXT
 
 
 
-
 h1 {
 
 
-    font-size:
+font-size:
 
-    clamp(
-        3rem,
-        6vw,
-        5.5rem
-    );
-
-
-    line-height:1.05;
+clamp(
+3rem,
+6vw,
+5.5rem
+);
 
 
-    letter-spacing:-3px;
+line-height:1.05;
 
 
-    margin-bottom:35px;
+letter-spacing:-3px;
+
+
+margin-bottom:35px;
 
 
 }
-
-
 
 
 
 h2 {
 
 
-    font-size:30px;
+font-size:30px;
 
-
-    margin-bottom:25px;
+margin-bottom:25px;
 
 
 }
-
 
 
 
 h3 {
 
-
-    margin-bottom:15px;
+margin-bottom:15px;
 
 }
-
-
 
 
 
 p {
 
 
-    color:var(--muted);
+color:var(--muted);
 
-
-    line-height:1.8;
+line-height:1.8;
 
 
 }
@@ -620,66 +612,62 @@ p {
 
 
 
-/* =====================================================
+/* =========================
 BUTTONS
-===================================================== */
+========================= */
 
 
 .buttons {
 
 
-    display:flex;
+display:flex;
 
 
-    flex-wrap:wrap;
+gap:14px;
 
 
-    gap:14px;
+margin-top:40px;
 
 
-    margin-top:40px;
+flex-wrap:wrap;
 
 
 }
-
-
 
 
 
 .buttons a {
 
 
-    text-decoration:none;
+text-decoration:none;
 
 
-    color:white;
+color:white;
 
 
-    background:#181a20;
+background:#181a20;
 
 
+border:
 
-    border:
-
-    1px solid var(--border);
-
-
-
-    padding:
-
-    14px 22px;
+1px solid var(--border);
 
 
 
-    border-radius:14px;
+padding:
+
+14px 22px;
 
 
 
-    transition:var(--transition);
+border-radius:14px;
+
+
+
+transition:var(--transition);
 
 
 }
-
 
 
 
@@ -687,15 +675,15 @@ BUTTONS
 .buttons a:hover {
 
 
-    color:var(--green);
+color:var(--green);
 
 
-    border-color:var(--green);
+border-color:var(--green);
 
 
-    transform:
+transform:
 
-    translateY(-3px);
+translateY(-3px);
 
 
 }
@@ -708,20 +696,20 @@ BUTTONS
 
 
 
-/* =====================================================
+/* =========================
 PROFILE
-===================================================== */
+========================= */
 
 
 .profile-item {
 
 
-    padding:18px 0;
+padding:18px 0;
 
 
-    border-bottom:
+border-bottom:
 
-    1px solid var(--border);
+1px solid var(--border);
 
 
 }
@@ -731,10 +719,10 @@ PROFILE
 .profile-item span {
 
 
-    color:var(--muted);
+color:var(--muted);
 
 
-    font-size:12px;
+font-size:12px;
 
 
 }
@@ -747,47 +735,48 @@ PROFILE
 
 
 
-/* =====================================================
-CPU
-===================================================== */
+/* =========================
+PROCESSOR
+========================= */
 
 
 .pipeline {
 
 
-    display:flex;
+display:flex;
 
 
-    gap:12px;
+gap:12px;
 
 
-    margin:35px 0;
+margin:35px 0;
 
 
 }
-
 
 
 
 .pipeline div {
 
 
-    flex:1;
+flex:1;
 
 
-    text-align:center;
+text-align:center;
 
 
-    background:#181a20;
+padding:14px;
 
 
-    border:1px solid var(--border);
+background:#181a20;
 
 
-    padding:14px;
+border:
+
+1px solid var(--border);
 
 
-    border-radius:12px;
+border-radius:12px;
 
 
 }
@@ -799,33 +788,22 @@ CPU
 pre {
 
 
-    background:#050505;
+background:#050505;
 
 
-    color:var(--green);
+color:var(--green);
 
 
-    padding:25px;
+padding:25px;
 
 
-    border-radius:18px;
+border-radius:18px;
 
 
-    overflow:auto;
-
-
-    border:
-
-    1px solid rgba(
-        0,
-        255,
-        136,
-        .2
-    );
+overflow:auto;
 
 
 }
-
 
 
 
@@ -833,10 +811,10 @@ pre {
 .hardware li {
 
 
-    margin-top:15px;
+margin-top:15px;
 
 
-    color:var(--muted);
+color:var(--muted);
 
 
 }
@@ -849,78 +827,74 @@ pre {
 
 
 
-/* =====================================================
+/* =========================
 TIMELINE
-===================================================== */
+========================= */
 
 
 .year-buttons {
 
 
-    display:flex;
+display:flex;
 
 
-    gap:12px;
+gap:12px;
 
 
-    margin-bottom:25px;
+margin-bottom:25px;
 
 
 }
-
-
 
 
 
 .year-buttons button {
 
 
-    background:#181a20;
+background:#181a20;
 
 
-    color:white;
+color:white;
 
 
-    border:
+border:
 
-    1px solid var(--border);
-
-
-
-    padding:
-
-    12px 22px;
+1px solid var(--border);
 
 
+padding:
 
-    border-radius:12px;
-
-
-
-    cursor:pointer;
+12px 22px;
 
 
-
-    font-family:inherit;
-
+border-radius:12px;
 
 
-    transition:var(--transition);
+cursor:pointer;
+
+
+font-family:inherit;
+
+
+transition:var(--transition);
 
 
 }
-
-
 
 
 
 .year-buttons button:hover {
 
 
-    color:var(--green);
+color:var(--green);
 
 
-    border-color:var(--green);
+border-color:var(--green);
+
+
+transform:
+
+translateY(-3px);
 
 
 }
@@ -929,19 +903,127 @@ TIMELINE
 
 
 
+#timeline-content {
+
+
+opacity:.8;
+
+
+transition:
+
+opacity .6s ease,
+
+transform .6s ease;
+
+
+}
+
+
+
+.timeline.expanded #timeline-content {
+
+
+opacity:1;
+
+
+transform:
+
+translateY(0);
+
+
+}
+
+
+
+
+
+
+
+
+
+/* PROJECT SCAN EFFECT */
 
 
 .timeline.project-active {
 
 
-    box-shadow:
+animation:
 
-    0 0 45px rgba(
-        0,
-        234,
-        255,
-        .15
-    );
+timelineGlow 5s ease forwards;
+
+
+}
+
+
+
+
+
+@keyframes timelineGlow {
+
+
+0% {
+
+
+border-color:var(--border);
+
+
+box-shadow:none;
+
+
+}
+
+
+
+20% {
+
+
+border-color:var(--cyan);
+
+
+box-shadow:
+
+0 0 35px rgba(
+0,
+234,
+255,
+.25
+);
+
+
+}
+
+
+
+60% {
+
+
+border-color:var(--green);
+
+
+box-shadow:
+
+0 0 45px rgba(
+0,
+255,
+136,
+.2
+);
+
+
+}
+
+
+
+100% {
+
+
+border-color:var(--border);
+
+
+box-shadow:none;
+
+
+}
 
 
 }
@@ -954,9 +1036,9 @@ TIMELINE
 
 
 
-/* =====================================================
+/* =========================
 TECH TAGS
-===================================================== */
+========================= */
 
 
 .tags {
@@ -981,21 +1063,23 @@ gap:10px;
 background:#181a20;
 
 
-border:1px solid var(--border);
+padding:
 
-
-padding:8px 14px;
+8px 14px;
 
 
 border-radius:999px;
+
+
+border:
+
+1px solid var(--border);
 
 
 font-size:13px;
 
 
 }
-
-
 
 
 
@@ -1018,9 +1102,9 @@ border-color:var(--green);
 
 
 
-/* =====================================================
+/* =========================
 CONNECT
-===================================================== */
+========================= */
 
 
 .connect {
@@ -1039,8 +1123,6 @@ gap:18px;
 
 
 
-
-
 .connect a {
 
 
@@ -1051,8 +1133,6 @@ text-decoration:none;
 
 
 }
-
-
 
 
 
@@ -1072,9 +1152,9 @@ color:var(--green);
 
 
 
-/* =====================================================
+/* =========================
 RESPONSIVE
-===================================================== */
+========================= */
 
 
 @media(max-width:1100px){
@@ -1092,7 +1172,6 @@ repeat(6,1fr);
 
 
 
-
 .hero,
 .hardware {
 
@@ -1101,7 +1180,6 @@ grid-column:span 6;
 
 
 }
-
 
 
 
@@ -1125,14 +1203,14 @@ grid-column:span 3;
 
 
 
+
+
 @media(max-width:700px){
 
 
 body {
 
-
 padding:16px;
-
 
 }
 
@@ -1158,19 +1236,6 @@ padding:24px;
 
 
 }
-
-
-
-
-
-.pipeline {
-
-
-flex-wrap:wrap;
-
-
-}
-
 
 
 }
