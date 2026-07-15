@@ -189,13 +189,32 @@ body::before {
 }
 .timeline {
   grid-column: span 4;
+  height: 300px;
   max-height: 300px;
   overflow: hidden;
   contain: layout paint;
+  display: flex;
+  flex-direction: column;
   transition: max-height 1s var(--ease), transform .7s var(--ease), border-color .5s ease, box-shadow .5s ease;
 }
-.timeline.expanded { max-height: 850px; }
+.timeline.expanded { max-height: 300px; }
 .timeline:hover { transform: translateY(-8px); }
+
+#timeline-content { min-height: 0; }
+
+.timeline.expanded #timeline-content {
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 8px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--cyan) transparent;
+}
+
+.timeline.expanded #timeline-content::-webkit-scrollbar { width: 5px; }
+.timeline.expanded #timeline-content::-webkit-scrollbar-thumb {
+  background: var(--cyan);
+  border-radius: 999px;
+}
 .stack { grid-column: span 4; }
 .entrepreneur { grid-column: span 4; }
 .connect { grid-column: span 4; }
@@ -435,7 +454,9 @@ pre code { font-family: inherit; background: transparent; }
   .hardware { order: 2; }
   .profile { order: 3; }
   .timeline { order: 4; max-height: none; }
+  .timeline { height: auto; display: block; }
   .timeline.expanded { max-height: 1000px; }
+  .timeline.expanded #timeline-content { overflow-y: visible; padding-right: 0; }
   .stack { order: 5; }
   .entrepreneur { order: 6; }
   .connect { order: 7; }
