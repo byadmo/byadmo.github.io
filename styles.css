@@ -23,7 +23,6 @@
 }
 
 
-
 * {
 
     margin:0;
@@ -46,7 +45,7 @@ body {
 
     background:var(--bg);
 
-    color:var(--white);
+    color:white;
 
     font-family:
     "JetBrains Mono",
@@ -62,7 +61,6 @@ body {
 
 
 
-
 .noise {
 
     position:fixed;
@@ -75,8 +73,8 @@ body {
 
     background-image:
     radial-gradient(
-    white 1px,
-    transparent 1px
+        white 1px,
+        transparent 1px
     );
 
     background-size:14px 14px;
@@ -86,10 +84,9 @@ body {
 
 
 
-
-/* =====================
+/* =========================
    BENTO GRID
-===================== */
+========================= */
 
 
 .grid {
@@ -105,33 +102,33 @@ body {
 
     gap:22px;
 
+    align-items:stretch;
+
 }
 
 
 
 
-
-/* =====================
-   CARDS
-===================== */
+/* =========================
+   CARD SYSTEM
+========================= */
 
 
 .card {
 
-    background:
-    var(--card);
-
-    border:
-    1px solid var(--border);
-
-    border-radius:
-    var(--radius);
-
-    padding:34px;
-
     position:relative;
 
     overflow:hidden;
+
+    background:var(--card);
+
+    border:
+
+    1px solid var(--border);
+
+    border-radius:var(--radius);
+
+    padding:34px;
 
     display:flex;
 
@@ -142,12 +139,12 @@ body {
     transform:
     translateY(30px);
 
-    transition:
-    var(--transition);
-
 
     --x:50%;
     --y:50%;
+
+
+    transition:var(--transition);
 
 }
 
@@ -169,8 +166,7 @@ body {
     transform:
     translateY(-6px);
 
-    border-color:
-    var(--cyan);
+    border-color:var(--cyan);
 
     box-shadow:
 
@@ -187,13 +183,14 @@ body {
 
     position:absolute;
 
-    width:300px;
+    width:280px;
 
-    height:300px;
+    height:280px;
 
     left:var(--x);
 
     top:var(--y);
+
 
     transform:
     translate(-50%,-50%);
@@ -212,8 +209,7 @@ body {
 
     pointer-events:none;
 
-    transition:
-    var(--transition);
+    transition:.4s;
 
 }
 
@@ -229,9 +225,9 @@ body {
 
 
 
-/* =====================
+/* =========================
    TYPOGRAPHY
-===================== */
+========================= */
 
 
 h1 {
@@ -251,9 +247,9 @@ h1 {
 
 h2 {
 
-    font-size:28px;
+    font-size:30px;
 
-    margin-bottom:24px;
+    margin-bottom:25px;
 
 }
 
@@ -262,8 +258,6 @@ h2 {
 h3 {
 
     font-size:18px;
-
-    margin-bottom:15px;
 
 }
 
@@ -294,9 +288,9 @@ p {
 
 
 
-/* =====================
-   TERMINAL
-===================== */
+/* =========================
+   TERMINAL DOTS
+========================= */
 
 
 .terminal {
@@ -322,7 +316,6 @@ p {
 }
 
 
-
 .red {
 
     background:#ff5f57;
@@ -330,13 +323,11 @@ p {
 }
 
 
-
 .yellow {
 
     background:#febc2e;
 
 }
-
 
 
 .green {
@@ -350,32 +341,19 @@ p {
 
 
 
-/* =====================
+
+/* =========================
    HERO
-===================== */
+========================= */
 
 
 .hero {
 
-    grid-column:
-    span 8;
+    grid-column:span 8;
 
-    grid-row:
-    span 2;
+    grid-row:span 2;
 
-    min-height:620px;
-
-}
-
-
-
-.hero p:not(.label) {
-
-    max-width:720px;
-
-    font-size:17px;
-
-    margin-top:25px;
+    min-height:650px;
 
 }
 
@@ -383,9 +361,9 @@ p {
 
 .typing {
 
-    margin-top:10px;
-
     font-size:20px;
+
+    margin-top:15px;
 
 }
 
@@ -409,8 +387,7 @@ p {
 
     background:var(--green);
 
-    animation:
-    blink 1s infinite;
+    animation:blink 1s infinite;
 
 }
 
@@ -429,6 +406,7 @@ p {
 
 
 
+
 .buttons {
 
     display:flex;
@@ -437,38 +415,27 @@ p {
 
     margin-top:40px;
 
-    flex-wrap:wrap;
-
 }
 
 
 
 .buttons a {
 
-    padding:
-
-    14px 24px;
-
+    padding:14px 24px;
 
     border:
 
     1px solid var(--border);
 
-
     border-radius:14px;
-
-
-    color:white;
-
-
-    text-decoration:none;
-
 
     background:#18181b;
 
+    color:white;
 
-    transition:
-    var(--transition);
+    text-decoration:none;
+
+    transition:.3s;
 
 }
 
@@ -480,28 +447,22 @@ p {
 
     border-color:var(--green);
 
-    transform:
-    translateY(-3px);
-
 }
 
 
 
 
 
-
-
-/* =====================
-   BENTO SIZING
-===================== */
+/* =========================
+   BENTO POSITIONS
+========================= */
 
 
 .profile {
 
-    grid-column:
-    span 4;
+    grid-column:span 4;
 
-    min-height:290px;
+    min-height:360px;
 
 }
 
@@ -509,22 +470,19 @@ p {
 
 .hardware {
 
-    grid-column:
-    span 8;
+    grid-column:span 8;
 
-    grid-row:
-    span 2;
+    grid-row:span 2;
 
-    min-height:560px;
+    min-height:650px;
 
 }
 
 
 
-.card:nth-child(4) {
+.creative {
 
-    grid-column:
-    span 4;
+    grid-column:span 4;
 
     min-height:350px;
 
@@ -532,21 +490,9 @@ p {
 
 
 
-.card:nth-child(5) {
+.experience {
 
-    grid-column:
-    span 4;
-
-    min-height:350px;
-
-}
-
-
-
-.card:nth-child(6) {
-
-    grid-column:
-    span 4;
+    grid-column:span 4;
 
     min-height:350px;
 
@@ -554,10 +500,19 @@ p {
 
 
 
-.card:nth-child(7) {
+.toolkit {
 
-    grid-column:
-    span 6;
+    grid-column:span 4;
+
+    min-height:350px;
+
+}
+
+
+
+.metrics {
+
+    grid-column:span 6;
 
     min-height:300px;
 
@@ -565,10 +520,9 @@ p {
 
 
 
-.card:nth-child(8) {
+.socials-card {
 
-    grid-column:
-    span 6;
+    grid-column:span 6;
 
     min-height:300px;
 
@@ -579,37 +533,38 @@ p {
 
 
 
+/* =========================
+   CURRENT FOCUS
+========================= */
 
 
-/* =====================
-   PROFILE
-===================== */
-
-
-.info {
+.profile .info {
 
     display:flex;
 
     flex-direction:column;
 
-    gap:20px;
+    gap:22px;
+
+    margin-top:25px;
 
 }
 
 
 
-.info div {
+.profile .info div {
 
     padding-bottom:15px;
 
     border-bottom:
+
     1px solid var(--border);
 
 }
 
 
 
-.info span {
+.profile .info span {
 
     display:block;
 
@@ -623,22 +578,20 @@ p {
 
 
 
-
-/* =====================
-   CPU CARD
-===================== */
+/* =========================
+   CPU PROJECT
+========================= */
 
 
 .pipeline {
 
     display:flex;
 
-    gap:10px;
+    gap:12px;
+
+    margin:35px 0;
 
     flex-wrap:wrap;
-
-    margin:
-    30px 0;
 
 }
 
@@ -646,18 +599,13 @@ p {
 
 .pipeline span {
 
-    padding:
-
-    14px 18px;
-
-
     background:#18181b;
-
 
     border:
 
     1px solid var(--border);
 
+    padding:14px 18px;
 
     border-radius:12px;
 
@@ -679,15 +627,27 @@ pre {
 
     1px solid var(--border);
 
+    min-height:230px;
+
     overflow:auto;
 
 }
 
 
 
-li {
+.hardware ul {
 
-    margin-top:12px;
+    margin-top:30px;
+
+    padding-left:20px;
+
+}
+
+
+
+.hardware li {
+
+    margin-bottom:16px;
 
     color:var(--muted);
 
@@ -698,10 +658,9 @@ li {
 
 
 
-
-/* =====================
-   TIMELINE
-===================== */
+/* =========================
+   TIMELINE BUTTONS
+========================= */
 
 
 .years {
@@ -726,17 +685,11 @@ li {
 
     1px solid var(--border);
 
-
-    padding:
-
-    12px 18px;
-
+    padding:12px 18px;
 
     border-radius:12px;
 
-
     cursor:pointer;
-
 
     font-family:inherit;
 
@@ -764,84 +717,42 @@ li {
 
 
 
-/* =====================
-   TAGS
-===================== */
 
-
-.tags {
-
-    display:flex;
-
-    gap:10px;
-
-    flex-wrap:wrap;
-
-}
-
-
-
-.tags span {
-
-    background:#18181b;
-
-    border:
-
-    1px solid var(--border);
-
-
-    padding:
-
-    9px 15px;
-
-
-    border-radius:999px;
-
-
-    font-size:13px;
-
-}
-
-
-
-
-
-
-
-/* =====================
-   RESPONSIVE
-===================== */
+/* =========================
+   MOBILE
+========================= */
 
 
 @media(max-width:1100px){
 
 
-    .grid {
+.grid {
 
-        grid-template-columns:
-        repeat(6,1fr);
+    grid-template-columns:
+    repeat(6,1fr);
 
-    }
-
-
-    .hero,
-    .hardware {
-
-        grid-column:
-        span 6;
-
-    }
+}
 
 
-    .profile,
-    .card:nth-child(4),
-    .card:nth-child(5),
-    .card:nth-child(6) {
 
-        grid-column:
-        span 3;
+.hero,
+.hardware {
 
-    }
+    grid-column:span 6;
+
+}
+
+
+
+.profile,
+.creative,
+.experience,
+.toolkit {
+
+    grid-column:span 3;
+
+}
+
 
 
 }
@@ -851,50 +762,52 @@ li {
 @media(max-width:700px){
 
 
-    body {
+body {
 
-        padding:16px;
+    padding:16px;
 
-    }
-
-
-    .grid {
-
-        display:flex;
-
-        flex-direction:column;
-
-    }
+}
 
 
-    .card {
+.grid {
 
-        min-height:auto;
+    display:flex;
 
-        padding:24px;
+    flex-direction:column;
 
-    }
-
-
-    h1 {
-
-        font-size:2.6rem;
-
-    }
+}
 
 
-    .buttons {
+.card {
 
-        flex-direction:column;
+    min-height:auto;
 
-    }
+    padding:24px;
+
+}
 
 
-    .buttons a {
 
-        text-align:center;
+h1 {
 
-    }
+    font-size:2.6rem;
+
+}
+
+
+
+.buttons {
+
+    flex-direction:column;
+
+}
+
+
+.buttons a {
+
+    text-align:center;
+
+}
 
 
 }
