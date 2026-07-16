@@ -3,29 +3,27 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Adam Morgan | Electrical Engineering Portfolio</title>
-<meta name="description" content="Adam Morgan is an Electrical Engineering student building RTL, FPGA, and computer-architecture projects, including a 32-bit pipelined RISC-V CPU core.">
+<title>Adam Morgan | The Builder Engineer</title>
+<meta name="description" content="Adam Morgan is a Computer Engineering student at Toronto Metropolitan University building processors, RTL systems, embedded hardware, and product engineering projects.">
 <meta name="author" content="Adam Morgan">
-<meta name="theme-color" content="#07080a">
+<meta name="theme-color" content="#0a0b0d">
 <link rel="canonical" href="https://admo.one/">
 
-<!-- Open Graph / social preview -->
 <meta property="og:type" content="website">
-<meta property="og:title" content="Adam Morgan | Electrical Engineering Portfolio">
-<meta property="og:description" content="Electrical Engineering student building processor architectures, RTL designs, and FPGA systems.">
+<meta property="og:title" content="Adam Morgan | The Builder Engineer">
+<meta property="og:description" content="Computer Engineering student building processor architectures, RTL designs, embedded systems, and product engineering solutions.">
 <meta property="og:url" content="https://admo.one/">
 <meta property="og:image" content="https://admo.one/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Adam Morgan | Electrical Engineering Portfolio">
-<meta name="twitter:description" content="Electrical Engineering student building processor architectures, RTL designs, and FPGA systems.">
+<meta name="twitter:title" content="Adam Morgan | The Builder Engineer">
+<meta name="twitter:description" content="Computer Engineering student building processor architectures, RTL designs, embedded systems, and product engineering solutions.">
 <meta name="twitter:image" content="https://admo.one/og-image.png">
 
-<!-- Favicon (inline SVG monogram, no external asset needed) -->
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2307080a'/%3E%3Ctext x='32' y='42' font-family='monospace' font-size='26' font-weight='700' fill='%2300eaff' text-anchor='middle'%3EAM%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230a0b0d'/%3E%3Ctext x='32' y='42' font-family='monospace' font-size='26' font-weight='700' fill='%233dd6f5' text-anchor='middle'%3EAM%3C/text%3E%3C/svg%3E">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 
 <script type="application/ld+json">
@@ -34,8 +32,12 @@
   "@type": "Person",
   "name": "Adam Morgan",
   "url": "https://admo.one/",
-  "jobTitle": "Electrical Engineering Student",
-  "description": "Electrical Engineering student specializing in digital systems, processor architecture, RTL design, and FPGA development.",
+  "jobTitle": "Computer Engineering Student",
+  "affiliation": {
+    "@type": "CollegeOrUniversity",
+    "name": "Toronto Metropolitan University"
+  },
+  "description": "Computer Engineering student specializing in digital systems, processor architecture, RTL design, embedded systems, and product engineering.",
   "sameAs": [
     "https://github.com/byadmo",
     "https://www.linkedin.com/in/adammorgan05/"
@@ -48,209 +50,349 @@
 
 <a class="skip-link" href="#main-content">Skip to content</a>
 
-<!-- FPGA SIGNAL BACKGROUND -->
 <div class="cpu-field" id="cpu-field" aria-hidden="true"></div>
 <div class="noise" aria-hidden="true"></div>
 
-<main class="bento-grid" id="main-content">
-
-  <div class="bento-column bento-primary">
+<main class="site-main" id="main-content">
 
   <!-- HERO -->
   <section class="card hero reveal" aria-labelledby="hero-heading">
-    <div class="terminal-dots" aria-hidden="true">
-      <span class="mac-red"></span>
-      <span class="mac-yellow"></span>
-      <span class="mac-green"></span>
-    </div>
-
-    <div class="label">ELECTRICAL_ENGINEERING // RTL // FPGA</div>
-
-    <h1 id="hero-heading">Hi, I'm Adam.<br>I build digital systems.</h1>
+    <div class="label">THE_BUILDER_ENGINEER // COMPUTER_ENGINEERING</div>
+    <p class="hero-name">Adam Morgan</p>
+    <h1 id="hero-heading">Engineering systems.<br>Building products.</h1>
+    <p class="hero-subline">Computer Engineering student at Toronto Metropolitan University — bilingual, Ontario.</p>
 
     <div class="typing-line">
-      <span>Currently Working On:</span>
+      <span>Currently Building:</span>
       <span id="typing" aria-live="polite"></span>
       <span class="cursor" aria-hidden="true"></span>
     </div>
 
-    <p class="description">
-      Electrical Engineering student focused on digital systems, processor
-      architecture, RTL design, FPGA development, and efficient hardware implementation.
-    </p>
-
-    <p class="recruiter-note"><span>STATUS</span> Open to FPGA, RTL, and computer architecture internship opportunities.</p>
+    <p class="description">I build outside the classroom — processors, FPGA systems, embedded hardware, and products that solve real problems.</p>
+    <p class="recruiter-note"><span>STATUS</span> Open to internships in hardware, RTL, embedded, and product engineering.</p>
 
     <div class="buttons">
-      <a href="#featured-work" id="projects-button">$ view_selected_work</a>
-      <a href="#contact">$ request_resume</a>
-      <a href="https://github.com/byadmo" target="_blank" rel="noopener noreferrer">$ view_github</a>
-      <a href="#contact">$ contact_adam</a>
+      <a href="#case-studies">View case studies</a>
+      <a href="#timeline-card">Engineering journey</a>
+      <a href="https://github.com/byadmo" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="#contact">Contact</a>
     </div>
   </section>
 
-  <!-- HARDWARE PROJECT -->
-  <section class="card hardware reveal" aria-labelledby="hardware-heading">
-    <div class="terminal-dots" aria-hidden="true">
-      <span class="mac-red">×</span>
-      <span class="mac-yellow">−</span>
-      <span class="mac-green">+</span>
+  <!-- ENGINEERING PROFILE -->
+  <section class="card profile reveal" aria-labelledby="profile-heading">
+    <div class="label">ENGINEERING_PROFILE // BUILDER_MINDSET</div>
+    <h2 id="profile-heading">Where curiosity becomes engineering.</h2>
+    <p class="profile-lead">I don't only learn how existing systems work. I observe, design, build, and improve — approaching every problem as an engineer in development.</p>
+
+    <div class="systems-loop" aria-label="Engineering approach: observe, identify, design, improve">
+      <div class="loop-step"><span>01</span><strong>Observe</strong><p>Study the system as it exists</p></div>
+      <div class="loop-arrow" aria-hidden="true"></div>
+      <div class="loop-step"><span>02</span><strong>Identify</strong><p>Find the constraint or gap</p></div>
+      <div class="loop-arrow" aria-hidden="true"></div>
+      <div class="loop-step"><span>03</span><strong>Design</strong><p>Engineer a structured solution</p></div>
+      <div class="loop-arrow" aria-hidden="true"></div>
+      <div class="loop-step"><span>04</span><strong>Improve</strong><p>Iterate until the result holds</p></div>
     </div>
 
-    <div class="label">PROJECT_001 // PROCESSOR_DESIGN</div>
-    <h2 id="hardware-heading">32-Bit Pipelined RISC-V CPU Core</h2>
-
-    <div class="project-overview" aria-label="CPU core project summary">
-      <div><span>ARCHITECTURE</span><strong>32-BIT RISC-V</strong></div>
-      <div><span>PIPELINE</span><strong>5 STAGES</strong></div>
-      <div><span>IMPLEMENTATION</span><strong>SYSTEMVERILOG</strong></div>
-      <div><span>VERIFICATION</span><strong>WAVEFORM-DRIVEN</strong></div>
+    <div class="trait-grid">
+      <div class="trait-item"><span>Curiosity</span><p>Always asking why a system behaves the way it does</p></div>
+      <div class="trait-item"><span>Discipline</span><p>Consistent independent learning beyond coursework</p></div>
+      <div class="trait-item"><span>Execution</span><p>Turning concepts into working hardware and products</p></div>
+      <div class="trait-item"><span>Systems Thinking</span><p>Connecting hardware, software, and human needs</p></div>
     </div>
+  </section>
 
-    <div class="pipeline" role="list" aria-label="Pipeline stages: fetch, decode, execute, memory, write-back">
-      <div role="listitem">IF</div>
-      <div role="listitem">ID</div>
-      <div role="listitem">EX</div>
-      <div role="listitem">MEM</div>
-      <div role="listitem">WB</div>
+  <!-- ENGINEERING JOURNEY -->
+  <section class="card timeline reveal" id="timeline-card" aria-labelledby="timeline-heading">
+    <div class="label" id="timeline-heading">ENGINEERING_JOURNEY // BECOMING_AN_ENGINEER</div>
+    <h2>Three years of building forward.</h2>
+    <p class="section-intro">Select a year to explore milestones, projects, and engineering development.</p>
+    <div class="year-buttons" role="tablist" aria-label="Select a year to view milestones">
+      <button id="year-2026" data-year="2026" role="tab" type="button" aria-selected="false" aria-controls="timeline-content">2026</button>
+      <button id="year-2025" data-year="2025" role="tab" type="button" aria-selected="false" aria-controls="timeline-content">2025</button>
+      <button id="year-2024" data-year="2024" role="tab" type="button" aria-selected="false" aria-controls="timeline-content">2024</button>
     </div>
+    <div id="timeline-content" role="tabpanel" tabindex="0" aria-live="polite">
+      <div class="project-grid"><p class="timeline-placeholder">Browse the archive by year.</p></div>
+    </div>
+  </section>
 
-    <figure class="datapath-visual" aria-labelledby="datapath-caption">
-      <svg viewBox="0 0 760 170" role="img" aria-label="Simplified five-stage RISC-V pipeline diagram">
-        <defs>
-          <linearGradient id="signal-gradient" x1="0" x2="1">
-            <stop offset="0" stop-color="#00eaff" />
-            <stop offset="1" stop-color="#00ff88" />
-          </linearGradient>
-        </defs>
-        <path class="signal-line" d="M95 85H157M242 85H304M389 85H451M536 85H598" />
-        <g class="datapath-node">
-          <rect x="18" y="48" width="77" height="74" rx="12" /><text x="56" y="79">IF</text><text class="node-subtitle" x="56" y="100">FETCH</text>
-          <rect x="165" y="48" width="77" height="74" rx="12" /><text x="203" y="79">ID</text><text class="node-subtitle" x="203" y="100">DECODE</text>
-          <rect x="312" y="48" width="77" height="74" rx="12" /><text x="350" y="79">EX</text><text class="node-subtitle" x="350" y="100">EXECUTE</text>
-          <rect x="459" y="48" width="77" height="74" rx="12" /><text x="497" y="79">MEM</text><text class="node-subtitle" x="497" y="100">MEMORY</text>
-          <rect x="606" y="48" width="77" height="74" rx="12" /><text x="644" y="79">WB</text><text class="node-subtitle" x="644" y="100">WRITEBACK</text>
-        </g>
-        <path class="feedback-line" d="M644 132v20H350v-15" />
-        <text class="feedback-label" x="367" y="165">FORWARDING PATH</text>
-      </svg>
-      <figcaption id="datapath-caption">Pipeline signal path with a forwarding feedback path for hazard handling.</figcaption>
-    </figure>
+  <!-- ENGINEERING LAB -->
+  <section class="card lab reveal" id="engineering-lab" aria-labelledby="lab-heading">
+    <div class="label">ENGINEERING_LAB // CURIOSITY_IN_PRACTICE</div>
+    <h2 id="lab-heading">Experimentation across disciplines.</h2>
+    <p class="section-intro">Not a resume — a record of what I explore, test, and build when engineering meets curiosity.</p>
+    <div class="lab-grid">
+      <article class="lab-card" data-lab="digital">
+        <h3>Digital Systems</h3>
+        <p>Processors, computer architecture, and FPGA-based digital logic.</p>
+        <ul>
+          <li><a href="#case-riscv">32-bit RISC-V CPU Core</a></li>
+          <li>Instruction pipeline research</li>
+          <li>FPGA synthesis exploration</li>
+        </ul>
+      </article>
+      <article class="lab-card" data-lab="hardware">
+        <h3>Hardware Design</h3>
+        <p>RTL design, electronics, and embedded hardware implementation.</p>
+        <ul>
+          <li><a href="#case-riscv">SystemVerilog RTL</a></li>
+          <li>Waveform-driven verification</li>
+          <li>Embedded sensor integration</li>
+        </ul>
+      </article>
+      <article class="lab-card" data-lab="mechanical">
+        <h3>Mechanical Systems</h3>
+        <p>Hands-on understanding of real machines and physical systems.</p>
+        <ul>
+          <li><a href="#case-automotive">Automotive diagnostics</a></li>
+          <li>Coolant system troubleshooting</li>
+          <li>Preventive maintenance workflows</li>
+        </ul>
+      </article>
+      <article class="lab-card" data-lab="product">
+        <h3>Product Engineering</h3>
+        <p>Engineering solutions shaped by human needs and market reality.</p>
+        <ul>
+          <li><a href="#case-water-watcher">Water Watcher</a></li>
+          <li><a href="#case-christlike">ChristLike!</a></li>
+          <li>User-centered design decisions</li>
+        </ul>
+      </article>
+    </div>
+  </section>
 
-    <pre><code>module risc_v_cpu (
+  <!-- CASE STUDIES -->
+  <section class="card case-studies reveal" id="case-studies" aria-labelledby="case-studies-heading">
+    <div class="label">PROJECT_CASE_STUDIES // ENGINEERING_DEPTH</div>
+    <h2 id="case-studies-heading">How I think, design, and build.</h2>
+    <p class="section-intro">Structured case studies — expand any project for the full engineering narrative.</p>
+
+    <!-- CASE 1: RISC-V -->
+    <article class="case-study" id="case-riscv">
+      <button class="case-study-toggle" type="button" aria-expanded="false" aria-controls="case-riscv-body">
+        <div class="case-study-header">
+          <div class="case-meta">
+            <span class="project-status">IN DEVELOPMENT</span>
+            <span class="case-category">Digital Systems</span>
+          </div>
+          <h3>32-Bit Pipelined RISC-V Processor</h3>
+          <p class="case-summary">Custom SystemVerilog CPU with five-stage pipeline, hazard detection, forwarding logic, and waveform verification.</p>
+          <ul class="project-facts">
+            <li>SystemVerilog</li><li>5-Stage Pipeline</li><li>Hazard Logic</li><li>RTL Verification</li>
+          </ul>
+        </div>
+        <span class="case-expand-icon" aria-hidden="true"></span>
+      </button>
+      <div class="case-study-body" id="case-riscv-body" hidden>
+        <div class="case-block"><h4>Problem</h4><p>Understanding processor design requires going beyond theory — I needed to implement a complete instruction execution path from fetch to write-back to internalize how modern CPUs actually work.</p></div>
+        <div class="case-block"><h4>Engineering Challenge</h4><p>Pipeline hazards (data, control, structural) create correctness risks. Balancing pipeline depth against clock frequency while maintaining correct instruction ordering demanded careful hazard detection and forwarding architecture.</p></div>
+        <div class="case-block"><h4>Design Process</h4><p>Started with ISA specification and datapath partitioning. Mapped each instruction class to pipeline stages, then designed control signals, hazard unit, and forwarding paths before integration testing.</p></div>
+        <div class="case-block">
+          <h4>Technical Implementation</h4>
+          <div class="project-overview" aria-label="CPU core project summary">
+            <div><span>ARCHITECTURE</span><strong>32-BIT RISC-V</strong></div>
+            <div><span>PIPELINE</span><strong>5 STAGES</strong></div>
+            <div><span>IMPLEMENTATION</span><strong>SYSTEMVERILOG</strong></div>
+            <div><span>VERIFICATION</span><strong>WAVEFORM-DRIVEN</strong></div>
+          </div>
+          <div class="pipeline" role="list" aria-label="Pipeline stages">
+            <div role="listitem">IF</div><div role="listitem">ID</div><div role="listitem">EX</div><div role="listitem">MEM</div><div role="listitem">WB</div>
+          </div>
+          <figure class="datapath-visual" aria-labelledby="datapath-caption">
+            <svg viewBox="0 0 760 170" role="img" aria-label="Five-stage RISC-V pipeline diagram">
+              <defs>
+                <linearGradient id="signal-gradient" x1="0" x2="1">
+                  <stop offset="0" stop-color="#3dd6f5" />
+                  <stop offset="1" stop-color="#4ade80" />
+                </linearGradient>
+              </defs>
+              <path class="signal-line" d="M95 85H157M242 85H304M389 85H451M536 85H598" />
+              <g class="datapath-node">
+                <rect x="18" y="48" width="77" height="74" rx="12" /><text x="56" y="79">IF</text><text class="node-subtitle" x="56" y="100">FETCH</text>
+                <rect x="165" y="48" width="77" height="74" rx="12" /><text x="203" y="79">ID</text><text class="node-subtitle" x="203" y="100">DECODE</text>
+                <rect x="312" y="48" width="77" height="74" rx="12" /><text x="350" y="79">EX</text><text class="node-subtitle" x="350" y="100">EXECUTE</text>
+                <rect x="459" y="48" width="77" height="74" rx="12" /><text x="497" y="79">MEM</text><text class="node-subtitle" x="497" y="100">MEMORY</text>
+                <rect x="606" y="48" width="77" height="74" rx="12" /><text x="644" y="79">WB</text><text class="node-subtitle" x="644" y="100">WRITEBACK</text>
+              </g>
+              <path class="feedback-line" d="M644 132v20H350v-15" />
+              <text class="feedback-label" x="367" y="165">FORWARDING PATH</text>
+            </svg>
+            <figcaption id="datapath-caption">Pipeline signal path with forwarding feedback for hazard handling.</figcaption>
+          </figure>
+          <pre><code>module risc_v_cpu (
   input clk,
   input reset
 );
-
   control_unit    CU();
   hazard_unit     HU();
   forwarding_unit FU();
-
 endmodule</code></pre>
-
-    <ul>
-      <li>5-stage instruction pipeline architecture</li>
-      <li>Hazard detection and forwarding logic</li>
-      <li>RTL verification using waveform simulation</li>
-    </ul>
-
-    <div class="project-links">
-      <a href="https://github.com/byadmo" target="_blank" rel="noopener noreferrer">$ explore_github</a>
-      <a href="#contact">$ discuss_this_project</a>
-    </div>
-  </section>
-
-  <!-- SELECTED WORK -->
-  <section class="card featured-projects reveal" id="featured-work" aria-labelledby="featured-heading">
-    <div class="label">SELECTED_WORK // PROJECT_PROOF</div>
-    <h2 id="featured-heading">Engineering work, at a glance.</h2>
-    <div class="featured-grid">
-      <article class="featured-card featured-card-primary">
-        <span class="project-status">IN DEVELOPMENT</span>
-        <h3>32-Bit RISC-V CPU Core</h3>
-        <p>Five-stage custom processor architecture with hazard detection, forwarding logic, and RTL verification workflows.</p>
-        <ul class="project-facts"><li>SystemVerilog RTL</li><li>IF / ID / EX / MEM / WB</li><li>Waveform analysis</li></ul>
-        <a href="https://github.com/byadmo" target="_blank" rel="noopener noreferrer">$ explore_github</a>
-      </article>
-      <article class="featured-card">
-        <span class="project-status">VERIFICATION</span>
-        <h3>RTL Verification Environment</h3>
-        <p>Simulation-oriented workflow for inspecting processor behavior and debugging digital logic through waveforms.</p>
-        <ul class="project-facts"><li>ModelSim</li><li>GTKWave</li><li>Icarus Verilog</li></ul>
-        <a href="https://github.com/byadmo" target="_blank" rel="noopener noreferrer">$ view_github</a>
-      </article>
-      <article class="featured-card">
-        <span class="project-status">RESEARCH</span>
-        <h3>Computer Architecture Study</h3>
-        <p>Focused exploration of datapaths, control units, instruction pipelines, memory systems, and optimization trade-offs.</p>
-        <ul class="project-facts"><li>Datapath design</li><li>Control logic</li><li>Pipeline hazards</li></ul>
-        <a href="#timeline-card">$ view_project_history</a>
-      </article>
-    </div>
-  </section>
-
-  <!-- ENTREPRENEURSHIP -->
-  <section class="card entrepreneur reveal" aria-labelledby="entrepreneur-heading">
-    <div class="label">ADDITIONAL_EXPERIENCE</div>
-    <h2 id="entrepreneur-heading">Founder &amp; Product Developer</h2>
-    <p>
-      Built and managed an independent product venture involving
-      manufacturing decisions, supplier communication,
-      budgeting, branding, and product development.
-    </p>
-  </section>
-
-  <!-- CONNECT -->
-  <section class="card connect reveal" id="contact" aria-labelledby="connect-heading">
-    <div class="label" id="connect-heading">CONTACT // DIRECT_OUTREACH</div>
-    <h2>Let’s build something.</h2>
-    <p>For project discussions, internship opportunities, or engineering collaboration, connect with me directly.</p>
-    <div class="connect-links">
-      <a href="https://github.com/byadmo" target="_blank" rel="noopener noreferrer">$ github</a>
-      <a href="https://www.linkedin.com/in/adammorgan05/" target="_blank" rel="noopener noreferrer">$ linkedin</a>
-    </div>
-  </section>
-  </div>
-
-  <div class="bento-column bento-secondary">
-    <!-- PROFILE -->
-    <section class="card profile reveal" aria-labelledby="profile-heading">
-      <div class="label">EDUCATION // DIRECTION</div>
-      <h2 id="profile-heading">Electrical Engineering Student</h2>
-      <div class="profile-item"><span>PROGRAM FOCUS</span><p>Digital systems and computer architecture</p></div>
-      <div class="profile-item"><span>BUILDING WITH</span><p>RTL design, FPGA development, and verification</p></div>
-      <div class="profile-item"><span>TARGET ROLES</span><p>FPGA, RTL, and hardware design</p></div>
-    </section>
-
-    <!-- ENGINEERING JOURNEY -->
-    <section class="card timeline reveal" id="timeline-card" aria-labelledby="timeline-heading">
-      <div class="label" id="timeline-heading">ENGINEERING_JOURNEY</div>
-      <div class="year-buttons" role="tablist" aria-label="Select a year to view projects">
-        <button id="year-2026" data-year="2026" role="tab" type="button" aria-selected="false" aria-controls="timeline-content">2026</button>
-        <button id="year-2025" data-year="2025" role="tab" type="button" aria-selected="false" aria-controls="timeline-content">2025</button>
-        <button id="year-2024" data-year="2024" role="tab" type="button" aria-selected="false" aria-controls="timeline-content">2024</button>
+        </div>
+        <div class="case-block"><h4>Engineering Decisions</h4><p>Chose a classic five-stage pipeline over deeper superscalar design for verifiability. Implemented forwarding before stalling where possible to minimize pipeline bubbles. Prioritized waveform inspection over automated coverage metrics given project scope.</p></div>
+        <div class="case-block"><h4>Future Development</h4><p>FPGA synthesis on target board, branch prediction unit, cache hierarchy integration, and expanded testbench with automated regression.</p></div>
+        <div class="project-links">
+          <a href="https://github.com/byadmo" target="_blank" rel="noopener noreferrer">Explore on GitHub</a>
+        </div>
       </div>
-      <div id="timeline-content" role="tabpanel" tabindex="0" aria-live="polite"><div class="project-grid"><p>Browse the archive by year.</p></div></div>
-    </section>
+    </article>
 
-    <!-- TECH STACK -->
-    <section class="card stack reveal" aria-labelledby="stack-heading">
-      <div class="label" id="stack-heading">TECH_STACK</div>
-      <h3>LANGUAGES/</h3>
-      <div class="tags"><span>SystemVerilog</span><span>Verilog</span></div>
-      <h3>FPGA + VERIFICATION/</h3>
-      <div class="tags"><span>FPGA</span><span>Quartus</span><span>ModelSim</span><span>GTKWave</span><span>Icarus Verilog</span></div>
-      <h3>ARCHITECTURE/</h3>
-      <div class="tags"><span>RISC-V</span><span>Pipelining</span><span>Hazard Logic</span><span>Datapaths</span></div>
-    </section>
-  </div>
+    <!-- CASE 2: Water Watcher -->
+    <article class="case-study" id="case-water-watcher">
+      <button class="case-study-toggle" type="button" aria-expanded="false" aria-controls="case-water-watcher-body">
+        <div class="case-study-header">
+          <div class="case-meta">
+            <span class="project-status">PRODUCT ENGINEERING</span>
+            <span class="case-category">Sustainability</span>
+          </div>
+          <h3>Water Watcher</h3>
+          <p class="case-summary">A sustainability-focused product concept using sensors and user-centered design to help people track and reduce water consumption.</p>
+          <ul class="project-facts">
+            <li>Sensors</li><li>UX Design</li><li>Product Design</li><li>Sustainability</li>
+          </ul>
+        </div>
+        <span class="case-expand-icon" aria-hidden="true"></span>
+      </button>
+      <div class="case-study-body" id="case-water-watcher-body" hidden>
+        <div class="case-block"><h4>Problem</h4><p>Most people lack visibility into daily water usage until a bill arrives. Without real-time feedback, conservation behavior is hard to sustain.</p></div>
+        <div class="case-block"><h4>Engineering Challenge</h4><p>Designing a system that is accurate enough to change behavior, affordable to produce, and simple enough that non-technical users will actually adopt it.</p></div>
+        <div class="case-block"><h4>Design Process</h4><p>Identified target use cases, mapped sensor placement options, prototyped data display concepts, and evaluated trade-offs between installation complexity and measurement precision.</p></div>
+        <div class="case-block"><h4>Technical Implementation</h4><p>Explored flow-rate sensing approaches, microcontroller data logging, and a clear feedback interface. Focused on modularity so hardware and UX could evolve independently.</p></div>
+        <div class="case-block"><h4>Engineering Decisions</h4><p>Prioritized user experience over sensor sophistication — a readable daily summary matters more than raw data granularity for behavior change.</p></div>
+        <div class="case-block"><h4>Future Development</h4><p>Prototype with embedded MCU, mobile dashboard, calibration workflow, and field testing with real households.</p></div>
+      </div>
+    </article>
+
+    <!-- CASE 3: Automotive -->
+    <article class="case-study" id="case-automotive">
+      <button class="case-study-toggle" type="button" aria-expanded="false" aria-controls="case-automotive-body">
+        <div class="case-study-header">
+          <div class="case-meta">
+            <span class="project-status">HANDS-ON</span>
+            <span class="case-category">Mechanical Systems</span>
+          </div>
+          <h3>Automotive Engineering</h3>
+          <p class="case-summary">Real-world diagnostics and maintenance on Honda Civic and BMW E39 540i — applying systematic troubleshooting to physical systems.</p>
+          <ul class="project-facts">
+            <li>Diagnostics</li><li>Coolant Systems</li><li>Preventive Maintenance</li>
+          </ul>
+        </div>
+        <span class="case-expand-icon" aria-hidden="true"></span>
+      </button>
+      <div class="case-study-body" id="case-automotive-body" hidden>
+        <div class="case-block"><h4>Problem</h4><p>A Honda Civic developed recurring overheating under load. A BMW E39 540i required systematic maintenance to remain reliable as a daily driver.</p></div>
+        <div class="case-block"><h4>Engineering Challenge</h4><p>Automotive failures rarely have a single cause. Overheating involved tracing the coolant loop, verifying thermostat operation, inspecting radiator flow, and ruling out head gasket issues methodically.</p></div>
+        <div class="case-block"><h4>Design Process</h4><p>Applied fault isolation: observe symptoms, form hypotheses, test each subsystem, document findings, and verify the fix under the original failure conditions.</p></div>
+        <div class="case-block"><h4>Technical Implementation</h4><ul class="case-list"><li>Honda Civic — overheating investigation: coolant level audit, thermostat testing, radiator inspection, hose and clamp evaluation</li><li>BMW E39 540i — preventive maintenance: fluid services, cooling system checks, wear-item replacement scheduling</li></ul></div>
+        <div class="case-block"><h4>Engineering Decisions</h4><p>Chose systematic elimination over parts-replacement guessing. Documented each test result before moving to the next subsystem — the same discipline applied in hardware debug.</p></div>
+        <div class="case-block"><h4>Future Development</h4><p>OBD-II data logging integration, thermal imaging for cooling diagnostics, and structured maintenance logs for predictive servicing.</p></div>
+      </div>
+    </article>
+
+    <!-- CASE 4: ChristLike! -->
+    <article class="case-study" id="case-christlike">
+      <button class="case-study-toggle" type="button" aria-expanded="false" aria-controls="case-christlike-body">
+        <div class="case-study-header">
+          <div class="case-meta">
+            <span class="project-status">FOUNDED</span>
+            <span class="case-category">Entrepreneurship</span>
+          </div>
+          <h3>ChristLike!</h3>
+          <p class="case-summary">Independent product venture spanning branding, manufacturing, cost analysis, marketing, and customer psychology.</p>
+          <ul class="project-facts">
+            <li>Branding</li><li>Manufacturing</li><li>Cost Analysis</li><li>Go-to-Market</li>
+          </ul>
+        </div>
+        <span class="case-expand-icon" aria-hidden="true"></span>
+      </button>
+      <div class="case-study-body" id="case-christlike-body" hidden>
+        <div class="case-block"><h4>Problem</h4><p>Building a product people actually want requires more than a good idea — it demands understanding cost structures, supply chains, and what drives purchase decisions.</p></div>
+        <div class="case-block"><h4>Engineering Challenge</h4><p>Balancing product quality against unit economics while managing supplier relationships, production timelines, and brand positioning without enterprise resources.</p></div>
+        <div class="case-block"><h4>Design Process</h4><p>Defined target customer, developed brand identity, sourced manufacturing options, built cost models, tested marketing channels, and iterated based on customer feedback.</p></div>
+        <div class="case-block"><h4>Technical Implementation</h4><p>Managed end-to-end product lifecycle: supplier communication, manufacturing decisions, budgeting, packaging design, and direct customer outreach.</p></div>
+        <div class="case-block"><h4>Engineering Decisions</h4><p>Optimized for learnings-per-dollar in early batches rather than maximum margin. Prioritized supplier reliability over lowest unit cost to protect brand reputation.</p></div>
+        <div class="case-block"><h4>Future Development</h4><p>Scale production with validated demand, expand product line based on customer data, and apply manufacturing lessons to future hardware ventures.</p></div>
+      </div>
+    </article>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section class="card experience reveal" aria-labelledby="experience-heading">
+    <div class="label">EXPERIENCE // SKILLS_IN_CONTEXT</div>
+    <h2 id="experience-heading">Work translated into engineering capability.</h2>
+    <div class="experience-grid">
+      <article class="experience-card">
+        <h3>Statistics Canada — Enumerator</h3>
+        <p class="experience-role">Data collection and field operations</p>
+        <ul class="skill-translation">
+          <li><strong>Data accuracy</strong> — precise recording under time constraints</li>
+          <li><strong>Independent responsibility</strong> — self-directed daily workflow</li>
+          <li><strong>Analytical thinking</strong> — pattern recognition in collected data</li>
+          <li><strong>Communication</strong> — clear interaction with diverse populations</li>
+        </ul>
+      </article>
+      <article class="experience-card">
+        <h3>Jack Astor's — Team Member</h3>
+        <p class="experience-role">High-volume service environment</p>
+        <ul class="skill-translation">
+          <li><strong>Team coordination</strong> — synchronized work under pressure</li>
+          <li><strong>Pressure management</strong> — maintaining quality during peak load</li>
+          <li><strong>Reliability</strong> — consistent performance shift after shift</li>
+          <li><strong>Communication</strong> — fast, clear information exchange</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <!-- TECH STACK -->
+  <section class="card stack reveal" aria-labelledby="stack-heading">
+    <div class="label" id="stack-heading">TECHNICAL_STACK // ENGINEERING_TOOLKIT</div>
+    <h2>Tools organized by domain.</h2>
+    <div class="stack-groups">
+      <div class="stack-group">
+        <h3>Hardware</h3>
+        <div class="tags"><span>SystemVerilog</span><span>Verilog</span><span>FPGA</span><span>Digital Logic</span><span>RTL Design</span></div>
+      </div>
+      <div class="stack-group">
+        <h3>Software</h3>
+        <div class="tags"><span>Python</span><span>MATLAB</span><span>Java</span><span>C/C++</span></div>
+      </div>
+      <div class="stack-group">
+        <h3>Engineering Tools</h3>
+        <div class="tags"><span>ModelSim</span><span>GTKWave</span><span>Quartus</span><span>Icarus Verilog</span><span>Git</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FUTURE GOALS + CONTACT -->
+  <section class="card future reveal" aria-labelledby="future-heading">
+    <div class="label">FUTURE_DIRECTION // WHERE_I_AM_HEADING</div>
+    <h2 id="future-heading">Building toward what's next.</h2>
+    <ul class="future-list">
+      <li>Deepen processor design — branch prediction, memory hierarchy, FPGA deployment</li>
+      <li>Expand embedded systems work — sensors, MCUs, and hardware-software integration</li>
+      <li>Continue product ventures that combine engineering rigor with real user needs</li>
+    </ul>
+  </section>
+
+  <section class="card connect reveal" id="contact" aria-labelledby="connect-heading">
+    <div class="label" id="connect-heading">CONTACT // LETS_BUILD</div>
+    <h2>Let's build something.</h2>
+    <p>For project discussions, internship opportunities, or engineering collaboration — connect directly.</p>
+    <div class="connect-links">
+      <a href="https://github.com/byadmo" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="https://www.linkedin.com/in/adammorgan05/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href="#contact">Request resume</a>
+    </div>
+  </section>
 
 </main>
 
 <footer class="site-footer">
-  <p>&copy; <span id="year"></span> Adam Morgan &mdash; built with HTML, CSS &amp; JavaScript</p>
+  <p>&copy; <span id="year"></span> Adam Morgan — Computer Engineering, Toronto Metropolitan University</p>
 </footer>
 
-<script src="script.js?v=2"></script>
+<script src="script.js?v=3"></script>
 </body>
 </html>
