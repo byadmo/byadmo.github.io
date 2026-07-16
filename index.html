@@ -8,29 +8,18 @@
 
 <title>Adam Morgan | Electrical Engineering Portfolio</title>
 
-<meta name="description" content="Adam Morgan — Electrical Engineering student specializing in digital systems, processor architecture, RTL design, FPGA development, and computer architecture.">
+<meta name="description" content="Adam Morgan — Electrical Engineering student focused on digital systems, processor architecture, RTL design, FPGA development, and computer architecture.">
 
 <meta name="theme-color" content="#07080a">
 
 <link rel="canonical" href="https://admo.one/">
 
 
-<!-- Open Graph -->
-
 <meta property="og:type" content="website">
 <meta property="og:title" content="Adam Morgan | Electrical Engineering Portfolio">
 <meta property="og:description" content="Electrical Engineering student building processor architectures, RTL designs, and FPGA systems.">
 <meta property="og:url" content="https://admo.one/">
-<meta property="og:image" content="https://admo.one/og-image.png">
 
-
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Adam Morgan | Electrical Engineering Portfolio">
-<meta name="twitter:description" content="Electrical Engineering student building processor architectures, RTL designs, and FPGA systems.">
-<meta name="twitter:image" content="https://admo.one/og-image.png">
-
-
-<!-- Favicon -->
 
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2307080a'/%3E%3Ctext x='32' y='42' font-family='monospace' font-size='26' font-weight='700' fill='%2300eaff' text-anchor='middle'%3EAM%3C/text%3E%3C/svg%3E">
 
@@ -50,10 +39,9 @@
  "name":"Adam Morgan",
  "url":"https://admo.one/",
  "jobTitle":"Electrical Engineering Student",
- "description":"Electrical Engineering student specializing in digital systems, processor architecture, RTL design, and FPGA development.",
  "sameAs":[
-  "https://github.com/byadmo",
-  "https://www.linkedin.com/in/adammorgan05/"
+ "https://github.com/byadmo",
+ "https://www.linkedin.com/in/adammorgan05/"
  ]
 }
 </script>
@@ -69,29 +57,30 @@ Skip to content
 </a>
 
 
-<div class="cpu-field" id="cpu-field" aria-hidden="true"></div>
+<div class="cpu-field" id="cpu-field"></div>
 
-<div class="noise" aria-hidden="true"></div>
+<div class="noise"></div>
 
 
 
 <main class="bento-grid" id="main-content">
 
- <!-- ================= HERO ================= -->
+
+
+<!-- HERO -->
 
 <section class="card hero reveal">
 
-<div class="terminal-dots" aria-hidden="true">
 
+<div class="terminal-dots">
 <span class="mac-red"></span>
 <span class="mac-yellow"></span>
 <span class="mac-green"></span>
-
 </div>
 
 
 <div class="label">
-ELECTRICAL_ENGINEERING // COMPUTER_ARCHITECTURE
+SYSTEM_001 // ELECTRICAL_ENGINEERING // COMPUTER_ARCHITECTURE
 </div>
 
 
@@ -99,7 +88,6 @@ ELECTRICAL_ENGINEERING // COMPUTER_ARCHITECTURE
 Hi, I'm Adam.<br>
 I design computer processors.
 </h1>
-
 
 
 <div class="typing-line">
@@ -115,38 +103,74 @@ Currently Working On:
 </div>
 
 
-
 <p class="description">
 
 Electrical Engineering student specializing in digital systems,
 processor architecture, RTL design, FPGA development,
-and efficient hardware implementation.
+and hardware implementation.
 
 </p>
 
 
 
+<div class="system-status">
+
+
+<div class="label">
+SYSTEM_STATUS
+</div>
+
+
+<p>
+CURRENT PROJECT:
+<br>
+32-Bit Pipelined RISC-V CPU
+</p>
+
+
+<p>
+ARCHITECTURE:
+<br>
+RV32I
+</p>
+
+
+<p>
+PIPELINE:
+<br>
+IF → ID → EX → MEM → WB
+</p>
+
+
+<p>
+STATUS:
+<br>
+ACTIVE DEVELOPMENT
+</p>
+
+
+</div>
+
+
+
+
 <div class="buttons">
 
-<a href="#timeline-card" id="projects-button">
+<a href="#processor">
 $ view_projects
 </a>
-
 
 <a href="resume.pdf" download>
 $ download_resume
 </a>
 
-
 <a href="https://github.com/byadmo" target="_blank">
-$ view_github
+$ github
 </a>
-
 
 <a href="https://www.linkedin.com/in/adammorgan05/" target="_blank">
 $ contact_adam
 </a>
-
 
 </div>
 
@@ -158,30 +182,87 @@ $ contact_adam
 
 
 
-<!-- ================= PROCESSOR PROJECT ================= -->
+<!-- PROFILE -->
 
 
-<section class="card hardware reveal">
+<section class="card profile reveal">
 
 
-<div class="terminal-dots">
+<div class="label">
+MODULE_001 // ENGINEERING_PROFILE
+</div>
 
-<span class="mac-red">×</span>
-<span class="mac-yellow">−</span>
-<span class="mac-green">+</span>
+
+<h2>
+Current Focus
+</h2>
+
+
+<div class="profile-item">
+<span>
+FIELD
+</span>
+
+<p>
+Electrical Engineering
+</p>
 
 </div>
 
 
+<div class="profile-item">
+<span>
+SPECIALIZATION
+</span>
+
+<p>
+Digital Systems
+</p>
+
+</div>
+
+
+<div class="profile-item">
+<span>
+INTERESTS
+</span>
+
+<p>
+CPU Architecture + FPGA
+</p>
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+
+<!-- PROCESSOR -->
+
+
+<section class="card hardware reveal" id="processor">
+
 
 <div class="label">
-PROJECT_001 // PROCESSOR_DESIGN
+PROJECT_001 // CPU_ARCHITECTURE
 </div>
 
 
 <h2>
 32-Bit Pipelined RISC-V CPU Core
 </h2>
+
+
+<p>
+A custom processor architecture designed using RTL concepts,
+focused on pipeline design, control logic, verification,
+and hardware implementation.
+</p>
 
 
 
@@ -197,13 +278,49 @@ PROJECT_001 // PROCESSOR_DESIGN
 
 
 
+<div class="processor-data">
+
+
+<p>
+ISA:
+<br>
+RV32I
+</p>
+
+
+<p>
+RTL:
+<br>
+SystemVerilog
+</p>
+
+
+<p>
+VERIFICATION:
+<br>
+ModelSim + GTKWave
+</p>
+
+
+<p>
+TARGET:
+<br>
+FPGA Development
+</p>
+
+
+</div>
+
+
+
+
 <pre><code>
 module risc_v_cpu (
  input clk,
  input reset
 );
 
- control_unit CU();
+ pipeline_control CPU();
  hazard_unit HU();
  forwarding_unit FU();
 
@@ -215,7 +332,7 @@ endmodule
 <ul>
 
 <li>
-5-stage instruction pipeline architecture
+5-stage instruction pipeline
 </li>
 
 <li>
@@ -223,7 +340,7 @@ Hazard detection and forwarding logic
 </li>
 
 <li>
-RTL verification using waveform simulation
+RTL simulation and waveform verification
 </li>
 
 </ul>
@@ -237,76 +354,16 @@ RTL verification using waveform simulation
 
 
 
-<!-- ================= PROFILE ================= -->
 
-
-<section class="card profile reveal">
-
-
-<div class="label">
-ENGINEERING_PROFILE
-</div>
-
-
-<h2>
-Current Focus
-</h2>
-
-
-
-<div class="profile-item">
-
-<span>
-FIELD
-</span>
-
-<p>
-Electrical Engineering
-</p>
-
-</div>
-
-
-
-<div class="profile-item">
-
-<span>
-SPECIALIZATION
-</span>
-
-<p>
-Digital Systems
-</p>
-
-</div>
-
-
-
-<div class="profile-item">
-
-<span>
-INTERESTS
-</span>
-
-<p>
-CPU Architecture + FPGA
-</p>
-
-</div>
-
-
-</section>
-
- <!-- ================= ENGINEERING JOURNEY ================= -->
+<!-- JOURNEY -->
 
 
 <section class="card timeline reveal" id="timeline-card">
 
 
 <div class="label">
-ENGINEERING_JOURNEY
+MODULE_002 // ENGINEERING_JOURNEY
 </div>
-
 
 
 <p class="timeline-hint">
@@ -315,7 +372,7 @@ Hover over a year to explore projects.
 
 
 
-<div class="year-buttons" role="tablist">
+<div class="year-buttons">
 
 
 <button data-year="2026">
@@ -337,9 +394,7 @@ Hover over a year to explore projects.
 
 
 
-
 <div class="timeline-content">
-
 
 <div class="project-grid">
 
@@ -347,9 +402,7 @@ Hover over a year to explore projects.
 Hover over a year to explore projects.
 </p>
 
-
 </div>
-
 
 </div>
 
@@ -361,16 +414,16 @@ Hover over a year to explore projects.
 
 
 
-<!-- ================= TECH STACK ================= -->
+
+<!-- TECH STACK -->
 
 
 <section class="card stack reveal">
 
 
 <div class="label">
-TECH_STACK
+MODULE_003 // HARDWARE_STACK
 </div>
-
 
 
 <h3>
@@ -389,7 +442,6 @@ HARDWARE/
 
 
 
-
 <h3>
 TOOLS/
 </h3>
@@ -405,7 +457,6 @@ TOOLS/
 </div>
 
 
-
 </section>
 
 
@@ -413,14 +464,15 @@ TOOLS/
 
 
 
-<!-- ================= ENTREPRENEURSHIP ================= -->
+
+<!-- ENTREPRENEURSHIP -->
 
 
 <section class="card entrepreneur reveal">
 
 
 <div class="label">
-ENTREPRENEURSHIP
+MODULE_004 // ENTREPRENEURSHIP
 </div>
 
 
@@ -430,11 +482,9 @@ Founder & Product Developer
 
 
 <p>
-
 Built and managed an independent product venture involving
 manufacturing decisions, supplier communication,
 budgeting, branding, and product development.
-
 </p>
 
 
@@ -446,14 +496,14 @@ budgeting, branding, and product development.
 
 
 
-<!-- ================= CONNECT ================= -->
+<!-- CONNECT -->
 
 
 <section class="card connect reveal">
 
 
 <div class="label">
-CONNECT
+MODULE_005 // NETWORK_INTERFACE
 </div>
 
 
@@ -465,7 +515,6 @@ $ github
 <a href="https://www.linkedin.com/in/adammorgan05/" target="_blank">
 $ linkedin
 </a>
-
 
 
 </section>
@@ -482,15 +531,14 @@ $ linkedin
 <footer class="site-footer">
 
 <p>
-© <span id="year"></span> Adam Morgan — built with HTML, CSS & JavaScript
+© <span id="year"></span> Adam Morgan — HTML // CSS // JAVASCRIPT
 </p>
 
 </footer>
 
 
 
-
-<script src="script.js?v=3"></script>
+<script src="script.js"></script>
 
 
 </body>
