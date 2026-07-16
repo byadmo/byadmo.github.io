@@ -67,12 +67,17 @@ document.getElementById("typing");
 
 
 const timeline =
-document.getElementById("module-002");
+document.getElementById("module-003");
 
 
 
 const projectsButton =
 document.getElementById("projects-button");
+
+
+
+const projectCards =
+document.querySelectorAll(".project-card");
 
 
 
@@ -2339,6 +2344,19 @@ document.documentElement.scrollHeight
 window.innerHeight;
 
 
+if(height <= 0){
+
+
+progress.style.width =
+"0%";
+
+
+return;
+
+
+}
+
+
 
 
 
@@ -2384,6 +2402,9 @@ passive:true
 
 
 
+
+
+updateScroll();
 
 
 /* =====================================================
@@ -2483,35 +2504,55 @@ projectsButton.addEventListener(
 ()=>{
 
 
-if(timeline){
-
-
-
-timeline.classList.add(
-"project-active"
+projectsButton.classList.add(
+"project-button-active"
 );
 
+
+projectCards.forEach(card=>{
+
+
+card.classList.remove(
+"project-attention"
+);
+
+
+card.offsetHeight;
+
+
+card.classList.add(
+"project-attention"
+);
+
+
+});
 
 
 setTimeout(
 ()=>{
 
 
-timeline.classList.remove(
-"project-active"
+projectsButton.classList.remove(
+"project-button-active"
 );
 
+
+projectCards.forEach(card=>{
+
+
+card.classList.remove(
+"project-attention"
+);
+
+
+});
 
 
 },
 
-2000
+2400
 
 );
-
-
-
-}
 
 
 

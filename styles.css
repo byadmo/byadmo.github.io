@@ -249,6 +249,11 @@ body.cursor-active .cursor-light {
   grid-row: span 36;
 }
 
+.prosthetic {
+  grid-column: 1 / 9;
+  grid-row: span 26;
+}
+
 .profile {
   grid-column: 9 / 13;
   grid-row: span 15;
@@ -388,6 +393,26 @@ p {
   border-color: var(--green);
   transform: translateY(-5px);
   box-shadow: 0 15px 40px rgba(0, 255, 136, .15);
+}
+
+.buttons a.project-button-active {
+  color: var(--green);
+  border-color: rgba(0, 255, 136, .8);
+  animation: buttonSignal 1.8s var(--ease);
+}
+
+@keyframes buttonSignal {
+  0% {
+    box-shadow: 0 0 0 rgba(0, 255, 136, 0);
+  }
+
+  45% {
+    box-shadow: 0 0 0 1px rgba(0, 255, 136, .35), 0 0 42px rgba(0, 234, 255, .38);
+  }
+
+  100% {
+    box-shadow: 0 0 0 rgba(0, 255, 136, 0);
+  }
 }
 
 .cpu-console {
@@ -669,6 +694,176 @@ p {
   color: var(--muted);
 }
 
+.project-tag {
+  display: inline-flex;
+  width: fit-content;
+  margin: -8px 0 22px;
+  padding: 8px 12px;
+  border: 1px solid rgba(0, 234, 255, .24);
+  border-radius: 999px;
+  color: var(--cyan);
+  background: rgba(0, 234, 255, .06);
+  font-size: 11px;
+  letter-spacing: 1px;
+}
+
+.project-card.project-attention {
+  animation: projectFocus 2.4s var(--ease);
+  border-color: rgba(0, 255, 136, .72);
+}
+
+@keyframes projectFocus {
+  0% {
+    box-shadow: 0 0 0 rgba(0, 234, 255, 0);
+  }
+
+  28% {
+    box-shadow: 0 0 0 1px rgba(0, 255, 136, .4), 0 0 58px rgba(0, 234, 255, .42);
+  }
+
+  58% {
+    box-shadow: 0 0 0 1px rgba(0, 234, 255, .45), 0 0 78px rgba(0, 255, 136, .28);
+  }
+
+  100% {
+    box-shadow: 0 0 0 rgba(0, 234, 255, 0);
+  }
+}
+
+.hand-visual {
+  position: relative;
+  height: 230px;
+  margin: 30px 0;
+  border-radius: 22px;
+  overflow: hidden;
+  border: 1px solid rgba(0, 234, 255, .2);
+  background:
+    linear-gradient(90deg, rgba(0, 234, 255, .08) 1px, transparent 1px),
+    linear-gradient(rgba(0, 255, 136, .06) 1px, transparent 1px),
+    radial-gradient(circle at 50% 64%, rgba(0, 255, 136, .14), transparent 34%),
+    linear-gradient(145deg, #050608, #10151c);
+  background-size: 36px 36px, 36px 36px, auto, auto;
+}
+
+.hand-palm {
+  position: absolute;
+  left: 50%;
+  bottom: 30px;
+  width: 112px;
+  height: 118px;
+  border: 1px solid rgba(0, 234, 255, .62);
+  border-radius: 32px 32px 38px 38px;
+  background: linear-gradient(145deg, rgba(0, 234, 255, .12), rgba(0, 255, 136, .08));
+  box-shadow: 0 0 32px rgba(0, 234, 255, .24), inset 0 0 28px rgba(0, 255, 136, .1);
+  transform: translateX(-50%);
+}
+
+.finger {
+  position: absolute;
+  bottom: 92px;
+  width: 18px;
+  height: 90px;
+  border: 1px solid rgba(0, 234, 255, .58);
+  border-radius: 14px;
+  background:
+    linear-gradient(0deg, rgba(0, 255, 136, .16), rgba(0, 234, 255, .08)),
+    repeating-linear-gradient(0deg, transparent 0 20px, rgba(0, 234, 255, .35) 21px 22px);
+  box-shadow: 0 0 18px rgba(0, 234, 255, .22);
+  transform-origin: bottom center;
+  animation: fingerCurl 3.6s var(--ease) infinite;
+}
+
+.finger.index { left: 22px; height: 94px; animation-delay: .12s; }
+.finger.middle { left: 46px; height: 108px; animation-delay: .24s; }
+.finger.ring { left: 70px; height: 96px; animation-delay: .36s; }
+.finger.pinky { left: 94px; height: 78px; animation-delay: .48s; }
+.finger.thumb {
+  left: -16px;
+  bottom: 42px;
+  height: 78px;
+  transform: rotate(-48deg);
+  animation: thumbCurl 3.6s var(--ease) infinite;
+}
+
+.servo-hub {
+  position: absolute;
+  left: 50%;
+  top: 58%;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 255, 136, .7);
+  box-shadow: 0 0 24px rgba(0, 255, 136, .42);
+  transform: translate(-50%, -50%);
+  animation: servoPulse 1.8s ease-in-out infinite;
+}
+
+.tendon-lines span {
+  position: absolute;
+  left: 50%;
+  bottom: 84px;
+  width: 2px;
+  height: 120px;
+  background: linear-gradient(0deg, transparent, rgba(0, 255, 136, .78), transparent);
+  box-shadow: 0 0 16px rgba(0, 255, 136, .5);
+  transform-origin: bottom center;
+  animation: tendonSignal 2.4s linear infinite;
+}
+
+.tendon-lines span:nth-child(1) { transform: rotate(-23deg); animation-delay: .1s; }
+.tendon-lines span:nth-child(2) { transform: rotate(-8deg); animation-delay: .25s; }
+.tendon-lines span:nth-child(3) { transform: rotate(8deg); animation-delay: .4s; }
+.tendon-lines span:nth-child(4) { transform: rotate(23deg); animation-delay: .55s; }
+
+@keyframes fingerCurl {
+  0%, 100% { transform: rotate(0deg); }
+  45% { transform: rotate(9deg); }
+  68% { transform: rotate(-4deg); }
+}
+
+@keyframes thumbCurl {
+  0%, 100% { transform: rotate(-48deg); }
+  45% { transform: rotate(-34deg); }
+  68% { transform: rotate(-56deg); }
+}
+
+@keyframes servoPulse {
+  0%, 100% { opacity: .7; transform: translate(-50%, -50%) scale(.92); }
+  50% { opacity: 1; transform: translate(-50%, -50%) scale(1.08); }
+}
+
+@keyframes tendonSignal {
+  0% { opacity: .15; clip-path: inset(100% 0 0 0); }
+  50% { opacity: .9; clip-path: inset(0 0 0 0); }
+  100% { opacity: .15; clip-path: inset(0 0 100% 0); }
+}
+
+.prosthetic p,
+.prosthetic li,
+.future-note {
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+.prosthetic ul {
+  margin: 20px 0 0;
+  padding-left: 20px;
+}
+
+.prosthetic li {
+  color: var(--muted);
+  margin-bottom: 9px;
+}
+
+.project-tech {
+  margin-top: 22px;
+  margin-bottom: 0;
+}
+
+.future-note {
+  margin-top: 18px;
+}
+
 @keyframes projectReveal {
   from {
     opacity: 0;
@@ -791,10 +986,12 @@ p {
   position: fixed;
   top: 0;
   left: 0;
-  height: 3px;
+  height: 4px;
   width: 0%;
   z-index: 9999;
-  background: linear-gradient(90deg, var(--cyan), var(--green));
+  background: linear-gradient(90deg, #00eaff, #00ff88, #7cf7ff);
+  box-shadow: 0 0 16px rgba(0, 234, 255, .55), 0 0 28px rgba(0, 255, 136, .32);
+  opacity: .95;
 }
 
 .timeline.project-active {
@@ -842,6 +1039,11 @@ a {
   }
 
   .hardware.is-expanded {
+    grid-row: auto;
+  }
+
+  .prosthetic {
+    grid-column: 1 / -1;
     grid-row: auto;
   }
 
@@ -919,20 +1121,24 @@ a {
     order: 2;
   }
 
-  .entrepreneur {
+  .prosthetic {
     order: 3;
   }
 
-  .connect {
+  .entrepreneur {
     order: 4;
   }
 
-  .profile {
+  .connect {
     order: 5;
   }
 
-  .timeline {
+  .profile {
     order: 6;
+  }
+
+  .timeline {
+    order: 7;
     height: auto;
     max-height: 330px;
   }
@@ -942,7 +1148,7 @@ a {
   }
 
   .stack {
-    order: 7;
+    order: 8;
   }
 }
 

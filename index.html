@@ -51,6 +51,7 @@
 <a class="skip-link" href="#main-content">Skip to content</a>
 
 <!-- BACKGROUND SYSTEM -->
+<div class="scroll-progress" aria-hidden="true"></div>
 <div class="cpu-field" id="cpu-field"></div>
 <div class="cursor-light" aria-hidden="true"></div>
 <div class="noise"></div>
@@ -82,7 +83,7 @@
     </p>
 
     <div class="buttons">
-      <a href="#module-002" id="projects-button">$ view_projects</a>
+      <a href="#module-001" id="projects-button">$ view_projects</a>
       <a href="resume.pdf" download>$ download_resume</a>
       <a href="https://github.com/byadmo" target="_blank">$ view_github</a>
       <a href="https://www.linkedin.com/in/adammorgan05/" target="_blank">$ contact_adam</a>
@@ -90,7 +91,7 @@
   </section>
 
   <!-- MODULE 001 - PROCESSOR DESIGN -->
-  <section class="card hardware reveal">
+  <section class="card hardware project-card reveal" id="module-001">
     <div class="terminal-dots">
       <span class="mac-red">&times;</span>
       <span class="mac-yellow">&minus;</span>
@@ -98,6 +99,7 @@
     </div>
 
     <div class="label">MODULE_001 // PROCESSOR_DESIGN</div>
+    <div class="project-tag">COMPUTER_ARCHITECTURE // RTL</div>
 
     <h2>32-Bit Pipelined RISC-V CPU Core</h2>
 
@@ -135,9 +137,62 @@
     </div>
   </section>
 
-  <!-- MODULE 003 - ENGINEERING PROFILE -->
+  <!-- MODULE 002 - PROSTHETIC HAND -->
+  <section class="card prosthetic project-card reveal" id="module-002">
+    <div class="terminal-dots">
+      <span class="mac-red">&times;</span>
+      <span class="mac-yellow">&minus;</span>
+      <span class="mac-green">+</span>
+    </div>
+
+    <div class="label">MODULE_002 // ROBOTIC_PROSTHETIC_HAND</div>
+    <div class="project-tag">ROBOTICS // EMBEDDED_SYSTEMS // MECHANICAL_DESIGN</div>
+
+    <h2>Tendon-Driven Robotic Prosthetic Hand</h2>
+
+    <div class="hand-visual" aria-hidden="true">
+      <div class="hand-palm">
+        <span class="finger thumb"></span>
+        <span class="finger index"></span>
+        <span class="finger middle"></span>
+        <span class="finger ring"></span>
+        <span class="finger pinky"></span>
+        <span class="servo-hub"></span>
+      </div>
+      <div class="tendon-lines">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+
+    <p>
+      Built a functional robotic hand prototype using 3D-printed parts, tendon routing,
+      servo actuation, and an ESP32 controller to create lightweight finger movement
+      inspired by human biomechanics.
+    </p>
+
+    <ul>
+      <li>Designed tendon paths and mechanical joints to reduce actuator complexity</li>
+      <li>Iterated through friction, alignment, grip consistency, and durability issues</li>
+      <li>Integrated sensor feedback toward more adaptive object handling</li>
+    </ul>
+
+    <div class="tags project-tech">
+      <span>ESP32</span>
+      <span>Embedded C/C++</span>
+      <span>Servo Control</span>
+      <span>Force Sensing</span>
+      <span>CAD + 3D Printing</span>
+    </div>
+
+    <p class="future-note">Future: EMG control, custom PCB integration, and improved actuator efficiency.</p>
+  </section>
+
+  <!-- MODULE 004 - ENGINEERING PROFILE -->
   <section class="card profile reveal">
-    <div class="label">MODULE_003 // ENGINEERING_PROFILE</div>
+    <div class="label">MODULE_004 // ENGINEERING_PROFILE</div>
 
     <h2>Current Focus</h2>
 
@@ -157,9 +212,9 @@
     </div>
   </section>
 
-  <!-- MODULE 002 - ENGINEERING JOURNEY -->
-  <section class="card timeline reveal" id="module-002">
-    <div class="label">MODULE_002 // ENGINEERING_JOURNEY</div>
+  <!-- MODULE 003 - ENGINEERING JOURNEY -->
+  <section class="card timeline reveal" id="module-003">
+    <div class="label">MODULE_003 // ENGINEERING_JOURNEY</div>
 
     <p class="timeline-hint">Hover over a year to explore projects.</p>
 
@@ -176,9 +231,9 @@
     </div>
   </section>
 
-  <!-- MODULE 004 - TECH STACK -->
+  <!-- MODULE 005 - TECH STACK -->
   <section class="card stack reveal">
-    <div class="label">MODULE_004 // TECH_STACK</div>
+    <div class="label">MODULE_005 // TECH_STACK</div>
 
     <h3>HARDWARE/</h3>
     <div class="tags">
@@ -205,9 +260,9 @@
     </div>
   </section>
 
-  <!-- MODULE 005 - ENTREPRENEURSHIP -->
-  <section class="card entrepreneur reveal" id="module-005">
-    <div class="label">MODULE_005 // ENTREPRENEURSHIP</div>
+  <!-- MODULE 006 - ENTREPRENEURSHIP -->
+  <section class="card entrepreneur reveal" id="module-006">
+    <div class="label">MODULE_006 // ENTREPRENEURSHIP</div>
 
     <h2>Founder &amp; Product Developer</h2>
 
@@ -222,9 +277,9 @@
     </ul>
   </section>
 
-  <!-- MODULE 006 - CONNECT -->
-  <section class="card connect reveal" id="module-006">
-    <div class="label">MODULE_006 // CONNECT</div>
+  <!-- MODULE 007 - CONNECT -->
+  <section class="card connect reveal" id="module-007">
+    <div class="label">MODULE_007 // CONNECT</div>
 
     <a href="https://github.com/byadmo" target="_blank">$ github</a>
     <a href="https://www.linkedin.com/in/adammorgan05/" target="_blank">$ linkedin</a>
