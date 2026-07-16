@@ -1,6 +1,6 @@
 /* =====================================================
-   ADAM MORGAN PORTFOLIO — INTERACTION ENGINE
-   CLEAN VERSION
+   ADAM MORGAN PORTFOLIO
+   HARDWARE LAB INTERACTION ENGINE
 ===================================================== */
 
 
@@ -8,12 +8,19 @@
    SYSTEM SETTINGS
 ===================================================== */
 
+
 const prefersReducedMotion =
-  window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+window.matchMedia(
+"(prefers-reduced-motion: reduce)"
+).matches;
+
 
 const isTouchDevice =
-  "ontouchstart" in window ||
-  navigator.maxTouchPoints > 0;
+"ontouchstart" in window ||
+navigator.maxTouchPoints > 0;
+
+
+
 
 
 
@@ -21,32 +28,46 @@ const isTouchDevice =
    DOM REFERENCES
 ===================================================== */
 
+
 const cards =
-  document.querySelectorAll(".card");
+document.querySelectorAll(".card");
+
 
 const revealCards =
-  document.querySelectorAll(".reveal");
+document.querySelectorAll(".reveal");
+
 
 const hero =
-  document.querySelector(".hero");
+document.querySelector(".hero");
+
 
 const typingElement =
-  document.getElementById("typing");
+document.getElementById("typing");
+
 
 const timeline =
-  document.getElementById("timeline-card");
+document.getElementById("timeline-card");
+
 
 const projectsButton =
-  document.getElementById("projects-button");
+document.getElementById("projects-button");
+
 
 const yearButtons =
-  document.querySelectorAll(".year-buttons button");
+document.querySelectorAll(
+".year-buttons button"
+);
+
 
 const projectGrid =
-  document.querySelector(".project-grid");
+document.querySelector(".project-grid");
+
 
 const cpuField =
-  document.getElementById("cpu-field");
+document.getElementById("cpu-field");
+
+
+
 
 
 
@@ -55,116 +76,135 @@ const cpuField =
 ===================================================== */
 
 
-if ("IntersectionObserver" in window) {
+if(
+"IntersectionObserver" in window
+){
 
 
-  const revealObserver =
-    new IntersectionObserver(
+const revealObserver =
+new IntersectionObserver(
 
-      (entries) => {
-
-
-        entries.forEach((entry,index)=>{
+(entries)=>{
 
 
-          if(entry.isIntersecting){
+entries.forEach(
+(entry,index)=>{
 
 
-            setTimeout(()=>{
+if(entry.isIntersecting){
 
 
-              entry.target.classList.add(
-                "active"
-              );
+setTimeout(()=>{
 
 
-            }, index * 100);
+entry.target.classList.add(
+"active"
+);
 
 
-
-            revealObserver.unobserve(
-              entry.target
-            );
-
-
-          }
-
-
-        });
-
-
-      },
-
-      {
-        threshold:0.15
-      }
-
-    );
+},index*100);
 
 
 
-  revealCards.forEach(card=>{
-
-    revealObserver.observe(card);
-
-  });
+revealObserver.unobserve(
+entry.target
+);
 
 
 }
 
-else {
 
 
-  window.addEventListener(
-    "load",
-    ()=>{
+});
 
 
-      revealCards.forEach(
-        (card,index)=>{
+},
 
 
-          setTimeout(()=>{
+{
+threshold:.15
+}
 
 
-            card.classList.add(
-              "active"
-            );
+);
 
 
-          },index*120);
+
+revealCards.forEach(card=>{
 
 
-        }
-      );
+revealObserver.observe(
+card
+);
 
 
-    }
-  );
+});
+
 
 
 }
+
+else{
+
+
+window.addEventListener(
+"load",
+()=>{
+
+
+revealCards.forEach(
+(card,index)=>{
+
+
+setTimeout(()=>{
+
+
+card.classList.add(
+"active"
+);
+
+
+},index*120);
+
+
+});
+
+
+});
+
+
+}
+
+
+
 
 
 
 /* =====================================================
-   TYPEWRITER ENGINE
+   TYPEWRITER SYSTEM
 ===================================================== */
 
 
 const typingWords = [
 
-  "32-bit pipelined RISC-V cores...",
 
-  "synthesizable RTL architectures...",
+"32-bit pipelined RISC-V cores...",
 
-  "FPGA hardware systems...",
 
-  "processor microarchitecture...",
+"synthesizable RTL architectures...",
 
-  "high-performance digital logic..."
+
+"FPGA hardware systems...",
+
+
+"processor microarchitecture...",
+
+
+"digital logic optimization..."
+
 
 ];
+
 
 
 let wordIndex = 0;
@@ -175,251 +215,276 @@ let deleting = false;
 
 
 
+
+
 function typeWriter(){
 
 
-  if(!typingElement)
-    return;
+if(!typingElement)
+return;
 
 
 
-  const current =
-    typingWords[wordIndex];
+const word =
+typingWords[wordIndex];
 
 
 
-  if(!deleting){
+if(!deleting){
 
 
-    charIndex++;
+charIndex++;
 
 
-    typingElement.textContent =
-      current.substring(
-        0,
-        charIndex
-      );
-
-
-
-    if(charIndex >= current.length){
-
-
-      deleting = true;
-
-
-      setTimeout(
-        typeWriter,
-        1500
-      );
-
-
-      return;
-
-
-    }
-
-
-  }
-
-
-  else {
-
-
-    charIndex--;
+typingElement.textContent =
+word.substring(
+0,
+charIndex
+);
 
 
 
-    typingElement.textContent =
-      current.substring(
-        0,
-        charIndex
-      );
+if(
+charIndex >= word.length
+){
 
 
-
-    if(charIndex <= 0){
-
-
-      deleting=false;
+deleting=true;
 
 
-      wordIndex =
-        (wordIndex+1)
-        %
-        typingWords.length;
+setTimeout(
+typeWriter,
+1500
+);
 
 
-    }
-
-
-  }
-
-
-
-  setTimeout(
-
-    typeWriter,
-
-    deleting ? 35 : 70
-
-  );
+return;
 
 
 }
+
+
+}
+
+else{
+
+
+charIndex--;
+
+
+typingElement.textContent =
+word.substring(
+0,
+charIndex
+);
+
+
+
+if(
+charIndex <=0
+){
+
+
+deleting=false;
+
+
+wordIndex =
+(wordIndex+1)
+%
+typingWords.length;
+
+
+}
+
+
+}
+
+
+
+setTimeout(
+
+typeWriter,
+
+deleting
+?
+40
+:
+75
+
+);
+
+
+}
+
 
 
 
 if(prefersReducedMotion){
 
 
-  if(typingElement){
+if(typingElement){
 
-
-    typingElement.textContent =
-      typingWords[0]
-      .replace("...","");
-
-
-  }
-
-
-}
-
-else {
-
-
-  typeWriter();
-
+typingElement.textContent =
+typingWords[0]
+.replace("...","");
 
 }
 
 
+}
+
+else{
+
+
+typeWriter();
+
+
+}
 
 /* =====================================================
-   CARD CURSOR GLOW
+   CARD CURSOR LIGHT TRACKING
 ===================================================== */
 
 
 if(
-  !isTouchDevice &&
-  !prefersReducedMotion
+!isTouchDevice &&
+!prefersReducedMotion
 ){
 
 
-  cards.forEach(card=>{
+cards.forEach(card=>{
 
 
-    card.addEventListener(
-      "mousemove",
-      event=>{
+card.addEventListener(
+"mousemove",
+(event)=>{
 
 
-        const rect =
-          card.getBoundingClientRect();
-
-
-
-        card.style.setProperty(
-
-          "--mouse-x",
-
-          `${event.clientX - rect.left}px`
-
-        );
+const rect =
+card.getBoundingClientRect();
 
 
 
-        card.style.setProperty(
+card.style.setProperty(
 
-          "--mouse-y",
+"--mouse-x",
 
-          `${event.clientY - rect.top}px`
+`${event.clientX - rect.left}px`
 
-        );
-
-
-      }
-
-    );
+);
 
 
-  });
+
+card.style.setProperty(
+
+"--mouse-y",
+
+`${event.clientY - rect.top}px`
+
+);
 
 
 }
+
+
+);
+
+
+});
+
+
+}
+
+
+
+
+
 
 
 
 /* =====================================================
-   HERO PARALLAX
+   HERO 3D MOVEMENT
 ===================================================== */
 
 
 if(
-  hero &&
-  !prefersReducedMotion
+hero &&
+!prefersReducedMotion
 ){
 
 
-  hero.addEventListener(
-    "mousemove",
-    event=>{
+
+hero.addEventListener(
+
+"mousemove",
+
+(event)=>{
 
 
-      const rect =
-        hero.getBoundingClientRect();
-
-
-
-      const x =
-        (event.clientX - rect.left)
-        /
-        rect.width
-        -
-        0.5;
+const rect =
+hero.getBoundingClientRect();
 
 
 
-      const y =
-        (event.clientY - rect.top)
-        /
-        rect.height
-        -
-        0.5;
+const x =
+(event.clientX - rect.left)
+/
+rect.width
+-
+0.5;
 
 
 
-      hero.style.transform =
-
-      `
-      perspective(1200px)
-      rotateY(${x*3}deg)
-      rotateX(${-y*3}deg)
-      translateY(-3px)
-      `;
-
-
-    }
-
-  );
+const y =
+(event.clientY - rect.top)
+/
+rect.height
+-
+0.5;
 
 
 
-  hero.addEventListener(
-    "mouseleave",
-    ()=>{
+hero.style.transform =
 
+`
+perspective(1200px)
+rotateY(${x*3}deg)
+rotateX(${-y*3}deg)
+translateY(-5px)
+`;
 
-      hero.style.transform="";
-
-
-    }
-
-  );
 
 
 }
+
+
+
+);
+
+
+
+hero.addEventListener(
+
+"mouseleave",
+
+()=>{
+
+
+hero.style.transform="";
+
+
+}
+
+);
+
+
+
+}
+
+
+
+
+
 
 
 
@@ -429,40 +494,49 @@ if(
 
 
 document
-.querySelectorAll(".terminal-dots span")
+.querySelectorAll(
+".terminal-dots span"
+)
 .forEach(dot=>{
 
 
-  dot.addEventListener(
-    "mouseenter",
-    ()=>{
+dot.addEventListener(
+"mouseenter",
+()=>{
 
 
-      dot.style.transform =
-      "scale(1.35) rotate(15deg)";
+dot.style.transform =
+"scale(1.35) rotate(15deg)";
 
 
-    }
+}
 
-  );
-
-
-
-  dot.addEventListener(
-    "mouseleave",
-    ()=>{
+);
 
 
-      dot.style.transform =
-      "scale(1) rotate(0deg)";
+
+dot.addEventListener(
+"mouseleave",
+()=>{
 
 
-    }
+dot.style.transform =
+"";
 
-  );
+
+}
+
+);
 
 
 });
+
+
+
+
+
+
+
 
 /* =====================================================
    PROJECT DATABASE
@@ -472,90 +546,128 @@ document
 const projects = {
 
 
-  2026: [
-
-    {
-      title:
-      "32-Bit Pipelined RISC-V CPU Core",
-
-      text:
-      "Designed a custom SystemVerilog processor architecture with a 5-stage pipeline, hazard detection, forwarding logic, and RTL verification."
-    },
+2026:[
 
 
-    {
-      title:
-      "RTL Verification Environment",
-
-      text:
-      "Built simulation workflows using ModelSim, GTKWave, and Icarus Verilog for waveform debugging and hardware validation."
-    },
+{
 
 
-    {
-      title:
-      "Computer Architecture Research",
-
-      text:
-      "Exploring instruction pipelines, datapaths, memory systems, control units, and processor optimization techniques."
-    }
-
-  ],
+title:
+"32-Bit Pipelined RISC-V CPU Core",
 
 
+text:
+"Designed a custom SystemVerilog processor architecture featuring instruction fetch, decode, execute, memory, write-back stages, hazard detection, and forwarding logic."
 
-  2025: [
-
-    {
-      title:
-      "Digital Systems Development",
-
-      text:
-      "Developed foundations in digital logic, programming, electronics, and hardware design principles."
-    },
+},
 
 
-    {
-      title:
-      "Engineering Applications",
-
-      text:
-      "Applied mathematics, physics, and programming toward engineering-focused technical problems."
-    },
+{
 
 
-    {
-      title:
-      "FPGA Hardware Exploration",
+title:
+"RTL Verification Environment",
 
-      text:
-      "Started exploring FPGA development, embedded systems, and hardware acceleration concepts."
-    }
 
-  ],
+text:
+"Created simulation workflows using ModelSim, GTKWave, and Icarus Verilog for waveform analysis and hardware debugging."
+
+},
+
+
+{
+
+
+title:
+"Computer Architecture Research",
+
+
+text:
+"Exploring processor pipelines, datapaths, control units, memory hierarchy, and performance optimization."
+
+}
+
+
+],
 
 
 
-  2024: [
-
-    {
-      title:
-      "Programming Foundation",
-
-      text:
-      "Built programming fundamentals and problem-solving skills through technical projects."
-    },
+2025:[
 
 
-    {
-      title:
-      "Engineering Curiosity",
+{
 
-      text:
-      "Explored computer systems, electronics, and modern technology."
-    }
 
-  ]
+title:
+"Digital Systems Development",
+
+
+text:
+"Built foundations in digital logic, programming, electronics, and hardware design concepts."
+
+},
+
+
+{
+
+
+title:
+"FPGA Hardware Exploration",
+
+
+text:
+"Started developing FPGA knowledge through programmable logic, hardware description languages, and embedded systems."
+
+},
+
+
+{
+
+
+title:
+"Engineering Applications",
+
+
+text:
+"Applied mathematics, physics, and programming toward technical engineering problems."
+
+}
+
+
+],
+
+
+
+2024:[
+
+
+{
+
+
+title:
+"Programming Foundation",
+
+
+text:
+"Developed programming fundamentals and structured problem-solving skills."
+
+},
+
+
+{
+
+
+title:
+"Engineering Curiosity",
+
+
+text:
+"Explored computer systems, electronics, and the technologies behind modern devices."
+
+}
+
+
+]
 
 
 };
@@ -564,101 +676,106 @@ const projects = {
 
 
 
+
+
+
 /* =====================================================
-   PROJECT LOADER
+   LOAD PROJECTS
 ===================================================== */
 
 
 function loadProjects(year){
 
 
-  if(!projectGrid)
-    return;
+if(!projectGrid)
+return;
 
 
 
-  projectGrid.style.opacity = "0";
+projectGrid.style.opacity="0";
 
 
 
-  setTimeout(()=>{
+setTimeout(()=>{
 
 
-    projectGrid.innerHTML = "";
-
-
-
-    projects[year].forEach(
-      (project,index)=>{
-
-
-        const item =
-        document.createElement(
-          "div"
-        );
-
-
-        item.className =
-        "project-item";
+projectGrid.innerHTML="";
 
 
 
-        item.style.animationDelay =
-        `${index * 0.12}s`;
+projects[year].forEach(
+
+(project,index)=>{
+
+
+const card =
+document.createElement(
+"div"
+);
 
 
 
-        const title =
-        document.createElement(
-          "h4"
-        );
-
-
-        title.textContent =
-        project.title;
+card.className =
+"project-item";
 
 
 
-        const text =
-        document.createElement(
-          "p"
-        );
-
-
-        text.textContent =
-        project.text;
+card.style.animationDelay =
+`${index*.12}s`;
 
 
 
-        item.append(
-          title,
-          text
-        );
+const title =
+document.createElement(
+"h4"
+);
 
 
 
-        projectGrid.appendChild(
-          item
-        );
-
-
-      }
-    );
+title.textContent =
+project.title;
 
 
 
-    projectGrid.style.opacity = "1";
+const text =
+document.createElement(
+"p"
+);
 
 
 
-  },150);
+text.textContent =
+project.text;
+
+
+
+card.append(
+title,
+text
+);
+
+
+
+projectGrid.appendChild(
+card
+);
+
 
 
 }
 
+);
 
 
 
+projectGrid.style.opacity="1";
+
+
+},150);
+
+
+
+}
 
 /* =====================================================
    ENGINEERING JOURNEY SYSTEM
@@ -668,13 +785,18 @@ function loadProjects(year){
 const TIMELINE_COLLAPSE_DELAY = 3500;
 
 
-let timelineCollapseTimer = null;
+let timelineTimer = null;
+
 
 
 let selectedYear =
-localStorage.getItem("selectedYear")
+localStorage.getItem(
+"selectedYear"
+)
 ||
 "2026";
+
+
 
 
 
@@ -683,21 +805,80 @@ localStorage.getItem("selectedYear")
 function cancelTimelineCollapse(){
 
 
-  if(timelineCollapseTimer){
+if(timelineTimer){
 
 
-    clearTimeout(
-      timelineCollapseTimer
-    );
+clearTimeout(
+timelineTimer
+);
 
 
-    timelineCollapseTimer = null;
-
-
-  }
+timelineTimer=null;
 
 
 }
+
+
+}
+
+
+
+
+
+
+
+
+function collapseTimeline(){
+
+
+if(!timeline)
+return;
+
+
+
+timeline.classList.add(
+"collapsing"
+);
+
+
+
+setTimeout(()=>{
+
+
+timeline.classList.remove(
+"expanded"
+);
+
+
+timeline.classList.remove(
+"collapsing"
+);
+
+
+
+if(projectGrid){
+
+
+projectGrid.innerHTML =
+`
+<p>
+Hover over a year to explore projects.
+</p>
+`;
+
+
+}
+
+
+
+},700);
+
+
+
+}
+
+
+
 
 
 
@@ -706,48 +887,27 @@ function cancelTimelineCollapse(){
 function scheduleTimelineCollapse(){
 
 
-  cancelTimelineCollapse();
+cancelTimelineCollapse();
 
 
 
-  timelineCollapseTimer =
-  setTimeout(()=>{
+timelineTimer =
+setTimeout(()=>{
 
 
-    if(!timeline)
-      return;
-
-
-
-    timeline.classList.add(
-      "collapsing"
-    );
+collapseTimeline();
 
 
 
-    setTimeout(()=>{
-
-
-      timeline.classList.remove(
-        "expanded"
-      );
-
-
-      timeline.classList.remove(
-        "collapsing"
-      );
-
-
-
-    },700);
-
-
-
-  },TIMELINE_COLLAPSE_DELAY);
+},TIMELINE_COLLAPSE_DELAY);
 
 
 
 }
+
+
+
+
 
 
 
@@ -756,81 +916,95 @@ function scheduleTimelineCollapse(){
 function activateYear(button){
 
 
-  if(!button)
-    return;
+if(!button)
+return;
 
 
 
-  const year =
-  button.dataset.year;
+const year =
+button.dataset.year;
 
 
 
-  selectedYear =
-  year;
+selectedYear =
+year;
 
 
 
-  localStorage.setItem(
-    "selectedYear",
-    year
-  );
+localStorage.setItem(
+"selectedYear",
+year
+);
 
 
 
-  yearButtons.forEach(btn=>{
 
 
-    btn.classList.remove(
-      "active"
-    );
+yearButtons.forEach(btn=>{
 
 
-    btn.setAttribute(
-      "aria-selected",
-      "false"
-    );
-
-
-  });
+btn.classList.remove(
+"active"
+);
 
 
 
-  button.classList.add(
-    "active"
-  );
+btn.setAttribute(
+"aria-selected",
+"false"
+);
 
 
 
-  button.setAttribute(
-    "aria-selected",
-    "true"
-  );
+});
 
 
 
-  if(timeline){
 
 
-    cancelTimelineCollapse();
-
-
-
-    timeline.classList.add(
-      "expanded"
-    );
-
-
-  }
+button.classList.add(
+"active"
+);
 
 
 
-  loadProjects(
-    year
-  );
+button.setAttribute(
+"aria-selected",
+"true"
+);
+
+
+
+
+
+if(timeline){
+
+
+cancelTimelineCollapse();
+
+
+
+timeline.classList.add(
+"expanded"
+);
+
 
 
 }
+
+
+
+loadProjects(
+year
+);
+
+
+
+}
+
+
+
+
 
 
 
@@ -839,27 +1013,31 @@ function activateYear(button){
 function restoreSelectedYear(){
 
 
-  const savedButton =
-  document.querySelector(
+const saved =
+document.querySelector(
 
-    `.year-buttons button[data-year="${selectedYear}"]`
+`.year-buttons button[data-year="${selectedYear}"]`
 
-  );
-
-
-
-  if(savedButton){
+);
 
 
-    activateYear(
-      savedButton
-    );
+
+if(saved){
 
 
-  }
+activateYear(
+saved
+);
+
 
 
 }
+
+
+}
+
+
+
 
 
 
@@ -873,51 +1051,62 @@ function restoreSelectedYear(){
 yearButtons.forEach(button=>{
 
 
-  button.addEventListener(
-    "mouseenter",
-    ()=>{
+button.addEventListener(
+"mouseenter",
+()=>{
 
 
-      activateYear(
-        button
-      );
-
-
-    }
-  );
+activateYear(
+button
+);
 
 
 
-  button.addEventListener(
-    "click",
-    ()=>{
+}
 
-
-      activateYear(
-        button
-      );
-
-
-    }
-  );
+);
 
 
 
-  button.addEventListener(
-    "focus",
-    ()=>{
+button.addEventListener(
+"click",
+()=>{
 
 
-      activateYear(
-        button
-      );
+activateYear(
+button
+);
 
 
-    }
-  );
+
+}
+
+);
+
+
+
+button.addEventListener(
+"focus",
+()=>{
+
+
+activateYear(
+button
+);
+
+
+
+}
+
+);
+
 
 
 });
+
+
+
+
 
 
 
@@ -931,86 +1120,125 @@ yearButtons.forEach(button=>{
 if(timeline){
 
 
-  timeline.addEventListener(
-    "mouseenter",
-    ()=>{
+
+timeline.addEventListener(
+
+"mouseenter",
+
+()=>{
 
 
-      cancelTimelineCollapse();
-
-
-
-      if(
-        !timeline.classList.contains(
-          "expanded"
-        )
-      ){
-
-
-        restoreSelectedYear();
-
-
-      }
-
-
-    }
-  );
+cancelTimelineCollapse();
 
 
 
-  timeline.addEventListener(
-    "mouseleave",
-    ()=>{
+if(
+!timeline.classList.contains(
+"expanded"
+)
+
+){
 
 
-      scheduleTimelineCollapse();
-
-
-    }
-  );
-
-
-
-  timeline.addEventListener(
-    "focusin",
-    ()=>{
-
-
-      cancelTimelineCollapse();
-
-
-    }
-  );
+restoreSelectedYear();
 
 
 
-  timeline.addEventListener(
-    "focusout",
-    event=>{
+}
 
 
-      if(
-        !timeline.contains(
-          event.relatedTarget
-        )
-      ){
+}
+
+);
 
 
-        scheduleTimelineCollapse();
 
 
-      }
+
+timeline.addEventListener(
+
+"mouseleave",
+
+()=>{
 
 
-    }
-  );
+scheduleTimelineCollapse();
+
+
+
+}
+
+);
+
+
+
+
+
+timeline.addEventListener(
+
+"focusin",
+
+()=>{
+
+
+cancelTimelineCollapse();
+
+
+
+}
+
+);
+
+
+
+
+
+timeline.addEventListener(
+
+"focusout",
+
+(event)=>{
+
+
+if(
+!timeline.contains(
+event.relatedTarget
+)
+
+){
+
+
+scheduleTimelineCollapse();
+
+
+
+}
+
+
+}
+
+);
+
 
 
 }
 
 
 
+
+
+
+
+
 restoreSelectedYear();
+
+
+
+
+
+
+
+
 
 /* =====================================================
    VIEW PROJECTS BUTTON
@@ -1020,36 +1248,38 @@ restoreSelectedYear();
 function playTimelineGlow(){
 
 
-  if(!timeline)
-    return;
+if(!timeline)
+return;
 
 
 
-  timeline.classList.remove(
-    "project-active"
-  );
+timeline.classList.remove(
+"project-active"
+);
 
 
 
-  void timeline.offsetWidth;
+void timeline.offsetWidth;
 
 
 
-  timeline.classList.add(
-    "project-active"
-  );
+timeline.classList.add(
+"project-active"
+);
 
 
 
-  setTimeout(()=>{
+setTimeout(()=>{
 
 
-    timeline.classList.remove(
-      "project-active"
-    );
+timeline.classList.remove(
+"project-active"
+);
 
 
-  },5000);
+
+},5000);
+
 
 
 }
@@ -1058,85 +1288,98 @@ function playTimelineGlow(){
 
 
 
-if(projectsButton && timeline){
-
-
-  projectsButton.addEventListener(
-    "click",
-    event=>{
-
-
-      event.preventDefault();
 
 
 
-      timeline.scrollIntoView({
-
-
-        behavior:
-          prefersReducedMotion
-          ?
-          "auto"
-          :
-          "smooth",
-
-
-        block:
-        "center"
-
-
-      });
+if(
+projectsButton &&
+timeline
+){
 
 
 
-      setTimeout(()=>{
+projectsButton.addEventListener(
+
+"click",
+
+(event)=>{
 
 
-        if(yearButtons[0]){
-
-
-          activateYear(
-            yearButtons[0]
-          );
-
-
-        }
+event.preventDefault();
 
 
 
-        playTimelineGlow();
+timeline.scrollIntoView({
+
+behavior:
+prefersReducedMotion
+?
+"auto"
+:
+"smooth",
+
+
+block:
+"center"
+
+
+});
 
 
 
-      },700);
+
+setTimeout(()=>{
+
+
+activateYear(
+yearButtons[0]
+);
 
 
 
-    }
-  );
+playTimelineGlow();
+
+
+
+},700);
+
 
 
 }
+
+);
+
+
+
+}
+
+
+
+
 
 
 
 
 
 /* =====================================================
-   PIPELINE ANIMATION
+   PROCESSOR PIPELINE ANIMATION
 ===================================================== */
 
 
 const pipelineStages =
 document.querySelectorAll(
-  ".pipeline div"
+".pipeline div"
 );
 
 
-let pipelineIndex = 0;
+
+let pipelineIndex=0;
 
 
-let pipelineInterval = null;
+
+let pipelineInterval=null;
+
+
 
 
 
@@ -1145,43 +1388,49 @@ let pipelineInterval = null;
 function stepPipeline(){
 
 
-  if(!pipelineStages.length)
-    return;
+if(!pipelineStages.length)
+return;
 
 
 
-  pipelineStages.forEach(stage=>{
+pipelineStages.forEach(stage=>{
 
 
-    stage.style.boxShadow = "";
+stage.style.boxShadow="";
 
-    stage.style.color = "";
-
-
-  });
+stage.style.color="";
 
 
-
-
-  const activeStage =
-  pipelineStages[pipelineIndex];
+});
 
 
 
-  activeStage.style.boxShadow =
-  "0 0 25px rgba(0,234,255,.5)";
+
+
+const active =
+pipelineStages[pipelineIndex];
 
 
 
-  activeStage.style.color =
-  "#00ff88";
+active.style.boxShadow =
+"0 0 25px rgba(0,234,255,.5)";
 
 
 
-  pipelineIndex =
-  (pipelineIndex + 1)
-  %
-  pipelineStages.length;
+active.style.color =
+"#00ff88";
+
+
+
+
+
+pipelineIndex =
+(
+pipelineIndex+1
+)
+%
+pipelineStages.length;
+
 
 
 }
@@ -1195,20 +1444,21 @@ function stepPipeline(){
 function startPipeline(){
 
 
-  if(
-    !pipelineStages.length ||
-    pipelineInterval ||
-    prefersReducedMotion
-  )
-    return;
+if(
+!pipelineStages.length ||
+pipelineInterval ||
+prefersReducedMotion
+)
+return;
 
 
 
-  pipelineInterval =
-  setInterval(
-    stepPipeline,
-    1200
-  );
+pipelineInterval =
+setInterval(
+stepPipeline,
+1200
+);
+
 
 
 }
@@ -1220,18 +1470,19 @@ function startPipeline(){
 function stopPipeline(){
 
 
-  if(pipelineInterval){
+if(pipelineInterval){
 
 
-    clearInterval(
-      pipelineInterval
-    );
+clearInterval(
+pipelineInterval
+);
 
 
-    pipelineInterval = null;
+
+pipelineInterval=null;
 
 
-  }
+}
 
 
 }
@@ -1240,12 +1491,6 @@ function stopPipeline(){
 
 startPipeline();
 
-
-
-
-
-
-
 /* =====================================================
    SCROLL PROGRESS BAR
 ===================================================== */
@@ -1253,7 +1498,7 @@ startPipeline();
 
 const scrollBar =
 document.createElement(
-  "div"
+"div"
 );
 
 
@@ -1264,13 +1509,14 @@ scrollBar.className =
 
 
 document.body.appendChild(
-  scrollBar
+scrollBar
 );
 
 
 
 
-let scrollTicking = false;
+
+let scrollTicking=false;
 
 
 
@@ -1279,28 +1525,29 @@ let scrollTicking = false;
 function updateScrollProgress(){
 
 
-  const height =
-  document.documentElement.scrollHeight
-  -
-  window.innerHeight;
+const height =
+document.documentElement.scrollHeight
+-
+window.innerHeight;
 
 
 
-  const progress =
-  height > 0
-  ?
-  (window.scrollY / height) * 100
-  :
-  0;
+const progress =
+height > 0
+?
+(window.scrollY / height) * 100
+:
+0;
 
 
 
-  scrollBar.style.width =
-  `${progress}%`;
+scrollBar.style.width =
+`${progress}%`;
 
 
 
-  scrollTicking = false;
+scrollTicking=false;
+
 
 
 }
@@ -1310,32 +1557,36 @@ function updateScrollProgress(){
 
 
 
-
 window.addEventListener(
-  "scroll",
-  ()=>{
+
+"scroll",
+
+()=>{
 
 
-    if(!scrollTicking){
+if(!scrollTicking){
 
 
-      requestAnimationFrame(
-        updateScrollProgress
-      );
+requestAnimationFrame(
+updateScrollProgress
+);
 
 
-      scrollTicking = true;
+
+scrollTicking=true;
 
 
-    }
+
+}
 
 
-  },
+},
 
 
-  {
-    passive:true
-  }
+{
+passive:true
+}
+
 
 );
 
@@ -1346,52 +1597,60 @@ window.addEventListener(
 
 
 
+
 /* =====================================================
-   RANDOM FPGA SIGNAL FIELD
+   FPGA SIGNAL VISUALIZATION ENGINE
 ===================================================== */
 
 
-const isSmallScreen =
+const smallScreen =
 window.innerWidth < 700;
 
 
 
-const signalConfig = {
 
 
-  initialCount:
-  isSmallScreen
-  ?
-  8
-  :
-  20,
+const signalSettings = {
 
 
+initial:
 
-  intervalMs:
-  isSmallScreen
-  ?
-  4500
-  :
-  2500,
+smallScreen
+?
+8
+:
+20,
 
 
 
-  burstMin:
-  isSmallScreen
-  ?
-  1
-  :
-  2,
+spawnDelay:
+
+smallScreen
+?
+5000
+:
+3000,
 
 
 
-  burstMax:
-  isSmallScreen
-  ?
-  3
-  :
-  6
+burstMin:
+
+smallScreen
+?
+1
+:
+2,
+
+
+
+burstMax:
+
+smallScreen
+?
+3
+:
+6
+
 
 
 };
@@ -1400,10 +1659,41 @@ const signalConfig = {
 
 
 
-let signalInterval = null;
+
+let signalInterval=null;
+
+let burstTimeout=null;
 
 
-let burstTimeout = null;
+
+
+
+
+
+
+const directions = [
+
+
+0,
+
+45,
+
+90,
+
+135,
+
+180,
+
+225,
+
+270,
+
+315
+
+
+];
+
+
 
 
 
@@ -1414,132 +1704,146 @@ let burstTimeout = null;
 function createSignal(initial=false){
 
 
-  if(!cpuField)
-    return;
+if(!cpuField)
+return;
 
 
 
-  const pulse =
-  document.createElement(
-    "div"
-  );
+const pulse =
+document.createElement(
+"div"
+);
 
 
 
-  pulse.className =
-  "cpu-pulse";
+pulse.className =
+"cpu-pulse";
 
 
 
-  const length =
-  Math.random()*250 + 150;
 
 
+const length =
+Math.random()*250+150;
 
-  const startX =
-  Math.random()*120 - 20;
 
 
+const angle =
+directions[
+Math.floor(
+Math.random()*directions.length
+)
+];
 
-  const startY =
-  Math.random()*120 - 20;
 
 
+const distance =
+Math.random()*700+500;
 
-  const angle =
-  Math.random()*360;
 
 
+const duration =
+Math.random()*6+8;
 
-  const distance =
-  Math.random()*600 + 500;
 
 
 
-  const duration =
-  Math.random()*5 + 8;
 
+const startX =
+Math.random()*120-20;
 
 
-  const opacity =
-  Math.random()*0.35 + 0.25;
 
+const startY =
+Math.random()*120-20;
 
 
 
 
-  pulse.style.width =
-  `${length}px`;
 
+pulse.style.width =
+`${length}px`;
 
 
-  pulse.style.left =
-  `${startX}%`;
 
+pulse.style.left =
+`${startX}%`;
 
 
-  pulse.style.top =
-  `${startY}%`;
 
+pulse.style.top =
+`${startY}%`;
 
 
-  pulse.style.opacity =
-  opacity;
 
+pulse.style.opacity =
+Math.random()*.4+.2;
 
 
-  pulse.style.setProperty(
-    "--angle",
-    `${angle}deg`
-  );
 
+pulse.style.setProperty(
 
+"--angle",
 
-  pulse.style.setProperty(
-    "--distance",
-    `${distance}px`
-  );
+`${angle}deg`
 
+);
 
 
-  pulse.style.animationDuration =
-  `${duration}s`;
 
+pulse.style.setProperty(
 
+"--distance",
 
+`${distance}px`
 
+);
 
-  if(initial){
 
 
-    pulse.style.animationDelay =
-    `${Math.random()*2}s`;
+pulse.style.animationDuration =
+`${duration}s`;
 
 
-  }
 
 
 
+if(initial){
 
 
+pulse.style.animationDelay =
+`${Math.random()*3}s`;
 
-  cpuField.appendChild(
-    pulse
-  );
-
-
-
-  setTimeout(()=>{
-
-
-    pulse.remove();
-
-
-
-  },(duration+3)*1000);
 
 
 }
+
+
+
+cpuField.appendChild(
+pulse
+);
+
+
+
+
+
+setTimeout(()=>{
+
+
+pulse.remove();
+
+
+
+},
+(duration+3)*1000
+);
+
+
+
+}
+
+
 
 
 
@@ -1549,50 +1853,66 @@ function createSignal(initial=false){
 function randomBurst(){
 
 
-  const amount =
-  Math.floor(
+const amount =
+Math.floor(
 
-    Math.random()
-    *
-    (
-      signalConfig.burstMax
-      -
-      signalConfig.burstMin
-      +
-      1
-    )
+Math.random()
+*
+(
+signalSettings.burstMax
+-
+signalSettings.burstMin
++
+1
 
-  )
-  +
-  signalConfig.burstMin;
+)
 
-
-
-
-
-  for(let i=0;i<amount;i++){
-
-
-    setTimeout(
-      ()=>createSignal(),
-      i*250
-    );
-
-
-  }
+)
++
+signalSettings.burstMin;
 
 
 
 
 
-  burstTimeout =
-  setTimeout(
-    randomBurst,
-    Math.random()*10000 + 10000
-  );
+for(
+let i=0;
+i<amount;
+i++
+){
+
+
+setTimeout(()=>{
+
+
+createSignal();
+
+
+
+},i*250);
+
 
 
 }
+
+
+
+
+
+
+burstTimeout =
+setTimeout(
+
+randomBurst,
+
+Math.random()*10000+10000
+
+);
+
+
+
+}
+
 
 
 
@@ -1603,37 +1923,50 @@ function randomBurst(){
 function startSignalSystem(){
 
 
-  if(!cpuField)
-    return;
+if(
+!cpuField ||
+prefersReducedMotion
+)
+return;
 
 
 
-  for(
-    let i=0;
-    i<signalConfig.initialCount;
-    i++
-  ){
+for(
+let i=0;
+i<signalSettings.initial;
+i++
+){
 
 
-    createSignal(true);
+createSignal(true);
 
-
-  }
-
-
-
-  signalInterval =
-  setInterval(
-    createSignal,
-    signalConfig.intervalMs
-  );
-
-
-
-  randomBurst();
 
 
 }
+
+
+
+
+
+signalInterval =
+setInterval(
+
+createSignal,
+
+signalSettings.spawnDelay
+
+);
+
+
+
+randomBurst();
+
+
+
+}
+
+
+
 
 
 
@@ -1642,21 +1975,23 @@ function startSignalSystem(){
 function stopSignalSystem(){
 
 
-  clearInterval(
-    signalInterval
-  );
+clearInterval(
+signalInterval
+);
 
 
-  clearTimeout(
-    burstTimeout
-  );
+
+clearTimeout(
+burstTimeout
+);
 
 
-  signalInterval = null;
+
+signalInterval=null;
+
 
 
 }
-
 
 
 
@@ -1664,144 +1999,359 @@ function stopSignalSystem(){
 if(!prefersReducedMotion){
 
 
-  startSignalSystem();
+startSignalSystem();
+
+
+
+}
+
+
+
+
+
+
+
+
+
+/* =====================================================
+   PAUSE WHEN TAB HIDDEN
+===================================================== */
+
+
+document.addEventListener(
+
+"visibilitychange",
+
+()=>{
+
+
+if(document.hidden){
+
+
+stopPipeline();
+
+
+stopSignalSystem();
+
 
 
 }
 
-/* =====================================================
-   PAUSE ANIMATIONS WHEN TAB IS HIDDEN
-===================================================== */
-
-document.addEventListener("visibilitychange", () => {
-
-  if (document.hidden) {
-
-    stopPipeline();
-    stopSignalSystem();
-
-  }
-
-  else {
-
-    startPipeline();
-
-    if (!prefersReducedMotion) {
-      startSignalSystem();
-    }
-
-  }
-
-});
+else{
 
 
-/* =====================================================
-   PAGE LOADED
-===================================================== */
-
-window.addEventListener("load", () => {
-
-  document.body.classList.add("loaded");
-
-  console.log(
-    "ADAM MORGAN PORTFOLIO — SYSTEM ONLINE (RISC-V / RTL / FPGA)"
-  );
-
-});
+startPipeline();
 
 
-/* =====================================================
-   TOUCH FEEDBACK
-===================================================== */
-
-if (isTouchDevice) {
-
-  cards.forEach(card => {
-
-    card.addEventListener(
-      "touchstart",
-      () => {
-
-        card.classList.add("touch-active");
-
-      },
-      {
-        passive: true
-      }
-    );
+if(!prefersReducedMotion){
 
 
-    card.addEventListener(
-      "touchend",
-      () => {
+startSignalSystem();
 
-        setTimeout(() => {
 
-          card.classList.remove("touch-active");
-
-        }, 300);
-
-      },
-      {
-        passive: true
-      }
-    );
-
-  });
 
 }
+
+
+
+}
+
+
+
+}
+
+);
+
+/* =====================================================
+   PAGE INITIALIZATION
+===================================================== */
+
+
+window.addEventListener(
+
+"load",
+
+()=>{
+
+
+document.body.classList.add(
+"loaded"
+);
+
+
+
+console.log(
+
+"ADAM MORGAN PORTFOLIO — SYSTEM ONLINE"
+
+);
+
+
+
+}
+
+);
+
+
+
+
+
+
+
+
+/* =====================================================
+   TOUCH DEVICE FEEDBACK
+===================================================== */
+
+
+if(isTouchDevice){
+
+
+
+cards.forEach(card=>{
+
+
+
+card.addEventListener(
+
+"touchstart",
+
+()=>{
+
+
+card.classList.add(
+"touch-active"
+);
+
+
+
+},
+
+{
+passive:true
+}
+
+
+
+);
+
+
+
+
+
+
+
+card.addEventListener(
+
+"touchend",
+
+()=>{
+
+
+
+setTimeout(()=>{
+
+
+card.classList.remove(
+"touch-active"
+);
+
+
+
+},300);
+
+
+
+},
+
+{
+passive:true
+}
+
+
+
+);
+
+
+
+
+});
+
+
+
+}
+
+
+
+
+
+
+
 
 
 /* =====================================================
    KEYBOARD SHORTCUTS
 ===================================================== */
 
-document.addEventListener("keydown", event => {
 
-  const tag =
-    document.activeElement?.tagName;
+document.addEventListener(
 
-  if (
-    tag === "INPUT" ||
-    tag === "TEXTAREA"
-  ) {
-    return;
-  }
+"keydown",
+
+(event)=>{
 
 
-  if (event.key === "1" && yearButtons[0]) {
 
-    activateYear(yearButtons[0]);
-
-  }
+const active =
+document.activeElement?.tagName;
 
 
-  if (event.key === "2" && yearButtons[1]) {
 
-    activateYear(yearButtons[1]);
+if(
+active === "INPUT" ||
+active === "TEXTAREA"
+){
 
-  }
+return;
+
+}
 
 
-  if (event.key === "3" && yearButtons[2]) {
 
-    activateYear(yearButtons[2]);
 
-  }
 
-});
+if(
+event.key === "1" &&
+yearButtons[0]
+){
+
+
+activateYear(
+yearButtons[0]
+);
+
+
+
+}
+
+
+
+
+
+if(
+event.key === "2" &&
+yearButtons[1]
+){
+
+
+activateYear(
+yearButtons[1]
+);
+
+
+
+}
+
+
+
+
+
+if(
+event.key === "3" &&
+yearButtons[2]
+){
+
+
+activateYear(
+yearButtons[2]
+);
+
+
+
+}
+
+
+
+}
+
+);
+
+
+
+
+
+
 
 
 /* =====================================================
    FOOTER YEAR
 ===================================================== */
 
+
 const yearElement =
-  document.getElementById("year");
+document.getElementById(
+"year"
+);
 
-if (yearElement) {
 
-  yearElement.textContent =
-    new Date().getFullYear();
+
+if(yearElement){
+
+
+yearElement.textContent =
+new Date().getFullYear();
+
+
 
 }
+
+
+
+
+
+
+
+
+/* =====================================================
+   INITIAL HARDWARE STATE
+===================================================== */
+
+
+if(yearButtons.length){
+
+
+restoreSelectedYear();
+
+
+
+}
+
+
+
+
+
+
+
+
+/* =====================================================
+   CLEANUP ON PAGE EXIT
+===================================================== */
+
+
+window.addEventListener(
+
+"beforeunload",
+
+()=>{
+
+
+stopPipeline();
+
+
+stopSignalSystem();
+
+
+
+}
+
+);
