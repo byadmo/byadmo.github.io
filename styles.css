@@ -4,36 +4,29 @@
 ===================================================== */
 
 
-/* =====================================================
-   ROOT VARIABLES
-===================================================== */
-
 :root {
 
-  --bg: #07080a;
+  --bg:#07080a;
 
-  --card: #111319;
+  --card:#111319;
 
-  --card-light: #171a21;
+  --card-light:#171a21;
 
-  --border: #252a35;
+  --border:#252a35;
 
-  --white: #ffffff;
+  --white:#ffffff;
 
-  --muted: #9297a3;
+  --muted:#9297a3;
 
-  --cyan: #00eaff;
+  --cyan:#00eaff;
 
-  --green: #00ff88;
+  --green:#00ff88;
 
-  --radius: 28px;
+  --radius:28px;
 
-  --ease: cubic-bezier(.22,1,.36,1);
+  --ease:cubic-bezier(.22,1,.36,1);
 
 }
-
-
-
 
 
 
@@ -64,22 +57,13 @@ html {
 
 body {
 
-  background:
+  background:var(--bg);
 
-  var(--bg);
+  color:var(--white);
 
-  color:
+  font-family:"JetBrains Mono", monospace;
 
-  var(--white);
-
-  font-family:
-
-  "JetBrains Mono",
-  monospace;
-
-  padding:
-
-  40px;
+  padding:40px;
 
   overflow-x:hidden;
 
@@ -91,133 +75,53 @@ body {
 
 
 
-
 /* =====================================================
-   ACCESSIBILITY
-===================================================== */
-
-
-.skip-link {
-
-  position:absolute;
-
-  top:-60px;
-
-  left:16px;
-
-  z-index:10000;
-
-  background:
-
-  var(--green);
-
-  color:#000;
-
-  padding:
-
-  10px 18px;
-
-  border-radius:
-
-  10px;
-
-  text-decoration:none;
-
-  transition:
-
-  .3s var(--ease);
-
-}
-
-
-
-.skip-link:focus {
-
-  top:16px;
-
-}
-
-
-
-a:focus-visible,
-button:focus-visible {
-
-  outline:
-
-  2px solid var(--cyan);
-
-  outline-offset:
-
-  3px;
-
-}
-
-
-
-
-
-
-/* =====================================================
-   BACKGROUND ENGINEERING GRID
+   BACKGROUND GRID
 ===================================================== */
 
 
 body::before {
 
-  content:"";
 
-  position:fixed;
+content:"";
 
-  inset:0;
+position:fixed;
 
-
-  background:
+inset:0;
 
 
-  linear-gradient(
-
-    90deg,
-
-    rgba(0,234,255,.025) 1px,
-
-    transparent 1px
-
-  ),
+background:
 
 
-  linear-gradient(
-
-    rgba(0,234,255,.025) 1px,
-
-    transparent 1px
-
-  );
+linear-gradient(
+90deg,
+rgba(0,234,255,.025) 1px,
+transparent 1px
+),
 
 
-  background-size:
-
-  70px 70px;
-
-
-  mask-image:
-
-  radial-gradient(
-
-    circle,
-
-    black,
-
-    transparent 75%
-
-  );
+linear-gradient(
+rgba(0,234,255,.025) 1px,
+transparent 1px
+);
 
 
-  pointer-events:none;
+background-size:70px 70px;
 
-  z-index:0;
+
+mask-image:
+
+radial-gradient(
+circle,
+black,
+transparent 75%
+);
+
+
+pointer-events:none;
+
 
 }
-
 
 
 
@@ -230,32 +134,28 @@ body::before {
 
 .noise {
 
-  position:fixed;
 
-  inset:0;
+position:fixed;
 
-  pointer-events:none;
+inset:0;
 
-  opacity:.035;
+pointer-events:none;
 
-
-  background-image:
-
-  radial-gradient(
-
-    white 1px,
-
-    transparent 1px
-
-  );
+opacity:.035;
 
 
-  background-size:
+background-image:
 
-  18px 18px;
+radial-gradient(
+white 1px,
+transparent 1px
+);
+
+
+background-size:18px 18px;
+
 
 }
-
 
 
 
@@ -268,15 +168,17 @@ body::before {
 
 .cpu-field {
 
-  position:fixed;
 
-  inset:0;
+position:fixed;
 
-  overflow:hidden;
+inset:0;
 
-  pointer-events:none;
+overflow:hidden;
 
-  z-index:0;
+pointer-events:none;
+
+z-index:0;
+
 
 }
 
@@ -285,41 +187,48 @@ body::before {
 
 .cpu-pulse {
 
-  position:absolute;
 
-  height:2px;
+position:absolute;
 
-
-  background:
-
-  linear-gradient(
-
-    90deg,
-
-    transparent,
-
-    var(--cyan),
-
-    var(--green),
-
-    transparent
-
-  );
+height:2px;
 
 
-  box-shadow:
+background:
+
+linear-gradient(
+
+90deg,
+
+transparent,
+
+rgba(0,234,255,.9),
+
+rgba(0,255,136,.8),
+
+transparent
+
+);
 
 
-  0 0 15px rgba(0,234,255,.8),
 
-  0 0 40px rgba(0,255,136,.35);
+box-shadow:
 
 
-  animation:
+0 0 15px rgba(0,234,255,.8),
 
-  signalMove linear infinite;
+0 0 40px rgba(0,255,136,.35);
+
+
+
+animation:
+
+signalMove linear infinite;
+
+
 
 }
+
+
 
 
 
@@ -328,46 +237,59 @@ body::before {
 
 0% {
 
-  opacity:0;
 
-  transform:
+transform:
 
-  translate(0,0)
+translate(0,0)
 
-  rotate(var(--angle));
+rotate(var(--angle));
+
+
+opacity:0;
+
 
 }
 
 
-20% {
 
-  opacity:.8;
+15% {
+
+
+opacity:.8;
+
+
+}
+
+
+
+75% {
+
+
+opacity:.45;
+
 
 }
 
-
-80% {
-
-  opacity:.5;
-
-}
 
 
 100% {
 
-  opacity:0;
 
-  transform:
+transform:
 
-  translate(var(--distance),0)
+translate(var(--distance),0)
 
-  rotate(var(--angle));
+rotate(var(--angle));
+
+
+opacity:0;
+
 
 }
 
 
-}
 
+}
 
 
 
@@ -380,35 +302,32 @@ body::before {
 
 .bento-grid {
 
-  max-width:
 
-  1600px;
+max-width:1600px;
 
-  margin:
-
-  auto;
+margin:auto;
 
 
-  display:grid;
+display:grid;
 
 
-  grid-template-columns:
+grid-template-columns:
 
-  repeat(12,1fr);
-
-
-  gap:
-
-  24px;
+repeat(12,1fr);
 
 
-  position:relative;
+
+gap:24px;
 
 
-  z-index:2;
+
+position:relative;
+
+z-index:2;
 
 
-  align-items:start;
+align-items:start;
+
 
 }
 
@@ -424,164 +343,178 @@ body::before {
 
 .card {
 
-  background:
+
+background:
+
+linear-gradient(
+
+145deg,
+
+rgba(20,22,28,.98),
+
+rgba(10,11,15,.98)
+
+);
 
 
-  linear-gradient(
 
-    145deg,
+border:
 
-    rgba(20,22,28,.98),
-
-    rgba(10,11,15,.98)
-
-  );
+1px solid var(--border);
 
 
-  border:
 
-  1px solid var(--border);
+border-radius:
 
-
-  border-radius:
-
-  var(--radius);
+var(--radius);
 
 
-  padding:
 
-  34px;
+padding:
 
-
-  position:relative;
+34px;
 
 
-  overflow:hidden;
+
+position:relative;
 
 
-  opacity:0;
+
+overflow:hidden;
 
 
-  transform:
+
+opacity:0;
 
 
-  translateY(40px)
 
-  scale(.97);
+transform:
+
+translateY(40px)
+
+scale(.97);
 
 
-  transition:
+
+transition:
 
 
-  opacity .8s var(--ease),
+opacity .8s var(--ease),
 
-  transform .8s var(--ease),
+transform .8s var(--ease),
 
-  border-color .5s ease,
+border-color .5s ease,
 
-  box-shadow .5s ease;
+box-shadow .5s ease;
+
 
 }
+
 
 
 
 .card.active {
 
-  opacity:1;
+
+opacity:1;
 
 
-  transform:
+transform:
 
-  translateY(0)
+translateY(0)
 
-  scale(1);
+scale(1);
+
 
 }
+
+
 
 
 
 .card:hover {
 
-  transform:
 
-  translateY(-8px);
+transform:
 
-
-  border-color:
-
-  rgba(0,234,255,.45);
+translateY(-8px);
 
 
-  box-shadow:
+
+border-color:
+
+rgba(0,234,255,.45);
 
 
-  0 30px 80px rgba(0,0,0,.45),
+
+box-shadow:
 
 
-  0 0 45px rgba(0,234,255,.15);
+0 30px 80px rgba(0,0,0,.45),
+
+
+0 0 45px rgba(0,234,255,.15);
+
+
 
 }
-/* =====================================================
-   CARD LIGHT EFFECTS
-===================================================== */
+
+
 
 
 .card::before {
 
-  content:"";
 
-  position:absolute;
-
-  width:
-
-  420px;
-
-  height:
-
-  420px;
+content:"";
 
 
-  left:
-
-  var(--mouse-x,50%);
+position:absolute;
 
 
-  top:
+width:420px;
 
-  var(--mouse-y,50%);
+
+height:420px;
+
+
+left:var(--mouse-x,50%);
+
+
+top:var(--mouse-y,50%);
 
 
 
-  transform:
+transform:
 
-  translate(-50%,-50%);
-
-
-
-  background:
-
-
-  radial-gradient(
-
-    circle,
-
-    rgba(0,234,255,.18),
-
-    transparent 65%
-
-  );
+translate(-50%,-50%);
 
 
 
-  opacity:0;
+background:
+
+radial-gradient(
+
+circle,
+
+rgba(0,234,255,.18),
+
+transparent 65%
+
+);
 
 
-  pointer-events:none;
+
+opacity:0;
 
 
-  transition:
+pointer-events:none;
 
-  opacity .5s ease;
+
+transition:
+
+opacity .5s ease;
+
+
 
 }
 
@@ -589,367 +522,110 @@ body::before {
 
 .card:hover::before {
 
-  opacity:1;
+
+opacity:1;
+
 
 }
-
-
-
-
-.card::after {
-
-  content:"";
-
-  position:absolute;
-
-  inset:0;
-
-
-  border-radius:
-
-  var(--radius);
-
-
-
-  background:
-
-
-  linear-gradient(
-
-    135deg,
-
-    rgba(0,234,255,.08),
-
-    transparent 40%,
-
-    transparent 60%,
-
-    rgba(0,255,136,.08)
-
-  );
-
-
-  opacity:0;
-
-
-  pointer-events:none;
-
-
-  transition:
-
-  opacity .5s ease;
-
-}
-
-
-
-.card:hover::after {
-
-  opacity:1;
-
-}
-
-
-
-
-
 /* =====================================================
-   BENTO PLACEMENT
-=====================================================
-
-
-Desktop Layout
-
-
-┌────────────────────────────┬──────────────┐
-│                            │ PROFILE      │
-│                            ├──────────────┤
-│           HERO             │ JOURNEY      │
-│                            │              │
-├────────────────────────────┼──────────────┤
-│                            │ STACK        │
-│      PROCESSOR LAB         ├──────────────┤
-│                            │ CONNECT      │
-├────────────────────────────┴──────────────┤
-│ ENTREPRENEURSHIP                          │
-└───────────────────────────────────────────┘
-
-
+   BENTO LAYOUT STRUCTURE
 ===================================================== */
+
+
+/*
+Desktop layout:
+
+┌──────────────────────┬──────────────┐
+│                      │ PROFILE      │
+│       HERO           ├──────────────┤
+│                      │ MODULE_002   │
+├──────────────────────┤              │
+│                      │              │
+│    MODULE_001        │ MODULE_003   │
+│                      │              │
+├──────────────────────┤──────────────┤
+│ MODULE_004           │ CONNECT      │
+└──────────────────────┴──────────────┘
+
+*/
 
 
 
 .hero {
 
-  grid-column:
 
-  span 8;
+grid-column:
+
+span 8;
 
 
-  min-height:
 
-  680px;
+grid-row:
+
+span 2;
+
+
+
+min-height:
+
+620px;
+
 
 }
 
-
-
-.profile {
-
-  grid-column:
-
-  span 4;
-
-}
 
 
 
 .hardware {
 
-  grid-column:
 
-  span 8;
+grid-column:
+
+span 8;
+
 
 }
 
 
 
-.timeline {
+.right-column {
 
-  grid-column:
 
-  span 4;
+grid-column:
+
+span 4;
+
+
+
+display:flex;
+
+
+flex-direction:column;
+
+
+
+gap:24px;
+
+
+position:relative;
+
 
 }
 
 
 
-.stack {
 
-  grid-column:
-
-  span 4;
-
-}
-
-
-
-.entrepreneur {
-
-  grid-column:
-
-  span 8;
-
-}
-
-
-
+.profile,
+.timeline,
+.stack,
+.entrepreneur,
 .connect {
 
-  grid-column:
 
-  span 4;
+width:100%;
+
 
 }
-
-
-
-
-
-/* =====================================================
-   TYPOGRAPHY
-===================================================== */
-
-
-.label {
-
-  color:
-
-  var(--green);
-
-
-  font-size:
-
-  12px;
-
-
-  letter-spacing:
-
-  2px;
-
-
-  margin-bottom:
-
-  25px;
-
-}
-
-
-
-h1 {
-
-  font-size:
-
-  clamp(3rem,6vw,5.5rem);
-
-
-  line-height:
-
-  1.05;
-
-
-  letter-spacing:
-
-  -3px;
-
-
-  margin-bottom:
-
-  35px;
-
-}
-
-
-
-h2 {
-
-  font-size:
-
-  30px;
-
-
-  margin-bottom:
-
-  25px;
-
-}
-
-
-
-h3 {
-
-  margin-bottom:
-
-  15px;
-
-}
-
-
-
-p {
-
-  color:
-
-  var(--muted);
-
-
-  line-height:
-
-  1.8;
-
-}
-
-
-
-
-
-/* =====================================================
-   TERMINAL DOTS
-===================================================== */
-
-
-.terminal-dots {
-
-  display:flex;
-
-
-  gap:
-
-  10px;
-
-
-  margin-bottom:
-
-  25px;
-
-}
-
-
-
-.terminal-dots span {
-
-  width:
-
-  14px;
-
-
-  height:
-
-  14px;
-
-
-  border-radius:
-
-  50%;
-
-
-  display:flex;
-
-
-  align-items:center;
-
-
-  justify-content:center;
-
-
-  transition:
-
-  .35s var(--ease);
-
-}
-
-
-
-.terminal-dots span:hover {
-
-  transform:
-
-  scale(1.35)
-
-  rotate(15deg);
-
-}
-
-
-
-.mac-red {
-
-  background:
-
-  #ff5f57;
-
-}
-
-
-
-.mac-yellow {
-
-  background:
-
-  #febc2e;
-
-}
-
-
-
-.mac-green {
-
-  background:
-
-  #28c840;
-
-}
-
 
 
 
@@ -957,55 +633,233 @@ p {
 
 
 /* =====================================================
-   HERO SYSTEM STATUS PANEL
+   HERO
 ===================================================== */
 
 
-.system-status {
+.hero h1 {
 
 
-margin-top:
+font-size:
+
+clamp(3rem,6vw,5.5rem);
+
+
+
+line-height:
+
+1.05;
+
+
+
+letter-spacing:
+
+-3px;
+
+
+
+margin-bottom:
 
 35px;
 
 
-padding:
+}
 
-25px;
+
+
+
+
+
+.description {
+
+
+max-width:
+
+720px;
+
+
+}
+
+
+
+
+.working-label {
+
+
+color:
+
+var(--cyan);
+
+
+
+font-weight:
+
+500;
+
+
+
+}
+
+
+
+
+.typing-line {
+
+
+display:flex;
+
+
+flex-wrap:wrap;
+
+
+gap:8px;
+
+
+margin-bottom:30px;
+
+
+
+color:
+
+var(--green);
+
+
+font-size:16px;
+
+
+}
+
+
+
+
+
+
+
+.cursor {
+
+
+width:8px;
+
+
+height:20px;
+
+
+background:
+
+var(--green);
+
+
+
+display:inline-block;
+
+
+
+animation:
+
+blink .8s infinite;
+
+
+
+}
+
+
+
+
+
+@keyframes blink {
+
+
+50% {
+
+
+opacity:0;
+
+
+}
+
+
+}
+
+
+
+
+
+
+
+
+
+/* =====================================================
+   BUTTON SYSTEM
+===================================================== */
+
+
+.buttons {
+
+
+display:flex;
+
+
+flex-wrap:wrap;
+
+
+gap:14px;
+
+
+
+margin-top:40px;
+
+
+}
+
+
+
+
+.buttons a {
+
+
+background:
+
+linear-gradient(
+
+145deg,
+
+#181b22,
+
+#101116
+
+);
+
 
 
 border:
 
+1px solid rgba(255,255,255,.12);
 
-1px solid rgba(0,234,255,.18);
+
+
+padding:
+
+15px 24px;
 
 
 
 border-radius:
 
-20px;
+16px;
 
 
 
-background:
-
-
-rgba(0,234,255,.04);
+color:white;
 
 
 
-display:grid;
-
-
-grid-template-columns:
-
-repeat(2,1fr);
+text-decoration:none;
 
 
 
-gap:
+transition:
 
-20px;
+.45s var(--ease);
 
 
 
@@ -1013,13 +867,97 @@ gap:
 
 
 
-.system-status p {
+
+
+.buttons a:hover {
+
+
+color:
+
+var(--green);
+
+
+
+border-color:
+
+var(--green);
+
+
+
+transform:
+
+translateY(-5px);
+
+
+
+box-shadow:
+
+
+0 15px 40px rgba(0,255,136,.15);
+
+
+
+}
+
+
+
+
+
+
+
+
+
+/* =====================================================
+   PROFILE
+===================================================== */
+
+
+.profile-item {
+
+
+padding:
+
+18px 0;
+
+
+
+border-bottom:
+
+1px solid var(--border);
+
+
+
+}
+
+
+
+.profile-item span {
 
 
 font-size:
 
-13px;
+12px;
 
+
+
+color:
+
+var(--muted);
+
+
+
+}
+
+
+
+
+
+.profile-item p {
+
+
+margin-top:
+
+8px;
 
 
 color:
@@ -1031,7 +969,202 @@ var(--white);
 
 
 
-.system-status p::first-line {
+
+
+
+
+
+/* =====================================================
+   MODULE 002 TIMELINE
+===================================================== */
+
+
+.timeline {
+
+
+height:
+
+330px;
+
+
+
+overflow:hidden;
+
+
+
+transition:
+
+
+height 1.3s cubic-bezier(.22,1,.36,1),
+
+
+box-shadow .8s ease,
+
+
+transform .8s var(--ease);
+
+
+
+}
+
+
+
+
+.timeline.expanded {
+
+
+height:
+
+760px;
+
+
+
+box-shadow:
+
+
+0 40px 90px rgba(0,0,0,.6),
+
+
+0 0 50px rgba(0,234,255,.18);
+
+
+
+}
+
+
+
+
+
+
+
+.timeline.collapsing {
+
+
+height:
+
+330px;
+
+
+
+transition:
+
+
+height .7s cubic-bezier(.55,0,.1,1);
+
+
+
+}
+
+
+
+
+
+
+
+.timeline-hint {
+
+
+margin-bottom:
+
+20px;
+
+
+
+font-size:
+
+13px;
+
+
+
+color:
+
+var(--muted);
+
+
+}
+
+
+
+
+
+
+
+.year-buttons {
+
+
+display:flex;
+
+
+gap:12px;
+
+
+margin-bottom:
+
+25px;
+
+
+
+}
+
+
+
+
+
+.year-buttons button {
+
+
+background:
+
+#181a20;
+
+
+
+color:
+
+white;
+
+
+
+border:
+
+1px solid var(--border);
+
+
+
+padding:
+
+12px 22px;
+
+
+
+border-radius:
+
+12px;
+
+
+
+cursor:pointer;
+
+
+
+font-family:inherit;
+
+
+
+transition:
+
+
+.5s var(--ease);
+
+
+
+}
+
+
+
+
+
+.year-buttons button:hover {
 
 
 color:
@@ -1039,583 +1172,179 @@ color:
 var(--green);
 
 
-}
 
-/* =====================================================
-   HERO BUTTONS
-===================================================== */
+border-color:
 
+var(--green);
 
-.buttons {
 
-  display:flex;
 
-  flex-wrap:wrap;
+transform:
 
-  gap:
-
-  14px;
-
-
-  margin-top:
-
-  40px;
-
-}
-
-
-
-.buttons a {
-
-
-  background:
-
-
-  linear-gradient(
-
-    145deg,
-
-    #181b22,
-
-    #101116
-
-  );
-
-
-
-  border:
-
-
-  1px solid rgba(255,255,255,.12);
-
-
-
-  padding:
-
-
-  15px 24px;
-
-
-
-  border-radius:
-
-  16px;
-
-
-
-  color:
-
-  var(--white);
-
-
-
-  text-decoration:none;
-
-
-
-  transition:
-
-  .45s var(--ease);
-
-}
-
-
-
-.buttons a:hover {
-
-
-  color:
-
-  var(--green);
-
-
-
-  border-color:
-
-  var(--green);
-
-
-
-  transform:
-
-  translateY(-5px);
-
-
-
-  box-shadow:
-
-
-  0 15px 40px rgba(0,255,136,.15);
-
-}
-
-
-
-
-
-
-
-/* =====================================================
-   PROFILE MODULE
-===================================================== */
-
-
-.profile-item {
-
-  padding:
-
-  18px 0;
-
-
-  border-bottom:
-
-  1px solid var(--border);
-
-}
-
-
-
-.profile-item span {
-
-
-  font-size:
-
-  12px;
-
-
-  color:
-
-  var(--muted);
-
-}
-
-
-
-.profile-item p {
-
-
-  color:
-
-  var(--white);
-
-  margin-top:
-
-  5px;
-
-}
-
-
-
-
-
-
-/* =====================================================
-   PROCESSOR DEVELOPMENT LAB
-===================================================== */
-
-
-.hardware h2 {
-
-
-  font-size:
-
-  34px;
-
-
-}
-
-
-
-.pipeline {
-
-
-  display:flex;
-
-
-  gap:
-
-
-  12px;
-
-
-  margin:
-
-
-  35px 0;
-
-}
-
-
-
-.pipeline div {
-
-
-  flex:1;
-
-
-
-  text-align:center;
-
-
-
-  padding:
-
-  16px;
-
-
-
-  background:
-
-
-  #181a20;
-
-
-
-  border:
-
-
-  1px solid var(--border);
-
-
-
-  border-radius:
-
-
-  14px;
-
-
-
-  transition:
-
-  .5s var(--ease);
-
-}
-
-
-
-.pipeline div:hover {
-
-
-  border-color:
-
-  var(--cyan);
-
-
-
-  transform:
-
-  translateY(-5px);
-
-
-
-  background:
-
-
-  #202631;
-
-}
-
-
-
-
-
-
-/* =====================================================
-   RTL CODE DISPLAY
-===================================================== */
-
-
-pre {
-
-
-  background:
-
-
-  linear-gradient(
-
-    135deg,
-
-    #050505,
-
-    #11151c
-
-  );
-
-
-
-  color:
-
-  var(--green);
-
-
-
-  padding:
-
-
-  30px;
-
-
-
-  border-radius:
-
-
-  22px;
-
-
-
-  overflow:auto;
-
-
-
-  border:
-
-
-  1px solid rgba(0,255,136,.2);
-
-}
-
-
-
-pre code {
-
-
-  font-family:
-
-  inherit;
-
-
-}
-
-
-
-
-.hardware li {
-
-
-  margin-top:
-
-
-  15px;
-
-
-  color:
-
-  var(--muted);
-
-}
-
-
-
-
-
-
-
-/* =====================================================
-   ENGINEERING JOURNEY
-===================================================== */
-
-
-.timeline {
-
-
-  height:
-
-  320px;
-
-
-
-  overflow:hidden;
-
-
-
-  transition:
-
-
-  height 1.1s var(--ease),
-
-
-  box-shadow .5s ease;
+translateY(-4px);
 
 
 
 }
 
-
-
-.timeline.expanded {
-
-
-  height:
-
-  760px;
-
-
-
-  box-shadow:
-
-
-  0 40px 90px rgba(0,0,0,.6),
-
-
-  0 0 50px rgba(0,234,255,.15);
-
-}
-
-
-
-.timeline-hint {
-
-
-  font-size:
-
-  13px;
-
-
-
-  margin-bottom:
-
-
-  25px;
-
-}
-
-
-
-
-
-
-/* =====================================================
-   YEAR SELECTOR
-===================================================== */
-
-
-.year-buttons {
-
-
-  display:flex;
-
-
-  gap:
-
-
-  12px;
-
-
-
-  margin-bottom:
-
-
-  25px;
-
-}
-
-
-
-.year-buttons button {
-
-
-  background:
-
-
-  #181a20;
-
-
-
-  color:
-
-  var(--white);
-
-
-
-  border:
-
-
-  1px solid var(--border);
-
-
-
-  padding:
-
-
-  12px 22px;
-
-
-
-  border-radius:
-
-
-  12px;
-
-
-
-  cursor:pointer;
-
-
-
-  font-family:
-
-  inherit;
-
-
-
-  transition:
-
-
-  .4s var(--ease);
-
-}
-
-
-
-.year-buttons button:hover {
-
-
-  color:
-
-  var(--green);
-
-
-
-  border-color:
-
-  var(--green);
-
-
-
-  transform:
-
-  translateY(-4px);
-
-}
 
 
 
 .year-buttons button.active {
 
 
-  color:
+color:
 
-  var(--green);
-
-
-
-  border-color:
-
-  var(--green);
+var(--green);
 
 
 
-  background:
+border-color:
+
+var(--green);
 
 
-  rgba(0,234,255,.08);
+
+background:
+
+rgba(0,234,255,.08);
 
 
 
-  box-shadow:
+box-shadow:
 
 
-  0 0 20px rgba(0,234,255,.15);
+0 0 20px rgba(0,234,255,.15);
+
+
+
+}
+
+/* =====================================================
+   MODULE 001 — CPU DEBUG VISUALIZATION
+===================================================== */
+
+
+.cpu-debug {
+
+
+margin-top:
+
+35px;
+
+
+
+background:
+
+linear-gradient(
+
+145deg,
+
+rgba(5,10,15,.95),
+
+rgba(15,20,28,.95)
+
+);
+
+
+
+border:
+
+1px solid rgba(0,234,255,.18);
+
+
+
+border-radius:
+
+22px;
+
+
+
+padding:
+
+24px;
+
+
+
+overflow:hidden;
+
+
+
+position:relative;
+
+
+
+}
+
+
+
+
+.cpu-debug::before {
+
+
+content:"";
+
+position:absolute;
+
+
+inset:0;
+
+
+
+background:
+
+
+linear-gradient(
+
+90deg,
+
+transparent,
+
+rgba(0,234,255,.08),
+
+transparent
+
+);
+
+
+
+animation:
+
+cpuScan 4s linear infinite;
+
+
+
+}
+
+
+
+
+@keyframes cpuScan {
+
+
+0% {
+
+
+transform:
+
+translateX(-100%);
+
+
+}
+
+
+
+100% {
+
+
+transform:
+
+translateX(100%);
+
+
+}
+
+
 
 }
 
@@ -1624,6 +1353,541 @@ pre code {
 
 
 
+
+
+.cpu-header {
+
+
+display:flex;
+
+
+justify-content:space-between;
+
+
+align-items:center;
+
+
+margin-bottom:
+
+30px;
+
+
+
+font-size:
+
+13px;
+
+
+
+letter-spacing:
+
+1px;
+
+
+
+color:
+
+var(--cyan);
+
+
+}
+
+
+
+
+.status-active {
+
+
+color:
+
+var(--green);
+
+
+
+animation:
+
+statusPulse 1.5s infinite;
+
+
+}
+
+
+
+
+@keyframes statusPulse {
+
+
+50% {
+
+
+opacity:.4;
+
+
+}
+
+
+
+}
+
+
+
+
+
+
+
+
+
+.cpu-core {
+
+
+display:flex;
+
+
+align-items:center;
+
+
+justify-content:center;
+
+
+gap:10px;
+
+
+
+flex-wrap:wrap;
+
+
+
+}
+
+
+
+
+
+.pipeline-node {
+
+
+width:
+
+100px;
+
+
+
+height:
+
+50px;
+
+
+
+display:flex;
+
+
+align-items:center;
+
+
+justify-content:center;
+
+
+
+background:
+
+
+linear-gradient(
+
+145deg,
+
+#171b22,
+
+#0d1015
+
+);
+
+
+
+border:
+
+1px solid rgba(0,234,255,.25);
+
+
+
+border-radius:
+
+14px;
+
+
+
+font-size:
+
+12px;
+
+
+
+color:
+
+var(--white);
+
+
+
+position:relative;
+
+
+
+overflow:hidden;
+
+
+
+}
+
+
+
+
+.pipeline-node::after {
+
+
+content:"";
+
+
+position:absolute;
+
+
+width:20px;
+
+
+height:100%;
+
+
+background:
+
+rgba(0,234,255,.35);
+
+
+
+left:-30px;
+
+
+
+animation:
+
+instructionFlow 3s infinite;
+
+
+
+}
+
+
+
+
+@keyframes instructionFlow {
+
+
+0% {
+
+
+left:-30px;
+
+
+}
+
+
+
+50% {
+
+
+left:120%;
+
+
+}
+
+
+
+100% {
+
+
+left:120%;
+
+
+}
+
+
+
+}
+
+
+
+
+
+
+
+.arrow {
+
+
+color:
+
+var(--green);
+
+
+
+font-size:
+
+20px;
+
+
+
+}
+
+
+
+
+
+
+
+
+.signal-monitor {
+
+
+margin-top:
+
+35px;
+
+
+
+display:flex;
+
+
+flex-direction:column;
+
+
+gap:12px;
+
+
+
+}
+
+
+
+
+
+.signal-row {
+
+
+display:flex;
+
+
+align-items:center;
+
+
+
+gap:15px;
+
+
+
+font-size:
+
+12px;
+
+
+
+color:
+
+var(--muted);
+
+
+
+}
+
+
+
+
+
+.signal-row span {
+
+
+width:
+
+50px;
+
+
+
+}
+
+
+
+
+
+
+
+.signal-bar {
+
+
+height:
+
+5px;
+
+
+flex:1;
+
+
+
+background:
+
+rgba(255,255,255,.08);
+
+
+
+border-radius:
+
+20px;
+
+
+
+overflow:hidden;
+
+
+
+position:relative;
+
+
+
+}
+
+
+
+
+.signal-bar::after {
+
+
+content:"";
+
+
+position:absolute;
+
+
+
+height:100%;
+
+
+width:30%;
+
+
+
+background:
+
+linear-gradient(
+
+90deg,
+
+var(--cyan),
+
+var(--green)
+
+);
+
+
+
+animation:
+
+signalWave 2s infinite;
+
+
+
+}
+
+
+
+
+@keyframes signalWave {
+
+
+0% {
+
+
+left:-30%;
+
+
+}
+
+
+
+100% {
+
+
+left:120%;
+
+
+}
+
+
+
+}
+
+
+
+
+
+
+
+
+
+/* =====================================================
+   PIPELINE LEGACY SUPPORT
+===================================================== */
+
+
+.pipeline {
+
+
+display:flex;
+
+
+gap:12px;
+
+
+
+margin:
+
+35px 0;
+
+
+}
+
+
+
+
+
+.pipeline div {
+
+
+flex:1;
+
+
+
+padding:
+
+14px;
+
+
+
+text-align:center;
+
+
+
+background:
+
+#181a20;
+
+
+
+border:
+
+1px solid var(--border);
+
+
+
+border-radius:
+
+12px;
+
+
+}
 
 /* =====================================================
    PROJECT DISPLAY
@@ -1633,96 +1897,124 @@ pre code {
 .project-grid {
 
 
-  display:flex;
+display:flex;
 
 
-  flex-direction:column;
+flex-direction:column;
 
 
 
-  gap:
+gap:15px;
 
 
-  15px;
+
+transition:
+
+opacity .4s ease;
+
 
 }
+
+
 
 
 
 .project-item {
 
 
-  background:
+background:
 
+linear-gradient(
 
-  linear-gradient(
+145deg,
 
-    145deg,
+rgba(30,33,42,.95),
 
-    rgba(30,33,42,.95),
+rgba(15,17,22,.95)
 
-    rgba(15,17,22,.95)
-
-  );
-
-
-
-  border:
-
-
-  1px solid rgba(255,255,255,.12);
+);
 
 
 
-  border-radius:
+border:
 
-
-  18px;
-
-
-
-  padding:
-
-
-  22px;
+1px solid rgba(255,255,255,.12);
 
 
 
-  opacity:
+border-radius:
 
-
-  0;
-
-
-
-  transform:
-
-
-  translateY(25px);
+18px;
 
 
 
-  animation:
+padding:
+
+22px;
 
 
-  projectReveal .7s var(--ease) forwards;
+
+opacity:0;
+
+
+
+transform:
+
+translateY(25px);
+
+
+
+animation:
+
+projectReveal .7s var(--ease) forwards;
+
+
 
 }
+
+
+
+
+.project-item:hover {
+
+
+border-color:
+
+var(--cyan);
+
+
+
+transform:
+
+translateY(-5px);
+
+
+
+box-shadow:
+
+
+0 20px 45px rgba(0,234,255,.12);
+
+
+
+}
+
 
 
 
 .project-item h4 {
 
 
-  margin-bottom:
+margin-bottom:
+
+10px;
 
 
-  10px;
+color:
+
+var(--white);
 
 
-  color:
-
-  var(--white);
 
 }
 
@@ -1731,28 +2023,14 @@ pre code {
 .project-item p {
 
 
-  font-size:
+color:
 
-  14px;
+var(--muted);
+
+
 
 }
 
-
-
-.project-item:hover {
-
-
-  border-color:
-
-  var(--cyan);
-
-
-
-  transform:
-
-  translateY(-5px);
-
-}
 
 
 
@@ -1762,12 +2040,13 @@ pre code {
 from {
 
 
-  opacity:0;
+opacity:0;
 
 
-  transform:
+transform:
 
-  translateY(25px);
+translateY(25px);
+
 
 
 }
@@ -1777,135 +2056,141 @@ from {
 to {
 
 
-  opacity:1;
+opacity:1;
 
 
-  transform:
+transform:
 
-  translateY(0);
+translateY(0);
+
+
+
+}
+
 
 
 }
 
 
-}
+
+
+
+
+
+
+
 
 /* =====================================================
-   TECH STACK
+   MODULE 003 — TECH STACK
 ===================================================== */
 
 
-.stack h3 {
+.stack {
 
-  color:
 
-  var(--green);
+min-height:
 
-  font-size:
+350px;
 
-  16px;
-
-  letter-spacing:
-
-  1px;
 
 }
+
 
 
 
 .tags {
 
 
-  display:flex;
-
-
-  flex-wrap:wrap;
-
-
-  gap:
-
-
-  10px;
+display:flex;
 
 
 
-  margin-bottom:
+flex-wrap:wrap;
 
 
-  30px;
+
+gap:
+
+10px;
+
+
+
+margin-bottom:
+
+30px;
+
 
 
 }
+
+
 
 
 
 .tags span {
 
 
-  background:
+background:
 
-
-  rgba(255,255,255,.05);
-
-
-
-  border:
-
-
-  1px solid var(--border);
+rgba(255,255,255,.05);
 
 
 
-  padding:
+border:
 
-
-  10px 16px;
-
-
-
-  border-radius:
-
-
-  12px;
+1px solid var(--border);
 
 
 
-  font-size:
+padding:
+
+10px 16px;
 
 
-  13px;
+
+border-radius:
+
+12px;
 
 
 
-  transition:
+font-size:
+
+13px;
 
 
-  .35s var(--ease);
+
+transition:
+
+.35s var(--ease);
+
+
 
 }
+
 
 
 
 .tags span:hover {
 
 
-  color:
+border-color:
 
-  var(--green);
-
-
-
-  border-color:
-
-
-  var(--green);
+var(--green);
 
 
 
-  transform:
+color:
+
+var(--green);
 
 
-  translateY(-4px);
+
+transform:
+
+translateY(-4px);
+
+
 
 }
 
@@ -1915,30 +2200,156 @@ to {
 
 
 
+
+
+
 /* =====================================================
-   ENTREPRENEURSHIP
+   MODULE 004 — ENTREPRENEURSHIP
 ===================================================== */
+
+
+.entrepreneur {
+
+
+min-height:
+
+420px;
+
+
+
+}
+
+
 
 
 .entrepreneur p {
 
 
-  max-width:
+margin-bottom:
 
-  700px;
+30px;
+
 
 }
 
 
 
-.entrepreneur h2 {
+
+.entrepreneur-list {
 
 
-  font-size:
+display:flex;
 
-  32px;
+
+flex-direction:column;
+
+
+
+gap:
+
+14px;
+
+
 
 }
+
+
+
+
+
+.entrepreneur-list div {
+
+
+background:
+
+rgba(255,255,255,.04);
+
+
+
+border:
+
+1px solid var(--border);
+
+
+
+border-radius:
+
+16px;
+
+
+
+padding:
+
+16px 20px;
+
+
+
+display:flex;
+
+
+
+gap:
+
+15px;
+
+
+
+align-items:center;
+
+
+
+transition:
+
+.4s var(--ease);
+
+
+
+}
+
+
+
+
+
+.entrepreneur-list span {
+
+
+color:
+
+var(--green);
+
+
+
+font-size:
+
+12px;
+
+
+
+}
+
+
+
+
+
+.entrepreneur-list div:hover {
+
+
+border-color:
+
+var(--cyan);
+
+
+
+transform:
+
+translateX(6px);
+
+
+
+}
+
+
+
 
 
 
@@ -1946,117 +2357,180 @@ to {
 
 
 /* =====================================================
-   CONNECT TERMINAL MODULE
+   CONNECT
 ===================================================== */
 
 
 .connect {
 
 
-  display:flex;
+display:flex;
 
 
-  flex-direction:column;
+flex-direction:column;
 
 
-  gap:
 
+gap:
 
-  14px;
+14px;
+
 
 
 }
+
+
 
 
 
 .connect a {
 
 
-  display:block;
+background:
 
+linear-gradient(
 
-  background:
+145deg,
 
+#181b22,
 
-  linear-gradient(
+#101116
 
-    145deg,
-
-    #181b22,
-
-    #101116
-
-  );
+);
 
 
 
-  border:
+border:
 
-
-  1px solid rgba(255,255,255,.12);
-
-
-
-  padding:
-
-
-  15px 24px;
+1px solid rgba(255,255,255,.12);
 
 
 
-  border-radius:
+padding:
 
-
-  16px;
-
-
-
-  color:
-
-  var(--white);
+15px 24px;
 
 
 
-  text-decoration:none;
+border-radius:
+
+16px;
 
 
 
-  transition:
+color:
+
+white;
 
 
-  .45s var(--ease);
+
+text-decoration:none;
+
+
+
+transition:
+
+.45s var(--ease);
+
+
 
 }
+
+
 
 
 
 .connect a:hover {
 
 
-  color:
+color:
 
-  var(--green);
-
-
-
-  border-color:
-
-
-  var(--green);
+var(--green);
 
 
 
-  transform:
+border-color:
+
+var(--green);
 
 
-  translateX(8px);
+
+transform:
+
+translateY(-5px);
 
 
 
-  box-shadow:
+box-shadow:
 
 
-  0 15px 40px rgba(0,255,136,.15);
+0 15px 40px rgba(0,255,136,.15);
+
+
+
+}
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+
+.site-footer {
+
+
+position:relative;
+
+
+z-index:2;
+
+
+
+max-width:
+
+1600px;
+
+
+
+margin:
+
+40px auto 10px;
+
+
+
+padding:
+
+20px 34px 0;
+
+
+
+text-align:center;
+
+
+
+}
+
+
+
+.site-footer p {
+
+
+color:
+
+var(--muted);
+
+
+
+font-size:
+
+12px;
+
+
+
+letter-spacing:
+
+.5px;
+
+
 
 }
 
@@ -2074,118 +2548,46 @@ to {
 .scroll-progress {
 
 
-  position:fixed;
-
-
-  top:0;
-
-
-  left:0;
+position:fixed;
 
 
 
-  height:
-
-
-  3px;
+top:0;
 
 
 
-  width:
-
-
-  0%;
+left:0;
 
 
 
-  z-index:
-
-
-  9999;
+height:3px;
 
 
 
-  background:
+width:0%;
 
 
-  linear-gradient(
 
-    90deg,
+z-index:9999;
 
-    var(--cyan),
 
-    var(--green)
 
-  );
+background:
+
+linear-gradient(
+
+90deg,
+
+var(--cyan),
+
+var(--green)
+
+);
+
 
 
 }
 
-
-
-
-
-
-/* =====================================================
-   FOOTER
-===================================================== */
-
-
-.site-footer {
-
-
-  position:relative;
-
-
-  z-index:2;
-
-
-
-  max-width:
-
-
-  1600px;
-
-
-
-  margin:
-
-
-  40px auto 10px;
-
-
-
-  padding:
-
-
-  20px 34px 0;
-
-
-
-  text-align:center;
-
-
-}
-
-
-
-.site-footer p {
-
-
-  font-size:
-
-
-  12px;
-
-
-
-  letter-spacing:
-
-
-  .5px;
-
-
-}
 
 
 
@@ -2194,20 +2596,72 @@ to {
 
 
 /* =====================================================
-   TOUCH DEVICES
+   SKIP LINK
 ===================================================== */
 
 
-.card.touch-active {
+.skip-link {
 
 
-  transform:
+position:absolute;
 
 
-  scale(.98);
+top:-60px;
+
+
+left:16px;
+
+
+
+background:
+
+var(--green);
+
+
+
+color:#000;
+
+
+
+padding:
+
+10px 18px;
+
+
+
+border-radius:
+
+10px;
+
+
+
+z-index:10000;
+
+
+
+text-decoration:none;
+
+
+
+transition:
+
+.3s ease;
+
 
 
 }
+
+
+
+
+.skip-link:focus {
+
+
+top:16px;
+
+
+}
+
 
 
 
@@ -2217,111 +2671,106 @@ to {
 
 /* =====================================================
    TABLET
-   1200px
 ===================================================== */
 
 
 @media(max-width:1200px){
 
 
+
 body {
 
 
-  padding:
+padding:
 
-
-  25px;
+25px;
 
 
 }
+
+
 
 
 
 .bento-grid {
 
 
-  grid-template-columns:
+grid-template-columns:
 
+repeat(8,1fr);
 
-  repeat(8,1fr);
-
-
-
-  gap:
-
-
-  20px;
 
 
 }
+
+
 
 
 
 .hero {
 
 
-  grid-column:
+grid-column:
 
-
-  span 8;
+span 8;
 
 
 }
+
+
 
 
 
 .hardware {
 
 
-  grid-column:
+grid-column:
 
+span 8;
 
-  span 8;
 
 
 }
 
 
 
-.profile,
+
+.right-column {
+
+
+grid-column:
+
+span 8;
+
+
+display:grid;
+
+
+
+grid-template-columns:
+
+repeat(2,1fr);
+
+
+
+gap:22px;
+
+
+
+}
+
+
+
+
+
 .timeline,
 .stack,
+.profile,
+.entrepreneur,
 .connect {
 
 
-  grid-column:
-
-
-  span 4;
-
-
-}
-
-
-
-.entrepreneur {
-
-
-  grid-column:
-
-
-  span 8;
-
-
-}
-
-
-
-.card {
-
-
-  padding:
-
-
-  28px;
-
-
-}
+width:100%;
 
 
 
@@ -2329,6 +2778,7 @@ body {
 
 
 
+}
 
 
 
@@ -2336,94 +2786,128 @@ body {
 
 /* =====================================================
    SMALL TABLET
-   900px
 ===================================================== */
 
 
 @media(max-width:900px){
 
 
+
 body {
 
 
-  padding:
+padding:
 
-
-  20px;
+20px;
 
 
 }
+
+
 
 
 
 .bento-grid {
 
 
-  display:flex;
+display:flex;
 
 
-  flex-direction:column;
+
+flex-direction:column;
 
 
-  gap:
 
+gap:
 
-  18px;
+20px;
+
 
 
 }
+
+
+
+
+
+.hero,
+.hardware,
+.right-column {
+
+
+width:100%;
+
+
+
+}
+
+
+
+
+
+.right-column {
+
+
+display:flex;
+
+
+
+}
+
+
 
 
 
 .card {
 
 
-  width:
+padding:
 
+28px;
 
-  100%;
 
 
 }
+
+
 
 
 
 .timeline {
 
 
-  height:
-
-
-  auto;
+height:auto;
 
 
 
-  max-height:
+max-height:
 
+330px;
 
-  320px;
 
 
 }
+
+
 
 
 
 .timeline.expanded {
 
 
-  max-height:
+max-height:
 
-
-  1400px;
-
-
-}
+1400px;
 
 
 
 }
 
 
+
+
+
+}
 
 
 
@@ -2431,325 +2915,410 @@ body {
 
 /* =====================================================
    MOBILE
-   700px
 ===================================================== */
 
 
 @media(max-width:700px){
 
 
+
 body {
 
 
-  padding:
+padding:
+
+14px;
 
 
-  14px;
 
+font-size:
 
+14px;
 
-  font-size:
-
-
-  14px;
 
 
 }
 
 
 
-.cpu-field {
+
+.bento-grid {
 
 
-  opacity:
+gap:
 
+14px;
 
-  .5;
 
 
 }
+
+
 
 
 
 .card {
 
 
-  padding:
+border-radius:
+
+22px;
 
 
-  22px;
 
+padding:
 
+22px;
 
-  border-radius:
-
-
-  22px;
 
 
 }
+
+
+
+
+
+.hero {
+
+
+min-height:auto;
+
+
+
+}
+
+
 
 
 
 h1 {
 
 
-  font-size:
+font-size:
+
+clamp(2.2rem,12vw,3.2rem);
 
 
-  clamp(2.2rem,12vw,3.2rem);
 
+letter-spacing:
 
+-1.5px;
 
-  letter-spacing:
-
-
-  -1.5px;
 
 
 }
+
+
 
 
 
 h2 {
 
 
-  font-size:
+font-size:
 
+24px;
 
-  24px;
 
 
 }
+
+
 
 
 
 .buttons {
 
 
-  flex-direction:
+flex-direction:column;
 
-
-  column;
 
 
 }
+
+
 
 
 
 .buttons a {
 
 
-  width:
-
-
-  100%;
+width:100%;
 
 
 
-  text-align:
+text-align:center;
 
-
-  center;
 
 
 }
 
 
 
-.pipeline {
 
 
-  display:grid;
+.cpu-core {
 
 
-  grid-template-columns:
+flex-direction:column;
 
-
-  repeat(2,1fr);
 
 
 }
 
 
 
-pre {
 
 
-  font-size:
+.arrow {
 
 
-  12px;
+transform:
 
+rotate(90deg);
 
-  padding:
-
-
-  18px;
 
 
 }
 
 
 
-.year-buttons button {
 
 
-  flex:1;
+.pipeline-node {
 
 
-  padding:
+width:
 
+100%;
 
-  10px;
 
 
 }
 
 
-
-.tags span {
-
-
-  font-size:
-
-
-  12px;
-
-
-}
-
-
-
-.card::before,
-.card::after {
-
-
-  display:none;
-
-
-}
-
-
-}
-
-/* =====================================================
-   VERY SMALL DEVICES
-   400px
-===================================================== */
-
-
-@media(max-width:400px){
-
-
-body {
-
-  padding:
-
-  10px;
-
-}
-
-
-
-.card {
-
-
-  padding:
-
-
-  18px;
-
-
-
-  border-radius:
-
-
-  18px;
-
-
-}
-
-
-
-h1 {
-
-
-  font-size:
-
-
-  2rem;
-
-
-}
 
 
 
 .year-buttons {
 
 
-  flex-direction:
+width:100%;
 
-
-  column;
 
 
 }
+
+
 
 
 
 .year-buttons button {
 
 
-  width:
+flex:1;
 
 
-  100%;
+
+padding:
+
+10px;
+
 
 
 }
 
 
 
-.pipeline {
 
 
-  grid-template-columns:
+.project-item {
 
 
-  1fr;
+padding:
+
+16px;
+
+
+
+}
+
+
+
+
+
+.tags span {
+
+
+font-size:
+
+12px;
+
+
+
+padding:
+
+8px 12px;
+
 
 
 }
 
 
-
-.buttons a {
-
-
-  font-size:
-
-
-  12px;
-
-
-}
 
 
 
 .connect a {
 
 
-  font-size:
+width:100%;
 
 
-  12px;
+
+text-align:center;
+
 
 
 }
 
 
+
+
+
+.card:hover {
+
+
+transform:
+
+translateY(-3px);
+
+
+
 }
+
+
+
+
+
+}
+
+/* =====================================================
+   VERY SMALL DEVICES
+===================================================== */
+
+
+@media(max-width:400px){
+
+
+
+body {
+
+
+padding:
+
+10px;
+
+
+
+}
+
+
+
+
+.card {
+
+
+padding:
+
+18px;
+
+
+
+border-radius:
+
+18px;
+
+
+
+}
+
+
+
+
+
+h1 {
+
+
+font-size:
+
+2rem;
+
+
+
+}
+
+
+
+
+
+.year-buttons {
+
+
+flex-direction:
+
+column;
+
+
+
+}
+
+
+
+
+
+.year-buttons button {
+
+
+width:100%;
+
+
+
+}
+
+
+
+
+
+.cpu-debug {
+
+
+padding:
+
+18px;
+
+
+
+}
+
+
+
+
+
+.pipeline-node {
+
+
+font-size:
+
+11px;
+
+
+
+}
+
+
+
+}
+
 
 
 
@@ -2758,79 +3327,82 @@ h1 {
 
 
 /* =====================================================
-   REDUCED MOTION ACCESSIBILITY
+   ACCESSIBILITY — REDUCED MOTION
 ===================================================== */
 
 
 @media(prefers-reduced-motion:reduce){
 
 
+
 * {
 
 
-  animation-duration:
+animation-duration:
 
-
-  .01ms !important;
-
-
-
-  animation-iteration-count:
-
-
-  1 !important;
+.01ms !important;
 
 
 
-  transition-duration:
+animation-iteration-count:
+
+1 !important;
 
 
-  .01ms !important;
+
+transition-duration:
+
+.01ms !important;
 
 
 
-  scroll-behavior:
+scroll-behavior:
 
+auto !important;
 
-  auto !important;
 
 
 }
 
 
 
-.cpu-pulse,
+
+
 .cpu-field,
 .noise {
 
 
-  display:none;
+display:none;
+
 
 
 }
+
+
 
 
 
 .card {
 
 
-  opacity:
+opacity:
+
+1 !important;
 
 
-  1 !important;
+
+transform:
+
+none !important;
 
 
 
-  transform:
+}
 
-
-  none !important;
 
 
 }
 
-
-}
 
 
 
@@ -2847,20 +3419,18 @@ h1 {
 .cpu-pulse,
 .project-item,
 .buttons a,
-.year-buttons button {
+.year-buttons button,
+.pipeline-node {
 
 
-  transform:
+transform:
+
+translateZ(0);
 
 
-  translateZ(0);
 
+backface-visibility:hidden;
 
-
-  backface-visibility:
-
-
-  hidden;
 
 
 }
@@ -2871,8 +3441,9 @@ h1 {
 
 
 
+
 /* =====================================================
-   IOS SAFARI OPTIMIZATION
+   IOS SAFARI FIX
 ===================================================== */
 
 
@@ -2880,16 +3451,16 @@ html,
 body {
 
 
-  min-height:
+min-height:
+
+100%;
 
 
-  100%;
 
+-webkit-overflow-scrolling:
 
-  -webkit-overflow-scrolling:
+touch;
 
-
-  touch;
 
 
 }
@@ -2900,105 +3471,30 @@ body {
 
 
 
+
 /* =====================================================
-   FINAL PAGE STATE
+   FINAL LOADED STATE
 ===================================================== */
 
 
 body.loaded .card {
 
 
-  transition:
+transition:
 
 
-  opacity .8s var(--ease),
+opacity .8s var(--ease),
 
 
-  transform .8s var(--ease),
+transform .8s var(--ease),
 
 
-  border-color .5s ease;
+border-color .5s ease;
+
 
 
 }
 
-
-
-
-
-/* =====================================================
-   PROJECT GLOW ACTIVATION
-===================================================== */
-
-
-.timeline.project-active {
-
-
-  animation:
-
-
-  timelineGlow 5s ease;
-
-
-}
-
-
-
-@keyframes timelineGlow {
-
-
-0% {
-
-
-  box-shadow:
-
-
-  0 0 0 rgba(0,234,255,0);
-
-
-}
-
-
-
-20% {
-
-
-  box-shadow:
-
-
-  0 0 60px rgba(0,234,255,.5);
-
-
-}
-
-
-
-60% {
-
-
-  box-shadow:
-
-
-  0 0 40px rgba(0,255,136,.35);
-
-
-}
-
-
-
-100% {
-
-
-  box-shadow:
-
-
-  0 0 0 rgba(0,234,255,0);
-
-
-}
-
-
-}
 
 
 
@@ -3007,18 +3503,131 @@ body.loaded .card {
 
 
 /* =====================================================
-   SMOOTH PROJECT COLLAPSE
+   EXTRA POLISH
 ===================================================== */
 
 
-.timeline.collapsing {
+.label {
 
 
-  opacity:.75;
+color:
+
+var(--green);
+
+
+
+font-size:
+
+12px;
+
+
+
+letter-spacing:
+
+2px;
+
+
+
+margin-bottom:
+
+25px;
+
 
 
 }
 
+
+
+
+
+h2 {
+
+
+font-size:
+
+30px;
+
+
+
+margin-bottom:
+
+25px;
+
+
+
+}
+
+
+
+
+
+h3 {
+
+
+margin-bottom:
+
+15px;
+
+
+
+}
+
+
+
+
+
+p {
+
+
+line-height:
+
+1.8;
+
+
+
+color:
+
+var(--muted);
+
+
+
+}
+
+
+
+
+
+ul {
+
+
+margin-top:
+
+25px;
+
+
+
+}
+
+
+
+
+
+li {
+
+
+margin-bottom:
+
+15px;
+
+
+
+color:
+
+var(--muted);
+
+
+
+}
 
 
 
@@ -3026,93 +3635,77 @@ body.loaded .card {
 
 
 /* =====================================================
-   FINAL ENGINEERING DETAILS
+   CPU CARD ACTIVE GLOW
 ===================================================== */
 
 
-.hardware::before {
+.hardware:hover .cpu-debug {
 
 
-  content:
+border-color:
 
-
-  "PROCESSOR_STATUS: ONLINE";
-
-
-
-  position:absolute;
+rgba(0,234,255,.4);
 
 
 
-  top:
+box-shadow:
 
 
-  24px;
+0 0 40px rgba(0,234,255,.12);
 
-
-
-  right:
-
-
-  34px;
-
-
-
-  color:
-
-
-  var(--green);
-
-
-
-  font-size:
-
-
-  11px;
-
-
-
-  letter-spacing:
-
-
-  1px;
-
-
-
-  opacity:
-
-
-  .8;
 
 
 }
 
 
 
-@media(max-width:700px){
+
+/* =====================================================
+   MODULE ALIGNMENT FINAL FIX
+===================================================== */
 
 
-.hardware::before {
+.hardware {
 
 
-  position:
+margin-top:
 
+0;
 
-  static;
-
-
-
-  display:block;
-
-
-
-  margin-bottom:
-
-
-  20px;
 
 
 }
 
 
+
+
+.entrepreneur {
+
+
+grid-column:auto;
+
+
+
 }
+
+
+
+
+.right-column > .stack,
+.right-column > .connect {
+
+
+flex:
+
+none;
+
+
+
+}
+
+
+
+
+/* =====================================================
+   END
+===================================================== */
