@@ -347,6 +347,10 @@ else {
 typeWriter();
 
 }
+
+
+
+
 /* =====================================================
    CARD CURSOR GLOW
 ===================================================== */
@@ -637,7 +641,6 @@ document.querySelectorAll(
 
 let pipelineIndex = 0;
 
-
 let pipelineInterval = null;
 
 
@@ -722,7 +725,6 @@ stepPipeline,
 }
 
 
-
 function stopPipeline(){
 
 
@@ -745,6 +747,10 @@ pipelineInterval=null;
 
 
 startPipeline();
+
+
+
+
 /* =====================================================
    ENGINEERING JOURNEY DATA
 ===================================================== */
@@ -1162,6 +1168,9 @@ resetCollapseTimer();
 
 });
 
+
+
+
 /* =====================================================
    FPGA SIGNAL GENERATOR
    RANDOM HARDWARE TRACE MOVEMENT
@@ -1292,13 +1301,13 @@ signal.style.left =
 
 signal.style.width =
 
-`${80 + Math.random()*220}px`;
+`${40 + Math.random()*240}px`;
 
 
 
 signal.style.animationDuration =
 
-`${3 + Math.random()*5}s`;
+`${2.5 + Math.random()*3.5}s`;
 
 
 
@@ -1317,7 +1326,7 @@ signal.remove();
 
 },
 
-9000
+7000
 
 );
 
@@ -1339,19 +1348,30 @@ return;
 
 
 
-setInterval(
+// Variable spawn interval for organic feel (120-280ms)
+function scheduleNext(){
 
-()=>{
+
+const delay = 120 + Math.random() * 160;
+
+
+setTimeout(()=>{
 
 
 createSignal();
 
 
-},
+scheduleNext();
 
-900
 
-);
+}, delay);
+
+
+}
+
+
+
+scheduleNext();
 
 
 }
@@ -1614,6 +1634,11 @@ startPipeline();
 
 
 });
+
+
+}
+
+
 
 
 /* =====================================================
