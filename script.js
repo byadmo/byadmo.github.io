@@ -4,6 +4,7 @@
 ===================================================== */
 
 
+
 /* =====================================================
    SYSTEM SETTINGS
 ===================================================== */
@@ -15,9 +16,12 @@ window.matchMedia(
 ).matches;
 
 
+
 const isTouchDevice =
 "ontouchstart" in window ||
 navigator.maxTouchPoints > 0;
+
+
 
 
 
@@ -30,27 +34,45 @@ navigator.maxTouchPoints > 0;
 
 
 const cards =
-document.querySelectorAll(".card");
+document.querySelectorAll(
+".card"
+);
+
 
 
 const revealCards =
-document.querySelectorAll(".reveal");
+document.querySelectorAll(
+".reveal"
+);
+
 
 
 const hero =
-document.querySelector(".hero");
+document.querySelector(
+".hero"
+);
+
 
 
 const typingElement =
-document.getElementById("typing");
+document.getElementById(
+"typing"
+);
 
-
-const timeline =
-document.getElementById("timeline-card");
 
 
 const projectsButton =
-document.getElementById("projects-button");
+document.getElementById(
+"projects-button"
+);
+
+
+
+const timeline =
+document.getElementById(
+"module-002"
+);
+
 
 
 const yearButtons =
@@ -59,12 +81,20 @@ document.querySelectorAll(
 );
 
 
+
 const projectGrid =
-document.querySelector(".project-grid");
+document.querySelector(
+".project-grid"
+);
+
 
 
 const cpuField =
-document.getElementById("cpu-field");
+document.getElementById(
+"cpu-field"
+);
+
+
 
 
 
@@ -72,7 +102,7 @@ document.getElementById("cpu-field");
 
 
 /* =====================================================
-   CARD REVEAL SYSTEM
+   CARD REVEAL ANIMATION
 ===================================================== */
 
 
@@ -81,17 +111,20 @@ if(
 ){
 
 
-const revealObserver =
+
+const observer =
 new IntersectionObserver(
 
-(entries)=>{
+entries=>{
 
 
 entries.forEach(
+
 (entry,index)=>{
 
 
 if(entry.isIntersecting){
+
 
 
 setTimeout(()=>{
@@ -102,20 +135,26 @@ entry.target.classList.add(
 );
 
 
-},index*100);
+
+},index*120);
 
 
 
-revealObserver.unobserve(
+observer.unobserve(
 entry.target
 );
+
 
 
 }
 
 
 
-});
+}
+
+
+);
+
 
 
 },
@@ -126,16 +165,20 @@ threshold:.15
 }
 
 
+
 );
+
+
 
 
 
 revealCards.forEach(card=>{
 
 
-revealObserver.observe(
+observer.observe(
 card
 );
+
 
 
 });
@@ -152,11 +195,7 @@ window.addEventListener(
 ()=>{
 
 
-revealCards.forEach(
-(card,index)=>{
-
-
-setTimeout(()=>{
+revealCards.forEach(card=>{
 
 
 card.classList.add(
@@ -164,16 +203,19 @@ card.classList.add(
 );
 
 
-},index*120);
-
-
-});
-
 
 });
 
 
 }
+
+);
+
+
+
+}
+
+
 
 
 
@@ -207,11 +249,16 @@ const typingWords = [
 
 
 
-let wordIndex = 0;
 
-let charIndex = 0;
 
-let deleting = false;
+let wordIndex=0;
+
+let charIndex=0;
+
+let deleting=false;
+
+
+
 
 
 
@@ -220,8 +267,10 @@ let deleting = false;
 function typeWriter(){
 
 
+
 if(!typingElement)
 return;
+
 
 
 
@@ -230,10 +279,14 @@ typingWords[wordIndex];
 
 
 
+
+
 if(!deleting){
 
 
+
 charIndex++;
+
 
 
 typingElement.textContent =
@@ -244,12 +297,14 @@ charIndex
 
 
 
-if(
-charIndex >= word.length
-){
+
+
+if(charIndex >= word.length){
+
 
 
 deleting=true;
+
 
 
 setTimeout(
@@ -258,10 +313,13 @@ typeWriter,
 );
 
 
+
 return;
 
 
+
 }
+
 
 
 }
@@ -269,7 +327,9 @@ return;
 else{
 
 
+
 charIndex--;
+
 
 
 typingElement.textContent =
@@ -280,12 +340,14 @@ charIndex
 
 
 
-if(
-charIndex <=0
-){
+
+
+if(charIndex<=0){
+
 
 
 deleting=false;
+
 
 
 wordIndex =
@@ -294,10 +356,14 @@ wordIndex =
 typingWords.length;
 
 
+
 }
 
 
+
 }
+
+
 
 
 
@@ -307,14 +373,19 @@ typeWriter,
 
 deleting
 ?
-40
+35
 :
-75
+70
 
 );
 
 
+
 }
+
+
+
+
 
 
 
@@ -322,13 +393,16 @@ deleting
 if(prefersReducedMotion){
 
 
+
 if(typingElement){
 
+
 typingElement.textContent =
-typingWords[0]
-.replace("...","");
+typingWords[0];
+
 
 }
+
 
 
 }
@@ -339,10 +413,11 @@ else{
 typeWriter();
 
 
+
 }
 
 /* =====================================================
-   CARD CURSOR LIGHT TRACKING
+   CARD CURSOR LIGHTING
 ===================================================== */
 
 
@@ -352,12 +427,15 @@ if(
 ){
 
 
+
 cards.forEach(card=>{
 
 
 card.addEventListener(
+
 "mousemove",
-(event)=>{
+
+event=>{
 
 
 const rect =
@@ -384,16 +462,20 @@ card.style.setProperty(
 );
 
 
+
 }
 
 
 );
 
 
+
 });
 
 
+
 }
+
 
 
 
@@ -418,7 +500,7 @@ hero.addEventListener(
 
 "mousemove",
 
-(event)=>{
+event=>{
 
 
 const rect =
@@ -444,13 +526,18 @@ rect.height
 
 
 
-hero.style.transform =
 
-`
+
+hero.style.transform = `
+
 perspective(1200px)
+
 rotateY(${x*3}deg)
+
 rotateX(${-y*3}deg)
-translateY(-5px)
+
+translateY(-3px)
+
 `;
 
 
@@ -460,6 +547,8 @@ translateY(-5px)
 
 
 );
+
+
 
 
 
@@ -473,7 +562,10 @@ hero.addEventListener(
 hero.style.transform="";
 
 
+
 }
+
+
 
 );
 
@@ -489,7 +581,7 @@ hero.style.transform="";
 
 
 /* =====================================================
-   TERMINAL DOT INTERACTION
+   TERMINAL DOTS
 ===================================================== */
 
 
@@ -500,8 +592,11 @@ document
 .forEach(dot=>{
 
 
+
 dot.addEventListener(
+
 "mouseenter",
+
 ()=>{
 
 
@@ -509,14 +604,21 @@ dot.style.transform =
 "scale(1.35) rotate(15deg)";
 
 
+
 }
+
+
 
 );
 
 
 
+
+
 dot.addEventListener(
+
 "mouseleave",
+
 ()=>{
 
 
@@ -524,12 +626,164 @@ dot.style.transform =
 "";
 
 
+
 }
+
+
 
 );
 
 
+
 });
+
+
+
+
+
+
+
+
+
+/* =====================================================
+   CPU PIPELINE SIMULATION
+===================================================== */
+
+
+const cpuStages =
+document.querySelectorAll(
+".pipeline-node"
+);
+
+
+
+let cpuIndex=0;
+
+
+
+let cpuTimer=null;
+
+
+
+
+
+
+
+function animateCPU(){
+
+
+
+if(!cpuStages.length)
+return;
+
+
+
+
+cpuStages.forEach(stage=>{
+
+
+
+stage.classList.remove(
+"cpu-active"
+);
+
+
+
+});
+
+
+
+
+
+cpuStages[cpuIndex]
+.classList.add(
+"cpu-active"
+);
+
+
+
+
+
+cpuIndex =
+(cpuIndex+1)
+%
+cpuStages.length;
+
+
+
+}
+
+
+
+
+
+
+
+
+function startCPU(){
+
+
+
+if(
+prefersReducedMotion ||
+cpuTimer ||
+!cpuStages.length
+)
+return;
+
+
+
+
+cpuTimer =
+setInterval(
+
+animateCPU,
+
+900
+
+);
+
+
+
+}
+
+
+
+
+
+
+
+
+function stopCPU(){
+
+
+
+if(cpuTimer){
+
+
+
+clearInterval(
+cpuTimer
+);
+
+
+
+cpuTimer=null;
+
+
+
+}
+
+
+
+}
+
+
+
+
+
+startCPU();
+
 
 
 
@@ -549,142 +803,170 @@ const projects = {
 2026:[
 
 
+
 {
 
 
 title:
+
 "32-Bit Pipelined RISC-V CPU Core",
 
 
 text:
-"Designed a custom SystemVerilog processor architecture featuring instruction fetch, decode, execute, memory, write-back stages, hazard detection, and forwarding logic."
+
+"Designed a custom SystemVerilog processor architecture using a 5-stage pipeline, hazard detection, forwarding logic, and RTL verification."
 
 },
+
 
 
 {
 
 
 title:
+
 "RTL Verification Environment",
 
 
 text:
-"Created simulation workflows using ModelSim, GTKWave, and Icarus Verilog for waveform analysis and hardware debugging."
+
+"Built simulation workflows using ModelSim, GTKWave, and Icarus Verilog for debugging and waveform analysis."
 
 },
+
 
 
 {
 
 
 title:
+
 "Computer Architecture Research",
 
 
 text:
-"Exploring processor pipelines, datapaths, control units, memory hierarchy, and performance optimization."
+
+"Exploring datapaths, instruction pipelines, control logic, memory systems, and processor optimization."
 
 }
 
 
+
 ],
+
+
+
 
 
 
 2025:[
 
 
+
 {
 
 
 title:
+
 "Digital Systems Development",
 
 
 text:
-"Built foundations in digital logic, programming, electronics, and hardware design concepts."
+
+"Developed foundations in digital logic, programming, electronics, and hardware design."
 
 },
+
 
 
 {
 
 
 title:
-"FPGA Hardware Exploration",
+
+"FPGA Exploration",
 
 
 text:
-"Started developing FPGA knowledge through programmable logic, hardware description languages, and embedded systems."
+
+"Started working with programmable logic, hardware acceleration concepts, and embedded systems."
 
 },
+
 
 
 {
 
 
 title:
+
 "Engineering Applications",
 
 
 text:
-"Applied mathematics, physics, and programming toward technical engineering problems."
+
+"Applied mathematics, physics, and programming toward engineering problems."
 
 }
+
 
 
 ],
 
 
 
+
+
+
 2024:[
+
 
 
 {
 
 
 title:
+
 "Programming Foundation",
 
 
 text:
-"Developed programming fundamentals and structured problem-solving skills."
+
+"Built programming fundamentals and technical problem-solving skills."
 
 },
+
 
 
 {
 
 
 title:
+
 "Engineering Curiosity",
 
 
 text:
-"Explored computer systems, electronics, and the technologies behind modern devices."
+
+"Explored computer systems, electronics, and modern technology."
 
 }
+
 
 
 ]
 
 
+
 };
 
-
-
-
-
-
-
-
 /* =====================================================
-   LOAD PROJECTS
+   PROJECT LOADER
 ===================================================== */
 
 
 function loadProjects(year){
+
 
 
 if(!projectGrid)
@@ -692,14 +974,20 @@ return;
 
 
 
+
 projectGrid.style.opacity="0";
+
+
 
 
 
 setTimeout(()=>{
 
 
+
 projectGrid.innerHTML="";
+
+
 
 
 
@@ -708,20 +996,23 @@ projects[year].forEach(
 (project,index)=>{
 
 
-const card =
+
+const item =
 document.createElement(
 "div"
 );
 
 
 
-card.className =
+item.className =
 "project-item";
 
 
 
-card.style.animationDelay =
-`${index*.12}s`;
+item.style.animationDelay =
+`${index*.15}s`;
+
+
 
 
 
@@ -737,6 +1028,8 @@ project.title;
 
 
 
+
+
 const text =
 document.createElement(
 "p"
@@ -749,15 +1042,19 @@ project.text;
 
 
 
-card.append(
+
+
+item.append(
 title,
 text
 );
 
 
 
+
+
 projectGrid.appendChild(
-card
+item
 );
 
 
@@ -765,28 +1062,31 @@ card
 }
 
 );
+
+
 
 
 
 projectGrid.style.opacity="1";
 
 
-},150);
+
+},250);
 
 
 
 }
 
+
+
+
+
+
+
+
 /* =====================================================
-   ENGINEERING JOURNEY SYSTEM
+   ENGINEERING JOURNEY MODULE
 ===================================================== */
-
-
-const TIMELINE_COLLAPSE_DELAY = 3500;
-
-
-let timelineTimer = null;
-
 
 
 let selectedYear =
@@ -798,27 +1098,42 @@ localStorage.getItem(
 
 
 
+let collapseTimer=null;
+
+
+
+const COLLAPSE_TIME =
+4000;
 
 
 
 
-function cancelTimelineCollapse(){
 
 
-if(timelineTimer){
+
+
+function cancelCollapse(){
+
+
+
+if(collapseTimer){
+
 
 
 clearTimeout(
-timelineTimer
+collapseTimer
 );
 
 
-timelineTimer=null;
+
+collapseTimer=null;
+
 
 
 }
 
 
+
 }
 
 
@@ -828,11 +1143,25 @@ timelineTimer=null;
 
 
 
-function collapseTimeline(){
+function scheduleCollapse(){
+
+
+
+cancelCollapse();
+
+
+
+
+
+collapseTimer =
+setTimeout(()=>{
+
 
 
 if(!timeline)
 return;
+
+
 
 
 
@@ -842,12 +1171,16 @@ timeline.classList.add(
 
 
 
+
+
 setTimeout(()=>{
+
 
 
 timeline.classList.remove(
 "expanded"
 );
+
 
 
 timeline.classList.remove(
@@ -856,50 +1189,11 @@ timeline.classList.remove(
 
 
 
-if(projectGrid){
-
-
-projectGrid.innerHTML =
-`
-<p>
-Hover over a year to explore projects.
-</p>
-`;
-
-
-}
+},900);
 
 
 
-},700);
-
-
-
-}
-
-
-
-
-
-
-
-
-function scheduleTimelineCollapse(){
-
-
-cancelTimelineCollapse();
-
-
-
-timelineTimer =
-setTimeout(()=>{
-
-
-collapseTimeline();
-
-
-
-},TIMELINE_COLLAPSE_DELAY);
+},COLLAPSE_TIME);
 
 
 
@@ -916,13 +1210,17 @@ collapseTimeline();
 function activateYear(button){
 
 
+
 if(!button)
 return;
 
 
 
+
 const year =
 button.dataset.year;
+
+
 
 
 
@@ -932,8 +1230,11 @@ year;
 
 
 localStorage.setItem(
+
 "selectedYear",
+
 year
+
 );
 
 
@@ -941,6 +1242,7 @@ year
 
 
 yearButtons.forEach(btn=>{
+
 
 
 btn.classList.remove(
@@ -977,10 +1279,14 @@ button.setAttribute(
 
 
 
+
 if(timeline){
 
 
-cancelTimelineCollapse();
+
+cancelCollapse();
+
+
 
 
 
@@ -991,6 +1297,9 @@ timeline.classList.add(
 
 
 }
+
+
+
 
 
 
@@ -1009,8 +1318,8 @@ year
 
 
 
+function restoreYear(){
 
-function restoreSelectedYear(){
 
 
 const saved =
@@ -1022,7 +1331,10 @@ document.querySelector(
 
 
 
+
+
 if(saved){
+
 
 
 activateYear(
@@ -1034,7 +1346,9 @@ saved
 }
 
 
+
 }
+
 
 
 
@@ -1051,8 +1365,11 @@ saved
 yearButtons.forEach(button=>{
 
 
+
 button.addEventListener(
+
 "mouseenter",
+
 ()=>{
 
 
@@ -1064,12 +1381,19 @@ button
 
 }
 
+
+
 );
 
 
 
+
+
+
 button.addEventListener(
+
 "click",
+
 ()=>{
 
 
@@ -1081,12 +1405,19 @@ button
 
 }
 
+
+
 );
+
+
+
 
 
 
 button.addEventListener(
+
 "focus",
+
 ()=>{
 
 
@@ -1097,6 +1428,8 @@ button
 
 
 }
+
+
 
 );
 
@@ -1113,7 +1446,7 @@ button
 
 
 /* =====================================================
-   TIMELINE HOVER CONTROL
+   TIMELINE HOVER BEHAVIOR
 ===================================================== */
 
 
@@ -1128,7 +1461,10 @@ timeline.addEventListener(
 ()=>{
 
 
-cancelTimelineCollapse();
+
+cancelCollapse();
+
+
 
 
 
@@ -1140,14 +1476,17 @@ if(
 ){
 
 
-restoreSelectedYear();
+restoreYear();
 
 
 
 }
 
 
+
 }
+
+
 
 );
 
@@ -1162,13 +1501,17 @@ timeline.addEventListener(
 ()=>{
 
 
-scheduleTimelineCollapse();
+
+scheduleCollapse();
 
 
 
 }
 
+
+
 );
+
 
 
 
@@ -1181,11 +1524,13 @@ timeline.addEventListener(
 ()=>{
 
 
-cancelTimelineCollapse();
+cancelCollapse();
 
 
 
 }
+
+
 
 );
 
@@ -1197,7 +1542,8 @@ timeline.addEventListener(
 
 "focusout",
 
-(event)=>{
+event=>{
+
 
 
 if(
@@ -1208,14 +1554,18 @@ event.relatedTarget
 ){
 
 
-scheduleTimelineCollapse();
+
+scheduleCollapse();
 
 
 
 }
 
 
+
 }
+
+
 
 );
 
@@ -1230,8 +1580,7 @@ scheduleTimelineCollapse();
 
 
 
-restoreSelectedYear();
-
+restoreYear();
 
 
 
@@ -1241,54 +1590,8 @@ restoreSelectedYear();
 
 
 /* =====================================================
-   VIEW PROJECTS BUTTON
+   VIEW PROJECT BUTTON
 ===================================================== */
-
-
-function playTimelineGlow(){
-
-
-if(!timeline)
-return;
-
-
-
-timeline.classList.remove(
-"project-active"
-);
-
-
-
-void timeline.offsetWidth;
-
-
-
-timeline.classList.add(
-"project-active"
-);
-
-
-
-setTimeout(()=>{
-
-
-timeline.classList.remove(
-"project-active"
-);
-
-
-
-},5000);
-
-
-
-}
-
-
-
-
-
-
 
 
 if(
@@ -1302,25 +1605,37 @@ projectsButton.addEventListener(
 
 "click",
 
-(event)=>{
+event=>{
+
 
 
 event.preventDefault();
 
 
 
+
+
 timeline.scrollIntoView({
 
+
+
 behavior:
+
 prefersReducedMotion
+
 ?
 "auto"
+
 :
+
 "smooth",
 
 
+
 block:
+
 "center"
+
 
 
 });
@@ -1328,7 +1643,9 @@ block:
 
 
 
+
 setTimeout(()=>{
+
 
 
 activateYear(
@@ -1337,7 +1654,23 @@ yearButtons[0]
 
 
 
-playTimelineGlow();
+timeline.classList.add(
+"project-highlight"
+);
+
+
+
+setTimeout(()=>{
+
+
+
+timeline.classList.remove(
+"project-highlight"
+);
+
+
+
+},5000);
 
 
 
@@ -1347,11 +1680,288 @@ playTimelineGlow();
 
 }
 
+
+
+);
+}
+
+/* =====================================================
+   FPGA / CPU DEBUG SIGNAL FIELD
+===================================================== */
+
+
+const signalSettings = {
+
+
+desktop:{
+count:18,
+delay:2500
+},
+
+
+mobile:{
+count:8,
+delay:4500
+}
+
+
+};
+
+
+
+const screenSmall =
+window.innerWidth < 700;
+
+
+
+const activeSignalSettings =
+screenSmall
+?
+signalSettings.mobile
+:
+signalSettings.desktop;
+
+
+
+let signalInterval=null;
+
+
+
+
+
+function createSignal(){
+
+
+
+if(!cpuField)
+return;
+
+
+
+
+
+const signal =
+document.createElement(
+"div"
+);
+
+
+
+
+
+signal.className =
+"cpu-pulse";
+
+
+
+
+
+const size =
+Math.random()*250+150;
+
+
+
+const angle =
+Math.random()*360;
+
+
+
+const startX =
+Math.random()*120-20;
+
+
+
+const startY =
+Math.random()*120-20;
+
+
+
+const distance =
+Math.random()*700+400;
+
+
+
+const duration =
+Math.random()*5+7;
+
+
+
+
+
+
+
+signal.style.width =
+`${size}px`;
+
+
+
+
+
+signal.style.left =
+`${startX}%`;
+
+
+
+
+
+signal.style.top =
+`${startY}%`;
+
+
+
+
+
+signal.style.setProperty(
+
+"--angle",
+
+`${angle}deg`
+
+);
+
+
+
+
+
+signal.style.setProperty(
+
+"--distance",
+
+`${distance}px`
+
+);
+
+
+
+
+
+signal.style.animationDuration =
+`${duration}s`;
+
+
+
+
+
+cpuField.appendChild(
+signal
+);
+
+
+
+
+
+
+setTimeout(()=>{
+
+
+
+signal.remove();
+
+
+
+},(duration+2)*1000);
+
+
+
+}
+
+
+
+
+
+
+
+
+
+function startSignals(){
+
+
+
+if(
+prefersReducedMotion ||
+signalInterval
+)
+
+return;
+
+
+
+
+
+for(
+let i=0;
+i<activeSignalSettings.count;
+i++
+){
+
+
+
+setTimeout(
+
+createSignal,
+
+i*250
+
 );
 
 
 
 }
+
+
+
+
+
+
+signalInterval =
+setInterval(
+
+createSignal,
+
+activeSignalSettings.delay
+
+);
+
+
+
+}
+
+
+
+
+
+
+
+
+function stopSignals(){
+
+
+
+if(signalInterval){
+
+
+
+clearInterval(
+signalInterval
+);
+
+
+
+signalInterval=null;
+
+
+
+}
+
+
+
+}
+
+
+
+
+
+startSignals();
 
 
 
@@ -1362,74 +1972,103 @@ playTimelineGlow();
 
 
 /* =====================================================
-   PROCESSOR PIPELINE ANIMATION
+   BACKGROUND DEBUG CONSOLE EFFECT
 ===================================================== */
 
 
-const pipelineStages =
-document.querySelectorAll(
-".pipeline div"
+const debugLines = [
+
+
+"FETCH instruction 0x00400000",
+
+
+"DECODE opcode RV32I",
+
+
+"EXECUTE ALU operation",
+
+
+"MEMORY access check",
+
+
+"WRITEBACK register update",
+
+
+"VERIFY waveform output",
+
+
+"SYNTHESIS COMPLETE"
+
+
+
+];
+
+
+
+
+
+
+
+function createDebugPulse(){
+
+
+
+const consoleBox =
+document.querySelector(
+".cpu-console"
 );
 
 
 
-let pipelineIndex=0;
-
-
-
-let pipelineInterval=null;
-
-
-
-
-
-
-
-function stepPipeline(){
-
-
-if(!pipelineStages.length)
+if(!consoleBox)
 return;
 
 
 
-pipelineStages.forEach(stage=>{
 
 
-stage.style.boxShadow="";
-
-stage.style.color="";
-
-
-});
+const line =
+document.createElement(
+"div"
+);
 
 
 
-
-
-const active =
-pipelineStages[pipelineIndex];
-
-
-
-active.style.boxShadow =
-"0 0 25px rgba(0,234,255,.5)";
-
-
-
-active.style.color =
-"#00ff88";
+line.className =
+"debug-line";
 
 
 
 
 
-pipelineIndex =
-(
-pipelineIndex+1
+line.textContent =
+"> " +
+debugLines[
+Math.floor(
+Math.random()*debugLines.length
 )
-%
-pipelineStages.length;
+];
+
+
+
+
+
+consoleBox.appendChild(
+line
+);
+
+
+
+
+
+setTimeout(()=>{
+
+
+line.remove();
+
+
+
+},5000);
 
 
 
@@ -1439,24 +2078,16 @@ pipelineStages.length;
 
 
 
-
-
-function startPipeline(){
-
-
-if(
-!pipelineStages.length ||
-pipelineInterval ||
-prefersReducedMotion
-)
-return;
+if(!prefersReducedMotion){
 
 
 
-pipelineInterval =
 setInterval(
-stepPipeline,
-1200
+
+createDebugPulse,
+
+1800
+
 );
 
 
@@ -1467,29 +2098,8 @@ stepPipeline,
 
 
 
-function stopPipeline(){
 
 
-if(pipelineInterval){
-
-
-clearInterval(
-pipelineInterval
-);
-
-
-
-pipelineInterval=null;
-
-
-}
-
-
-}
-
-
-
-startPipeline();
 
 /* =====================================================
    SCROLL PROGRESS BAR
@@ -1516,13 +2126,17 @@ scrollBar
 
 
 
-let scrollTicking=false;
+let scrolling=false;
 
 
 
 
 
-function updateScrollProgress(){
+
+
+
+function updateScroll(){
+
 
 
 const height =
@@ -1533,11 +2147,16 @@ window.innerHeight;
 
 
 const progress =
-height > 0
+height>0
 ?
-(window.scrollY / height) * 100
+
+(window.scrollY/height)*100
+
 :
+
 0;
+
+
 
 
 
@@ -1546,11 +2165,15 @@ scrollBar.style.width =
 
 
 
-scrollTicking=false;
+
+
+scrolling=false;
 
 
 
 }
+
+
 
 
 
@@ -1564,23 +2187,27 @@ window.addEventListener(
 ()=>{
 
 
-if(!scrollTicking){
+
+if(!scrolling){
+
 
 
 requestAnimationFrame(
-updateScrollProgress
+updateScroll
 );
 
 
 
-scrollTicking=true;
+scrolling=true;
 
 
 
 }
 
 
+
 },
+
 
 
 {
@@ -1588,433 +2215,11 @@ passive:true
 }
 
 
+
 );
-
-
-
-
-
-
-
-
 
 /* =====================================================
-   FPGA SIGNAL VISUALIZATION ENGINE
-===================================================== */
-
-
-const smallScreen =
-window.innerWidth < 700;
-
-
-
-
-
-const signalSettings = {
-
-
-initial:
-
-smallScreen
-?
-8
-:
-20,
-
-
-
-spawnDelay:
-
-smallScreen
-?
-5000
-:
-3000,
-
-
-
-burstMin:
-
-smallScreen
-?
-1
-:
-2,
-
-
-
-burstMax:
-
-smallScreen
-?
-3
-:
-6
-
-
-
-};
-
-
-
-
-
-
-let signalInterval=null;
-
-let burstTimeout=null;
-
-
-
-
-
-
-
-
-const directions = [
-
-
-0,
-
-45,
-
-90,
-
-135,
-
-180,
-
-225,
-
-270,
-
-315
-
-
-];
-
-
-
-
-
-
-
-
-
-function createSignal(initial=false){
-
-
-if(!cpuField)
-return;
-
-
-
-const pulse =
-document.createElement(
-"div"
-);
-
-
-
-pulse.className =
-"cpu-pulse";
-
-
-
-
-
-const length =
-Math.random()*250+150;
-
-
-
-const angle =
-directions[
-Math.floor(
-Math.random()*directions.length
-)
-];
-
-
-
-const distance =
-Math.random()*700+500;
-
-
-
-const duration =
-Math.random()*6+8;
-
-
-
-
-
-const startX =
-Math.random()*120-20;
-
-
-
-const startY =
-Math.random()*120-20;
-
-
-
-
-
-pulse.style.width =
-`${length}px`;
-
-
-
-pulse.style.left =
-`${startX}%`;
-
-
-
-pulse.style.top =
-`${startY}%`;
-
-
-
-pulse.style.opacity =
-Math.random()*.4+.2;
-
-
-
-pulse.style.setProperty(
-
-"--angle",
-
-`${angle}deg`
-
-);
-
-
-
-pulse.style.setProperty(
-
-"--distance",
-
-`${distance}px`
-
-);
-
-
-
-pulse.style.animationDuration =
-`${duration}s`;
-
-
-
-
-
-if(initial){
-
-
-pulse.style.animationDelay =
-`${Math.random()*3}s`;
-
-
-
-}
-
-
-
-cpuField.appendChild(
-pulse
-);
-
-
-
-
-
-setTimeout(()=>{
-
-
-pulse.remove();
-
-
-
-},
-(duration+3)*1000
-);
-
-
-
-}
-
-
-
-
-
-
-
-
-function randomBurst(){
-
-
-const amount =
-Math.floor(
-
-Math.random()
-*
-(
-signalSettings.burstMax
--
-signalSettings.burstMin
-+
-1
-
-)
-
-)
-+
-signalSettings.burstMin;
-
-
-
-
-
-for(
-let i=0;
-i<amount;
-i++
-){
-
-
-setTimeout(()=>{
-
-
-createSignal();
-
-
-
-},i*250);
-
-
-
-}
-
-
-
-
-
-
-burstTimeout =
-setTimeout(
-
-randomBurst,
-
-Math.random()*10000+10000
-
-);
-
-
-
-}
-
-
-
-
-
-
-
-
-function startSignalSystem(){
-
-
-if(
-!cpuField ||
-prefersReducedMotion
-)
-return;
-
-
-
-for(
-let i=0;
-i<signalSettings.initial;
-i++
-){
-
-
-createSignal(true);
-
-
-
-}
-
-
-
-
-
-signalInterval =
-setInterval(
-
-createSignal,
-
-signalSettings.spawnDelay
-
-);
-
-
-
-randomBurst();
-
-
-
-}
-
-
-
-
-
-
-
-
-function stopSignalSystem(){
-
-
-clearInterval(
-signalInterval
-);
-
-
-
-clearTimeout(
-burstTimeout
-);
-
-
-
-signalInterval=null;
-
-
-
-}
-
-
-
-
-if(!prefersReducedMotion){
-
-
-startSignalSystem();
-
-
-
-}
-
-
-
-
-
-
-
-
-
-/* =====================================================
-   PAUSE WHEN TAB HIDDEN
+   PIPELINE / CPU VISIBILITY CONTROL
 ===================================================== */
 
 
@@ -2028,10 +2233,10 @@ document.addEventListener(
 if(document.hidden){
 
 
-stopPipeline();
 
+stopCPU();
 
-stopSignalSystem();
+stopSignals();
 
 
 
@@ -2040,15 +2245,14 @@ stopSignalSystem();
 else{
 
 
-startPipeline();
+
+startCPU();
+
 
 
 if(!prefersReducedMotion){
 
-
-startSignalSystem();
-
-
+startSignals();
 
 }
 
@@ -2062,35 +2266,6 @@ startSignalSystem();
 
 );
 
-/* =====================================================
-   PAGE INITIALIZATION
-===================================================== */
-
-
-window.addEventListener(
-
-"load",
-
-()=>{
-
-
-document.body.classList.add(
-"loaded"
-);
-
-
-
-console.log(
-
-"ADAM MORGAN PORTFOLIO — SYSTEM ONLINE"
-
-);
-
-
-
-}
-
-);
 
 
 
@@ -2100,7 +2275,7 @@ console.log(
 
 
 /* =====================================================
-   TOUCH DEVICE FEEDBACK
+   TOUCH FEEDBACK
 ===================================================== */
 
 
@@ -2131,10 +2306,7 @@ card.classList.add(
 passive:true
 }
 
-
-
 );
-
 
 
 
@@ -2146,7 +2318,6 @@ card.addEventListener(
 "touchend",
 
 ()=>{
-
 
 
 setTimeout(()=>{
@@ -2168,10 +2339,7 @@ card.classList.remove(
 passive:true
 }
 
-
-
 );
-
 
 
 
@@ -2198,32 +2366,34 @@ document.addEventListener(
 
 "keydown",
 
-(event)=>{
+event=>{
 
 
 
 const active =
-document.activeElement?.tagName;
+document.activeElement;
 
 
 
 if(
-active === "INPUT" ||
-active === "TEXTAREA"
-){
+
+active &&
+(
+active.tagName==="INPUT" ||
+active.tagName==="TEXTAREA"
+)
+
+)
 
 return;
 
-}
 
 
 
 
 
-if(
-event.key === "1" &&
-yearButtons[0]
-){
+
+if(event.key==="1" && yearButtons[0]){
 
 
 activateYear(
@@ -2238,10 +2408,8 @@ yearButtons[0]
 
 
 
-if(
-event.key === "2" &&
-yearButtons[1]
-){
+
+if(event.key==="2" && yearButtons[1]){
 
 
 activateYear(
@@ -2256,10 +2424,8 @@ yearButtons[1]
 
 
 
-if(
-event.key === "3" &&
-yearButtons[2]
-){
+
+if(event.key==="3" && yearButtons[2]){
 
 
 activateYear(
@@ -2275,6 +2441,7 @@ yearButtons[2]
 }
 
 );
+
 
 
 
@@ -2298,6 +2465,7 @@ document.getElementById(
 if(yearElement){
 
 
+
 yearElement.textContent =
 new Date().getFullYear();
 
@@ -2312,43 +2480,33 @@ new Date().getFullYear();
 
 
 
-/* =====================================================
-   INITIAL HARDWARE STATE
-===================================================== */
-
-
-if(yearButtons.length){
-
-
-restoreSelectedYear();
-
-
-
-}
-
-
-
-
-
-
-
 
 /* =====================================================
-   CLEANUP ON PAGE EXIT
+   PAGE READY
 ===================================================== */
 
 
 window.addEventListener(
 
-"beforeunload",
+"load",
 
 ()=>{
 
 
-stopPipeline();
+
+document.body.classList.add(
+"loaded"
+);
 
 
-stopSignalSystem();
+
+
+
+console.log(
+
+"ADAM MORGAN PORTFOLIO — CPU LAB ONLINE"
+
+);
 
 
 
