@@ -36,6 +36,11 @@ document.querySelectorAll(".card");
 
 
 
+const bentoGrid =
+document.querySelector(".bento-grid");
+
+
+
 const revealCards =
 document.querySelectorAll(".reveal");
 
@@ -520,13 +525,25 @@ rect.height
 
 
 hero.style.transform =
+ "";
 
-`
-perspective(1200px)
-rotateY(${x*3}deg)
-rotateX(${-y*3}deg)
-translateY(-4px)
-`;
+
+hero.style.setProperty(
+"--tilt-y",
+`${x*3}deg`
+);
+
+
+hero.style.setProperty(
+"--tilt-x",
+`${-y*3}deg`
+);
+
+
+hero.style.setProperty(
+"--lift",
+"-4px"
+);
 
 
 
@@ -543,7 +560,19 @@ hero.addEventListener(
 ()=>{
 
 
-hero.style.transform = "";
+hero.style.removeProperty(
+"--tilt-y"
+);
+
+
+hero.style.removeProperty(
+"--tilt-x"
+);
+
+
+hero.style.removeProperty(
+"--lift"
+);
 
 
 }
@@ -558,6 +587,328 @@ hero.style.transform = "";
 
 
 
+
+
+
+/* =====================================================
+   FLUID BENTO MOTION
+===================================================== */
+
+
+function getBentoRects(){
+
+
+return Array.from(cards).map(card=>({
+
+card,
+
+rect:card.getBoundingClientRect()
+
+}));
+
+
+}
+
+
+
+function animateBentoLayout(mutator){
+
+
+if(prefersReducedMotion){
+
+
+mutator();
+
+
+return;
+
+
+}
+
+
+const first =
+getBentoRects();
+
+
+mutator();
+
+
+requestAnimationFrame(()=>{
+
+
+first.forEach(({card,rect})=>{
+
+
+const next =
+card.getBoundingClientRect();
+
+
+const dx =
+rect.left - next.left;
+
+
+const dy =
+rect.top - next.top;
+
+
+if(
+Math.abs(dx) < 1 &&
+Math.abs(dy) < 1
+)
+return;
+
+
+card.style.transition =
+"none";
+
+
+card.style.setProperty(
+"--layout-x",
+`${dx}px`
+);
+
+
+card.style.setProperty(
+"--layout-y",
+`${dy}px`
+);
+
+
+card.offsetHeight;
+
+
+});
+
+
+requestAnimationFrame(()=>{
+
+
+cards.forEach(card=>{
+
+
+card.style.removeProperty(
+"transition"
+);
+
+
+card.style.removeProperty(
+"--layout-x"
+);
+
+
+card.style.removeProperty(
+"--layout-y"
+);
+
+
+});
+
+
+});
+
+
+});
+
+
+}
+
+
+
+function resetBentoPressure(){
+
+
+cards.forEach(card=>{
+
+
+card.style.removeProperty(
+"--push-x"
+);
+
+
+card.style.removeProperty(
+"--push-y"
+);
+
+
+card.style.removeProperty(
+"--card-scale"
+);
+
+
+card.style.removeProperty(
+"--lift"
+);
+
+
+});
+
+
+}
+
+
+
+function applyBentoPressure(source,intensity = 1){
+
+
+if(
+prefersReducedMotion ||
+window.innerWidth <= 900
+)
+return;
+
+
+const sourceRect =
+source.getBoundingClientRect();
+
+
+const sourceX =
+sourceRect.left + sourceRect.width / 2;
+
+
+const sourceY =
+sourceRect.top + sourceRect.height / 2;
+
+
+cards.forEach(card=>{
+
+
+if(card === source){
+
+
+card.style.setProperty(
+"--card-scale",
+"1.012"
+);
+
+
+card.style.setProperty(
+"--lift",
+"-10px"
+);
+
+
+return;
+
+
+}
+
+
+const rect =
+card.getBoundingClientRect();
+
+
+const cardX =
+rect.left + rect.width / 2;
+
+
+const cardY =
+rect.top + rect.height / 2;
+
+
+const dx =
+cardX - sourceX;
+
+
+const dy =
+cardY - sourceY;
+
+
+const distance =
+Math.max(1,Math.hypot(dx,dy));
+
+
+const radius =
+560;
+
+
+if(distance > radius){
+
+
+card.style.removeProperty(
+"--push-x"
+);
+
+
+card.style.removeProperty(
+"--push-y"
+);
+
+
+return;
+
+
+}
+
+
+const force =
+Math.pow(1 - distance / radius,1.8) * 22 * intensity;
+
+
+card.style.setProperty(
+"--push-x",
+`${(dx / distance) * force}px`
+);
+
+
+card.style.setProperty(
+"--push-y",
+`${(dy / distance) * force}px`
+);
+
+
+});
+
+
+}
+
+
+
+if(
+bentoGrid &&
+!prefersReducedMotion
+){
+
+
+cards.forEach(card=>{
+
+
+card.addEventListener(
+"pointerenter",
+()=>applyBentoPressure(card)
+);
+
+
+card.addEventListener(
+"pointermove",
+()=>applyBentoPressure(card,.85)
+);
+
+
+card.addEventListener(
+"pointerleave",
+resetBentoPressure
+);
+
+
+card.addEventListener(
+"touchstart",
+()=>applyBentoPressure(card,1.15),
+{
+passive:true
+}
+);
+
+
+});
+
+
+bentoGrid.addEventListener(
+"mouseleave",
+resetBentoPressure
+);
+
+
+}
 
 
 
@@ -648,24 +999,60 @@ node.className =
 
 
 
+const nodeDuration =
+3.8 + Math.random() * 3.4;
 
 
-node.style.left =
-`${Math.random()*90}%`;
+node.style.setProperty(
+"--node-x",
+`${8 + Math.random()*84}%`
+);
 
 
+node.style.setProperty(
+"--node-y",
+`${10 + Math.random()*78}%`
+);
 
 
+node.style.setProperty(
+"--node-size",
+`${7 + Math.random()*12}px`
+);
 
-node.style.top =
-`${Math.random()*80}%`;
+
+node.style.setProperty(
+"--node-duration",
+`${nodeDuration}s`
+);
 
 
+node.style.setProperty(
+"--node-drift-x",
+`${-50 + Math.random()*100}px`
+);
 
+
+node.style.setProperty(
+"--node-drift-y",
+`${-34 + Math.random()*68}px`
+);
+
+
+node.style.setProperty(
+"--trace-angle",
+`${Math.random()*360}deg`
+);
+
+
+node.style.setProperty(
+"--trace-length",
+`${70 + Math.random()*170}px`
+);
 
 
 node.style.animationDelay =
-`${Math.random()*2}s`;
+`${Math.random()*.7}s`;
 
 
 
@@ -688,7 +1075,7 @@ node.remove();
 
 },
 
-4000
+(nodeDuration + 1) * 1000
 
 );
 
@@ -715,10 +1102,24 @@ return;
 
 
 setInterval(
+()=>{
 
-createCPUNode,
 
-700
+createCPUNode();
+
+
+if(Math.random() > .56){
+
+
+createCPUNode();
+
+
+}
+
+
+},
+
+320
 
 );
 
@@ -1154,6 +1555,9 @@ return;
 
 
 
+animateBentoLayout(()=>{
+
+
 timeline.classList.remove(
 "collapsing"
 );
@@ -1163,6 +1567,9 @@ timeline.classList.remove(
 timeline.classList.add(
 "expanded"
 );
+
+
+});
 
 
 
@@ -1200,6 +1607,9 @@ return;
 
 
 
+animateBentoLayout(()=>{
+
+
 timeline.classList.add(
 "collapsing"
 );
@@ -1209,6 +1619,9 @@ timeline.classList.add(
 timeline.classList.remove(
 "expanded"
 );
+
+
+});
 
 
 
@@ -1259,7 +1672,7 @@ collapseTimeline();
 
 },
 
-4000
+6500
 
 );
 
@@ -1502,7 +1915,7 @@ signal.style.setProperty(
 
 "--angle",
 
-`${direction.angle}deg`
+`${Math.random()*360}deg`
 
 );
 
@@ -1514,7 +1927,7 @@ signal.style.setProperty(
 
 "--distance",
 
-direction.distance
+`${70 + Math.random()*95}vw`
 
 );
 
@@ -1541,7 +1954,25 @@ signal.style.left =
 
 signal.style.width =
 
-`${80 + Math.random()*220}px`;
+`${90 + Math.random()*380}px`;
+
+
+signal.style.setProperty(
+"--pulse-height",
+`${1 + Math.random()*3}px`
+);
+
+
+signal.style.setProperty(
+"--pulse-opacity",
+`${.48 + Math.random()*.42}`
+);
+
+
+signal.style.setProperty(
+"--pulse-blur",
+`${Math.random()*1.8}px`
+);
 
 
 
@@ -1550,7 +1981,7 @@ signal.style.width =
 
 signal.style.animationDuration =
 
-`${3 + Math.random()*5}s`;
+`${6 + Math.random()*9}s`;
 
 
 
@@ -1576,7 +2007,7 @@ signal.remove();
 
 },
 
-9000
+17000
 
 );
 
@@ -1606,19 +2037,42 @@ return;
 
 
 
-setInterval(
-
+const spawnBurst =
 ()=>{
 
 
-createSignal();
+const burstCount =
+Math.random() > .68
+? 2 + Math.floor(Math.random()*3)
+: 1;
 
 
-},
+for(
+let i = 0;
+i < burstCount;
+i++
+){
 
-900
 
+setTimeout(
+createSignal,
+i * (55 + Math.random()*120)
 );
+
+
+}
+
+
+setTimeout(
+spawnBurst,
+180 + Math.random()*620
+);
+
+
+};
+
+
+spawnBurst();
 
 
 
@@ -1767,6 +2221,9 @@ setTimeout(
 card.classList.remove(
 "touch-active"
 );
+
+
+resetBentoPressure();
 
 
 
@@ -2015,9 +2472,24 @@ setTimeout(
 cards.forEach(card=>{
 
 
+[
+"--push-x",
+"--push-y",
+"--layout-x",
+"--layout-y",
+"--card-scale",
+"--lift",
+"--tilt-x",
+"--tilt-y"
+].forEach(property=>{
+
+
 card.style.removeProperty(
-"transform"
+property
 );
+
+
+});
 
 
 });
