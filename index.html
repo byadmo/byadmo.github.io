@@ -1,212 +1,520 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Adam Morgan | Electrical Engineering Portfolio</title>
+
 <meta name="description" content="Adam Morgan — Electrical Engineering student specializing in digital systems, processor architecture, RTL design, FPGA development, and computer architecture.">
+
 <meta name="theme-color" content="#07080a">
+
 <link rel="canonical" href="https://admo.one/">
 
-<!-- Open Graph / social preview -->
+
+<!-- Open Graph -->
+
 <meta property="og:type" content="website">
 <meta property="og:title" content="Adam Morgan | Electrical Engineering Portfolio">
 <meta property="og:description" content="Electrical Engineering student building processor architectures, RTL designs, and FPGA systems.">
 <meta property="og:url" content="https://admo.one/">
 <meta property="og:image" content="https://admo.one/og-image.png">
+
+
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Adam Morgan | Electrical Engineering Portfolio">
 <meta name="twitter:description" content="Electrical Engineering student building processor architectures, RTL designs, and FPGA systems.">
 <meta name="twitter:image" content="https://admo.one/og-image.png">
 
-<!-- Favicon (inline SVG monogram, no external asset needed) -->
+
+<!-- Favicon -->
+
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2307080a'/%3E%3Ctext x='32' y='42' font-family='monospace' font-size='26' font-weight='700' fill='%2300eaff' text-anchor='middle'%3EAM%3C/text%3E%3C/svg%3E">
+
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
 <link rel="stylesheet" href="styles.css">
+
 
 <script type="application/ld+json">
 {
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Adam Morgan",
-  "url": "https://admo.one/",
-  "jobTitle": "Electrical Engineering Student",
-  "description": "Electrical Engineering student specializing in digital systems, processor architecture, RTL design, and FPGA development.",
-  "sameAs": [
-    "https://github.com/byadmo",
-    "https://www.linkedin.com/in/adammorgan05/"
-  ]
+ "@context":"https://schema.org",
+ "@type":"Person",
+ "name":"Adam Morgan",
+ "url":"https://admo.one/",
+ "jobTitle":"Electrical Engineering Student",
+ "description":"Electrical Engineering student specializing in digital systems, processor architecture, RTL design, and FPGA development.",
+ "sameAs":[
+  "https://github.com/byadmo",
+  "https://www.linkedin.com/in/adammorgan05/"
+ ]
 }
 </script>
+
 </head>
+
 
 <body>
 
-<a class="skip-link" href="#main-content">Skip to content</a>
 
-<!-- FPGA SIGNAL BACKGROUND -->
+<a class="skip-link" href="#main-content">
+Skip to content
+</a>
+
+
+<!-- BACKGROUND EFFECTS -->
+
 <div class="cpu-field" id="cpu-field" aria-hidden="true"></div>
+
 <div class="noise" aria-hidden="true"></div>
+
+
 
 <main class="bento-grid" id="main-content">
 
-  <!-- HERO -->
-  <section class="card hero reveal" aria-labelledby="hero-heading">
-    <div class="terminal-dots" aria-hidden="true">
-      <span class="mac-red"></span>
-      <span class="mac-yellow"></span>
-      <span class="mac-green"></span>
-    </div>
 
-    <div class="label">ELECTRICAL_ENGINEERING // COMPUTER_ARCHITECTURE</div>
 
-    <h1 id="hero-heading">Hi, I'm Adam.<br>I design computer processors.</h1>
+<!-- ================= HERO ================= -->
 
-    <div class="typing-line">
-      <span>Currently Working On:</span>
-      <span id="typing" aria-live="polite"></span>
-      <span class="cursor" aria-hidden="true"></span>
-    </div>
+<section class="card hero reveal">
 
-    <p class="description">
-      Electrical Engineering student specializing in digital systems,
-      processor architecture, RTL design, FPGA development,
-      and efficient hardware implementation.
-    </p>
+<div class="terminal-dots" aria-hidden="true">
 
-    <div class="buttons">
-      <a href="#timeline-card" id="projects-button">$ view_projects</a>
-      <a href="resume.pdf" download>$ download_resume</a>
-      <a href="https://github.com/byadmo" target="_blank" rel="noopener noreferrer">$ view_github</a>
-      <a href="https://www.linkedin.com/in/adammorgan05/" target="_blank" rel="noopener noreferrer">$ contact_adam</a>
-    </div>
-  </section>
+<span class="mac-red"></span>
+<span class="mac-yellow"></span>
+<span class="mac-green"></span>
 
-  <!-- PROFILE -->
-  <section class="card profile reveal" aria-labelledby="profile-heading">
-    <div class="label">ENGINEERING_PROFILE</div>
-    <h2 id="profile-heading">Current Focus</h2>
+</div>
 
-    <div class="profile-item">
-      <span>FIELD</span>
-      <p>Electrical Engineering</p>
-    </div>
 
-    <div class="profile-item">
-      <span>SPECIALIZATION</span>
-      <p>Digital Systems</p>
-    </div>
+<div class="label">
+ELECTRICAL_ENGINEERING // COMPUTER_ARCHITECTURE
+</div>
 
-    <div class="profile-item">
-      <span>INTERESTS</span>
-      <p>CPU Architecture + FPGA</p>
-    </div>
-  </section>
 
-  <!-- HARDWARE PROJECT -->
-  <section class="card hardware reveal" aria-labelledby="hardware-heading">
-    <div class="terminal-dots" aria-hidden="true">
-      <span class="mac-red">×</span>
-      <span class="mac-yellow">−</span>
-      <span class="mac-green">+</span>
-    </div>
+<h1>
+Hi, I'm Adam.<br>
+I design computer processors.
+</h1>
 
-    <div class="label">PROJECT_001 // PROCESSOR_DESIGN</div>
-    <h2 id="hardware-heading">32-Bit Pipelined RISC-V CPU Core</h2>
 
-    <div class="pipeline" role="list" aria-label="Pipeline stages: fetch, decode, execute, memory, write-back">
-      <div role="listitem">IF</div>
-      <div role="listitem">ID</div>
-      <div role="listitem">EX</div>
-      <div role="listitem">MEM</div>
-      <div role="listitem">WB</div>
-    </div>
 
-    <pre><code>module risc_v_cpu (
-  input clk,
-  input reset
+<div class="typing-line">
+
+<span>
+Currently Working On:
+</span>
+
+<span id="typing"></span>
+
+<span class="cursor"></span>
+
+</div>
+
+
+
+<p class="description">
+
+Electrical Engineering student specializing in digital systems,
+processor architecture, RTL design, FPGA development,
+and efficient hardware implementation.
+
+</p>
+
+
+
+<div class="buttons">
+
+<a href="#timeline-card" id="projects-button">
+$ view_projects
+</a>
+
+
+<a href="resume.pdf" download>
+$ download_resume
+</a>
+
+
+<a href="https://github.com/byadmo" target="_blank">
+$ view_github
+</a>
+
+
+<a href="https://www.linkedin.com/in/adammorgan05/" target="_blank">
+$ contact_adam
+</a>
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+<!-- ================= HARDWARE ================= -->
+
+
+<section class="card hardware reveal">
+
+
+<div class="terminal-dots">
+
+<span class="mac-red">×</span>
+<span class="mac-yellow">−</span>
+<span class="mac-green">+</span>
+
+</div>
+
+
+
+<div class="label">
+PROJECT_001 // PROCESSOR_DESIGN
+</div>
+
+
+<h2>
+32-Bit Pipelined RISC-V CPU Core
+</h2>
+
+
+
+<div class="pipeline">
+
+<div>IF</div>
+<div>ID</div>
+<div>EX</div>
+<div>MEM</div>
+<div>WB</div>
+
+</div>
+
+
+
+<pre><code>
+module risc_v_cpu (
+ input clk,
+ input reset
 );
 
-  control_unit    CU();
-  hazard_unit     HU();
-  forwarding_unit FU();
+ control_unit CU();
+ hazard_unit HU();
+ forwarding_unit FU();
 
-endmodule</code></pre>
+endmodule
+</code></pre>
 
-    <ul>
-      <li>5-stage instruction pipeline architecture</li>
-      <li>Hazard detection and forwarding logic</li>
-      <li>RTL verification using waveform simulation</li>
-    </ul>
-  </section>
 
-  <!-- ENGINEERING JOURNEY -->
-  <section class="card timeline reveal" id="timeline-card" aria-labelledby="timeline-heading">
-    <div class="label" id="timeline-heading">ENGINEERING_JOURNEY</div>
 
-    <div class="year-buttons" role="tablist" aria-label="Select a year to view projects">
-      <button data-year="2026" role="tab" aria-selected="false">2026</button>
-      <button data-year="2025" role="tab" aria-selected="false">2025</button>
-      <button data-year="2024" role="tab" aria-selected="false">2024</button>
-    </div>
+<ul>
 
-    <div id="timeline-content">
-      <div class="project-grid" role="tabpanel" aria-live="polite">
-        <p>Select a year to explore projects.</p>
-      </div>
-    </div>
-  </section>
+<li>
+5-stage instruction pipeline architecture
+</li>
 
-  <!-- TECH STACK -->
-  <section class="card stack reveal" aria-labelledby="stack-heading">
-    <div class="label" id="stack-heading">TECH_STACK</div>
+<li>
+Hazard detection and forwarding logic
+</li>
 
-    <h3>HARDWARE/</h3>
-    <div class="tags">
-      <span>SystemVerilog</span>
-      <span>Verilog</span>
-      <span>FPGA</span>
-      <span>RISC-V</span>
-    </div>
+<li>
+RTL verification using waveform simulation
+</li>
 
-    <h3>TOOLS/</h3>
-    <div class="tags">
-      <span>Quartus</span>
-      <span>GTKWave</span>
-      <span>ModelSim</span>
-      <span>Icarus Verilog</span>
-    </div>
-  </section>
+</ul>
 
-  <!-- ENTREPRENEURSHIP -->
-  <section class="card entrepreneur reveal" aria-labelledby="entrepreneur-heading">
-    <div class="label">ENTREPRENEURSHIP</div>
-    <h2 id="entrepreneur-heading">Founder &amp; Product Developer</h2>
-    <p>
-      Built and managed an independent product venture involving
-      manufacturing decisions, supplier communication,
-      budgeting, branding, and product development.
-    </p>
-  </section>
 
-  <!-- CONNECT -->
-  <section class="card connect reveal" aria-labelledby="connect-heading">
-    <div class="label" id="connect-heading">CONNECT</div>
-    <div class="connect-links">
-      <a href="https://github.com/byadmo" target="_blank" rel="noopener noreferrer">$ github</a>
-      <a href="https://www.linkedin.com/in/adammorgan05/" target="_blank" rel="noopener noreferrer">$ linkedin</a>
-    </div>
-  </section>
+</section>
+
+
+
+
+
+
+
+<!-- ================= RIGHT COLUMN ================= -->
+
+
+<div class="right-column">
+
+
+
+
+
+<!-- PROFILE -->
+
+
+<section class="card profile reveal">
+
+
+<div class="label">
+ENGINEERING_PROFILE
+</div>
+
+
+<h2>
+Current Focus
+</h2>
+
+
+
+<div class="profile-item">
+
+<span>
+FIELD
+</span>
+
+<p>
+Electrical Engineering
+</p>
+
+</div>
+
+
+
+<div class="profile-item">
+
+<span>
+SPECIALIZATION
+</span>
+
+<p>
+Digital Systems
+</p>
+
+</div>
+
+
+
+<div class="profile-item">
+
+<span>
+INTERESTS
+</span>
+
+<p>
+CPU Architecture + FPGA
+</p>
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+<!-- ENGINEERING JOURNEY -->
+
+
+<section class="card timeline reveal" id="timeline-card">
+
+
+<div class="label">
+ENGINEERING_JOURNEY
+</div>
+
+
+
+<p class="timeline-hint">
+Hover over a year to explore projects.
+</p>
+
+
+
+<div class="year-buttons" role="tablist">
+
+
+<button data-year="2026">
+2026
+</button>
+
+
+<button data-year="2025">
+2025
+</button>
+
+
+<button data-year="2024">
+2024
+</button>
+
+
+</div>
+
+
+
+
+<div class="timeline-content">
+
+
+<div class="project-grid">
+
+<p>
+Hover over a year to explore projects.
+</p>
+
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+<!-- TECH STACK -->
+
+
+<section class="card stack reveal">
+
+
+<div class="label">
+TECH_STACK
+</div>
+
+
+
+<h3>
+HARDWARE/
+</h3>
+
+
+<div class="tags">
+
+<span>SystemVerilog</span>
+<span>Verilog</span>
+<span>FPGA</span>
+<span>RISC-V</span>
+
+</div>
+
+
+
+
+<h3>
+TOOLS/
+</h3>
+
+
+<div class="tags">
+
+<span>Quartus</span>
+<span>GTKWave</span>
+<span>ModelSim</span>
+<span>Icarus Verilog</span>
+
+</div>
+
+
+
+</section>
+
+
+
+
+
+
+
+<!-- ENTREPRENEURSHIP -->
+
+
+<section class="card entrepreneur reveal">
+
+
+<div class="label">
+ENTREPRENEURSHIP
+</div>
+
+
+<h2>
+Founder & Product Developer
+</h2>
+
+
+<p>
+
+Built and managed an independent product venture involving
+manufacturing decisions, supplier communication,
+budgeting, branding, and product development.
+
+</p>
+
+
+</section>
+
+
+
+
+
+
+<!-- CONNECT -->
+
+
+<section class="card connect reveal">
+
+
+<div class="label">
+CONNECT
+</div>
+
+
+<a href="https://github.com/byadmo" target="_blank">
+$ github
+</a>
+
+
+<a href="https://www.linkedin.com/in/adammorgan05/" target="_blank">
+$ linkedin
+</a>
+
+
+
+</section>
+
+
+
+</div>
+
+<!-- END RIGHT COLUMN -->
+
+
 
 </main>
 
+
+
+
 <footer class="site-footer">
-  <p>&copy; <span id="year"></span> Adam Morgan &mdash; built with HTML, CSS &amp; JavaScript</p>
+
+<p>
+© <span id="year"></span> Adam Morgan — built with HTML, CSS & JavaScript
+</p>
+
 </footer>
 
-<script src="script.js?v=2"></script>
+
+
+
+<script src="script.js?v=3"></script>
+
+
 </body>
+
 </html>
