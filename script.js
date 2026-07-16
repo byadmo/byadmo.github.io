@@ -61,6 +61,11 @@ document.querySelector(".hardware");
 
 
 
+const prostheticCard =
+document.querySelector(".prosthetic");
+
+
+
 const typingElement =
 document.getElementById("typing");
 
@@ -1085,6 +1090,104 @@ animateBentoLayout(()=>{
 
 
 hardwareCard.classList.toggle(
+"is-expanded"
+);
+
+
+});
+
+
+},
+{
+passive:true
+}
+);
+
+
+}
+
+
+
+if(prostheticCard){
+
+
+const expandProsthetic =
+()=>{
+
+
+if(prostheticCard.classList.contains("is-expanded"))
+return;
+
+
+animateBentoLayout(()=>{
+
+
+prostheticCard.classList.add(
+"is-expanded"
+);
+
+
+});
+
+
+};
+
+
+const collapseProsthetic =
+()=>{
+
+
+if(!prostheticCard.classList.contains("is-expanded"))
+return;
+
+
+animateBentoLayout(()=>{
+
+
+prostheticCard.classList.remove(
+"is-expanded"
+);
+
+
+});
+
+
+};
+
+
+prostheticCard.addEventListener(
+"pointerenter",
+expandProsthetic
+);
+
+
+prostheticCard.addEventListener(
+"pointerleave",
+collapseProsthetic
+);
+
+
+prostheticCard.addEventListener(
+"focusin",
+expandProsthetic
+);
+
+
+prostheticCard.addEventListener(
+"focusout",
+collapseProsthetic
+);
+
+
+prostheticCard.addEventListener(
+"touchstart",
+()=>{
+
+
+animateBentoLayout(()=>{
+
+
+prostheticCard.classList.toggle(
 "is-expanded"
 );
 
