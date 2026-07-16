@@ -10,7 +10,6 @@ const revealCards = document.querySelectorAll(".reveal");
 const hero = document.querySelector(".hero");
 const typingElement = document.getElementById("typing");
 const timeline = document.getElementById("timeline-card");
-const projectsButton = document.getElementById("projects-button");
 const yearButtons = document.querySelectorAll(".year-buttons button");
 const projectGrid = document.querySelector(".project-grid");
 const cpuField = document.getElementById("cpu-field");
@@ -142,39 +141,47 @@ const projects = {
   2026: [
     {
       title: "32-Bit Pipelined RISC-V CPU Core",
-      text: "Designed a custom SystemVerilog processor architecture with a 5-stage pipeline, hazard detection, forwarding logic, and verification."
+      text: "Designed a custom SystemVerilog processor architecture with a 5-stage pipeline, hazard detection, forwarding logic, and verification.",
+      href: "https://github.com/byadmo"
     },
     {
       title: "RTL Verification Environment",
-      text: "Created simulation workflows using ModelSim, GTKWave, and Icarus Verilog for waveform analysis and debugging."
+      text: "Created simulation workflows using ModelSim, GTKWave, and Icarus Verilog for waveform analysis and debugging.",
+      href: "https://github.com/byadmo"
     },
     {
       title: "Computer Architecture Research",
-      text: "Exploring instruction pipelines, datapaths, control units, memory systems, and processor optimization."
+      text: "Exploring instruction pipelines, datapaths, control units, memory systems, and processor optimization.",
+      href: "#featured-work"
     }
   ],
   2025: [
     {
       title: "Digital Systems Development",
-      text: "Developed foundations in digital logic, programming, electronics, and hardware design."
+      text: "Developed foundations in digital logic, programming, electronics, and hardware design.",
+      href: "#featured-work"
     },
     {
       title: "Engineering Applications",
-      text: "Applied mathematics, physics, and programming toward engineering problems."
+      text: "Applied mathematics, physics, and programming toward engineering problems.",
+      href: "#featured-work"
     },
     {
       title: "Hardware Exploration",
-      text: "Started exploring FPGA systems, embedded hardware, and processor design."
+      text: "Started exploring FPGA systems, embedded hardware, and processor design.",
+      href: "#featured-work"
     }
   ],
   2024: [
     {
       title: "Programming Foundation",
-      text: "Built programming fundamentals and problem-solving skills through technical projects."
+      text: "Built programming fundamentals and problem-solving skills through technical projects.",
+      href: "#featured-work"
     },
     {
       title: "Engineering Curiosity",
-      text: "Explored computer systems, electronics, and modern technology."
+      text: "Explored computer systems, electronics, and modern technology.",
+      href: "#featured-work"
     }
   ]
 };
@@ -199,7 +206,15 @@ function loadProjects(year) {
     const text = document.createElement("p");
     text.textContent = project.text;
 
-    item.append(title, text);
+    const link = document.createElement("a");
+    link.href = project.href;
+    link.textContent = project.href.startsWith("http") ? "$ explore_github" : "$ view_selected_work";
+    if (project.href.startsWith("http")) {
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+    }
+
+    item.append(title, text, link);
     projectGrid.appendChild(item);
   });
 }
@@ -218,6 +233,7 @@ function activateYear(button) {
 
   button.classList.add("active");
   button.setAttribute("aria-selected", "true");
+  if (projectGrid) projectGrid.parentElement?.setAttribute("aria-labelledby", button.id);
 
   if (timeline) timeline.classList.add("expanded");
 
@@ -225,49 +241,25 @@ function activateYear(button) {
 
 }
 
-yearButtons.forEach((button) => {
+yearButtons.forEach((button, index) => {
   // Always attach hover — touch devices simply never fire mouseenter from a tap,
   // so this is safe on phones and fixes hover on touch-capable laptops that use a mouse.
-  button.addEventListener("mouseenter", () => activateYear(button));
   button.addEventListener("click", () => activateYear(button));
-  button.addEventListener("focus", () => activateYear(button));
+  button.addEventListener("keydown", (e) => {
+    if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(e.key)) return;
+
+    e.preventDefault();
+    const nextIndex = e.key === "Home" ? 0
+      : e.key === "End" ? yearButtons.length - 1
+      : (index + (e.key === "ArrowRight" ? 1 : -1) + yearButtons.length) % yearButtons.length;
+    const nextButton = yearButtons[nextIndex];
+    nextButton.focus();
+    activateYear(nextButton);
+  });
 });
 
 // Delegated fallback: catches hover even if a per-button listener somehow
 // didn't attach (e.g. buttons re-rendered after this script ran).
-const yearButtonsContainer = document.querySelector(".year-buttons");
-if (yearButtonsContainer) {
-  yearButtonsContainer.addEventListener("mouseover", (e) => {
-    const btn = e.target.closest("button[data-year]");
-    if (btn) activateYear(btn);
-  });
-}
-
-/* =====================================================
-   VIEW PROJECTS BUTTON
-===================================================== */
-
-function playTimelineGlow() {
-  if (!timeline) return;
-
-  timeline.classList.remove("project-active");
-  void timeline.offsetWidth; // restart animation
-  timeline.classList.add("project-active");
-
-  setTimeout(() => timeline.classList.remove("project-active"), 7000);
-}
-
-if (projectsButton && timeline) {
-  projectsButton.addEventListener("click", (e) => {
-    e.preventDefault();
-    timeline.scrollIntoView({ behavior: prefersReducedMotion ? "auto" : "smooth", block: "center" });
-
-    setTimeout(() => {
-      activateYear(yearButtons[0]);
-      playTimelineGlow();
-    }, 800);
-  });
-}
 
 /* =====================================================
    PIPELINE ANIMATION — paused while tab is hidden
@@ -335,14 +327,11 @@ window.addEventListener(
 
 const isSmallScreen = window.innerWidth < 700;
 const signalConfig = {
-  initialCount: isSmallScreen ? 8 : 20,
-  intervalMs: isSmallScreen ? 4500 : 2500,
-  burstMin: isSmallScreen ? 1 : 2,
-  burstMax: isSmallScreen ? 3 : 6
+  initialCount: isSmallScreen ? 4 : 8,
+  intervalMs: isSmallScreen ? 7000 : 5500
 };
 
 let signalInterval = null;
-let burstTimeout = null;
 
 function createSignal(initial = false) {
   if (!cpuField) return;
@@ -373,28 +362,16 @@ function createSignal(initial = false) {
   setTimeout(() => pulse.remove(), (duration + 3) * 1000);
 }
 
-function randomBurst() {
-  const amount = Math.floor(Math.random() * (signalConfig.burstMax - signalConfig.burstMin + 1)) + signalConfig.burstMin;
-
-  for (let i = 0; i < amount; i++) {
-    setTimeout(() => createSignal(), i * 250);
-  }
-
-  burstTimeout = setTimeout(randomBurst, Math.random() * 10000 + 10000);
-}
-
 function startSignalSystem() {
   if (!cpuField) return;
 
   for (let i = 0; i < signalConfig.initialCount; i++) createSignal(true);
 
   signalInterval = setInterval(createSignal, signalConfig.intervalMs);
-  randomBurst();
 }
 
 function stopSignalSystem() {
   clearInterval(signalInterval);
-  clearTimeout(burstTimeout);
   signalInterval = null;
 }
 
@@ -440,15 +417,6 @@ if (isTouchDevice) {
 /* =====================================================
    KEYBOARD SHORTCUTS — ignored while typing in a field
 ===================================================== */
-
-document.addEventListener("keydown", (e) => {
-  const tag = document.activeElement?.tagName;
-  if (tag === "INPUT" || tag === "TEXTAREA") return;
-
-  if (e.key === "1" && yearButtons[0]) activateYear(yearButtons[0]);
-  if (e.key === "2" && yearButtons[1]) activateYear(yearButtons[1]);
-  if (e.key === "3" && yearButtons[2]) activateYear(yearButtons[2]);
-});
 
 /* =====================================================
    FOOTER YEAR

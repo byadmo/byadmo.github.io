@@ -4,7 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Adam Morgan | Electrical Engineering Portfolio</title>
-<meta name="description" content="Adam Morgan — Electrical Engineering student specializing in digital systems, processor architecture, RTL design, FPGA development, and computer architecture.">
+<meta name="description" content="Adam Morgan is an Electrical Engineering student building RTL, FPGA, and computer-architecture projects, including a 32-bit pipelined RISC-V CPU core.">
+<meta name="author" content="Adam Morgan">
 <meta name="theme-color" content="#07080a">
 <link rel="canonical" href="https://admo.one/">
 
@@ -63,9 +64,9 @@
       <span class="mac-green"></span>
     </div>
 
-    <div class="label">ELECTRICAL_ENGINEERING // COMPUTER_ARCHITECTURE</div>
+    <div class="label">ELECTRICAL_ENGINEERING // RTL // FPGA</div>
 
-    <h1 id="hero-heading">Hi, I'm Adam.<br>I design computer processors.</h1>
+    <h1 id="hero-heading">Hi, I'm Adam.<br>I build digital systems.</h1>
 
     <div class="typing-line">
       <span>Currently Working On:</span>
@@ -74,16 +75,17 @@
     </div>
 
     <p class="description">
-      Electrical Engineering student specializing in digital systems,
-      processor architecture, RTL design, FPGA development,
-      and efficient hardware implementation.
+      Electrical Engineering student focused on digital systems, processor
+      architecture, RTL design, FPGA development, and efficient hardware implementation.
     </p>
 
+    <p class="recruiter-note"><span>STATUS</span> Open to FPGA, RTL, and computer architecture internship opportunities.</p>
+
     <div class="buttons">
-      <a href="#timeline-card" id="projects-button">$ view_projects</a>
-      <a href="resume.pdf" download>$ download_resume</a>
+      <a href="#featured-work" id="projects-button">$ view_selected_work</a>
+      <a href="#contact">$ request_resume</a>
       <a href="https://github.com/byadmo" target="_blank" rel="noopener noreferrer">$ view_github</a>
-      <a href="https://www.linkedin.com/in/adammorgan05/" target="_blank" rel="noopener noreferrer">$ contact_adam</a>
+      <a href="#contact">$ contact_adam</a>
     </div>
   </section>
 
@@ -98,6 +100,13 @@
     <div class="label">PROJECT_001 // PROCESSOR_DESIGN</div>
     <h2 id="hardware-heading">32-Bit Pipelined RISC-V CPU Core</h2>
 
+    <div class="project-overview" aria-label="CPU core project summary">
+      <div><span>ARCHITECTURE</span><strong>32-BIT RISC-V</strong></div>
+      <div><span>PIPELINE</span><strong>5 STAGES</strong></div>
+      <div><span>IMPLEMENTATION</span><strong>SYSTEMVERILOG</strong></div>
+      <div><span>VERIFICATION</span><strong>WAVEFORM-DRIVEN</strong></div>
+    </div>
+
     <div class="pipeline" role="list" aria-label="Pipeline stages: fetch, decode, execute, memory, write-back">
       <div role="listitem">IF</div>
       <div role="listitem">ID</div>
@@ -105,6 +114,28 @@
       <div role="listitem">MEM</div>
       <div role="listitem">WB</div>
     </div>
+
+    <figure class="datapath-visual" aria-labelledby="datapath-caption">
+      <svg viewBox="0 0 760 170" role="img" aria-label="Simplified five-stage RISC-V pipeline diagram">
+        <defs>
+          <linearGradient id="signal-gradient" x1="0" x2="1">
+            <stop offset="0" stop-color="#00eaff" />
+            <stop offset="1" stop-color="#00ff88" />
+          </linearGradient>
+        </defs>
+        <path class="signal-line" d="M95 85H157M242 85H304M389 85H451M536 85H598" />
+        <g class="datapath-node">
+          <rect x="18" y="48" width="77" height="74" rx="12" /><text x="56" y="79">IF</text><text class="node-subtitle" x="56" y="100">FETCH</text>
+          <rect x="165" y="48" width="77" height="74" rx="12" /><text x="203" y="79">ID</text><text class="node-subtitle" x="203" y="100">DECODE</text>
+          <rect x="312" y="48" width="77" height="74" rx="12" /><text x="350" y="79">EX</text><text class="node-subtitle" x="350" y="100">EXECUTE</text>
+          <rect x="459" y="48" width="77" height="74" rx="12" /><text x="497" y="79">MEM</text><text class="node-subtitle" x="497" y="100">MEMORY</text>
+          <rect x="606" y="48" width="77" height="74" rx="12" /><text x="644" y="79">WB</text><text class="node-subtitle" x="644" y="100">WRITEBACK</text>
+        </g>
+        <path class="feedback-line" d="M644 132v20H350v-15" />
+        <text class="feedback-label" x="367" y="165">FORWARDING PATH</text>
+      </svg>
+      <figcaption id="datapath-caption">Pipeline signal path with a forwarding feedback path for hazard handling.</figcaption>
+    </figure>
 
     <pre><code>module risc_v_cpu (
   input clk,
@@ -122,11 +153,45 @@ endmodule</code></pre>
       <li>Hazard detection and forwarding logic</li>
       <li>RTL verification using waveform simulation</li>
     </ul>
+
+    <div class="project-links">
+      <a href="https://github.com/byadmo" target="_blank" rel="noopener noreferrer">$ explore_github</a>
+      <a href="#contact">$ discuss_this_project</a>
+    </div>
+  </section>
+
+  <!-- SELECTED WORK -->
+  <section class="card featured-projects reveal" id="featured-work" aria-labelledby="featured-heading">
+    <div class="label">SELECTED_WORK // PROJECT_PROOF</div>
+    <h2 id="featured-heading">Engineering work, at a glance.</h2>
+    <div class="featured-grid">
+      <article class="featured-card featured-card-primary">
+        <span class="project-status">IN DEVELOPMENT</span>
+        <h3>32-Bit RISC-V CPU Core</h3>
+        <p>Five-stage custom processor architecture with hazard detection, forwarding logic, and RTL verification workflows.</p>
+        <ul class="project-facts"><li>SystemVerilog RTL</li><li>IF / ID / EX / MEM / WB</li><li>Waveform analysis</li></ul>
+        <a href="https://github.com/byadmo" target="_blank" rel="noopener noreferrer">$ explore_github</a>
+      </article>
+      <article class="featured-card">
+        <span class="project-status">VERIFICATION</span>
+        <h3>RTL Verification Environment</h3>
+        <p>Simulation-oriented workflow for inspecting processor behavior and debugging digital logic through waveforms.</p>
+        <ul class="project-facts"><li>ModelSim</li><li>GTKWave</li><li>Icarus Verilog</li></ul>
+        <a href="https://github.com/byadmo" target="_blank" rel="noopener noreferrer">$ view_github</a>
+      </article>
+      <article class="featured-card">
+        <span class="project-status">RESEARCH</span>
+        <h3>Computer Architecture Study</h3>
+        <p>Focused exploration of datapaths, control units, instruction pipelines, memory systems, and optimization trade-offs.</p>
+        <ul class="project-facts"><li>Datapath design</li><li>Control logic</li><li>Pipeline hazards</li></ul>
+        <a href="#timeline-card">$ view_project_history</a>
+      </article>
+    </div>
   </section>
 
   <!-- ENTREPRENEURSHIP -->
   <section class="card entrepreneur reveal" aria-labelledby="entrepreneur-heading">
-    <div class="label">ENTREPRENEURSHIP</div>
+    <div class="label">ADDITIONAL_EXPERIENCE</div>
     <h2 id="entrepreneur-heading">Founder &amp; Product Developer</h2>
     <p>
       Built and managed an independent product venture involving
@@ -136,8 +201,10 @@ endmodule</code></pre>
   </section>
 
   <!-- CONNECT -->
-  <section class="card connect reveal" aria-labelledby="connect-heading">
-    <div class="label" id="connect-heading">CONNECT</div>
+  <section class="card connect reveal" id="contact" aria-labelledby="connect-heading">
+    <div class="label" id="connect-heading">CONTACT // DIRECT_OUTREACH</div>
+    <h2>Let’s build something.</h2>
+    <p>For project discussions, internship opportunities, or engineering collaboration, connect with me directly.</p>
     <div class="connect-links">
       <a href="https://github.com/byadmo" target="_blank" rel="noopener noreferrer">$ github</a>
       <a href="https://www.linkedin.com/in/adammorgan05/" target="_blank" rel="noopener noreferrer">$ linkedin</a>
@@ -148,31 +215,33 @@ endmodule</code></pre>
   <div class="bento-column bento-secondary">
     <!-- PROFILE -->
     <section class="card profile reveal" aria-labelledby="profile-heading">
-      <div class="label">ENGINEERING_PROFILE</div>
-      <h2 id="profile-heading">Current Focus</h2>
-      <div class="profile-item"><span>FIELD</span><p>Electrical Engineering</p></div>
-      <div class="profile-item"><span>SPECIALIZATION</span><p>Digital Systems</p></div>
-      <div class="profile-item"><span>INTERESTS</span><p>CPU Architecture + FPGA</p></div>
+      <div class="label">EDUCATION // DIRECTION</div>
+      <h2 id="profile-heading">Electrical Engineering Student</h2>
+      <div class="profile-item"><span>PROGRAM FOCUS</span><p>Digital systems and computer architecture</p></div>
+      <div class="profile-item"><span>BUILDING WITH</span><p>RTL design, FPGA development, and verification</p></div>
+      <div class="profile-item"><span>TARGET ROLES</span><p>FPGA, RTL, and hardware design</p></div>
     </section>
 
     <!-- ENGINEERING JOURNEY -->
     <section class="card timeline reveal" id="timeline-card" aria-labelledby="timeline-heading">
       <div class="label" id="timeline-heading">ENGINEERING_JOURNEY</div>
       <div class="year-buttons" role="tablist" aria-label="Select a year to view projects">
-        <button data-year="2026" role="tab" aria-selected="false">2026</button>
-        <button data-year="2025" role="tab" aria-selected="false">2025</button>
-        <button data-year="2024" role="tab" aria-selected="false">2024</button>
+        <button id="year-2026" data-year="2026" role="tab" type="button" aria-selected="false" aria-controls="timeline-content">2026</button>
+        <button id="year-2025" data-year="2025" role="tab" type="button" aria-selected="false" aria-controls="timeline-content">2025</button>
+        <button id="year-2024" data-year="2024" role="tab" type="button" aria-selected="false" aria-controls="timeline-content">2024</button>
       </div>
-      <div id="timeline-content"><div class="project-grid" role="tabpanel" aria-live="polite"><p>Select a year to explore projects.</p></div></div>
+      <div id="timeline-content" role="tabpanel" tabindex="0" aria-live="polite"><div class="project-grid"><p>Browse the archive by year.</p></div></div>
     </section>
 
     <!-- TECH STACK -->
     <section class="card stack reveal" aria-labelledby="stack-heading">
       <div class="label" id="stack-heading">TECH_STACK</div>
-      <h3>HARDWARE/</h3>
-      <div class="tags"><span>SystemVerilog</span><span>Verilog</span><span>FPGA</span><span>RISC-V</span></div>
-      <h3>TOOLS/</h3>
-      <div class="tags"><span>Quartus</span><span>GTKWave</span><span>ModelSim</span><span>Icarus Verilog</span></div>
+      <h3>LANGUAGES/</h3>
+      <div class="tags"><span>SystemVerilog</span><span>Verilog</span></div>
+      <h3>FPGA + VERIFICATION/</h3>
+      <div class="tags"><span>FPGA</span><span>Quartus</span><span>ModelSim</span><span>GTKWave</span><span>Icarus Verilog</span></div>
+      <h3>ARCHITECTURE/</h3>
+      <div class="tags"><span>RISC-V</span><span>Pipelining</span><span>Hazard Logic</span><span>Datapaths</span></div>
     </section>
   </div>
 
