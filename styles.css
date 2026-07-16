@@ -3,4319 +3,928 @@
    PREMIUM HARDWARE BENTO SYSTEM
 ===================================================== */
 
-
-/* =====================================================
-   ROOT VARIABLES
-===================================================== */
-
 :root {
-
   --bg: #07080a;
-
   --card: #111319;
-
   --card-light: #171a21;
-
   --border: #252a35;
-
   --white: #ffffff;
-
   --muted: #9297a3;
-
   --cyan: #00eaff;
-
   --green: #00ff88;
-
   --radius: 28px;
-
-  --ease:
-  cubic-bezier(.22,1,.36,1);
-
+  --ease: cubic-bezier(.22, 1, .36, 1);
 }
-
-
-
-
-
-/* =====================================================
-   RESET
-===================================================== */
-
 
 * {
-
-  margin:0;
-
-  padding:0;
-
-  box-sizing:border-box;
-
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-
-
 
 html {
-
-  scroll-behavior:smooth;
-
+  scroll-behavior: smooth;
 }
-
-
 
 body {
-
-  background:
-
-  var(--bg);
-
-  color:
-
-  var(--white);
-
-  font-family:
-
-  "JetBrains Mono",
-  monospace;
-
-  padding:
-
-  40px;
-
-  overflow-x:hidden;
-
-  -webkit-font-smoothing:antialiased;
-
+  background: var(--bg);
+  color: var(--white);
+  font-family: "JetBrains Mono", monospace;
+  padding: 40px;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
 }
-
-
-
-
-
-/* =====================================================
-   BACKGROUND GRID
-===================================================== */
-
 
 body::before {
-
-
-content:"";
-
-
-position:fixed;
-
-
-inset:0;
-
-
-
-background:
-
-
-linear-gradient(
-
-90deg,
-
-rgba(0,234,255,.025) 1px,
-
-transparent 1px
-
-),
-
-
-linear-gradient(
-
-rgba(0,234,255,.025) 1px,
-
-transparent 1px
-
-);
-
-
-
-background-size:
-
-70px 70px;
-
-
-
-mask-image:
-
-radial-gradient(
-
-circle,
-
-black,
-
-transparent 75%
-
-);
-
-
-
-pointer-events:none;
-
-
+  content: "";
+  position: fixed;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(0, 234, 255, .025) 1px, transparent 1px),
+    linear-gradient(rgba(0, 234, 255, .025) 1px, transparent 1px);
+  background-size: 70px 70px;
+  mask-image: radial-gradient(circle, black, transparent 75%);
+  pointer-events: none;
 }
-
-
-
-
-
-
-
-/* =====================================================
-   NOISE
-===================================================== */
-
 
 .noise {
-
-
-position:fixed;
-
-
-inset:0;
-
-
-pointer-events:none;
-
-
-opacity:.035;
-
-
-
-background-image:
-
-radial-gradient(
-
-white 1px,
-
-transparent 1px
-
-);
-
-
-
-background-size:
-
-18px 18px;
-
-
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: .035;
+  background-image: radial-gradient(white 1px, transparent 1px);
+  background-size: 18px 18px;
 }
-
-
-
-
-
-
-
-
-/* =====================================================
-   FPGA SIGNAL FIELD
-===================================================== */
-
 
 .cpu-field {
-
-
-position:fixed;
-
-
-inset:0;
-
-
-overflow:hidden;
-
-
-pointer-events:none;
-
-
-z-index:0;
-
-
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
 }
-
-
-
-
-
 
 .cpu-pulse {
-
-
-position:absolute;
-
-
-height:2px;
-
-
-background:
-
-
-linear-gradient(
-
-90deg,
-
-transparent,
-
-var(--cyan),
-
-var(--green),
-
-transparent
-
-);
-
-
-
-box-shadow:
-
-
-0 0 15px rgba(0,234,255,.8),
-
-0 0 35px rgba(0,255,136,.35);
-
-
-
-animation:
-
-signalMove linear infinite;
-
-
+  position: absolute;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--cyan), var(--green), transparent);
+  box-shadow: 0 0 15px rgba(0, 234, 255, .8), 0 0 35px rgba(0, 255, 136, .35);
+  animation: signalMove linear infinite;
 }
-
-
-
-
 
 @keyframes signalMove {
+  0% {
+    transform: translate(0, 0) rotate(var(--angle));
+    opacity: 0;
+  }
 
+  20% {
+    opacity: .8;
+  }
 
-0% {
+  75% {
+    opacity: .45;
+  }
 
-
-transform:
-
-translate(0,0)
-
-rotate(var(--angle));
-
-
-opacity:0;
-
-
+  100% {
+    transform: translate(var(--distance), 0) rotate(var(--angle));
+    opacity: 0;
+  }
 }
-
-
-
-20% {
-
-
-opacity:.8;
-
-
-}
-
-
-
-75% {
-
-
-opacity:.45;
-
-
-}
-
-
-
-100% {
-
-
-transform:
-
-translate(var(--distance),0)
-
-rotate(var(--angle));
-
-
-opacity:0;
-
-
-}
-
-
-
-}
-
-
-
-
-
-
-/* =====================================================
-   MAIN BENTO GRID
-===================================================== */
-
 
 .bento-grid {
-
-
-max-width:
-
-1600px;
-
-
-margin:
-
-auto;
-
-
-
-display:grid;
-
-
-
-grid-template-columns:
-
-repeat(12,1fr);
-
-
-
-grid-auto-flow:
-
-dense;
-
-
-
-gap:
-
-24px;
-
-
-
-position:relative;
-
-
-
-z-index:2;
-
-
-
-align-items:start;
-
-
+  max-width: 1600px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 24px;
+  position: relative;
+  z-index: 2;
+  align-items: start;
 }
-
-
-
-
-
-
-/* =====================================================
-   CARD BASE
-===================================================== */
-
 
 .card {
-
-
-background:
-
-
-linear-gradient(
-
-145deg,
-
-rgba(20,22,28,.98),
-
-rgba(10,11,15,.98)
-
-);
-
-
-
-border:
-
-1px solid var(--border);
-
-
-
-border-radius:
-
-var(--radius);
-
-
-
-padding:
-
-34px;
-
-
-
-position:relative;
-
-
-
-overflow:hidden;
-
-
-
-opacity:0;
-
-
-
-transform:
-
-
-translateY(40px)
-
-scale(.97);
-
-
-
-transition:
-
-
-opacity .8s var(--ease),
-
-transform .8s var(--ease),
-
-border-color .5s ease,
-
-box-shadow .5s ease;
-
-
+  background: linear-gradient(145deg, rgba(20, 22, 28, .98), rgba(10, 11, 15, .98));
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 34px;
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(40px) scale(.97);
+  transition: opacity .8s var(--ease), transform .8s var(--ease), border-color .5s ease, box-shadow .5s ease;
 }
-
-
-
-
 
 .card.active {
-
-
-opacity:1;
-
-
-transform:
-
-
-translateY(0)
-
-scale(1);
-
-
+  opacity: 1;
+  transform: translateY(0) scale(1);
 }
-
-
-
-
 
 .card:hover {
-
-
-transform:
-
-translateY(-7px);
-
-
-
-border-color:
-
-rgba(0,234,255,.45);
-
-
-
-box-shadow:
-
-
-0 30px 80px rgba(0,0,0,.45),
-
-0 0 45px rgba(0,234,255,.15);
-
-
-
+  transform: translateY(-7px);
+  border-color: rgba(0, 234, 255, .45);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, .45), 0 0 45px rgba(0, 234, 255, .15);
 }
-
-/* =====================================================
-   CARD LIGHT EFFECTS
-===================================================== */
-
 
 .card::before {
-
-
-content:"";
-
-
-position:absolute;
-
-
-
-width:
-
-420px;
-
-
-
-height:
-
-420px;
-
-
-
-left:
-
-var(--mouse-x,50%);
-
-
-
-top:
-
-var(--mouse-y,50%);
-
-
-
-transform:
-
-translate(-50%,-50%);
-
-
-
-
-background:
-
-
-radial-gradient(
-
-circle,
-
-rgba(0,234,255,.18),
-
-transparent 65%
-
-);
-
-
-
-opacity:0;
-
-
-
-pointer-events:none;
-
-
-
-transition:
-
-opacity .5s ease;
-
-
+  content: "";
+  position: absolute;
+  width: 420px;
+  height: 420px;
+  left: var(--mouse-x, 50%);
+  top: var(--mouse-y, 50%);
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(0, 234, 255, .18), transparent 65%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .5s ease;
 }
-
-
-
-
 
 .card:hover::before {
-
-
-opacity:1;
-
-
+  opacity: 1;
 }
-
-
-
-
-
 
 .card::after {
-
-
-content:"";
-
-
-position:absolute;
-
-
-inset:0;
-
-
-
-border-radius:
-
-var(--radius);
-
-
-
-background:
-
-
-linear-gradient(
-
-135deg,
-
-rgba(0,234,255,.08),
-
-transparent 40%,
-
-transparent 60%,
-
-rgba(0,255,136,.08)
-
-);
-
-
-
-opacity:0;
-
-
-
-pointer-events:none;
-
-
-
-transition:
-
-opacity .5s ease;
-
-
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius);
+  background: linear-gradient(135deg, rgba(0, 234, 255, .08), transparent 40%, transparent 60%, rgba(0, 255, 136, .08));
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .5s ease;
 }
-
-
-<<<<<<< HEAD
-/* ===== BENTO POSITIONS =====
-   Desktop: Hero, Hardware, Entrepreneurship, Connect (left) | Profile, Journey, Stack (right) */
-
-.hero { grid-column: 1 / 9; grid-row: 1; min-height: 600px; isolation: isolate; }
-.hardware {
-  grid-column: 1 / 9;
-  grid-row: 2;
-  /* Keep this card content-sized when the adjacent timeline expands. */
-  align-self: start;
-}
-.right-column {
-  grid-column: 9 / 13;
-  grid-row: 1 / span 3;
-  display: flex;
-  flex-direction: column;
-  gap: 22px;
-  align-self: start;
-}
-.right-column > .card { width: 100%; }
-.timeline {
-  max-height: 300px;
-  overflow: hidden;
-  contain: layout paint;
-  transition: max-height 1s var(--ease), transform .7s var(--ease), border-color .5s ease, box-shadow .5s ease;
-}
-.timeline.expanded { max-height: 850px; }
-.timeline:hover { transform: translateY(-8px); }
-.entrepreneur { grid-column: 1 / 5; grid-row: 3; }
-.connect { grid-column: 5 / 9; grid-row: 3; }
-=======
-
-
 
 .card:hover::after {
-
-
-opacity:1;
-
-
+  opacity: 1;
 }
-
-
-
-
-
-
 
 /* =====================================================
    BENTO LAYOUT SYSTEM
 ===================================================== */
 
-
-/*
-
-DESKTOP STRUCTURE:
-
-------------------------------------------------
-
-|                 HERO                 | PROFILE |
-
-|                                      |         |
-
-|                 HERO                 | JOURNEY |
-
-------------------------------------------------
-
-|             MODULE 001                       |
-
-|             PROCESSOR                         |
-
-------------------------------------------------
-
-| ENTREPRENEUR | TECH STACK | CONNECT          |
-
-------------------------------------------------
-
-
-*/
-
-
-
-
-
 .hero {
-
-
-grid-column:
-
-span 8;
-
-
-
-grid-row:
-
-span 2;
-
-
-
-min-height:
-
-620px;
-
-
+  grid-column: 1 / 9;
+  grid-row: 1 / 3;
+  min-height: 620px;
 }
-
-
-
-
 
 .hardware {
-
-
-grid-column:
-
-span 8;
-
-
-
-grid-row:
-
-span 1;
-
-
+  grid-column: 1 / 9;
+  grid-row: 3 / 5;
+  align-self: start;
 }
-
-
-
-
-
-.right-column {
-
-
-grid-column:
-
-span 4;
-
-
-
-display:grid;
-
-
-
-grid-template-columns:
-
-1fr;
-
-
-
-gap:
-
-24px;
-
-
-
-position:relative;
-
-
-}
-
-
-
-
 
 .profile {
-
-
-min-height:
-
-260px;
-
-
+  grid-column: 9 / 13;
+  grid-row: 1;
+  min-height: 260px;
 }
-
-
-
 
 .timeline {
-
-
-min-height:
-
-320px;
-
-
+  grid-column: 9 / 13;
+  grid-row: 2 / 4;
+  min-height: 320px;
 }
->>>>>>> e720bc8629c3f9140eb386022d0aece368bdfe79
-
-
-
-
 
 .stack {
-
-
-min-height:
-
-430px;
-
-
+  grid-column: 9 / 13;
+  grid-row: 4 / 6;
+  min-height: 430px;
 }
-
-
-
-
 
 .entrepreneur {
-
-
-grid-column:
-
-span 4;
-
-
+  grid-column: 1 / 5;
+  grid-row: 5;
+  min-height: 350px;
 }
-
-
-
-
 
 .connect {
-
-
-grid-column:
-
-span 4;
-
-
+  grid-column: 5 / 9;
+  grid-row: 5;
+  min-height: 250px;
 }
-
-
-
-
-
-
-
-/* =====================================================
-   IMPORTANT LAYOUT FIX
-   KEEPS MODULE 001 AND MODULE 002 TOGETHER
-===================================================== */
-
-
-
-
-
-.hardware {
-
-
-order:
-
-2;
-
-
-}
-
-
-
-.timeline {
-
-
-order:
-
-3;
-
-
-}
-
-
-
-.right-column {
-
-
-order:
-
-4;
-
-
-}
-
-
-
-
-
-
-/*
-
-The right column now does NOT force
-everything beside the hero.
-
-The processor module and engineering
-journey remain the main left stack.
-
-*/
-
-
-
-
-
-
-
-/* =====================================================
-   TERMINAL DOTS
-===================================================== */
-
 
 .terminal-dots {
-
-
-display:flex;
-
-
-
-gap:
-
-10px;
-
-
-
-margin-bottom:
-
-25px;
-
-
-
+  display: flex;
+  gap: 10px;
+  margin-bottom: 25px;
 }
-
-
-
-
 
 .terminal-dots span {
-
-
-width:
-
-14px;
-
-
-
-height:
-
-14px;
-
-
-
-border-radius:
-
-50%;
-
-
-
-display:flex;
-
-
-
-align-items:center;
-
-
-
-justify-content:center;
-
-
-
-font-size:
-
-10px;
-
-
-
-color:
-
-#000;
-
-
-
-transition:
-
-.35s var(--ease);
-
-
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  color: #000;
+  transition: .35s var(--ease);
 }
-
-
-
-
 
 .terminal-dots span:hover {
-
-
-transform:
-
-scale(1.35)
-
-rotate(15deg);
-
-
+  transform: scale(1.35) rotate(15deg);
 }
-
-
-
-
 
 .mac-red {
-
-
-background:
-
-#ff5f57;
-
-
+  background: #ff5f57;
 }
-
-
 
 .mac-yellow {
-
-
-background:
-
-#febc2e;
-
-
+  background: #febc2e;
 }
-
-
 
 .mac-green {
-
-
-background:
-
-#28c840;
-
-
+  background: #28c840;
 }
-
-
-
-
-
-
-
-
-/* =====================================================
-   TYPOGRAPHY
-===================================================== */
-
 
 .label {
-
-
-color:
-
-var(--green);
-
-
-
-font-size:
-
-12px;
-
-
-
-letter-spacing:
-
-2px;
-
-
-
-margin-bottom:
-
-25px;
-
-
-
+  color: var(--green);
+  font-size: 12px;
+  letter-spacing: 2px;
+  margin-bottom: 25px;
 }
-
-
-
 
 h1 {
-
-
-font-size:
-
-clamp(3rem,6vw,5.5rem);
-
-
-
-line-height:
-
-1.05;
-
-
-
-letter-spacing:
-
--3px;
-
-
-
-margin-bottom:
-
-35px;
-
-
-
+  font-size: clamp(3rem, 6vw, 5.5rem);
+  line-height: 1.05;
+  letter-spacing: -3px;
+  margin-bottom: 35px;
 }
-
-
-
 
 h2 {
-
-
-font-size:
-
-30px;
-
-
-
-margin-bottom:
-
-25px;
-
-
-
+  font-size: 30px;
+  margin-bottom: 25px;
 }
-
-
-
 
 h3 {
-
-
-margin-bottom:
-
-15px;
-
-
-
+  margin-bottom: 15px;
 }
-
-
-
 
 p {
-
-
-color:
-
-var(--muted);
-
-
-
-line-height:
-
-1.8;
-
-
-
+  color: var(--muted);
+  line-height: 1.8;
 }
-
-
-
-
-
-/* =====================================================
-   CURRENTLY WORKING ON COLOR FIX
-===================================================== */
-
 
 .typing-line {
-
-
-display:flex;
-
-
-flex-wrap:wrap;
-
-
-
-gap:
-
-8px;
-
-
-
-margin-bottom:
-
-30px;
-
-
-
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 30px;
 }
-
-
-
 
 .working-label {
-
-
-color:
-
-var(--cyan);
-
-
-
-font-weight:
-
-700;
-
-
+  color: var(--cyan);
+  font-weight: 700;
 }
-
-
-
 
 #typing {
-
-
-color:
-
-var(--cyan);
-
-
-
+  color: var(--cyan);
 }
-
-
-
-
-
 
 .cursor {
-
-
-width:
-
-8px;
-
-
-
-height:
-
-20px;
-
-
-
-background:
-
-var(--green);
-
-
-
-display:inline-block;
-
-
-
-animation:
-
-blink .8s infinite;
-
-
-
+  width: 8px;
+  height: 20px;
+  background: var(--green);
+  display: inline-block;
+  animation: blink .8s infinite;
 }
-
-
 
 @keyframes blink {
-
-
-50% {
-
-
-opacity:0;
-
-
+  50% {
+    opacity: 0;
+  }
 }
-
-
-}
-
-/* =====================================================
-   HERO BUTTONS
-===================================================== */
-
 
 .buttons {
-
-
-display:flex;
-
-
-flex-wrap:wrap;
-
-
-gap:14px;
-
-
-margin-top:40px;
-
-
-
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 40px;
 }
-
-
 
 .buttons a {
-
-
-background:
-
-
-linear-gradient(
-
-145deg,
-
-#181b22,
-
-#101116
-
-);
-
-
-
-border:
-
-
-1px solid rgba(255,255,255,.12);
-
-
-
-padding:
-
-
-15px 24px;
-
-
-
-border-radius:
-
-
-16px;
-
-
-
-text-decoration:none;
-
-
-
-color:
-
-white;
-
-
-
-transition:
-
-.45s var(--ease);
-
-
+  background: linear-gradient(145deg, #181b22, #101116);
+  border: 1px solid rgba(255, 255, 255, .12);
+  padding: 15px 24px;
+  border-radius: 16px;
+  text-decoration: none;
+  color: white;
+  transition: .45s var(--ease);
 }
-
-
-
-
 
 .buttons a:hover {
-
-
-color:
-
-var(--green);
-
-
-
-border-color:
-
-var(--green);
-
-
-
-transform:
-
-translateY(-5px);
-
-
-
-box-shadow:
-
-
-0 15px 40px rgba(0,255,136,.15);
-
-
+  color: var(--green);
+  border-color: var(--green);
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(0, 255, 136, .15);
 }
-
-
-
-
-
-
-
-
-/* =====================================================
-   CPU DEBUG VISUALIZATION
-   REPLACES STATIC SYSTEM STATUS TEXT
-===================================================== */
-
-
 
 .cpu-console {
-
-
-height:
-
-220px;
-
-
-
-margin:
-
-35px 0;
-
-
-
-border-radius:
-
-22px;
-
-
-
-background:
-
-
-linear-gradient(
-
-145deg,
-
-#050608,
-
-#10151c
-
-);
-
-
-
-border:
-
-
-1px solid rgba(0,234,255,.2);
-
-
-
-position:
-
-relative;
-
-
-
-overflow:hidden;
-
-
+  height: 220px;
+  margin: 35px 0;
+  border-radius: 22px;
+  background: linear-gradient(145deg, #050608, #10151c);
+  border: 1px solid rgba(0, 234, 255, .2);
+  position: relative;
+  overflow: hidden;
 }
-
-
-
 
 .cpu-console::before {
-
-
-content:"";
-
-
-
-position:absolute;
-
-
-
-inset:
-
-20px;
-
-
-
-background:
-
-
-linear-gradient(
-
-90deg,
-
-transparent 95%,
-
-rgba(0,234,255,.3) 95%
-
-);
-
-
-
-background-size:
-
-45px 45px;
-
-
-
-opacity:.25;
-
-
+  content: "";
+  position: absolute;
+  inset: 20px;
+  background: linear-gradient(90deg, transparent 95%, rgba(0, 234, 255, .3) 95%);
+  background-size: 45px 45px;
+  opacity: .25;
 }
-
-
-
-
 
 .cpu-console::after {
-
-
-content:"";
-
-
-position:absolute;
-
-
-
-height:
-
-3px;
-
-
-
-width:
-
-120%;
-
-
-
-left:
-
--20%;
-
-
-
-top:
-
-50%;
-
-
-
-background:
-
-
-linear-gradient(
-
-90deg,
-
-transparent,
-
-var(--cyan),
-
-var(--green),
-
-transparent
-
-);
-
-
-
-box-shadow:
-
-
-0 0 25px var(--cyan);
-
-
-
-animation:
-
-
-cpuScan 3s linear infinite;
-
-
-
+  content: "";
+  position: absolute;
+  height: 3px;
+  width: 120%;
+  left: -20%;
+  top: 50%;
+  background: linear-gradient(90deg, transparent, var(--cyan), var(--green), transparent);
+  box-shadow: 0 0 25px var(--cyan);
+  animation: cpuScan 3s linear infinite;
 }
 
+.cpu-console span {
+  display: block;
+}
 
-
+.cpu-console::marker {
+  display: none;
+}
 
 @keyframes cpuScan {
+  0% {
+    transform: translateX(-80%);
+  }
 
-
-0% {
-
-
-transform:
-
-translateX(-80%);
-
-
+  100% {
+    transform: translateX(80%);
+  }
 }
-
-
-
-100% {
-
-
-transform:
-
-translateX(80%);
-
-
-}
-
-
-
-}
-
-
-
-
-.cpu-console {
-
-
-}
-
-
-
-.cpu-console:active {
-
-
-}
-
-
-
-
-/* =====================================================
-   PIPELINE
-===================================================== */
-
-
 
 .pipeline {
-
-
-display:flex;
-
-
-
-gap:
-
-12px;
-
-
-
-margin:
-
-35px 0;
-
-
-
+  display: flex;
+  gap: 12px;
+  margin: 35px 0;
 }
-
-
 
 .pipeline-node {
-
-
-flex:1;
-
-
-
-text-align:center;
-
-
-
-padding:
-
-15px;
-
-
-
-background:
-
-
-#181a20;
-
-
-
-border:
-
-
-1px solid var(--border);
-
-
-
-border-radius:
-
-12px;
-
-
-
-transition:
-
-.5s var(--ease);
-
-
-
-font-weight:
-
-700;
-
-
+  flex: 1;
+  text-align: center;
+  padding: 15px;
+  background: #181a20;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  transition: .5s var(--ease);
+  font-weight: 700;
 }
-
-
-
 
 .pipeline-node:hover {
-
-
-background:
-
-#202631;
-
-
-
-border-color:
-
-var(--cyan);
-
-
-
-transform:
-
-translateY(-5px);
-
-
-
+  background: #202631;
+  border-color: var(--cyan);
+  transform: translateY(-5px);
 }
-
-
-
-
-
-/* =====================================================
-   PROCESSOR LIST
-===================================================== */
-
 
 .hardware ul {
-
-
-margin-top:
-
-20px;
-
-
+  margin-top: 20px;
 }
-
-
 
 .hardware li {
-
-
-margin-top:
-
-15px;
-
-
-
-color:
-
-var(--muted);
-
-
+  margin-top: 15px;
+  color: var(--muted);
 }
-
-
-
-
-
-
-
-/* =====================================================
-   ENGINEERING JOURNEY
-===================================================== */
-
-
 
 .timeline {
-
-
-height:
-
-330px;
-
-
-
-overflow:hidden;
-
-
-
-position:relative;
-
-
-
-transition:
-
-
-height .25s cubic-bezier(.68,-0.2,.32,1.3),
-
-box-shadow .6s ease;
-
-
-
-will-change:
-
-height;
-
-
+  height: 330px;
+  overflow: hidden;
+  position: relative;
+  transition-property: height, box-shadow, transform;
+  transition-duration: .9s, .6s, .5s;
+  transition-timing-function: cubic-bezier(.22, 1, .36, 1);
+  will-change: height;
 }
-
-
-
 
 .timeline.expanded {
-
-
-height:
-
-780px;
-
-
-
-box-shadow:
-
-
-0 40px 90px rgba(0,0,0,.65),
-
-
-0 0 50px rgba(0,234,255,.2);
-
-
+  height: 780px;
+  box-shadow: 0 40px 90px rgba(0, 0, 0, .65), 0 0 50px rgba(0, 234, 255, .2);
 }
-
-
-
-
-
-
-
-/*
-
-Opening:
-
-slow and controlled
-
-Closing:
-
-fast and sharp
-
-*/
-
-
 
 .timeline.collapsing {
-
-
-transition:
-
-
-height .45s cubic-bezier(.55,0,1,.45);
-
-
+  transition-duration: .35s, .25s, .25s;
+  transition-timing-function: cubic-bezier(.55, 0, 1, .45);
 }
-
-
-
-
-
-
-
 
 .timeline:hover {
-
-
-transform:
-
-translateY(-5px);
-
-
+  transform: translateY(-5px);
 }
-
-
-
-
-
-
-
 
 .timeline-hint {
-
-
-margin-bottom:
-
-20px;
-
-
-font-size:
-
-13px;
-
-
+  margin-bottom: 20px;
+  font-size: 13px;
 }
-
-
-
-
 
 .year-buttons {
-
-
-display:flex;
-
-
-gap:
-
-12px;
-
-
-
-margin-bottom:
-
-20px;
-
-
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
 }
-
-
-
 
 .year-buttons button {
-
-
-background:
-
-
-#181a20;
-
-
-
-color:
-
-white;
-
-
-
-border:
-
-
-1px solid var(--border);
-
-
-
-padding:
-
-
-12px 22px;
-
-
-
-border-radius:
-
-
-12px;
-
-
-
-cursor:pointer;
-
-
-
-font-family:inherit;
-
-
-
-transition:
-
-
-.4s var(--ease);
-
-
-
+  background: #181a20;
+  color: white;
+  border: 1px solid var(--border);
+  padding: 12px 22px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-family: inherit;
+  transition: .4s var(--ease);
 }
-
-
-
-
 
 .year-buttons button:hover {
-
-
-color:
-
-var(--green);
-
-
-
-border-color:
-
-var(--green);
-
-
-
-transform:
-
-translateY(-4px);
-
-
+  color: var(--green);
+  border-color: var(--green);
+  transform: translateY(-4px);
 }
-
-
-
-
 
 .year-buttons button.active {
-
-
-color:
-
-var(--green);
-
-
-
-border-color:
-
-var(--green);
-
-
-
-background:
-
-
-rgba(0,234,255,.08);
-
-
-
-box-shadow:
-
-
-0 0 20px rgba(0,234,255,.15);
-
-
+  color: var(--green);
+  border-color: var(--green);
+  background: rgba(0, 234, 255, .08);
+  box-shadow: 0 0 20px rgba(0, 234, 255, .15);
 }
-
-
-
-
-
-
-/* =====================================================
-   PROJECT DISPLAY
-===================================================== */
-
 
 .project-grid {
-
-
-display:flex;
-
-
-
-flex-direction:
-
-column;
-
-
-
-gap:
-
-15px;
-
-
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
-
-
-
 
 .project-item {
-
-
-background:
-
-
-linear-gradient(
-
-145deg,
-
-rgba(30,33,42,.95),
-
-rgba(15,17,22,.95)
-
-);
-
-
-
-border:
-
-
-1px solid rgba(255,255,255,.12);
-
-
-
-border-radius:
-
-18px;
-
-
-
-padding:
-
-22px;
-
-
-
-opacity:
-
-0;
-
-
-
-transform:
-
-
-translateY(25px);
-
-
-
-animation:
-
-
-projectReveal .7s var(--ease) forwards;
-
-
-
+  background: linear-gradient(145deg, rgba(30, 33, 42, .95), rgba(15, 17, 22, .95));
+  border: 1px solid rgba(255, 255, 255, .12);
+  border-radius: 18px;
+  padding: 22px;
+  opacity: 0;
+  transform: translateY(25px);
+  animation: projectReveal .7s var(--ease) forwards;
 }
-
-
-
 
 .project-item:hover {
-
-
-border-color:
-
-var(--cyan);
-
-
-
-transform:
-
-
-translateY(-5px);
-
-
-
-box-shadow:
-
-
-0 20px 45px rgba(0,234,255,.12);
-
-
+  border-color: var(--cyan);
+  transform: translateY(-5px);
+  box-shadow: 0 20px 45px rgba(0, 234, 255, .12);
 }
-
-
-
 
 .project-item h4 {
-
-
-margin-bottom:
-
-10px;
-
-
-
-color:
-
-var(--white);
-
-
+  margin-bottom: 10px;
+  color: var(--white);
 }
-
-
 
 .project-item p {
-
-
-color:
-
-var(--muted);
-
-
+  color: var(--muted);
 }
-
-
-
-
 
 @keyframes projectReveal {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
 
-
-from {
-
-
-opacity:0;
-
-
-
-transform:
-
-translateY(25px);
-
-
-
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
-
-
-
-to {
-
-
-opacity:1;
-
-
-
-transform:
-
-translateY(0);
-
-
-
-}
-
-
-}
-
-/* =====================================================
-   PROFILE MODULE
-===================================================== */
-
 
 .profile-item {
-
-
-padding:
-
-18px 0;
-
-
-
-border-bottom:
-
-1px solid var(--border);
-
-
-
+  padding: 18px 0;
+  border-bottom: 1px solid var(--border);
 }
-
-
 
 .profile-item:last-child {
-
-
-border-bottom:
-
-none;
-
-
+  border-bottom: none;
 }
-
-
-
 
 .profile-item span {
-
-
-font-size:
-
-12px;
-
-
-
-color:
-
-var(--muted);
-
-
-
-letter-spacing:
-
-1px;
-
-
+  font-size: 12px;
+  color: var(--muted);
+  letter-spacing: 1px;
 }
-
-
-
-
 
 .profile-item p {
-
-
-margin-top:
-
-8px;
-
-
-
-color:
-
-var(--white);
-
-
+  margin-top: 8px;
+  color: var(--white);
 }
-
-
-
-
-
-
-
-/* =====================================================
-   TECH STACK MODULE
-===================================================== */
-
-
 
 .stack {
-
-
-display:flex;
-
-
-
-flex-direction:
-
-column;
-
-
+  display: flex;
+  flex-direction: column;
 }
-
-
-
-
 
 .tags {
-
-
-display:flex;
-
-
-
-flex-wrap:
-
-wrap;
-
-
-
-gap:
-
-10px;
-
-
-
-margin-bottom:
-
-28px;
-
-
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 28px;
 }
-
-
-
-
 
 .tags span {
-
-
-background:
-
-
-rgba(255,255,255,.05);
-
-
-
-border:
-
-
-1px solid var(--border);
-
-
-
-padding:
-
-
-10px 16px;
-
-
-
-border-radius:
-
-
-12px;
-
-
-
-font-size:
-
-13px;
-
-
-
-color:
-
-var(--white);
-
-
-
-transition:
-
-.35s var(--ease);
-
-
-
+  background: rgba(255, 255, 255, .05);
+  border: 1px solid var(--border);
+  padding: 10px 16px;
+  border-radius: 12px;
+  font-size: 13px;
+  color: var(--white);
+  transition: .35s var(--ease);
 }
-
-
-
 
 .tags span:hover {
-
-
-border-color:
-
-var(--green);
-
-
-
-color:
-
-var(--green);
-
-
-
-transform:
-
-translateY(-4px);
-
-
+  border-color: var(--green);
+  color: var(--green);
+  transform: translateY(-4px);
 }
-
-
-
-
-
-
-
-
-/* =====================================================
-   ENTREPRENEUR MODULE
-===================================================== */
-
-
-
-.entrepreneur {
-
-
-min-height:
-
-350px;
-
-
-}
-
-
 
 .entrepreneur ul {
-
-
-margin-top:
-
-25px;
-
-
-
-padding-left:
-
-20px;
-
-
+  margin-top: 25px;
+  padding-left: 20px;
 }
-
-
-
 
 .entrepreneur li {
-
-
-color:
-
-var(--muted);
-
-
-
-margin-bottom:
-
-12px;
-
-
+  color: var(--muted);
+  margin-bottom: 12px;
 }
-
-
-
-
-
-
-
-/* =====================================================
-   CONNECT MODULE
-===================================================== */
-
 
 .connect {
-
-
-display:flex;
-
-
-
-flex-direction:
-
-column;
-
-
-
-gap:
-
-14px;
-
-
-
-min-height:
-
-250px;
-
-
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
 }
-
-
-
-
 
 .connect a {
-
-
-background:
-
-
-linear-gradient(
-
-145deg,
-
-#181b22,
-
-#101116
-
-);
-
-
-
-border:
-
-
-1px solid rgba(255,255,255,.12);
-
-
-
-padding:
-
-
-15px 24px;
-
-
-
-border-radius:
-
-
-16px;
-
-
-
-color:
-
-white;
-
-
-
-text-decoration:none;
-
-
-
-transition:
-
-.45s var(--ease);
-
-
-
+  background: linear-gradient(145deg, #181b22, #101116);
+  border: 1px solid rgba(255, 255, 255, .12);
+  padding: 15px 24px;
+  border-radius: 16px;
+  color: white;
+  text-decoration: none;
+  transition: .45s var(--ease);
 }
-
-
-
-
 
 .connect a:hover {
-
-
-color:
-
-var(--green);
-
-
-
-border-color:
-
-var(--green);
-
-
-
-transform:
-
-
-translateX(6px)
-
-translateY(-4px);
-
-
-
-box-shadow:
-
-
-0 15px 40px rgba(0,255,136,.15);
-
-
+  color: var(--green);
+  border-color: var(--green);
+  transform: translateX(6px) translateY(-4px);
+  box-shadow: 0 15px 40px rgba(0, 255, 136, .15);
 }
-
-
-
-
-
-
-
-/* =====================================================
-   FOOTER
-===================================================== */
-
 
 .site-footer {
-
-
-position:
-
-relative;
-
-
-
-z-index:
-
-2;
-
-
-
-max-width:
-
-1600px;
-
-
-
-margin:
-
-40px auto 10px;
-
-
-
-padding:
-
-20px 34px;
-
-
-
-text-align:center;
-
-
-
+  position: relative;
+  z-index: 2;
+  max-width: 1600px;
+  margin: 40px auto 10px;
+  padding: 20px 34px;
+  text-align: center;
 }
-
-
 
 .site-footer p {
-
-
-font-size:
-
-12px;
-
-
-
-color:
-
-var(--muted);
-
-
-
+  font-size: 12px;
+  color: var(--muted);
 }
-
-
-
-
-
-
-
-
-/* =====================================================
-   SCROLL BAR
-===================================================== */
-
 
 .scroll-progress {
-
-
-position:fixed;
-
-
-
-top:0;
-
-
-
-left:0;
-
-
-
-height:
-
-3px;
-
-
-
-width:
-
-0%;
-
-
-
-z-index:
-
-9999;
-
-
-
-background:
-
-
-linear-gradient(
-
-90deg,
-
-var(--cyan),
-
-var(--green)
-
-);
-
-
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0%;
+  z-index: 9999;
+  background: linear-gradient(90deg, var(--cyan), var(--green));
 }
 
+.timeline.project-active {
+  animation: timelinePulse 2s ease;
+}
 
+@keyframes timelinePulse {
+  0% {
+    box-shadow: 0 0 0 rgba(0, 234, 255, 0);
+  }
 
+  40% {
+    box-shadow: 0 0 60px rgba(0, 234, 255, .5);
+  }
 
+  100% {
+    box-shadow: 0 0 0 rgba(0, 234, 255, 0);
+  }
+}
 
-
-
+a {
+  font-family: inherit;
+}
 
 /* =====================================================
    TABLET LAYOUT
-   1200px
 ===================================================== */
 
+@media (max-width: 1200px) {
+  body {
+    padding: 25px;
+  }
 
-@media(max-width:1200px){
+  .bento-grid {
+    grid-template-columns: repeat(8, 1fr);
+    gap: 20px;
+  }
 
+  .hero {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
 
+  .hardware {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
 
-body {
+  .entrepreneur {
+    grid-column: 1 / 5;
+    grid-row: 3;
+  }
 
+  .connect {
+    grid-column: 5 / 9;
+    grid-row: 3;
+  }
 
-padding:
+  .profile {
+    grid-column: 1 / 5;
+    grid-row: 4;
+  }
 
-25px;
+  .timeline {
+    grid-column: 5 / 9;
+    grid-row: 4;
+  }
 
+  .stack {
+    grid-column: 1 / -1;
+    grid-row: 5;
+  }
 
+  .profile,
+  .stack,
+  .entrepreneur,
+  .connect {
+    width: 100%;
+  }
 }
-
-
-
-
-
-.bento-grid {
-
-
-grid-template-columns:
-
-repeat(8,1fr);
-
-
-
-gap:
-
-20px;
-
-
-}
-
-
-
-
-
-.hero {
-
-
-grid-column:
-
-span 8;
-
-
-}
-
-
-
-.hardware {
-
-
-grid-column:
-
-span 8;
-
-
-}
-
-
-
-
-.timeline {
-
-
-grid-column:
-
-span 8;
-
-
-}
-
-
-
-
-.right-column {
-
-
-grid-column:
-
-span 8;
-
-
-display:grid;
-
-
-
-grid-template-columns:
-
-repeat(2,1fr);
-
-
-}
-
-
-
-
-
-.profile,
-.stack,
-.entrepreneur,
-.connect {
-
-
-width:100%;
-
-
-}
-
-
-}
-
-
-
-
 
 /* =====================================================
    SMALL TABLETS
-   900px
 ===================================================== */
 
-
-@media(max-width:900px){
-
-
-body {
-
-
-padding:
-
-20px;
-
-
-}
-
-
-
-
-.bento-grid {
-
-
-display:flex;
-
-
-
-flex-direction:
-
-column;
-
-
-
-gap:
-
-18px;
-
-
-}
-
-
-
-
-
-.hero,
-.hardware,
-.timeline,
-.right-column {
-
-
-width:100%;
-
-
-
-}
-
-
-
-.right-column {
-
-
-display:flex;
-
-
-
-flex-direction:
-
-column;
-
-
-}
-
-
-
-
-
-.card {
-
-
-padding:
-
-28px;
-
-
-}
-
-
-
-.timeline {
-
-
-height:
-
-auto;
-
-
-
-max-height:
-
-330px;
-
-
-}
-
-
-
-.timeline.expanded {
-
-
-max-height:
-
-1500px;
-
-
-}
-
-
+@media (max-width: 900px) {
+  body {
+    padding: 20px;
+  }
+
+  .bento-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .card {
+    width: 100%;
+    padding: 28px;
+  }
+
+  .hero {
+    order: 1;
+    min-height: auto;
+  }
+
+  .hardware {
+    order: 2;
+  }
+
+  .entrepreneur {
+    order: 3;
+  }
+
+  .connect {
+    order: 4;
+  }
+
+  .profile {
+    order: 5;
+  }
+
+  .timeline {
+    order: 6;
+    height: auto;
+    max-height: 330px;
+  }
+
+  .timeline.expanded {
+    max-height: 1500px;
+  }
+
+  .stack {
+    order: 7;
+  }
 }
 
 /* =====================================================
    MOBILE
-   UNDER 700px
 ===================================================== */
 
-<<<<<<< HEAD
-@media (max-width: 1200px) {
-  body { padding: 25px; }
-  .bento-grid { grid-template-columns: repeat(8, 1fr); }
-  .hero { grid-column: 1 / -1; grid-row: auto; min-height: 520px; }
-  .hardware { grid-column: 1 / -1; grid-row: auto; }
-  .right-column {
-    grid-column: 1 / -1;
-    grid-row: auto;
-    display: grid;
-    grid-template-columns: repeat(8, 1fr);
-    gap: 22px;
-  }
-  .profile { grid-column: span 4; }
-  .timeline { grid-column: span 4; }
-  .stack { grid-column: 1 / -1; }
-  .entrepreneur { grid-column: 1 / 5; grid-row: auto; }
-  .connect { grid-column: 5 / 9; grid-row: auto; }
-  h1 { font-size: clamp(2.8rem, 6vw, 4.5rem); }
-  .card { padding: 28px; }
-=======
-
-@media(max-width:700px){
-
-
-
-body {
-
-
-padding:
-
-14px;
-
-
-
-font-size:
-
-14px;
-
-
->>>>>>> e720bc8629c3f9140eb386022d0aece368bdfe79
-}
-
-
-
-
-
-.cpu-field {
-
-
-opacity:
-
-.55;
-
-
-}
-
-
-
-
-
-.bento-grid {
-
-
-gap:
-
-14px;
-
-
-}
-
-
-
-
-
-.card {
-
-
-border-radius:
-
-22px;
-
-
-
-padding:
-
-22px;
-
-
-}
-
-
-
-
-
-.card:hover {
-
-
-transform:
-
-translateY(-3px);
-
-
-}
-
-
-
-
-
-.hero {
-
-
-min-height:
-
-auto;
-
-
-}
-
-
-
-
-
-.label {
-
-
-font-size:
-
-10px;
-
-
-
-letter-spacing:
-
-1px;
-
-
-}
-
-
-
-
-
-h1 {
-
-
-font-size:
-
-
-clamp(2.2rem,12vw,3.2rem);
-
-
-
-letter-spacing:
-
--1.5px;
-
-
-
-margin-bottom:
-
-25px;
-
-
-}
-
-
-
-
-
-h2 {
-
-
-font-size:
-
-24px;
-
-
-}
-
-
-
-
-
-h3 {
-
-
-font-size:
-
-18px;
-
-
-}
-
-
-
-
-
-p {
-
-
-line-height:
-
-1.6;
-
-
-}
-
-
-
-
-
-
-
-/* BUTTONS */
-
-
-.buttons {
-
-
-flex-direction:
-
-column;
-
-
-
-gap:
-
-12px;
-
-
-}
-
-
-
-
-
-.buttons a {
-
-
-width:
-
-100%;
-
-
-
-text-align:
-
-center;
-
-
-
-padding:
-
-14px 18px;
-
-
-}
-
-
-
-
-
-
-/* PIPELINE */
-
-
-.pipeline {
-
-
-display:grid;
-
-
-
-grid-template-columns:
-
-repeat(2,1fr);
-
-
-
-gap:
-
-10px;
-
-
-}
-
-
-
-
-
-.pipeline-node {
-
-
-padding:
-
-12px;
-
-
-
-font-size:
-
-12px;
-
-
-}
-
-
-
-
-
-
-/* CPU DEBUG VIEW */
-
-
-.cpu-console {
-
-
-height:
-
-170px;
-
-
-}
-
-
-
-
-
-
-
-/* YEAR BUTTONS */
-
-
-.year-buttons {
-
-
-width:
-
-100%;
-
-
-}
-
-
-
-
-
-.year-buttons button {
-
-
-flex:
-
-1;
-
-
-
-padding:
-
-10px;
-
-
-
-font-size:
-
-12px;
-
-
-}
-
-
-
-
-
-
-/* PROJECT CARDS */
-
-
-.project-item {
-
-
-padding:
-
-16px;
-
-
-}
-
-
-
-
-.project-item h4 {
-
-
-font-size:
-
-15px;
-
-
-}
-
-
-
-
-.project-item p {
-
-
-font-size:
-
-13px;
-
-
-}
-
-
-
-
-
-
-
-/* TAGS */
-
-
-.tags span {
-
-
-font-size:
-
-12px;
-
-
-
-padding:
-
-8px 12px;
-
-
-}
-
-
-
-
-
-
-
-/* CONNECT */
-
-
-.connect a {
-
-
-width:
-
-100%;
-
-
-
-text-align:
-
-center;
-
-
-}
-
-
-
-
-
-
-
-
-/* REMOVE HEAVY HOVER EFFECTS */
-
-
-.card::before,
-.card::after {
-
-
-display:none;
-
-
-}
-
-
-
-}
-
-
-
-
-
-
-
-
-
-/* =====================================================
-   VERY SMALL DEVICES
-   UNDER 400px
-===================================================== */
-
-<<<<<<< HEAD
-@media (max-width: 900px) {
-  body { padding: 20px; }
-  .bento-grid { display: flex; flex-direction: column; gap: 18px; }
-  .right-column { display: flex; flex-direction: column; gap: 18px; order: 3; width: 100%; }
-  .card { width: 100%; }
-  .hero { min-height: auto; }
-  .hardware { order: 2; }
-  .profile { order: 3; }
-  .timeline { order: 4; max-height: none; }
-  .timeline.expanded { max-height: 1000px; }
-  .stack { order: 5; }
-  .entrepreneur { order: 6; }
-  .connect { order: 7; }
-  .pipeline { flex-wrap: wrap; }
-  .pipeline div { min-width: 80px; }
-  h1 { letter-spacing: -2px; }
-=======
-
-@media(max-width:400px){
-
-
-
-body {
-
-
-padding:
-
-10px;
-
-
->>>>>>> e720bc8629c3f9140eb386022d0aece368bdfe79
-}
-
-
-
-
-
-.card {
-
-
-padding:
-
-18px;
-
-
-
-border-radius:
-
-18px;
-
-
-}
-
-
-
-
-
-h1 {
-
-
-font-size:
-
-2rem;
-
-
-}
-
-
-
-
-
-.year-buttons {
-
-
-flex-direction:
-
-column;
-
-
-}
-
-
-
-
-
-.year-buttons button {
-
-
-width:
-
-100%;
-
-
-}
-
-
-
-
-
-.pipeline {
-
-
-grid-template-columns:
-
-1fr;
-
-
-}
-
-
-
-
-
-.buttons a {
-
-
-font-size:
-
-12px;
-
-
-}
-
-
-
-
-
-.connect a {
-
-
-font-size:
-
-12px;
-
-
-}
-
-
-}
-
-
-
-
-
-
-
-
-
-/* =====================================================
-   ACCESSIBILITY
-   REDUCED MOTION
-===================================================== */
-
-<<<<<<< HEAD
 @media (max-width: 700px) {
-  body { padding: 14px; font-size: 14px; }
-  .cpu-field { opacity: .55; }
-  .bento-grid { gap: 14px; }
-  .right-column { gap: 14px; }
-  .card { border-radius: 22px; padding: 22px; }
-  .card:hover { transform: translateY(-3px); }
-  .hero { min-height: auto; }
-  .label { font-size: 10px; letter-spacing: 1px; }
-  h1 { font-size: clamp(2.2rem, 12vw, 3.2rem); letter-spacing: -1.5px; margin-bottom: 25px; }
-  h2 { font-size: 24px; }
-  h3 { font-size: 18px; }
-  p { line-height: 1.6; }
-=======
->>>>>>> e720bc8629c3f9140eb386022d0aece368bdfe79
+  body {
+    padding: 14px;
+    font-size: 14px;
+  }
 
-@media(prefers-reduced-motion:reduce){
+  .cpu-field {
+    opacity: .55;
+  }
 
+  .bento-grid {
+    gap: 14px;
+  }
 
+  .card {
+    border-radius: 22px;
+    padding: 22px;
+  }
 
-* {
+  .card:hover {
+    transform: translateY(-3px);
+  }
 
+  .label {
+    font-size: 10px;
+    letter-spacing: 1px;
+  }
 
-animation-duration:
+  h1 {
+    font-size: clamp(2.2rem, 12vw, 3.2rem);
+    letter-spacing: -1.5px;
+    margin-bottom: 25px;
+  }
 
-.01ms !important;
+  h2 {
+    font-size: 24px;
+  }
 
+  h3 {
+    font-size: 18px;
+  }
 
+  p {
+    line-height: 1.6;
+  }
 
-animation-iteration-count:
+  .buttons {
+    flex-direction: column;
+    gap: 12px;
+  }
 
-1 !important;
+  .buttons a {
+    width: 100%;
+    text-align: center;
+    padding: 14px 18px;
+  }
 
+  .pipeline {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
 
+  .pipeline-node {
+    padding: 12px;
+    font-size: 12px;
+  }
 
-transition-duration:
+  .cpu-console {
+    height: 170px;
+  }
 
-.01ms !important;
+  .year-buttons {
+    width: 100%;
+  }
 
+  .year-buttons button {
+    flex: 1;
+    padding: 10px;
+    font-size: 12px;
+  }
 
+  .project-item {
+    padding: 16px;
+  }
 
-scroll-behavior:
+  .project-item h4 {
+    font-size: 15px;
+  }
 
-auto !important;
+  .project-item p {
+    font-size: 13px;
+  }
 
+  .tags span {
+    font-size: 12px;
+    padding: 8px 12px;
+  }
 
+  .connect a {
+    width: 100%;
+    text-align: center;
+  }
+
+  .card::before,
+  .card::after {
+    display: none;
+  }
 }
 
+@media (max-width: 400px) {
+  body {
+    padding: 10px;
+  }
 
+  .card {
+    padding: 18px;
+    border-radius: 18px;
+  }
 
+  h1 {
+    font-size: 2rem;
+  }
 
+  .year-buttons {
+    flex-direction: column;
+  }
 
+  .year-buttons button {
+    width: 100%;
+  }
 
-.cpu-pulse,
-.cpu-field,
-.noise {
+  .pipeline {
+    grid-template-columns: 1fr;
+  }
 
-
-display:none;
-
-
+  .buttons a,
+  .connect a {
+    font-size: 12px;
+  }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
 
+  .cpu-pulse,
+  .cpu-field,
+  .noise {
+    display: none;
+  }
 
-
-
-.card {
-
-
-opacity:
-
-1 !important;
-
-
-
-transform:
-
-none !important;
-
-
+  .card {
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }
-
-
-
-}
-
-
-
-
-
-
-
-
-
-/* =====================================================
-   PERFORMANCE OPTIMIZATION
-===================================================== */
-
 
 .card,
 .cpu-pulse,
 .project-item,
 .buttons a,
 .year-buttons button {
-
-
-transform:
-
-translateZ(0);
-
-
-
-backface-visibility:
-
-hidden;
-
-
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
-
-
-
-
-
-
-
-/* =====================================================
-   IOS SAFARI FIX
-===================================================== */
-
 
 html,
 body {
-
-
-min-height:
-
-100%;
-
-
-
--webkit-overflow-scrolling:
-
-touch;
-
-
+  min-height: 100%;
+  -webkit-overflow-scrolling: touch;
 }
-
-
-
-
-
-
-
-
-/* =====================================================
-   FINAL LOAD STATE
-===================================================== */
-
 
 body.loaded .card {
-
-
-transition:
-
-
-opacity .8s var(--ease),
-
-
-transform .8s var(--ease),
-
-
-border-color .5s ease;
-
-
+  transition: opacity .8s var(--ease), transform .8s var(--ease), border-color .5s ease;
 }
-
-/* =====================================================
-   FINAL BENTO ALIGNMENT PATCH
-   Prevents right-side stacking issue
-===================================================== */
-
-
-/*
-   Desktop:
-   Hero + Processor stay left
-   Journey stays directly below Processor
-   Right modules remain in sidebar
-*/
-
-
-@media(min-width:1201px){
-
-
-.bento-grid {
-
-
-display:grid;
-
-
-
-grid-template-columns:
-
-repeat(12,1fr);
-
-
-
-grid-template-areas:
-
-
-"hero hero hero hero hero hero hero hero profile profile profile profile"
-
-"hero hero hero hero hero hero hero hero timeline timeline timeline timeline"
-
-"hardware hardware hardware hardware hardware hardware hardware hardware timeline timeline timeline timeline"
-
-"hardware hardware hardware hardware hardware hardware hardware hardware stack stack stack stack"
-
-"hardware hardware hardware hardware hardware hardware hardware hardware entrepreneur entrepreneur entrepreneur entrepreneur"
-
-"hardware hardware hardware hardware hardware hardware hardware hardware connect connect connect connect";
-
-
-
-}
-
-
-
-
-
-.hero {
-
-
-grid-area:
-
-hero;
-
-
-}
-
-
-
-
-.hardware {
-
-
-grid-area:
-
-hardware;
-
-
-}
-
-
-
-
-
-.right-column {
-
-
-display:
-
-contents;
-
-
-}
-
-
-
-
-
-.profile {
-
-
-grid-area:
-
-profile;
-
-
-}
-
-
-
-
-.timeline {
-
-
-grid-area:
-
-timeline;
-
-
-}
-
-
-
-
-.stack {
-
-
-grid-area:
-
-stack;
-
-
-}
-
-
-
-
-.entrepreneur {
-
-
-grid-area:
-
-entrepreneur;
-
-
-}
-
-
-
-
-.connect {
-
-
-grid-area:
-
-connect;
-
-
-}
-
-
-
-
-}
-
-
-
-
-
-
-
-
-/* =====================================================
-   CPU DEBUG ANIMATION DETAILS
-===================================================== */
-
-
-.cpu-console span {
-
-
-display:block;
-
-
-}
-
-
-
-
-
-.cpu-console::marker {
-
-
-display:none;
-
-
-}
-
-
-
-
-
-
-
-
-/* =====================================================
-   SMOOTH EXPANSION OVERRIDE
-===================================================== */
-
-
-.timeline {
-
-
-transition-property:
-
-height,
-
-box-shadow,
-
-transform;
-
-
-
-transition-duration:
-
-
-.9s,
-
-.6s,
-
-.5s;
-
-
-
-transition-timing-function:
-
-cubic-bezier(.22,1,.36,1);
-
-
-}
-
-
-
-
-
-.timeline.collapsing {
-
-
-transition-duration:
-
-
-.35s,
-
-.25s,
-
-.25s;
-
-
-
-transition-timing-function:
-
-cubic-bezier(.55,0,1,.45);
-
-
-}
-
-
-
-
-
-
-
-/* =====================================================
-   PROJECT BUTTON ACTIVE EFFECT
-===================================================== */
-
-
-.timeline.project-active {
-
-
-animation:
-
-
-timelinePulse 2s ease;
-
-
-}
-
-
-
-
-
-@keyframes timelinePulse {
-
-
-0% {
-
-
-box-shadow:
-
-0 0 0 rgba(0,234,255,0);
-
-
-}
-
-
-
-
-40% {
-
-
-box-shadow:
-
-0 0 60px rgba(0,234,255,.5);
-
-
-}
-
-
-
-
-100% {
-
-
-box-shadow:
-
-0 0 0 rgba(0,234,255,0);
-
-
-}
-
-
-
-}
-
-
-
-
-
-
-
-/* =====================================================
-   CLEAN LINK DEFAULTS
-===================================================== */
-
-
-a {
-
-
-font-family:
-
-inherit;
-
-
-}
-
-
-
-
-
-
-
-/* =====================================================
-   END OF PORTFOLIO SYSTEM
-===================================================== */
-
