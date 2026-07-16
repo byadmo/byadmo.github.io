@@ -203,15 +203,15 @@ function loadProjects(year) {
     projectGrid.appendChild(item);
   });
 }
-
 /* =====================================================
-   YEAR BUTTON SYSTEM
+   ENGINEERING JOURNEY EXPANSION SYSTEM
 ===================================================== */
 
-// How long the timeline stays expanded after it's no longer being
-// hovered/focused before it collapses back down on its own.
-const TIMELINE_COLLAPSE_DELAY = 2500; // ms
+const TIMELINE_COLLAPSE_DELAY = 3000;
+
 let timelineCollapseTimer = null;
+let selectedYear = localStorage.getItem("selectedYear") || "2026";
+
 
 function cancelTimelineCollapse() {
   if (timelineCollapseTimer) {
@@ -220,70 +220,151 @@ function cancelTimelineCollapse() {
   }
 }
 
+
 function scheduleTimelineCollapse() {
   cancelTimelineCollapse();
+
   timelineCollapseTimer = setTimeout(() => {
-    if (timeline) timeline.classList.remove("expanded");
-    timelineCollapseTimer = null;
+
+    if (!timeline) return;
+
+    timeline.classList.add("collapsing");
+
+    setTimeout(() => {
+      timeline.classList.remove("expanded");
+      timeline.classList.remove("collapsing");
+    }, 650);
+
   }, TIMELINE_COLLAPSE_DELAY);
 }
 
+
 function activateYear(button) {
+
   const year = button.dataset.year;
 
-  yearButtons.forEach((btn) => {
+  selectedYear = year;
+
+  localStorage.setItem("selectedYear", year);
+
+
+  yearButtons.forEach((btn)=>{
+
     btn.classList.remove("active");
-    btn.setAttribute("aria-selected", "false");
+    btn.setAttribute("aria-selected","false");
+
   });
 
-  button.classList.add("active");
-  button.setAttribute("aria-selected", "true");
 
-  if (timeline) timeline.classList.add("expanded");
+  button.classList.add("active");
+  button.setAttribute("aria-selected","true");
+
+
+  if(timeline){
+
+    cancelTimelineCollapse();
+
+    timeline.classList.add("expanded");
+
+  }
+
 
   loadProjects(year);
 
-  // Every interaction (hover, click, focus, or a tap on touch) refreshes
-  // the auto-collapse countdown, so it only fires once things go idle.
-  scheduleTimelineCollapse();
 }
 
-yearButtons.forEach((button) => {
-  // Always attach hover — touch devices simply never fire mouseenter from a tap,
-  // so this is safe on phones and fixes hover on touch-capable laptops that use a mouse.
-  button.addEventListener("mouseenter", () => activateYear(button));
-  button.addEventListener("click", () => activateYear(button));
-  button.addEventListener("focus", () => activateYear(button));
+
+
+function restoreSelectedYear(){
+
+  const savedButton = document.querySelector(
+    `.year-buttons button[data-year="${selectedYear}"]`
+  );
+
+
+  if(savedButton){
+
+    activateYear(savedButton);
+
+  }
+
+}
+
+
+
+yearButtons.forEach(button=>{
+
+
+  button.addEventListener(
+    "mouseenter",
+    ()=>activateYear(button)
+  );
+
+
+  button.addEventListener(
+    "click",
+    ()=>activateYear(button)
+  );
+
+
+  button.addEventListener(
+    "focus",
+    ()=>activateYear(button)
+  );
+
+
 });
 
-// Delegated fallback: catches hover even if a per-button listener somehow
-// didn't attach (e.g. buttons re-rendered after this script ran).
-const yearButtonsContainer = document.querySelector(".year-buttons");
-if (yearButtonsContainer) {
-  yearButtonsContainer.addEventListener("mouseover", (e) => {
-    const btn = e.target.closest("button[data-year]");
-    if (btn) activateYear(btn);
-  });
+
+
+if(timeline){
+
+timeline.addEventListener(
+"mouseenter",
+()=>{
+
+cancelTimelineCollapse();
+
+if(!timeline.classList.contains("expanded")){
+
+restoreSelectedYear();
+
 }
 
-// While the pointer/keyboard focus is actually inside the timeline card,
-// keep it expanded — cancel any pending collapse. The moment focus/hover
-// leaves the card entirely, start (or restart) the collapse countdown.
-// This is what makes it shrink back — and, since .timeline already
-// transitions max-height with the same duration/easing used to expand it,
-// the neighboring cards (stack, entrepreneurship, connect) that CSS Grid
-// reflows underneath it move back up at that same speed automatically.
-if (timeline) {
-  timeline.addEventListener("mouseenter", cancelTimelineCollapse);
-  timeline.addEventListener("mouseleave", scheduleTimelineCollapse);
+});
 
-  timeline.addEventListener("focusin", cancelTimelineCollapse);
-  timeline.addEventListener("focusout", (e) => {
-    if (!timeline.contains(e.relatedTarget)) {
-      scheduleTimelineCollapse();
-    }
-  });
+
+timeline.addEventListener(
+"mouseleave",
+()=>{
+
+scheduleTimelineCollapse();
+
+});
+
+
+timeline.addEventListener(
+"focusin",
+cancelTimelineCollapse
+);
+
+
+timeline.addEventListener(
+"focusout",
+(e)=>{
+
+if(!timeline.contains(e.relatedTarget)){
+
+scheduleTimelineCollapse();
+
 }
+
+});
+
+}
+
+
+restoreSelectedYear();
 
 /* =====================================================
    VIEW PROJECTS BUTTON
