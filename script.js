@@ -825,6 +825,214 @@ card.style.removeProperty(
 
 
 
+const expandableCollapseTimers =
+new WeakMap();
+
+
+
+function updateExpandableCardSize(card,detailsSelector){
+
+
+if(
+!bentoGrid ||
+!card
+)
+return;
+
+
+const details =
+card.querySelector(detailsSelector);
+
+
+if(!details)
+return;
+
+
+card.style.setProperty(
+"--details-height",
+`${details.scrollHeight}px`
+);
+
+
+const gridStyle =
+getComputedStyle(bentoGrid);
+
+
+const rowHeight =
+parseFloat(gridStyle.gridAutoRows);
+
+
+const rowGap =
+parseFloat(gridStyle.rowGap || gridStyle.gap) || 0;
+
+
+if(
+!Number.isFinite(rowHeight) ||
+rowHeight <= 0
+)
+return;
+
+
+const currentHeight =
+card.getBoundingClientRect().height;
+
+
+const expandedHeight =
+currentHeight + details.scrollHeight + 64;
+
+
+const expandedRows =
+Math.ceil(
+(expandedHeight + rowGap) / (rowHeight + rowGap)
+) + 2;
+
+
+card.style.setProperty(
+"--expanded-rows",
+expandedRows
+);
+
+
+}
+
+
+
+function expandProjectCard(card,detailsSelector){
+
+
+const activeTimer =
+expandableCollapseTimers.get(card);
+
+
+if(activeTimer){
+
+
+clearTimeout(activeTimer);
+
+
+expandableCollapseTimers.delete(card);
+
+
+}
+
+
+updateExpandableCardSize(
+card,
+detailsSelector
+);
+
+
+if(card.classList.contains("is-expanded"))
+return;
+
+
+animateBentoLayout(()=>{
+
+
+card.classList.remove(
+"is-collapsing"
+);
+
+
+card.classList.add(
+"is-expanded"
+);
+
+
+});
+
+
+}
+
+
+
+function collapseProjectCard(card){
+
+
+if(
+!card.classList.contains("is-expanded") &&
+!card.classList.contains("is-collapsing")
+)
+return;
+
+
+card.classList.add(
+"is-collapsing"
+);
+
+
+card.classList.remove(
+"is-expanded"
+);
+
+
+const activeTimer =
+expandableCollapseTimers.get(card);
+
+
+if(activeTimer)
+clearTimeout(activeTimer);
+
+
+const collapseTimer =
+setTimeout(()=>{
+
+
+animateBentoLayout(()=>{
+
+
+card.classList.remove(
+"is-collapsing"
+);
+
+
+});
+
+
+expandableCollapseTimers.delete(card);
+
+
+},720);
+
+
+expandableCollapseTimers.set(
+card,
+collapseTimer
+);
+
+
+}
+
+
+
+function toggleProjectCard(card,detailsSelector){
+
+
+if(
+card.classList.contains("is-expanded") ||
+card.classList.contains("is-collapsing")
+){
+
+
+collapseProjectCard(card);
+
+
+return;
+
+
+}
+
+
+expandProjectCard(
+card,
+detailsSelector
+);
+
+
+}
+
+
+
 function resetBentoPressure(){
 
 
@@ -1029,19 +1237,10 @@ const expandHardware =
 ()=>{
 
 
-if(hardwareCard.classList.contains("is-expanded"))
-return;
-
-
-animateBentoLayout(()=>{
-
-
-hardwareCard.classList.add(
-"is-expanded"
+expandProjectCard(
+hardwareCard,
+".hardware-details"
 );
-
-
-});
 
 
 };
@@ -1051,19 +1250,7 @@ const collapseHardware =
 ()=>{
 
 
-if(!hardwareCard.classList.contains("is-expanded"))
-return;
-
-
-animateBentoLayout(()=>{
-
-
-hardwareCard.classList.remove(
-"is-expanded"
-);
-
-
-});
+collapseProjectCard(hardwareCard);
 
 
 };
@@ -1086,15 +1273,10 @@ hardwareCard.addEventListener(
 ()=>{
 
 
-animateBentoLayout(()=>{
-
-
-hardwareCard.classList.toggle(
-"is-expanded"
+toggleProjectCard(
+hardwareCard,
+".hardware-details"
 );
-
-
-});
 
 
 },
@@ -1115,19 +1297,10 @@ const expandProsthetic =
 ()=>{
 
 
-if(prostheticCard.classList.contains("is-expanded"))
-return;
-
-
-animateBentoLayout(()=>{
-
-
-prostheticCard.classList.add(
-"is-expanded"
+expandProjectCard(
+prostheticCard,
+".prosthetic-details"
 );
-
-
-});
 
 
 };
@@ -1137,19 +1310,7 @@ const collapseProsthetic =
 ()=>{
 
 
-if(!prostheticCard.classList.contains("is-expanded"))
-return;
-
-
-animateBentoLayout(()=>{
-
-
-prostheticCard.classList.remove(
-"is-expanded"
-);
-
-
-});
+collapseProjectCard(prostheticCard);
 
 
 };
@@ -1184,15 +1345,10 @@ prostheticCard.addEventListener(
 ()=>{
 
 
-animateBentoLayout(()=>{
-
-
-prostheticCard.classList.toggle(
-"is-expanded"
+toggleProjectCard(
+prostheticCard,
+".prosthetic-details"
 );
-
-
-});
 
 
 },
