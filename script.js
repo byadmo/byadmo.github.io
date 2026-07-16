@@ -1738,6 +1738,10 @@ if(!timeline)
 return;
 
 
+clearTimeout(
+collapseTimer
+);
+
 
 
 
@@ -1847,20 +1851,6 @@ collapseTimer
 
 
 
-collapseTimer =
-setTimeout(
-
-()=>{
-
-
-collapseTimeline();
-
-
-},
-
-6500
-
-);
 
 
 
@@ -1871,6 +1861,44 @@ collapseTimeline();
 
 
 
+
+
+
+if(timeline){
+
+
+timeline.addEventListener(
+"pointerenter",
+()=>{
+
+
+clearTimeout(
+collapseTimer
+);
+
+
+}
+);
+
+
+timeline.addEventListener(
+"pointerleave",
+()=>{
+
+
+clearTimeout(
+collapseTimer
+);
+
+
+collapseTimeline();
+
+
+}
+);
+
+
+}
 
 
 
