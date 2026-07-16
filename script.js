@@ -16,12 +16,9 @@ window.matchMedia(
 ).matches;
 
 
-
 const isTouchDevice =
 "ontouchstart" in window ||
 navigator.maxTouchPoints > 0;
-
-
 
 
 
@@ -35,30 +32,24 @@ const cards =
 document.querySelectorAll(".card");
 
 
-
 const revealCards =
 document.querySelectorAll(".reveal");
-
 
 
 const hero =
 document.querySelector(".hero");
 
 
-
 const typingElement =
 document.getElementById("typing");
-
 
 
 const timeline =
 document.getElementById("module-002");
 
 
-
 const projectsButton =
 document.getElementById("projects-button");
-
 
 
 const yearButtons =
@@ -67,20 +58,16 @@ document.querySelectorAll(
 );
 
 
-
 const projectGrid =
 document.querySelector(
 ".project-grid"
 );
 
 
-
 const cpuField =
 document.getElementById(
 "cpu-field"
 );
-
-
 
 
 
@@ -123,20 +110,14 @@ entry.target.classList.add(
 
 
 
-
-
 revealObserver.unobserve(
 entry.target
 );
 
 
-
 }
 
-
-
 }
-
 );
 
 
@@ -150,8 +131,6 @@ threshold:.15
 }
 
 );
-
-
 
 
 
@@ -170,9 +149,7 @@ card
 
 
 
-
 }
-
 else {
 
 
@@ -195,26 +172,16 @@ card.classList.add(
 
 
 },index*120);
-
-
-
 }
-
 );
 
 
 
 }
-
 );
 
 
-
 }
-
-
-
-
 
 
 
@@ -246,14 +213,11 @@ const typingWords = [
 
 
 
-
 let wordIndex = 0;
 
 let charIndex = 0;
 
 let deleting = false;
-
-
 
 
 
@@ -267,12 +231,8 @@ return;
 
 
 
-
-
 const current =
 typingWords[wordIndex];
-
-
 
 
 
@@ -283,14 +243,11 @@ charIndex++;
 
 
 
-
 typingElement.textContent =
 current.substring(
 0,
 charIndex
 );
-
-
 
 
 
@@ -314,21 +271,15 @@ typeWriter,
 return;
 
 
-
 }
 
 
-
-
 }
-
 else {
 
 
 
 charIndex--;
-
-
 
 
 
@@ -340,13 +291,10 @@ charIndex
 
 
 
-
-
 if(charIndex<=0){
 
 
 deleting=false;
-
 
 
 wordIndex =
@@ -355,14 +303,10 @@ wordIndex =
 typingWords.length;
 
 
-
 }
 
 
-
 }
-
-
 
 
 
@@ -375,11 +319,7 @@ deleting ? 35 : 70
 );
 
 
-
 }
-
-
-
 
 
 
@@ -397,18 +337,14 @@ typingElement.textContent =
 typingWords[0];
 
 
-
 }
 
 
-
 }
-
 else {
 
 
 typeWriter();
-
 
 }
 /* =====================================================
@@ -434,7 +370,6 @@ const rect =
 card.getBoundingClientRect();
 
 
-
 card.style.setProperty(
 
 "--mouse-x",
@@ -442,7 +377,6 @@ card.style.setProperty(
 `${event.clientX - rect.left}px`
 
 );
-
 
 
 card.style.setProperty(
@@ -454,23 +388,15 @@ card.style.setProperty(
 );
 
 
-
 }
 
 );
 
 
-
 });
 
 
-
 }
-
-
-
-
-
 
 
 
@@ -497,7 +423,6 @@ hero.getBoundingClientRect();
 
 
 
-
 const x =
 (event.clientX - rect.left)
 /
@@ -507,14 +432,12 @@ rect.width
 
 
 
-
 const y =
 (event.clientY - rect.top)
 /
 rect.height
 -
 0.5;
-
 
 
 
@@ -529,12 +452,9 @@ translateY(-4px)
 `;
 
 
-
 }
 
 );
-
-
 
 
 
@@ -551,12 +471,7 @@ hero.style.transform = "";
 );
 
 
-
 }
-
-
-
-
 
 
 
@@ -588,7 +503,6 @@ dot.style.transform =
 );
 
 
-
 dot.addEventListener(
 "mouseleave",
 ()=>{
@@ -604,13 +518,7 @@ dot.style.transform =
 );
 
 
-
 });
-
-
-
-
-
 
 
 
@@ -635,18 +543,14 @@ return;
 
 
 
-
 const node =
 document.createElement(
 "span"
 );
 
 
-
 node.className =
 "cpu-node";
-
-
 
 
 
@@ -655,12 +559,8 @@ node.style.left =
 
 
 
-
-
 node.style.top =
 `${Math.random()*80}%`;
-
-
 
 
 
@@ -669,13 +569,9 @@ node.style.animationDelay =
 
 
 
-
-
 cpuConsole.appendChild(
 node
 );
-
-
 
 
 
@@ -693,10 +589,7 @@ node.remove();
 );
 
 
-
 }
-
-
 
 
 
@@ -709,8 +602,7 @@ if(
 !cpuConsole ||
 prefersReducedMotion
 )
-return;
-
+return
 
 
 
@@ -723,18 +615,11 @@ createCPUNode,
 );
 
 
-
 }
 
 
 
-
 startCPUAnimation();
-
-
-
-
-
 
 
 
@@ -750,13 +635,10 @@ document.querySelectorAll(
 );
 
 
-
 let pipelineIndex = 0;
 
 
-
 let pipelineInterval = null;
-
 
 
 
@@ -771,8 +653,6 @@ return;
 
 
 
-
-
 pipelineStages.forEach(stage=>{
 
 
@@ -784,16 +664,12 @@ stage.style.color =
 "";
 
 
-
 });
-
-
 
 
 
 const active =
 pipelineStages[pipelineIndex];
-
 
 
 
@@ -803,12 +679,8 @@ active.style.boxShadow =
 
 
 
-
-
 active.style.color =
 "#00ff88";
-
-
 
 
 
@@ -819,10 +691,7 @@ pipelineIndex =
 pipelineStages.length;
 
 
-
 }
-
-
 
 
 
@@ -840,7 +709,6 @@ return;
 
 
 
-
 pipelineInterval =
 setInterval(
 
@@ -851,9 +719,7 @@ stepPipeline,
 );
 
 
-
 }
-
 
 
 
@@ -872,14 +738,10 @@ pipelineInterval
 pipelineInterval=null;
 
 
-
 }
 
 
-
 }
-
-
 
 
 startPipeline();
@@ -908,7 +770,6 @@ description:
 },
 
 
-
 {
 
 title:
@@ -921,7 +782,6 @@ description:
 "Building synthesizable digital systems and testing hardware implementations on FPGA platforms."
 
 },
-
 
 
 {
@@ -942,8 +802,6 @@ description:
 
 
 
-
-
 "2025":[
 
 
@@ -959,7 +817,6 @@ description:
 "Developed foundations in digital logic design, Boolean systems, hardware description languages, and computer architecture."
 
 },
-
 
 
 {
@@ -980,8 +837,6 @@ description:
 
 
 
-
-
 "2024":[
 
 
@@ -997,7 +852,6 @@ description:
 "Started developing programming, mathematics, physics, and engineering fundamentals."
 
 },
-
 
 
 {
@@ -1023,10 +877,6 @@ description:
 
 
 
-
-
-
-
 /* =====================================================
    TIMELINE ELEMENTS
 ===================================================== */
@@ -1038,10 +888,7 @@ document.querySelector(
 );
 
 
-
 let collapseTimer = null;
-
-
 
 
 
@@ -1056,17 +903,12 @@ return;
 
 
 
-
 projectGrid.innerHTML = "";
-
-
 
 
 
 const projects =
 journeyProjects[year];
-
-
 
 
 
@@ -1080,12 +922,8 @@ document.createElement(
 );
 
 
-
 card.className =
 "project-item";
-
-
-
 
 
 card.style.animationDelay =
@@ -1093,11 +931,7 @@ card.style.animationDelay =
 `${index*120}ms`;
 
 
-
-
-
 card.innerHTML =
-
 
 `
 
@@ -1112,26 +946,15 @@ ${project.description}
 `;
 
 
-
-
-
-
 projectGrid.appendChild(
 card
 );
 
 
-
 });
 
 
-
-
 }
-
-
-
-
 
 
 
@@ -1152,20 +975,14 @@ return;
 
 
 
-
-
 timeline.classList.remove(
 "collapsing"
 );
 
 
-
 timeline.classList.add(
 "expanded"
 );
-
-
-
 
 
 
@@ -1180,10 +997,7 @@ timelineHint.textContent =
 }
 
 
-
 }
-
-
 
 
 
@@ -1197,20 +1011,14 @@ if(!timeline)
 return;
 
 
-
-
-
 timeline.classList.add(
 "collapsing"
 );
 
 
-
 timeline.classList.remove(
 "expanded"
 );
-
-
 
 
 
@@ -1225,12 +1033,7 @@ timelineHint.textContent =
 }
 
 
-
 }
-
-
-
-
 
 
 
@@ -1243,8 +1046,6 @@ function resetCollapseTimer(){
 clearTimeout(
 collapseTimer
 );
-
-
 
 
 
@@ -1264,12 +1065,7 @@ collapseTimeline();
 );
 
 
-
 }
-
-
-
-
 
 
 
@@ -1285,13 +1081,8 @@ yearButtons.forEach(
 
 
 
-
-
 const year =
 button.dataset.year;
-
-
-
 
 
 
@@ -1305,7 +1096,6 @@ year
 );
 
 
-
 yearButtons.forEach(
 (btn)=>{
 
@@ -1313,10 +1103,7 @@ btn.classList.remove(
 "active"
 );
 
-
 });
-
-
 
 
 button.classList.add(
@@ -1324,23 +1111,15 @@ button.classList.add(
 );
 
 
-
-
 expandTimeline();
-
 
 
 resetCollapseTimer();
 
 
-
 }
 
 );
-
-
-
-
 
 
 button.addEventListener(
@@ -1353,7 +1132,6 @@ year
 );
 
 
-
 yearButtons.forEach(
 (btn)=>{
 
@@ -1363,9 +1141,7 @@ btn.classList.remove(
 );
 
 
-
 });
-
 
 
 button.classList.add(
@@ -1373,19 +1149,15 @@ button.classList.add(
 );
 
 
-
 expandTimeline();
-
 
 
 resetCollapseTimer();
 
 
-
 }
 
 );
-
 
 
 });
@@ -1407,19 +1179,14 @@ return;
 
 
 
-
-
 const signal =
 document.createElement(
 "div"
 );
 
 
-
 signal.className =
 "cpu-pulse";
-
-
 
 
 
@@ -1480,9 +1247,6 @@ distance:"-120vw"
 
 
 
-
-
-
 const direction =
 
 directions[
@@ -1495,9 +1259,6 @@ directions.length
 
 
 
-
-
-
 signal.style.setProperty(
 
 "--angle",
@@ -1505,9 +1266,6 @@ signal.style.setProperty(
 `${direction.angle}deg`
 
 );
-
-
-
 
 
 signal.style.setProperty(
@@ -1520,14 +1278,9 @@ direction.distance
 
 
 
-
-
-
 signal.style.top =
 
 `${Math.random()*100}%`;
-
-
 
 
 
@@ -1537,14 +1290,9 @@ signal.style.left =
 
 
 
-
-
 signal.style.width =
 
 `${80 + Math.random()*220}px`;
-
-
-
 
 
 
@@ -1554,15 +1302,9 @@ signal.style.animationDuration =
 
 
 
-
-
-
 cpuField.appendChild(
 signal
 );
-
-
-
 
 
 
@@ -1573,7 +1315,6 @@ setTimeout(
 signal.remove();
 
 
-
 },
 
 9000
@@ -1581,12 +1322,7 @@ signal.remove();
 );
 
 
-
 }
-
-
-
-
 
 
 
@@ -1600,9 +1336,6 @@ if(
 prefersReducedMotion
 )
 return;
-
-
-
 
 
 
@@ -1621,18 +1354,10 @@ createSignal();
 );
 
 
-
 }
 
 
-
-
 startSignals();
-
-
-
-
-
 
 
 
@@ -1651,8 +1376,6 @@ document.querySelector(
 
 
 
-
-
 function updateScroll(){
 
 
@@ -1662,15 +1385,11 @@ return;
 
 
 
-
-
 const height =
 
 document.documentElement.scrollHeight
 -
 window.innerHeight;
-
-
 
 
 
@@ -1684,19 +1403,12 @@ height
 100;
 
 
-
-
-
 progress.style.width =
 
 `${percent}%`;
 
 
-
 }
-
-
-
 
 
 
@@ -1715,9 +1427,6 @@ passive:true
 
 
 
-
-
-
 /* =====================================================
    TOUCH INTERACTION SUPPORT
 ===================================================== */
@@ -1731,7 +1440,6 @@ cards.forEach(
 (card)=>{
 
 
-
 card.addEventListener(
 "touchstart",
 ()=>{
@@ -1742,17 +1450,12 @@ card.classList.add(
 );
 
 
-
 },
 {
 passive:true
 }
 
 );
-
-
-
-
 
 
 card.addEventListener(
@@ -1769,7 +1472,6 @@ card.classList.remove(
 );
 
 
-
 },
 
 150
@@ -1777,23 +1479,15 @@ card.classList.remove(
 );
 
 
-
 }
 
 );
 
 
-
 });
 
 
-
 }
-
-
-
-
-
 
 
 
@@ -1821,7 +1515,6 @@ timeline.classList.add(
 );
 
 
-
 setTimeout(
 ()=>{
 
@@ -1831,7 +1524,6 @@ timeline.classList.remove(
 );
 
 
-
 },
 
 2000
@@ -1839,10 +1531,7 @@ timeline.classList.remove(
 );
 
 
-
 }
-
-
 
 
 }
@@ -1850,12 +1539,7 @@ timeline.classList.remove(
 );
 
 
-
 }
-
-
-
-
 
 
 
@@ -1875,7 +1559,6 @@ document.body.classList.add(
 );
 
 
-
 cards.forEach(
 (card,index)=>{
 
@@ -1889,7 +1572,6 @@ card.classList.add(
 );
 
 
-
 },
 
 index*120
@@ -1897,17 +1579,10 @@ index*120
 );
 
 
-
 });
 
 
-
 });
-
-
-
-
-
 
 
 
@@ -1929,7 +1604,6 @@ stopPipeline();
 
 
 }
-
 else {
 
 
@@ -1939,8 +1613,8 @@ startPipeline();
 }
 
 
-
 });
+
 
 /* =====================================================
    ACCESSIBILITY ENHANCEMENTS
@@ -1969,19 +1643,12 @@ element.click();
 }
 
 
-
 }
 
 );
 
 
-
 });
-
-
-
-
-
 
 
 
@@ -1994,7 +1661,6 @@ element.click();
 let resizeTimer;
 
 
-
 window.addEventListener(
 "resize",
 ()=>{
@@ -2003,8 +1669,6 @@ window.addEventListener(
 clearTimeout(
 resizeTimer
 );
-
-
 
 
 resizeTimer =
@@ -2023,7 +1687,6 @@ card.style.removeProperty(
 });
 
 
-
 },
 
 250
@@ -2031,13 +1694,7 @@ card.style.removeProperty(
 );
 
 
-
 });
-
-
-
-
-
 
 
 
@@ -2058,13 +1715,7 @@ document
 );
 
 
-
 }
-
-
-
-
-
 
 
 
@@ -2080,7 +1731,6 @@ if(projectGrid){
 
 projectGrid.innerHTML =
 
-
 `
 
 <p class="timeline-hint">
@@ -2092,12 +1742,7 @@ Hover a year to explore projects.
 `;
 
 
-
 }
-
-
-
-
 
 
 
@@ -2115,9 +1760,6 @@ document.querySelector(
 
 
 
-
-
-
 if(defaultYearButton){
 
 
@@ -2127,13 +1769,7 @@ defaultYearButton.classList.add(
 );
 
 
-
 }
-
-
-
-
-
 
 
 
@@ -2176,11 +1812,7 @@ console.log(
 );
 
 
-
 }
-
-
-
 
 
 
