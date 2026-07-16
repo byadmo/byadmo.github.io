@@ -177,18 +177,25 @@ body::before {
 .card:hover::after { opacity: 1; }
 
 /* ===== BENTO POSITIONS =====
-   Desktop: Hero + Hardware (left) | Profile, Journey, Stack, Entrepreneurship, Connect (right) */
+   Desktop: Hero, Hardware, Entrepreneurship, Connect (left) | Profile, Journey, Stack (right) */
 
-.hero { grid-column: span 8; grid-row: span 2; min-height: 600px; isolation: isolate; }
-.profile { grid-column: span 4; }
+.hero { grid-column: 1 / 9; grid-row: 1; min-height: 600px; isolation: isolate; }
 .hardware {
-  grid-column: span 8;
-  grid-row: span 2;
+  grid-column: 1 / 9;
+  grid-row: 2;
   /* Keep this card content-sized when the adjacent timeline expands. */
   align-self: start;
 }
+.right-column {
+  grid-column: 9 / 13;
+  grid-row: 1 / span 3;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  align-self: start;
+}
+.right-column > .card { width: 100%; }
 .timeline {
-  grid-column: span 4;
   max-height: 300px;
   overflow: hidden;
   contain: layout paint;
@@ -196,9 +203,8 @@ body::before {
 }
 .timeline.expanded { max-height: 850px; }
 .timeline:hover { transform: translateY(-8px); }
-.stack { grid-column: span 4; }
-.entrepreneur { grid-column: span 4; }
-.connect { grid-column: span 4; }
+.entrepreneur { grid-column: 1 / 5; grid-row: 3; }
+.connect { grid-column: 5 / 9; grid-row: 3; }
 
 /* ===== TERMINAL DOTS ===== */
 
@@ -412,13 +418,20 @@ pre code { font-family: inherit; background: transparent; }
 @media (max-width: 1200px) {
   body { padding: 25px; }
   .bento-grid { grid-template-columns: repeat(8, 1fr); }
-  .hero { grid-column: span 8; min-height: 520px; }
+  .hero { grid-column: 1 / -1; grid-row: auto; min-height: 520px; }
+  .hardware { grid-column: 1 / -1; grid-row: auto; }
+  .right-column {
+    grid-column: 1 / -1;
+    grid-row: auto;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 22px;
+  }
   .profile { grid-column: span 4; }
-  .hardware { grid-column: span 8; }
   .timeline { grid-column: span 4; }
-  .stack { grid-column: span 4; }
-  .entrepreneur { grid-column: span 4; }
-  .connect { grid-column: span 4; }
+  .stack { grid-column: 1 / -1; }
+  .entrepreneur { grid-column: 1 / 5; grid-row: auto; }
+  .connect { grid-column: 5 / 9; grid-row: auto; }
   h1 { font-size: clamp(2.8rem, 6vw, 4.5rem); }
   .card { padding: 28px; }
 }
@@ -430,6 +443,7 @@ pre code { font-family: inherit; background: transparent; }
 @media (max-width: 900px) {
   body { padding: 20px; }
   .bento-grid { display: flex; flex-direction: column; gap: 18px; }
+  .right-column { display: flex; flex-direction: column; gap: 18px; order: 3; width: 100%; }
   .card { width: 100%; }
   .hero { min-height: auto; }
   .hardware { order: 2; }
@@ -452,6 +466,7 @@ pre code { font-family: inherit; background: transparent; }
   body { padding: 14px; font-size: 14px; }
   .cpu-field { opacity: .55; }
   .bento-grid { gap: 14px; }
+  .right-column { gap: 14px; }
   .card { border-radius: 22px; padding: 22px; }
   .card:hover { transform: translateY(-3px); }
   .hero { min-height: auto; }
