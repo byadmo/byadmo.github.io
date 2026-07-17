@@ -1909,12 +1909,57 @@ const journeyProjects = {
 
 title:
 
-"2026",
+"Pipelined RISC-V CPU",
 
 
 description:
 
 "Building a pipelined RISC-V CPU and expanding into FPGA development."
+
+},
+
+
+
+{
+
+title:
+
+"RTL Verification",
+
+
+description:
+
+"Testing datapaths, control logic, hazards, and forwarding behavior through simulation and waveform analysis."
+
+},
+
+
+
+{
+
+title:
+
+"FPGA Implementation",
+
+
+description:
+
+"Preparing the processor design for synthesis, timing checks, and hardware deployment on FPGA."
+
+},
+
+
+
+{
+
+title:
+
+"Computer Architecture Focus",
+
+
+description:
+
+"Studying pipeline hazards, branch behavior, memory systems, and the design tradeoffs behind efficient processors."
 
 }
 
@@ -1932,12 +1977,57 @@ description:
 
 title:
 
-"2025",
+"Digital Logic Design",
 
 
 description:
 
 "Designed ALUs, control logic, and hardware modules."
+
+},
+
+
+
+{
+
+title:
+
+"Verilog + SystemVerilog",
+
+
+description:
+
+"Built a stronger foundation in hardware description languages, simulation workflows, and synthesizable design."
+
+},
+
+
+
+{
+
+title:
+
+"Hardware Modules",
+
+
+description:
+
+"Practiced breaking larger systems into smaller reusable blocks with clear inputs, outputs, and timing behavior."
+
+},
+
+
+
+{
+
+title:
+
+"Embedded Systems",
+
+
+description:
+
+"Explored microcontroller-based projects involving sensors, actuators, low-level programming, and physical hardware."
 
 }
 
@@ -1955,12 +2045,57 @@ description:
 
 title:
 
-"2024",
+"Digital Logic Foundations",
 
 
 description:
 
 "Started learning digital logic and Verilog."
+
+},
+
+
+
+{
+
+title:
+
+"Engineering Fundamentals",
+
+
+description:
+
+"Built fundamentals in circuits, programming, physics, mathematics, and problem-solving."
+
+},
+
+
+
+{
+
+title:
+
+"First Hardware Experiments",
+
+
+description:
+
+"Started exploring how software connects to physical systems through electronics and digital design."
+
+},
+
+
+
+{
+
+title:
+
+"First Principles Mindset",
+
+
+description:
+
+"Began focusing on understanding systems from the ground up instead of treating technology as a black box."
 
 }
 
