@@ -181,7 +181,11 @@ body.cursor-active .cursor-light {
     rotateX(var(--tilt-x))
     scaleY(var(--layout-scale-y))
     scale(var(--card-scale));
-  transition: opacity .8s var(--ease), transform 1.15s cubic-bezier(.19, 1, .22, 1), border-color .5s ease, box-shadow .5s ease;
+  transition:
+    opacity .8s var(--ease),
+    transform .9s cubic-bezier(.2, .8, .2, 1),
+    border-color .45s ease,
+    box-shadow .45s ease;
 }
 
 .card.active {
@@ -699,10 +703,10 @@ p {
   transform: translateY(14px);
   will-change: max-height, opacity, transform;
   transition:
-    max-height 1.25s cubic-bezier(.19, 1, .22, 1),
-    opacity .85s ease,
-    margin-top .9s cubic-bezier(.19, 1, .22, 1),
-    transform 1s cubic-bezier(.19, 1, .22, 1);
+    max-height .9s cubic-bezier(.2, .8, .2, 1),
+    opacity .55s ease,
+    margin-top .65s cubic-bezier(.2, .8, .2, 1),
+    transform .72s cubic-bezier(.2, .8, .2, 1);
 }
 
 .hardware-details p {
@@ -981,10 +985,10 @@ p {
   transform: translateY(14px);
   will-change: max-height, opacity, transform;
   transition:
-    max-height 1.25s cubic-bezier(.19, 1, .22, 1),
-    opacity .85s ease,
-    margin-top .9s cubic-bezier(.19, 1, .22, 1),
-    transform 1s cubic-bezier(.19, 1, .22, 1);
+    max-height .9s cubic-bezier(.2, .8, .2, 1),
+    opacity .55s ease,
+    margin-top .65s cubic-bezier(.2, .8, .2, 1),
+    transform .72s cubic-bezier(.2, .8, .2, 1);
 }
 
 .prosthetic.is-expanded .prosthetic-details {
@@ -1526,8 +1530,6 @@ a {
 }
 
 .card,
-.cpu-pulse,
-.project-item,
 .buttons a,
 .year-buttons button {
   will-change: transform;
@@ -1541,5 +1543,9 @@ body {
 }
 
 body.loaded .card {
-  transition: opacity .8s var(--ease), transform .8s var(--ease), border-color .5s ease;
+  transition:
+    opacity .8s var(--ease),
+    transform .9s cubic-bezier(.2, .8, .2, 1),
+    border-color .45s ease,
+    box-shadow .45s ease;
 }

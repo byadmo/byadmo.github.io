@@ -711,6 +711,47 @@ rect:card.getBoundingClientRect()
 
 
 
+let cachedBentoMetrics = [];
+
+
+
+let pressureFrame = null;
+
+
+
+let pendingPressure = null;
+
+
+
+function refreshBentoMetrics(){
+
+
+cachedBentoMetrics =
+Array.from(cards).map(card=>{
+
+
+const rect =
+card.getBoundingClientRect();
+
+
+return {
+
+card,
+
+centerX:rect.left + rect.width / 2,
+
+centerY:rect.top + rect.height / 2
+
+};
+
+
+});
+
+
+}
+
+
+
 function animateBentoLayout(mutator){
 
 
@@ -822,6 +863,9 @@ card.style.removeProperty(
 });
 
 
+refreshBentoMetrics();
+
+
 });
 
 
@@ -833,6 +877,11 @@ card.style.removeProperty(
 
 
 const expandableCollapseTimers =
+new WeakMap();
+
+
+
+const expandableSizeCache =
 new WeakMap();
 
 
@@ -976,6 +1025,42 @@ if(!details)
 return;
 
 
+const cardRect =
+card.getBoundingClientRect();
+
+
+const cache =
+expandableSizeCache.get(card);
+
+
+const cacheKey =
+`${Math.round(cardRect.width)}:${details.scrollHeight}`;
+
+
+if(
+cache &&
+cache.key === cacheKey
+){
+
+
+card.style.setProperty(
+"--details-height",
+`${cache.detailsHeight}px`
+);
+
+
+card.style.setProperty(
+"--expanded-rows",
+cache.expandedRows
+);
+
+
+return;
+
+
+}
+
+
 card.style.setProperty(
 "--details-height",
 `${details.scrollHeight + 2}px`
@@ -1021,6 +1106,16 @@ Math.ceil(
 card.style.setProperty(
 "--expanded-rows",
 expandedRows
+);
+
+
+expandableSizeCache.set(
+card,
+{
+key:cacheKey,
+detailsHeight:details.scrollHeight + 2,
+expandedRows
+}
 );
 
 
@@ -1152,7 +1247,7 @@ card.classList.remove(
 expandableCollapseTimers.delete(card);
 
 
-},90);
+},55);
 
 
 expandableCollapseTimers.set(
@@ -1196,6 +1291,21 @@ detailsSelector
 function resetBentoPressure(){
 
 
+if(pressureFrame){
+
+
+cancelAnimationFrame(pressureFrame);
+
+
+pressureFrame = null;
+
+
+}
+
+
+pendingPressure = null;
+
+
 cards.forEach(card=>{
 
 
@@ -1226,7 +1336,7 @@ card.style.removeProperty(
 
 
 
-function applyBentoPressure(source,intensity = 1){
+function applyBentoPressureFromMetrics(source,intensity = 1){
 
 
 if(
@@ -1236,19 +1346,27 @@ window.innerWidth <= 900
 return;
 
 
-const sourceRect =
-source.getBoundingClientRect();
+if(!cachedBentoMetrics.length)
+refreshBentoMetrics();
+
+
+const sourceMetric =
+cachedBentoMetrics.find(metric=>metric.card === source);
+
+
+if(!sourceMetric)
+return;
 
 
 const sourceX =
-sourceRect.left + sourceRect.width / 2;
+sourceMetric.centerX;
 
 
 const sourceY =
-sourceRect.top + sourceRect.height / 2;
+sourceMetric.centerY;
 
 
-cards.forEach(card=>{
+cachedBentoMetrics.forEach(({card,centerX,centerY})=>{
 
 
 if(card === source){
@@ -1272,24 +1390,12 @@ return;
 }
 
 
-const rect =
-card.getBoundingClientRect();
-
-
-const cardX =
-rect.left + rect.width / 2;
-
-
-const cardY =
-rect.top + rect.height / 2;
-
-
 const dx =
-cardX - sourceX;
+centerX - sourceX;
 
 
 const dy =
-cardY - sourceY;
+centerY - sourceY;
 
 
 const distance =
@@ -1342,6 +1448,52 @@ card.style.setProperty(
 
 
 
+function scheduleBentoPressure(source,intensity = 1){
+
+
+pendingPressure = {
+source,
+intensity
+};
+
+
+if(pressureFrame)
+return;
+
+
+pressureFrame =
+requestAnimationFrame(()=>{
+
+
+pressureFrame = null;
+
+
+if(!pendingPressure)
+return;
+
+
+const {
+source:pendingSource,
+intensity:pendingIntensity
+} = pendingPressure;
+
+
+pendingPressure = null;
+
+
+applyBentoPressureFromMetrics(
+pendingSource,
+pendingIntensity
+);
+
+
+});
+
+
+}
+
+
+
 if(
 bentoGrid &&
 !prefersReducedMotion
@@ -1353,13 +1505,22 @@ cards.forEach(card=>{
 
 card.addEventListener(
 "pointerenter",
-()=>applyBentoPressure(card)
+()=>{
+
+
+refreshBentoMetrics();
+
+
+scheduleBentoPressure(card);
+
+
+}
 );
 
 
 card.addEventListener(
 "pointermove",
-()=>applyBentoPressure(card,.85)
+()=>scheduleBentoPressure(card,.85)
 );
 
 
@@ -1371,7 +1532,16 @@ resetBentoPressure
 
 card.addEventListener(
 "touchstart",
-()=>applyBentoPressure(card,1.15),
+()=>{
+
+
+refreshBentoMetrics();
+
+
+scheduleBentoPressure(card,1.15);
+
+
+},
 {
 passive:true
 }
@@ -3304,6 +3474,18 @@ property
 
 
 });
+
+
+getExpandableProjectCards().forEach(card=>{
+
+
+expandableSizeCache.delete(card);
+
+
+});
+
+
+refreshBentoMetrics();
 
 
 
