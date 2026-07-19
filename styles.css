@@ -12,6 +12,8 @@
   --muted: #9297a3;
   --cyan: #00eaff;
   --green: #00ff88;
+  --magenta: #ff2bd6;
+  --amber: #ffd166;
   --radius: 28px;
   --ease: cubic-bezier(.22, 1, .36, 1);
 }
@@ -27,7 +29,13 @@ html {
 }
 
 body {
-  background: var(--bg);
+  position: relative;
+  background:
+    linear-gradient(115deg, rgba(255, 43, 214, .16), transparent 22%),
+    linear-gradient(245deg, rgba(0, 255, 136, .18), transparent 28%),
+    repeating-linear-gradient(90deg, rgba(0, 234, 255, .045) 0 1px, transparent 1px 42px),
+    repeating-linear-gradient(0deg, rgba(0, 255, 136, .04) 0 1px, transparent 1px 42px),
+    #050608;
   color: var(--white);
   font-family: "JetBrains Mono", monospace;
   padding: 40px;
@@ -59,20 +67,65 @@ body::before {
   position: fixed;
   inset: 0;
   background:
-    linear-gradient(90deg, rgba(0, 234, 255, .025) 1px, transparent 1px),
-    linear-gradient(rgba(0, 234, 255, .025) 1px, transparent 1px);
-  background-size: 70px 70px;
-  mask-image: radial-gradient(circle, black, transparent 75%);
+    repeating-linear-gradient(90deg, rgba(0, 234, 255, .2) 0 1px, transparent 1px 72px),
+    repeating-linear-gradient(0deg, rgba(0, 255, 136, .16) 0 1px, transparent 1px 72px),
+    repeating-linear-gradient(90deg, transparent 0 280px, rgba(255, 43, 214, .2) 281px 284px, transparent 285px 560px),
+    repeating-linear-gradient(0deg, transparent 0 220px, rgba(255, 209, 102, .16) 221px 223px, transparent 224px 520px);
+  background-size: 72px 72px, 72px 72px, 560px 560px, 520px 520px;
+  mask-image: radial-gradient(circle at 50% 28%, black 0 56%, transparent 86%);
+  opacity: .9;
   pointer-events: none;
+  z-index: 0;
+  animation: circuitGridDrift 18s linear infinite;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: -18%;
+  pointer-events: none;
+  z-index: 1;
+  opacity: .82;
+  background:
+    conic-gradient(from 0deg at 50% 50%, transparent 0deg, rgba(0, 234, 255, .32) 28deg, transparent 58deg, transparent 180deg, rgba(0, 255, 136, .24) 214deg, transparent 246deg, transparent 360deg),
+    repeating-linear-gradient(115deg, transparent 0 118px, rgba(0, 234, 255, .16) 119px 121px, transparent 122px 236px),
+    repeating-linear-gradient(65deg, transparent 0 148px, rgba(255, 43, 214, .11) 149px 151px, transparent 152px 296px);
+  mix-blend-mode: screen;
+  filter: saturate(1.35);
+  animation: circuitSweep 16s linear infinite;
+}
+
+@keyframes circuitGridDrift {
+  from {
+    background-position: 0 0, 0 0, 0 0, 0 0;
+  }
+
+  to {
+    background-position: 72px 72px, -72px 72px, 560px 0, 0 520px;
+  }
+}
+
+@keyframes circuitSweep {
+  from {
+    transform: rotate(0deg) scale(1.04);
+  }
+
+  to {
+    transform: rotate(360deg) scale(1.04);
+  }
 }
 
 .noise {
   position: fixed;
   inset: 0;
   pointer-events: none;
-  opacity: .035;
-  background-image: radial-gradient(white 1px, transparent 1px);
-  background-size: 18px 18px;
+  z-index: 4;
+  opacity: .12;
+  background-image:
+    radial-gradient(rgba(255, 255, 255, .78) 1px, transparent 1px),
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, .05) 0 1px, transparent 1px 4px);
+  background-size: 16px 16px, 100% 4px;
+  mix-blend-mode: screen;
 }
 
 .cursor-light {
@@ -101,7 +154,9 @@ body.cursor-active .cursor-light {
   inset: 0;
   overflow: hidden;
   pointer-events: none;
-  z-index: 0;
+  z-index: 1;
+  opacity: 1;
+  filter: saturate(1.45) contrast(1.08);
 }
 
 .cpu-pulse {
@@ -109,10 +164,32 @@ body.cursor-active .cursor-light {
   height: var(--pulse-height, 2px);
   opacity: var(--pulse-opacity, .85);
   border-radius: 999px;
-  background: linear-gradient(90deg, transparent, rgba(0, 234, 255, .95), rgba(0, 255, 136, .85), transparent);
+  background: linear-gradient(90deg, transparent, rgba(0, 234, 255, 1), rgba(0, 255, 136, .96), rgba(255, 43, 214, .82), transparent);
   filter: blur(var(--pulse-blur, 0px));
-  box-shadow: 0 0 18px rgba(0, 234, 255, .85), 0 0 48px rgba(0, 255, 136, .42);
+  box-shadow: 0 0 22px rgba(0, 234, 255, .95), 0 0 64px rgba(0, 255, 136, .62), 0 0 88px rgba(255, 43, 214, .34);
   animation: signalMove linear infinite;
+}
+
+.cpu-pulse::before,
+.cpu-pulse::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--amber);
+  box-shadow: 0 0 18px rgba(255, 209, 102, .9), 0 0 34px rgba(0, 234, 255, .65);
+  transform: translateY(-50%);
+}
+
+.cpu-pulse::before {
+  left: 16%;
+}
+
+.cpu-pulse::after {
+  right: 12%;
+  background: var(--cyan);
 }
 
 @keyframes signalMove {
@@ -162,14 +239,18 @@ body.cursor-active .cursor-light {
   --card-scale: .97;
   --tilt-x: 0deg;
   --tilt-y: 0deg;
-  background: linear-gradient(145deg, rgba(20, 22, 28, .98), rgba(10, 11, 15, .98));
-  border: 1px solid var(--border);
+  background:
+    linear-gradient(145deg, rgba(20, 22, 28, .9), rgba(10, 11, 15, .86)),
+    linear-gradient(135deg, rgba(0, 234, 255, .08), transparent 42%, rgba(255, 43, 214, .05));
+  border: 1px solid rgba(0, 234, 255, .28);
   border-radius: var(--radius);
   padding: 34px;
   position: relative;
   overflow: hidden;
   opacity: 0;
   height: 100%;
+  backdrop-filter: blur(18px) saturate(1.18);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .035), 0 18px 70px rgba(0, 0, 0, .5);
   transform-origin: top center;
   transform: perspective(1200px)
     translate3d(
@@ -1358,7 +1439,7 @@ a {
   }
 
   .cpu-field {
-    opacity: .55;
+    opacity: .85;
   }
 
   .bento-grid {

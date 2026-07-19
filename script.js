@@ -2686,7 +2686,7 @@ signal.style.setProperty(
 
 "--angle",
 
-`${Math.random()*360}deg`
+`${direction.angle + ((Math.random() - .5) * 18)}deg`
 
 );
 
@@ -2698,7 +2698,7 @@ signal.style.setProperty(
 
 "--distance",
 
-`${70 + Math.random()*95}vw`
+direction.distance
 
 );
 
@@ -2725,24 +2725,24 @@ signal.style.left =
 
 signal.style.width =
 
-`${90 + Math.random()*380}px`;
+`${180 + Math.random()*620}px`;
 
 
 signal.style.setProperty(
 "--pulse-height",
-`${1 + Math.random()*3}px`
+`${2 + Math.random()*5}px`
 );
 
 
 signal.style.setProperty(
 "--pulse-opacity",
-`${.48 + Math.random()*.42}`
+`${.68 + Math.random()*.32}`
 );
 
 
 signal.style.setProperty(
 "--pulse-blur",
-`${Math.random()*1.8}px`
+`${Math.random()*2.4}px`
 );
 
 
@@ -2752,7 +2752,7 @@ signal.style.setProperty(
 
 signal.style.animationDuration =
 
-`${6 + Math.random()*9}s`;
+`${3.6 + Math.random()*5.2}s`;
 
 
 
@@ -2813,9 +2813,9 @@ const spawnBurst =
 
 
 const burstCount =
-Math.random() > .68
-? 2 + Math.floor(Math.random()*3)
-: 1;
+Math.random() > .52
+? 4 + Math.floor(Math.random()*5)
+: 2 + Math.floor(Math.random()*3);
 
 
 for(
@@ -2827,7 +2827,7 @@ i++
 
 setTimeout(
 createSignal,
-i * (55 + Math.random()*120)
+i * (32 + Math.random()*82)
 );
 
 
@@ -2836,7 +2836,7 @@ i * (55 + Math.random()*120)
 
 setTimeout(
 spawnBurst,
-180 + Math.random()*620
+120 + Math.random()*280
 );
 
 
