@@ -2771,6 +2771,7 @@ nodes:[],
 clusters:[],
 pulses:[],
 buses:[],
+floaters:[],
 projectRoute:null,
 cursor:{ x:-1000,y:-1000,active:false },
 activityBoost:1,
@@ -2781,6 +2782,9 @@ ripple:null,
 lastTime:0,
 frame:null
 };
+
+const animateSiliconBackground =
+true;
 
 const clamp = (value,min,max)=>Math.max(min,Math.min(max,value));
 const rand = (min,max)=>min + Math.random() * (max - min);
@@ -2966,7 +2970,27 @@ cell:mobile ? 8 : 9,
 seed:Math.floor(Math.random() * 120)
 }));
 
+state.floaters = Array.from({ length:mobile ? 12 : 34 },()=>createFloatingElement(mobile));
+
 drawField(performance.now());
+}
+
+function createFloatingElement(mobile){
+const size = mobile ? rand(42,118) : rand(70,210);
+const horizontal = Math.random() > .35;
+const direction = Math.random() > .5 ? 1 : -1;
+
+return {
+x:rand(-state.width * .2,state.width * 1.2),
+y:rand(-state.height * .2,state.height * 1.2),
+w:horizontal ? size : size * rand(.28,.46),
+h:horizontal ? size * rand(.24,.42) : size,
+vx:(horizontal ? rand(46,128) : rand(22,64)) * direction,
+vy:(horizontal ? rand(-26,26) : rand(36,92)) * (Math.random() > .5 ? 1 : -1),
+kind:choose(["bus","logic","route"]),
+phase:rand(0,Math.PI * 2),
+alpha:mobile ? rand(.09,.18) : rand(.13,.3)
+};
 }
 
 function drawTrace(trace,alpha){
@@ -3060,9 +3084,118 @@ ctx.stroke();
 ctx.shadowBlur = 0;
 }
 
+function updateFloaters(delta){
+state.floaters.forEach(floater=>{
+floater.x += floater.vx * delta * state.activityBoost;
+floater.y += floater.vy * delta * state.activityBoost;
+
+const margin = 260;
+
+if(floater.x > state.width + margin)
+floater.x = -margin - floater.w;
+
+if(floater.x + floater.w < -margin)
+floater.x = state.width + margin;
+
+if(floater.y > state.height + margin)
+floater.y = -margin - floater.h;
+
+if(floater.y + floater.h < -margin)
+floater.y = state.height + margin;
+});
+}
+
+function drawFloatingElement(floater,time){
+const pulse = .5 + Math.sin(time * .0015 + floater.phase) * .5;
+const alpha = floater.alpha + pulse * .025;
+const x = floater.x;
+const y = floater.y;
+const w = floater.w;
+const h = floater.h;
+
+ctx.save();
+ctx.translate(x,y);
+ctx.globalAlpha = 1;
+ctx.strokeStyle = `rgba(0,234,255,${alpha})`;
+ctx.fillStyle = `rgba(0,234,255,${alpha * .16})`;
+ctx.lineWidth = 1;
+
+if(floater.kind === "logic"){
+const cell = Math.max(7,Math.min(13,w / 8));
+const cols = Math.max(3,Math.floor(w / cell));
+const rows = Math.max(2,Math.floor(h / cell));
+
+for(let row = 0; row < rows; row++){
+for(let col = 0; col < cols; col++){
+const lit = (row * cols + col + Math.floor(time / 180 + floater.phase * 3)) % 17 === 0;
+ctx.fillStyle = lit ? "rgba(0,255,136,.18)" : `rgba(255,255,255,${alpha * .08})`;
+ctx.strokeStyle = lit ? "rgba(0,255,136,.36)" : `rgba(215,245,255,${alpha * .75})`;
+ctx.fillRect(col * cell,row * cell,cell - 3,cell - 3);
+ctx.strokeRect(col * cell + .5,row * cell + .5,cell - 4,cell - 4);
+}
+}
+}
+else if(floater.kind === "bus"){
+const lanes = Math.max(3,Math.floor(h / 9));
+
+for(let lane = 0; lane < lanes; lane++){
+const yy = 5 + lane * 9;
+ctx.beginPath();
+ctx.moveTo(0,yy);
+ctx.lineTo(w,yy);
+ctx.strokeStyle = `rgba(215,245,255,${alpha * .72})`;
+ctx.stroke();
+
+const dotX = (time * (.025 + lane * .002) + lane * 31 + floater.phase * 12) % (w + 40) - 20;
+ctx.beginPath();
+ctx.arc(dotX,yy,2.2,0,Math.PI * 2);
+ctx.fillStyle = "rgba(0,234,255,.62)";
+ctx.shadowBlur = 10;
+ctx.shadowColor = "rgba(0,234,255,.72)";
+ctx.fill();
+ctx.shadowBlur = 0;
+}
+}
+else {
+const midX = w * .5;
+const midY = h * .5;
+ctx.beginPath();
+ctx.moveTo(0,midY);
+ctx.lineTo(midX,midY);
+ctx.lineTo(midX,h);
+ctx.moveTo(midX,midY);
+ctx.lineTo(w,midY);
+ctx.moveTo(w * .72,midY);
+ctx.lineTo(w * .72,0);
+ctx.strokeStyle = `rgba(215,245,255,${alpha})`;
+ctx.stroke();
+
+[
+[midX,midY],
+[w * .72,midY],
+[w * .72,0],
+[midX,h]
+].forEach(([nodeX,nodeY])=>{
+ctx.beginPath();
+ctx.arc(nodeX,nodeY,2.1 + pulse * .9,0,Math.PI * 2);
+ctx.fillStyle = "rgba(0,234,255,.45)";
+ctx.fill();
+});
+}
+
+ctx.restore();
+}
+
+function drawFloaters(time){
+state.floaters.forEach(floater=>{
+drawFloatingElement(floater,time);
+});
+}
+
 function drawField(time){
 ctx.clearRect(0,0,state.width,state.height);
 drawClusters(time);
+drawFloaters(time);
 
 state.traces.forEach(trace=>{
 let alpha = trace.alpha;
@@ -3131,7 +3264,7 @@ state.pulses.push({
 trace,
 distance:options.start || 0,
 speed:options.speed || rand(500,900),
-size:options.size || rand(6,8),
+size:options.size || rand(7,11),
 accent:Boolean(options.accent),
 pauseUntil:0,
 branchAt:rand(trace.length * .3,trace.length * .82),
@@ -3141,7 +3274,7 @@ arrived:options.arrived || null
 }
 
 function spawnPulse(time){
-const maxPulses = state.width < 700 ? 10 : 20;
+const maxPulses = state.width < 700 ? 16 : 34;
 
 if(state.pulses.length < maxPulses){
 addPulse(choose(state.traces),{
@@ -3149,7 +3282,7 @@ accent:Math.random() > .92
 });
 }
 
-state.nextPulse = time + rand(800,2500) / state.activityBoost;
+state.nextPulse = time + rand(280,1000) / state.activityBoost;
 }
 
 function triggerRipple(time){
@@ -3172,7 +3305,7 @@ accent:true
 });
 }
 
-state.nextBus = time + rand(6000,13000);
+state.nextBus = time + rand(2200,5600);
 }
 
 function updatePulses(time,delta){
@@ -3232,9 +3365,10 @@ if(time > state.nextBus)
 triggerBus(time);
 
 updatePulses(time,delta);
+updateFloaters(delta);
 drawField(time);
 
-if(!prefersReducedMotion){
+if(animateSiliconBackground){
 state.frame = requestAnimationFrame(animate);
 }
 }
@@ -3294,7 +3428,7 @@ timeline.classList.remove("project-active");
 function handleResize(){
 rebuildField();
 
-if(!prefersReducedMotion){
+if(animateSiliconBackground){
 const now = performance.now();
 state.nextPulse = now + 200;
 state.nextRipple = now + rand(3000,6000);
